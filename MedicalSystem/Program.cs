@@ -1,19 +1,24 @@
 using MedicalSystem.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
-var builder = WebApplication.CreateBuilder(args);
 string text=" ";
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
+// connecting to DB
 builder.Services.AddDbContext<MedicalSystemContext>(
     b => b.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("myConn")));
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// allow lazy load
 builder.Services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling =
 Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+// cors
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(text,
@@ -24,10 +29,22 @@ builder.Services.AddCors(options =>
         builder.AllowAnyHeader();
     });
 });
+
+// validating JWT 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateLifetime = true,
+        ValidateAudience = false,
+        ValidateIssuer = false,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("my_secret_key_1234567"))    
+    };
+});
+
 var app = builder.Build();
-
-
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -36,12 +53,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
-
-
-
 app.UseHttpsRedirection();
+
 app.UseCors(text);
+
+app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllers();
