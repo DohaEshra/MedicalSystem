@@ -86,10 +86,10 @@ namespace MedicalSystem.Controllers
         [HttpPost]
         public async Task<ActionResult<Patient>> PostPatient(Patient patient)
         {
-          if (_context.Patients == null)
-          {
-              return Problem("Entity set 'MedicalSystemContext.Patients'  is null.");
-          }
+            if (_context.Patients == null)
+            {
+                return Problem("Entity set 'MedicalSystemContext.Patients'  is null.");
+            }
             _context.Patients.Add(patient);
             await _context.SaveChangesAsync();
 

@@ -15,7 +15,13 @@ namespace MedicalSystem.Models
         public int DID { get; set; }
         [Key]
         public int CID { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
         public DateTime? start_time { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
         public DateTime? end_time { get; set; }
 
         [ForeignKey("CID")]

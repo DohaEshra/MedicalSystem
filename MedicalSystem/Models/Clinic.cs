@@ -19,12 +19,19 @@ namespace MedicalSystem.Models
 
         [Key]
         public int ID { get; set; }
-        [StringLength(50)]
+
+        [StringLength(30, MinimumLength = 2)]
+        [Required(ErrorMessage = "Name is required")]
         [Unicode(false)]
         public string name { get; set; }
-        [StringLength(70)]
+
+        [StringLength(40, MinimumLength = 10)]
+        [Required(ErrorMessage = "Address is required")]
         [Unicode(false)]
         public string address { get; set; }
+
+        [Phone]
+        [Required(ErrorMessage = "Phone is required")]
         public int? phone { get; set; }
 
         [InverseProperty("CIDNavigation")]

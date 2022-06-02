@@ -17,6 +17,9 @@ namespace MedicalSystem.Models
         public int DID { get; set; }
         [Key]
         public int CID { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
         public DateTime? appointment_time { get; set; }
 
         [ForeignKey("CID")]

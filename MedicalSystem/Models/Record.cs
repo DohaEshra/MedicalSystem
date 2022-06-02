@@ -15,12 +15,22 @@ namespace MedicalSystem.Models
         public int DID { get; set; }
         [Key]
         public int PID { get; set; }
+
         [Key]
-        [StringLength(150)]
+        [Required]
+        [StringLength(150 ,MinimumLength =1)]
         [Unicode(false)]
         public string file_description { get; set; }
+
+        //[Required]
         public byte[] attached_files { get; set; }
+
+        [Required]
+        [DataType(DataType.DateTime ,ErrorMessage ="Datatype must be datetime")]
         public DateTime? date { get; set; }
+
+
+        [Required]
         [Unicode(false)]
         public string summary { get; set; }
 

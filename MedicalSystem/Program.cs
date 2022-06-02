@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
+
 // connecting to DB
 builder.Services.AddDbContext<MedicalSystemContext>(
     b => b.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("myConn")));
