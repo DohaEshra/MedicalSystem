@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MedicalSystem.Data;
 using MedicalSystem.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MedicalSystem.Controllers
 {
@@ -23,6 +24,7 @@ namespace MedicalSystem.Controllers
 
         // GET: api/Doctor
         [HttpGet]
+       // [Authorize(Roles = "Patient")]
         public async Task<ActionResult<IEnumerable<Doctor>>> GetDoctors()
         {
           if (_context.Doctors == null)

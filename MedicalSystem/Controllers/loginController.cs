@@ -29,7 +29,7 @@ namespace MedicalSystem.Controllers
                 doctor = db.Doctors.Where(a => a.email == email && a.password == password).FirstOrDefault();
                 if (doctor != null)
                 {
-                    var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("myKey"));    
+                    var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("my_secret_key_HRRDMF"));    
 
                     var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
@@ -57,7 +57,7 @@ namespace MedicalSystem.Controllers
                 patient = db.Patients.Where(a => a.email == email && a.password == password).FirstOrDefault();
                 if (patient != null)
                 {
-                    var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("my_secret_key_1234567"));
+                    var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("my_secret_key_HRRDMF"));
 
                     var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
