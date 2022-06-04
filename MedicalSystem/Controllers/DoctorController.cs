@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MedicalSystem.Controllers
 {
+    [Authorize(Roles = "Doctor")]
     [Route("api/[controller]")]
     [ApiController]
     public class DoctorController : ControllerBase
@@ -24,7 +25,6 @@ namespace MedicalSystem.Controllers
 
         // GET: api/Doctor
         [HttpGet]
-       // [Authorize(Roles = "Patient")]
         public async Task<ActionResult<IEnumerable<Doctor>>> GetDoctors()
         {
           if (_context.Doctors == null)

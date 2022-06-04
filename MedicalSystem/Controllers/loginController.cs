@@ -35,8 +35,8 @@ namespace MedicalSystem.Controllers
 
                     var data = new List<Claim>();
                     data.Add(new Claim("ID", doctor.ID.ToString()));
-                    data.Add(new Claim("Role", Role));
-                    data.Add(new Claim("email", doctor.email));
+                    data.Add(new Claim(ClaimTypes.Role, Role));
+                    data.Add(new Claim(ClaimTypes.Email, doctor.email));
 
                     var token = new JwtSecurityToken(
                         claims: data,
@@ -63,8 +63,8 @@ namespace MedicalSystem.Controllers
 
                     var data = new List<Claim>();
                     data.Add(new Claim("ID", patient.ID.ToString()));
-                    data.Add(new Claim("Role", Role));
-                    data.Add(new Claim("email", patient.email));
+                    data.Add(new Claim(ClaimTypes.Role, Role));
+                    data.Add(new Claim(ClaimTypes.Email, patient.email));
 
                     var token = new JwtSecurityToken(
                         claims: data,
