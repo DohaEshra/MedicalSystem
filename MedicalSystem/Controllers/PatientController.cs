@@ -86,6 +86,7 @@ namespace MedicalSystem.Controllers
         // POST: api/Patient
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult<Patient>> PostPatient(Patient patient)
         {
             if (_context.Patients == null)
