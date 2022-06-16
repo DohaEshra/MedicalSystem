@@ -25,7 +25,7 @@ namespace MedicalSystem.Controllers
 
         // GET: api/Patient
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Patient>>> GetPatients()
+        public async Task<ActionResult<IEnumerable<Patient>>> GetPatients()//doctor
         {
           if (_context.Patients == null)
           {
@@ -36,7 +36,7 @@ namespace MedicalSystem.Controllers
 
         // GET: api/Patient/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Patient>> GetPatient(int id)
+        public async Task<ActionResult<Patient>> GetPatient(int id)//doctor
         {
           if (_context.Patients == null)
           {
@@ -55,7 +55,7 @@ namespace MedicalSystem.Controllers
         // PUT: api/Patient/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPatient(int id, Patient patient)
+        public async Task<IActionResult> PutPatient(int id, Patient patient)//patient
         {
             if (id != patient.ID)
             {
@@ -87,7 +87,7 @@ namespace MedicalSystem.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult<Patient>> PostPatient(Patient patient)
+        public async Task<ActionResult<Patient>> PostPatient(Patient patient)//login patient
         {
             if (_context.Patients == null)
             {
