@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "H:\\ITI\\Graduation Project\\MedicalSystem\\MedicalSystem\\MedicalSystem.csproj": {}
   },
   "projects": {
@@ -15,6 +16,22 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hager\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+    "F:\\iti\\GraduationProject\\gP\\MedicalSystem\\MedicalSystem.csproj": {}
+  },
+  "projects": {
+    "F:\\iti\\GraduationProject\\gP\\MedicalSystem\\MedicalSystem.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\iti\\GraduationProject\\gP\\MedicalSystem\\MedicalSystem.csproj",
+        "projectName": "MedicalSystem",
+        "projectPath": "F:\\iti\\GraduationProject\\gP\\MedicalSystem\\MedicalSystem.csproj",
+        "packagesPath": "C:\\Users\\20122\\.nuget\\packages\\",
+        "outputPath": "F:\\iti\\GraduationProject\\gP\\MedicalSystem\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\20122\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> 78801df65f0d566c1080bed1962ff457b4fdc526
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { PatientService } from './patient/patient.service';
-import { Patient } from './_Models/patient';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +7,4 @@ import { Patient } from './_Models/patient';
 })
 export class AppComponent {
   title = 'Frontend';
-  constructor(public PatSer:PatientService){
-    PatSer.getPatients().subscribe(a=>console.log(a))
-  }
-  
 }

@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MedicalSystem.Controllers
 {
-    //[Authorize(Roles = "Patient")]
+    [Authorize(Roles = "Patient")]
     [Route("api/[controller]")]
     [ApiController]
     public class PatientController : ControllerBase
