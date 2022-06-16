@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "49SMXNe4WGNSvjGVwwq7AdXV8ybsBLehuyEfKp7FVi4=",
+  "Source": "MedicalSystem",
+  "BasePath": "_content/MedicalSystem",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
