@@ -45,7 +45,7 @@ namespace MedicalSystem.Models
         [Unicode(false)]
         public string address { get; set; }
 
-        [Phone]
+      
         [Required(ErrorMessage = "Phone is required")]
         public int? phone { get; set; }
 
@@ -55,7 +55,7 @@ namespace MedicalSystem.Models
         public string username { get; set; }
 
         [Required(ErrorMessage = "password is required")]
-        [RegularExpression("^(?=.*[A-Za-z])(?=.*/d)[A-Za-z/d]{8,}$")]
+        //[RegularExpression("^(?=.*[A-Za-z])(?=.*/d)[A-Za-z/d]{8,}$")]
         [Unicode(false)]
         public string password { get; set; }
 

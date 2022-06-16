@@ -1,0 +1,45 @@
+<div class="alert alert-secondary fs-5 d-flex justify-content-center">Edit Doctor</div>
+<a class="btn btn-primary col-2" (click)="back()">Back</a>
+
+<form class="border ">
+    <div class="mb-3 col-5 offset-3">
+        <label for="ID" class="form-label alert alert-success col-12">ID : {{doctor.id}}</label>
+    </div>
+    <div class="mb-3 col-5 offset-3">
+        <label for="title" class="form-label">First Name</label>
+        <input [(ngModel)]="doctor.fname"  [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="title">
+    </div>
+    <div class="mb-3 col-5 offset-3">
+        <label for="title" class="form-label">Last Name</label>
+        <input [(ngModel)]="doctor.lname"  [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="title">
+    </div>
+    <div class="mb-3 col-5 offset-3">
+        <label for="title" class="form-label">UserName</label>
+        <input [(ngModel)]="doctor.username"  [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="title">
+      </div>
+    <div class="mb-3 col-5 offset-3">
+      <label for="title" class="form-label">Email</label>
+      <input [(ngModel)]="doctor.email"  [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="title">
+    </div>
+    <div class="mb-3 col-5 offset-3">
+        <label for="title" class="form-label">Password</label>
+        <input [(ngModel)]="doctor.password"  [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="title">
+    </div>
+    <div class="mb-3 col-5 offset-3">
+       <label for="title" class="form-label">Address</label>
+       <input [(ngModel)]="doctor.address"  [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="title">
+    </div>
+    <div class="mb-3 col-5 offset-3">
+        <label for="title" class="form-label">Phone</label>
+        <input [(ngModel)]="doctor.phone"  [ngModelOptions]="{standalone: true}" type="number" class="form-control" id="title">
+    </div>
+    <div class="mb-3 col-5 offset-3">
+        <label for="title" class="form-label">Age</label>
+        <input [(ngModel)]="doctor.age"  [ngModelOptions]="{standalone: true}" type="number" class="form-control" id="title">
+    </div>
+    <div class="mb-3 col-5 offset-3">
+        <span class="text-danger">{{span}}</span>
+    </div>
+    <button (click)="edit()" class="btn btn-secondary mb-5 col-5 offset-3">Edit</button>
+
+</form>

@@ -15,10 +15,18 @@ export class DoctorService {
   //get doctor profile
   getDoctorProfile(){
     
-    const decodeToken = jwt_decode(this.acc.getToken()!);
+    if(this.acc.getToken()!=null)
+    {
+      var decodeToken = JSON.parse(JSON.stringify(jwt_decode(this.acc.getToken()!)));
+      this.DoctorID = decodeToken.ID;
+    }
     
-    console.log();
-    //return this.http.get<Doctor>(this.baseUrl+"doctor"+"/"+DoctorID);
+    return this.http.get<Doctor>(this.baseUrl+"doctor"+"/"+this.DoctorID);
+  }
+
+  //edit doctor profile
+  editDoctor(doctor:Doctor){
+    return this.http.put<undefined>(this.baseUrl+"doctor"+"/"+this.DoctorID,doctor);
   }
 
 }

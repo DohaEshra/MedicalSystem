@@ -1,9 +1,9 @@
 export class Doctor {
     
     constructor(
-                public ID:number,
-                public Fname:string,
-                public Lname:string,
+                public id:number,
+                public fname:string,
+                public lname:string,
                 public age:number,
                 public email:string,
                 public address:string,
