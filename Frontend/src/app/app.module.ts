@@ -12,8 +12,7 @@ import { PatientComponent } from './patient/patient.component';
     PatientComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule, HttpClientModule
+    BrowserModule,HttpClientModule,AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
