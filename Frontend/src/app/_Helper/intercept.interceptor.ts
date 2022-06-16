@@ -6,7 +6,7 @@ import {
   HttpInterceptor,HTTP_INTERCEPTORS
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {AccountService} from '../_services/account.service'
+import {AccountService} from '../account/Account.service'
 
 const TOKEN_HEADER_KEY = 'Authorization';       // for back-end
 
