@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { DoctorService } from '../doctor.service';
 
 @Component({
   selector: 'app-doctor-info',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DoctorInfoComponent implements OnInit {
 
-  constructor() { }
+  constructor(public doctorSer:DoctorService,public router:Router) { }
+
+  sub:Subscription|null=null;
 
   ngOnInit(): void {
+    this.doctorSer.getDoctorProfile();
   }
 
 }
