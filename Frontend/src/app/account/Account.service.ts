@@ -17,9 +17,7 @@ constructor() { }
     public getToken(): string | null {
       return window.sessionStorage.getItem(this.TOKEN_KEY);
     }
-
     signOut(): void {
       window.sessionStorage.clear();
     }
-
 }
