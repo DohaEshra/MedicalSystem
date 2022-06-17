@@ -11,7 +11,7 @@ export class DoctorLoginGuard implements CanActivate{
     {
     }
    
-    canActivate() {
+    canActivate(){
         if(this.acc.getToken()!=null)
         {
             return true;
