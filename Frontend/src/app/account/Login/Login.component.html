@@ -7,6 +7,7 @@
                 id="profile-img"
                 src="https://www.jing.fm/clipimg/detail/398-3981675_avatar-for-login-form.png"
                 class="profile-img-card"
+                width="200px" height="200px"
             />
         <form  name="form" (ngSubmit)="onSubmit()" #MyForm="ngForm" >
           <!-- EMAIL -->
@@ -50,8 +51,8 @@
             <label for="role" class="fs-5  fw-bold">Who Are You <span style="color: red;"  >?</span> </label>
             <select name="role" class="form-select form-select-lg" aria-label="Default select example"  #role="ngModel"[(ngModel)]="user.role">
                 <option class="fs-5" value="admin"> Admin </option>
-                <option class="fs-5" value="student">Doctor </option>
-                <option class="fs-5" value="speaker"> Patient</option>
+                <option class="fs-5" value="doctor">Doctor </option>
+                <option class="fs-5" value="patient"> Patient</option>
             </select>
             <!-- <p-selectButton [options]="roles" [(ngModel)]="selectedCityCode" optionLabel="name" optionValue="code"></p-selectButton>
             -->

@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { error } from 'console';
 import { Subscription } from 'rxjs';
 import { AccountService } from '../Account.service';
 
@@ -20,6 +19,7 @@ export class LoginComponent implements OnInit ,OnDestroy{
 
   ngOnInit() {
   }
+  
   ngOnDestroy(): void {
     this.subscribe?.unsubscribe();
   }
@@ -30,7 +30,9 @@ export class LoginComponent implements OnInit ,OnDestroy{
     this.subscribe= this.authService.login(email,password,role).subscribe({
     next: data=>
     {
-      this.authService.saveToken(data.token);
+      console.log('dataaaaaaaaaa',data)
+      this.isLoginFailed = false ; 
+      this.authService.saveToken(data);
       if (role =="doctor" ){
         this.router.navigateByUrl('/doctor');
       }
@@ -43,12 +45,11 @@ export class LoginComponent implements OnInit ,OnDestroy{
 
     }
     ,error:err=>{
-      this.errorMessage = err.error.message ;
+      console.log('errooooooooor', err)
       this.isLoginFailed = true ; 
-    }});
-
-
+      this.errorMessage = err.error;
+    }
+  });
 
   }
-
 }

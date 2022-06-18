@@ -14,7 +14,7 @@ constructor(public http:HttpClient ) { }
 
     login(email:string,password:string,role:string):Observable<any>
     {
-      return this.http.post<any>(this.baseUrl+"login/",{role,email,password})
+      return this.http.post<string>(this.baseUrl+"login/",{role,email,password})
     }
     
     public saveToken(token: string): void {

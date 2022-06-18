@@ -9,6 +9,7 @@ using System.Text;
 
 namespace MedicalSystem.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class loginController : ControllerBase
@@ -22,11 +23,11 @@ namespace MedicalSystem.Controllers
         }
 
         [HttpPost]
-        public IActionResult login(string email, string password, string Role)
+        public IActionResult login(User user)
         { 
-            if (Role == "Doctor")
+            if (user.role == "doctor")
             {
-                doctor = db.Doctors.Where(a => a.email == email && a.password == password).FirstOrDefault();
+                doctor = db.Doctors.Where(a => a.email == user.email && a.password == user.password).FirstOrDefault();
                 if (doctor != null)
                 {
                     var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("my_secret_key_HRRDMF"));    
@@ -35,7 +36,7 @@ namespace MedicalSystem.Controllers
 
                     var data = new List<Claim>();
                     data.Add(new Claim("ID", doctor.ID.ToString()));
-                    data.Add(new Claim(ClaimTypes.Role, Role));
+                    data.Add(new Claim(ClaimTypes.Role, user.role));
                     data.Add(new Claim(ClaimTypes.Email, doctor.email));
 
                     var token = new JwtSecurityToken(
@@ -48,13 +49,13 @@ namespace MedicalSystem.Controllers
                 }
                 else
                 {
-                    return Unauthorized();
+                    return Unauthorized("Username or Password is incorrect");
                 }
 
             }
-            else if(Role == "Patient")
+            else if(user.role == "patient")
             {
-                patient = db.Patients.Where(a => a.email == email && a.password == password).FirstOrDefault();
+                patient = db.Patients.Where(a => a.email == user.email && a.password == user.password).FirstOrDefault();
                 if (patient != null)
                 {
                     var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("my_secret_key_HRRDMF"));
@@ -63,7 +64,7 @@ namespace MedicalSystem.Controllers
 
                     var data = new List<Claim>();
                     data.Add(new Claim("ID", patient.ID.ToString()));
-                    data.Add(new Claim(ClaimTypes.Role, Role));
+                    data.Add(new Claim(ClaimTypes.Role, user.role));
                     data.Add(new Claim(ClaimTypes.Email, patient.email));
 
                     var token = new JwtSecurityToken(
@@ -76,12 +77,12 @@ namespace MedicalSystem.Controllers
                 }
                 else
                 {
-                    return Unauthorized();
+                    return Unauthorized("Username or Password is incorrect");
                 }
             }
             else
             {
-                return  BadRequest("Role is a must");
+                return  BadRequest("Invalid Role");
             }
         }
     }
