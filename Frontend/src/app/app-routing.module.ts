@@ -9,7 +9,7 @@ const routes: Routes = [
   {path:'login',component : LoginComponent},
   {path:"doctor",loadChildren:()=>import('./doctor/doctor.module').then(m=>m.DoctorModule)},
 
-  {path:"",redirectTo:"home",pathMatch:"full"},
+  {path:"",redirectTo:"login",pathMatch:"full"},
   {path:"**",component:NotFoundComponent}
 ];
 

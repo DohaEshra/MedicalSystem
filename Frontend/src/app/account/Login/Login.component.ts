@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { error } from 'console';
 import { Subscription } from 'rxjs';
 import { AccountService } from '../Account.service';
 
@@ -20,6 +19,7 @@ export class LoginComponent implements OnInit ,OnDestroy{
 
   ngOnInit() {
   }
+  
   ngOnDestroy(): void {
     this.subscribe?.unsubscribe();
   }
@@ -45,10 +45,8 @@ export class LoginComponent implements OnInit ,OnDestroy{
     ,error:err=>{
       this.errorMessage = err.error.message ;
       this.isLoginFailed = true ; 
-    }});
-
-
+    }
+  });
 
   }
-
 }
