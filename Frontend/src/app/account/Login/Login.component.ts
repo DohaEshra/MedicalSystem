@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit ,OnDestroy{
     this.subscribe= this.authService.login(email,password,role).subscribe({
     next: data=>
     {
-      console.log('dataaaaaaaaaa',data)
+      //console.log('dataaaaaaaaaa',data)
       this.isLoginFailed = false ; 
       this.authService.saveToken(data);
       if (role =="doctor" ){
