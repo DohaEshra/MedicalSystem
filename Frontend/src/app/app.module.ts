@@ -6,8 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AccountModule } from './account/account.module';
-import { HomeComponent } from './_shared/home/home.component';
 import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './_shared/home/home.component';
 
 @NgModule({
   declarations: [

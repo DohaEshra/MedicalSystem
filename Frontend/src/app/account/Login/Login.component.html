@@ -1,12 +1,13 @@
 
 
 <div id="sect1"  >       
-    <div  class="col-md-12">
-        <div class="card card-container">
+    <div  class="col-lg-8 d-flex align-items-center justify-content-center ">
+        <div class="card card-container  ">
             <img
                 id="profile-img"
                 src="https://www.jing.fm/clipimg/detail/398-3981675_avatar-for-login-form.png"
                 class="profile-img-card"
+                width="200px" height="200px"
             />
         <form  name="form" (ngSubmit)="onSubmit()" #MyForm="ngForm" >
           <!-- EMAIL -->
@@ -50,8 +51,8 @@
             <label for="role" class="fs-5  fw-bold">Who Are You <span style="color: red;"  >?</span> </label>
             <select name="role" class="form-select form-select-lg" aria-label="Default select example"  #role="ngModel"[(ngModel)]="user.role">
                 <option class="fs-5" value="admin"> Admin </option>
-                <option class="fs-5" value="student">Doctor </option>
-                <option class="fs-5" value="speaker"> Patient</option>
+                <option class="fs-5" value="doctor">Doctor </option>
+                <option class="fs-5" value="patient"> Patient</option>
             </select>
             <!-- <p-selectButton [options]="roles" [(ngModel)]="selectedCityCode" optionLabel="name" optionValue="code"></p-selectButton>
             -->
@@ -73,18 +74,15 @@
       </form>
 
 <div class="form-group d-grid mx-auto"   >
-
-    <a routerLink="/studentregister" class="btn btn-outline-warning btn-lg my-3">  Register As Student</a>
-    <a routerLink="/speakerregister" class="btn btn-outline-danger btn-lg">  Register As Speaker</a>
-
+    <a routerLink="/doctorregister" class="btn btn-outline-warning btn-lg my-3">  Register As Doctor</a>
+    <a routerLink="/patientregister" class="btn btn-outline-danger btn-lg">  Register As Patient</a>
 </div>
 
-<!-- <div class="alert alert-success" *ngIf="isLoggedIn">
-    Logged in as {{ roles }}.
-</div> -->
-</div>
-</div>
-
+        </div>
+    </div>
+    <div class="col-lg-4">
+      
+    </div>
 </div> 
 
 

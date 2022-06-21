@@ -9,6 +9,7 @@ using System.Text;
 
 namespace MedicalSystem.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class loginController : ControllerBase
@@ -48,7 +49,7 @@ namespace MedicalSystem.Controllers
                 }
                 else
                 {
-                    return Unauthorized();
+                    return Unauthorized("Username or Password is incorrect");
                 }
 
             }
@@ -76,12 +77,12 @@ namespace MedicalSystem.Controllers
                 }
                 else
                 {
-                    return Unauthorized();
+                    return Unauthorized("Username or Password is incorrect");
                 }
             }
             else
             {
-                return  BadRequest("Role is a must");
+                return  BadRequest("Invalid Role");
             }
         }
     }
