@@ -16,7 +16,7 @@ namespace MedicalSystem.Models
         [Key]
         public int PID { get; set; }
 
-        [Key]
+       
         [Required]
         [StringLength(150 ,MinimumLength =1)]
         [Unicode(false)]
@@ -25,6 +25,7 @@ namespace MedicalSystem.Models
         //[Required]
         public byte[] attached_files { get; set; }
 
+        [Key]
         [Required]
         [DataType(DataType.DateTime ,ErrorMessage ="Datatype must be datetime")]
         public DateTime? date { get; set; }

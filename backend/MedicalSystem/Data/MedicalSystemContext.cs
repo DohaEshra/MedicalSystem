@@ -39,7 +39,7 @@ namespace MedicalSystem.Data
         {
             modelBuilder.Entity<Record>(entity =>
             {
-                entity.HasKey(e => new { e.DID, e.PID, e.file_description });
+                entity.HasKey(e => new { e.DID, e.PID, e.date });
 
                 entity.HasOne(d => d.DIDNavigation)
                     .WithMany(p => p.Records)
