@@ -23,10 +23,10 @@ export class DoctorService {
     
     return this.http.get<Doctor>(this.baseUrl+"doctor"+"/"+this.DoctorID);
   }
-  getDoctorByCategory(Category:string)
-  {
-    return this.http.get<Doctor[]>(this.baseUrl+"doctor"+"/"+Category);
-  }
+  // getDoctorByCategory(Category:string)
+  // {
+  //   return this.http.get<Doctor[]>(this.baseUrl+"doctor"+"/"+Category);
+  // }
 
   //edit doctor profile
   editDoctor(doctor:Doctor){

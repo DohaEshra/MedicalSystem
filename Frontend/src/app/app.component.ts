@@ -9,6 +9,6 @@ import { PatientService } from './patient/Patient.service';
 export class AppComponent {
   title = 'Frontend';
   constructor(public PatSer:PatientService){
-    PatSer.getPatients().subscribe(a=>console.log(a))
+    // PatSer.getPatients().subscribe(a=>console.log(a))
   }
 }
