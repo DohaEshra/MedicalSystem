@@ -1,0 +1,10 @@
+#sect1 {  
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+    url("../../assets/login_background1.jpg");
+  height: 100%;
+  width: 100%;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-position: center center;
+  position:absolute;
+} 

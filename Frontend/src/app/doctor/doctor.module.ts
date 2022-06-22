@@ -4,13 +4,15 @@ import { DoctorInfoComponent } from './doctor-info/doctor-info.component';
 import { doctorRoutingModule } from './doctor-routing.module';
 import { FormsModule } from '@angular/forms';
 import { DoctorEditComponent } from './doctor-edit/doctor-edit.component';
+import { DoctorHomeComponent } from './doctor-home/doctor-home.component';
 
 
 
 @NgModule({
   declarations: [
     DoctorInfoComponent,
-    DoctorEditComponent
+    DoctorEditComponent,
+    DoctorHomeComponent
   ],
   imports: [
     CommonModule,doctorRoutingModule,FormsModule
