@@ -24,14 +24,14 @@ namespace MedicalSystem.Controllers
         }
 
         // GET: api/Doctor/
-        [HttpGet("{category}")]
+        [HttpGet("/get/{category}")]
         public async Task<ActionResult<IEnumerable<Doctor>>> GetDoctorsPerCategory(string category)
         {
-          if (_context.Doctors == null)
-          {
-              return NotFound();
-          }
-            return await _context.Doctors.Where(a=>a.category==category).ToListAsync();
+            if (_context.Doctors == null)
+            {
+                return NotFound();
+            }
+            return await _context.Doctors.Where(a => a.category == category).ToListAsync();
         }
 
         // GET: api/Doctor/5
