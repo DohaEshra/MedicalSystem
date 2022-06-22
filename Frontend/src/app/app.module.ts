@@ -7,15 +7,15 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AccountModule } from './account/account.module';
 import { FormsModule } from '@angular/forms';
-import { HomeComponent } from './_shared/home/home.component';
+import { NavBarComponent } from './_shared/NavBar/NavBar.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent
+    AppComponent, NavBarComponent
   ],
   imports: [
-    BrowserModule,HttpClientModule,AppRoutingModule , AccountModule , FormsModule
+    BrowserModule,HttpClientModule,AppRoutingModule 
+    , AccountModule , FormsModule 
   ],
   providers: [  
     { provide: HTTP_INTERCEPTORS, useClass: InterceptInterceptor, multi: true }

@@ -4,23 +4,14 @@ label {
   }
   
   .card-container.card {
-    
-    max-width: 400px !important;
+    border-radius: 30px;
+    max-width: 600px !important;
     padding: 40px 40px;
   }
 
-  /* header {
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
-      url(https://g.foolcdn.com/editorial/images/446553/meeting_gettyimages-603992138.jpg);
-    height: 100vh;
-    -webkit-background-size: cover;
-    background-size: cover;
-    background-position: center center;
-    position: relative;
-  } */
    #sect1 {  
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
-    url("../../../assets/login_background1.jpg");
+    background: linear-gradient(rgba(178, 255, 91, 0.425), rgba(182, 221, 146, 0.397)), 
+    url("../../../assets/login_background.jpg");
   height: 100%;
   width: 100%;
   -webkit-background-size: cover;
@@ -39,8 +30,8 @@ label {
    /* box-shadow:200px; */
     background-color: #ffffff;
     padding: 20px 25px 30px;
-    margin: 0 auto 25px;
-    
+    margin: 100px auto 100px;
+    width: 500px;
     /*
     margin-top: 50px; */
     -moz-border-radius: 2px;
@@ -59,4 +50,35 @@ label {
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
+  }
+
+
+   .login{
+    background: #a5c422;
+    border-radius: 30px;
+    border-color: white;
+    color: #ffffff;
+    font-weight: 600;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+   .login:hover{
+    background: #426d11;
+    color: #ffffff !important;
+  }
+
+  .register{
+    background: #ffffff;
+    border-radius: 30px;
+    border-color: #a5c422;
+    color: #070707;
+    font-weight: 600;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+   .register:hover{
+    background: #a5c422;
+    color: #ffffff !important;
   }
