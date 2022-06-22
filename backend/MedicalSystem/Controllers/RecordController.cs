@@ -16,7 +16,7 @@ namespace MedicalSystem.Controllers
     public class RecordController : ControllerBase
     {
         private readonly MedicalSystemContext _context;
-        private Patient currentPatient { get; set; };
+        private Patient currentPatient { get; set; }
         public RecordController(MedicalSystemContext context)
         {
             _context = context;

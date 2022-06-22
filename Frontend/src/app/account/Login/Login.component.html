@@ -1,32 +1,42 @@
+
 <div id="sect1"  >       
-    <div  class="col-lg-8 d-flex align-items-center justify-content-center ">
-        <div class="card card-container  ">
-            <img
+    <div  class="col-lg-8 col-sm-12 d-flex align-items-center justify-content-center ">
+      
+      <div class="card card-container  ">
+        <div  class="fs-2 text-center" style=" color: #a5c422;">LOGIN NOW </div>
+            <!-- <img
                 id="profile-img"
                 src="https://www.jing.fm/clipimg/detail/398-3981675_avatar-for-login-form.png"
                 class="profile-img-card"
                 width="200px" height="200px"
-            />
+            /> -->
+            
         <form  name="form" (ngSubmit)="onSubmit()" #MyForm="ngForm" >
+         
           <!-- EMAIL -->
         <div class="form-group">
             <label for="email" class="fs-5">Email</label>
             <input  type="email"  
-                    class="form-control form-control-lg" 
+                    style="border-radius:30px ;"
+                    class="form-control form-control-lg " 
                     [pattern]="emailPattern" 
                     name="email"
                     [(ngModel)]="user.email" 
                     placeholder ="Enter your Email" required #email="ngModel"/>
 
             <div class="alert alert-danger fs-5" role="alert" *ngIf="email.errors && MyForm.submitted" >
-            email is invalid !
+              <div *ngIf="email.errors['required']">email is required</div>
+              <div *ngIf="email.errors['pattern']">email is invalid !</div>
+              
+              
             </div>
         </div>
-          <!-- PASSWORD -->
 
+          <!-- PASSWORD -->
         <div class="form-group">
           <label for="password" class="fs-5">Password</label>
           <input type="password"
+                style="border-radius:30px ;"
                  class="form-control form-control-lg"
                  name="password"
                  [(ngModel)]="user.password"
@@ -47,7 +57,7 @@
         <div class="my-5 align-center">
             <!-- <p-selectButton [options]="roles"  [(ngModel)]="selectRole" optionLabel="name" optionValue="role"></p-selectButton> -->
             <label for="role" class="fs-5  fw-bold">Who Are You <span style="color: red;"  >?</span> </label>
-            <select name="role" class="form-select form-select-lg" aria-label="Default select example"  #role="ngModel"[(ngModel)]="user.role">
+            <select name="role" class="form-select form-select-lg"    style="border-radius:30px ;"  aria-label="Default select example"  #role="ngModel"[(ngModel)]="user.role">
                 <option class="fs-5" value="admin"> Admin </option>
                 <option class="fs-5" value="doctor">Doctor </option>
                 <option class="fs-5" value="patient"> Patient</option>
@@ -57,7 +67,8 @@
         </div>
 
         <div class="form-group d-grid mx-auto"   >
-            <button class="btn btn-primary btn-lg"> Login </button>
+            <button class="login btn-lg "> Login </button>
+
         </div>
         
           <div class="form-group form-control-lg">
@@ -71,16 +82,15 @@
         </div>
       </form>
 
-<div class="form-group d-grid mx-auto"   >
-    <a routerLink="/doctorregister" class="btn btn-outline-warning btn-lg my-3">  Register As Doctor</a>
-    <a routerLink="/patientregister" class="btn btn-outline-danger btn-lg">  Register As Patient</a>
-</div>
+      <label class="fs-5  fw-bold">Don't have an account <span style="color: red;"  >?</span></label>
+      <div class="form-group d-grid mx-auto"   >
+          <a routerLink="/doctorregister" class="btn register  btn-lg my-3">  Register As Doctor</a>
+          <a routerLink="/patientregister" class="btn  register btn-lg">  Register As Patient</a>
+      </div>
 
         </div>
     </div>
-    <div class="col-lg-4">
-      
-    </div>
+    <div class="col-lg-4">         </div>
 </div> 
 
 
