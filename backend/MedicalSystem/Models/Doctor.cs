@@ -58,6 +58,8 @@ namespace MedicalSystem.Models
         //[RegularExpression("^(?=.*[A-Za-z])(?=.*/d)[A-Za-z/d]{8,}$")]
         [Unicode(false)]
         public string password { get; set; }
+        [Unicode(false)]
+        public string category { get; set; }
 
         [InverseProperty("DIDNavigation")]
         public virtual ICollection<Record> Records { get; set; }
