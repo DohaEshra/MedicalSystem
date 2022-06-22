@@ -9,7 +9,8 @@ export class Doctor {
                 public address:string,
                 public phone:number,
                 public username:string,
-                public password:string
+                public password:string,
+                public category:string
             )
     {}
 }

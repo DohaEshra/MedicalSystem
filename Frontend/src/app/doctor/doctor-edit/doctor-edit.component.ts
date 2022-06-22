@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Doctor } from 'src/app/_Models/doctor';
+import { DoctorHomeComponent } from '../doctor-home/doctor-home.component';
 import { DoctorService } from '../doctor.service';
 
 @Component({
@@ -11,21 +12,18 @@ import { DoctorService } from '../doctor.service';
 })
 export class DoctorEditComponent implements OnInit,OnDestroy {
 
-  constructor(public doctorSer:DoctorService,public router:Router) { }
-  doctor:Doctor=new Doctor(Number(),"","",Number(),"","",Number(),"","");
+  constructor(public doctorSer:DoctorService,public router:Router ,private doc:DoctorHomeComponent) { }
+  doctor:Doctor=new Doctor(Number(),"","",Number(),"","",Number(),"","","");
   sub:Subscription|null=null;
   span:string="";
 
   ngOnInit(): void {
     //get doctor data
-    this.doctorSer.getDoctorProfile().subscribe(
+    this.sub = this.doc.selectedDoctor$.subscribe(
       data=>{
         this.doctor=data;
-      },
-      error=>{
-        console.log(error);
       }
-    )
+    );
   }
 
   //edit doctor

@@ -1,4 +1,4 @@
-<div class="mb-3 col-6 offset-3" *ngIf="doctor.id">
+<div class="mb-3 col-6 " *ngIf="doctor.id">
     <label for="ID" class="form-label alert text-light col-12">
         <u>ID :</u>  {{doctor.id}} <br>
         <u>Address :</u>  {{doctor.address}} <br>
@@ -7,5 +7,7 @@
         <u>Username :</u>  {{doctor.username}} <br>
         <u>Phone :</u>  +20{{doctor.phone}} <br>
         <u>Name :</u>  {{doctor.fname}} {{doctor.lname}} <br>
+        <u>Category :</u>  {{doctor.category}} <br>
+
     </label>
 </div>
