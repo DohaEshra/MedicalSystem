@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit ,OnDestroy{
   errorMessage = '';
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   user : any ={email:null,password:null,role:null};
-
+  list:number[]=[0,1,2]
   constructor(public authService: AccountService , public router :Router ) { }
 
   ngOnInit() {
