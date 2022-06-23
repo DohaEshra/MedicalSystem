@@ -23,7 +23,7 @@ namespace MedicalSystem.Controllers
         }
 
         // GET: api/Record
-        [HttpGet("{PID}")]
+        [HttpGet("list/{PID}")]
         public async Task<ActionResult<IEnumerable<Record>>> GetRecords(int PID)
         {
             this.currentPatient = GetCurrentUser();
