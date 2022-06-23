@@ -8,12 +8,10 @@ import { Doctor } from 'src/app/_Models/doctor';
   styleUrls: ['./get-doctor-per-category.component.css']
 })
 export class GetDoctorPerCategoryComponent implements OnInit {
-//<<<<<<< HEAD
+
 list:number[]=[0,1,2]
 dr:Doctor[]=[];//new Doctor(0,"","",0,"","",0,"","","");
-//=======
-  
-//>>>>>>> c139026ddd72e739c41a41647f8ef0270dd16f5e
+
   constructor(public docServ:DoctorService) { 
    this.getDocPerCat("Dentist");
   }

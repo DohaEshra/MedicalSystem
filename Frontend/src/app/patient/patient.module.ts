@@ -16,12 +16,9 @@ import {FormsModule} from '@angular/forms'
     PatientRecordComponent
   ],
   imports: [
-//<<<<<<< HEAD
-    CommonModule, PatientRoutingModule, FormsModule
-//=======
-//     CommonModule,FormsModule
 
-// >>>>>>> c139026ddd72e739c41a41647f8ef0270dd16f5e
+    CommonModule, PatientRoutingModule, FormsModule
+
   ]
 })
 export class PatientModule { }
