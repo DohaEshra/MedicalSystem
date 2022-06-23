@@ -23,9 +23,27 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let patient of PatientList|searchByName:Name">
+      <tr  *ngFor="let patient of PatientList|searchByName:Name">
         <td class="text-light">{{patient.id}}</td>
         <td class="text-light">{{patient.fname}} {{patient.lname}}</td>
+        <td>
+          <a type="button" class="btn btn-primary text-light">View</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="table table-striped table-dark" *ngIf="(PatientList|searchById:ID).id!=0">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="text-light">{{(PatientList|searchById:ID).id}}</td>
+        <td class="text-light">{{(PatientList|searchById:ID).fname}} {{(PatientList|searchById:ID).lname}}</td>
         <td>
           <a type="button" class="btn btn-primary text-light">View</a>
         </td>

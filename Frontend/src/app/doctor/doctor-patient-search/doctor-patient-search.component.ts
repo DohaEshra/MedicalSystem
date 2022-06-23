@@ -11,7 +11,7 @@ import { SearchByNamePipe } from '../_Pipes/search-by-name.pipe';
 })
 export class DoctorPatientSearchComponent implements OnInit,OnDestroy {
   Indicator:number=0;
-  ID:number=0;
+  ID:any="";
   Name:string="";
   PatientList:Patient[]=[];
   patientResult:Patient[]=[];

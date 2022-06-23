@@ -7,6 +7,7 @@ import { DoctorEditComponent } from './doctor-edit/doctor-edit.component';
 import { DoctorHomeComponent } from './doctor-home/doctor-home.component';
 import { DoctorPatientSearchComponent } from './doctor-patient-search/doctor-patient-search.component';
 import { SearchByNamePipe } from './_Pipes/search-by-name.pipe';
+import { SearchByIdPipe } from './_Pipes/search-by-id.pipe';
 
 
 
@@ -16,7 +17,8 @@ import { SearchByNamePipe } from './_Pipes/search-by-name.pipe';
     DoctorEditComponent,
     DoctorHomeComponent,
     DoctorPatientSearchComponent,
-    SearchByNamePipe
+    SearchByNamePipe,
+    SearchByIdPipe
   ],
   imports: [
     CommonModule,doctorRoutingModule,FormsModule
