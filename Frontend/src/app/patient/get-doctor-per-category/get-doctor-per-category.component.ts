@@ -7,9 +7,9 @@ import { DoctorService } from 'src/app/doctor/doctor.service';
   styleUrls: ['./get-doctor-per-category.component.css']
 })
 export class GetDoctorPerCategoryComponent implements OnInit {
-
+  
   constructor(public docServ:DoctorService) { 
-    this.getDocPerCat("Dentist");
+   this.getDocPerCat("Dentist");
   }
   getDocPerCat(cat:string)
   {

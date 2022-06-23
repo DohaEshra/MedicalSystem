@@ -8,6 +8,8 @@ import { Record } from 'src/app/_Models/record';
   styleUrls: ['./patient-record.component.css']
 })
 export class PatientRecordComponent implements OnInit {
+ 
+
   RecordList:Record[]=[];
   sub:Subscription|null=null;
 
