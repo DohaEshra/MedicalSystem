@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GetDoctorPerCategoryComponent } from './get-doctor-per-category/get-doctor-per-category.component';
-
+import { PatientRoutingModule } from './patient.routing';
 
 
 @NgModule({
@@ -9,7 +9,7 @@ import { GetDoctorPerCategoryComponent } from './get-doctor-per-category/get-doc
     GetDoctorPerCategoryComponent
   ],
   imports: [
-    CommonModule
+    CommonModule, PatientRoutingModule
   ]
 })
 export class PatientModule { }

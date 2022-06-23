@@ -23,12 +23,12 @@ export class DoctorService {
     
     return this.http.get<Doctor>(this.baseUrl+"doctor"+"/"+this.DoctorID);
   }
-  // getDoctorByCategory(Category:string)
-  // {
-  //   return this.http.get<Doctor[]>(this.baseUrl+"doctor"+"/"+Category);
-  // }
+  getDoctorByCategory(Category:string)
+  {
+    return this.http.get<Doctor[]>(this.baseUrl+"Doctor"+"/"+"get"+"/"+Category);
+  }
 
-  //edit doctor profile
+  //edit doctor profile 
   editDoctor(doctor:Doctor){
     return this.http.put<undefined>(this.baseUrl+"doctor"+"/"+this.DoctorID,doctor);
   }

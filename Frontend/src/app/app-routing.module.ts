@@ -8,6 +8,7 @@ const routes: Routes = [
   // {path:'home',component : HomeComponent},
   {path:'login',component : LoginComponent},
   {path:"doctor",loadChildren:()=>import('./doctor/doctor.module').then(m=>m.DoctorModule)},
+  {path:"patient", loadChildren:()=>import('./patient/patient.module').then(p=>p.PatientModule)},
   {path:"",redirectTo:"login",pathMatch:"full"},
   {path:"**",component:NotFoundComponent}
 ];

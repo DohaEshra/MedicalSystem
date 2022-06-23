@@ -24,7 +24,7 @@ namespace MedicalSystem.Controllers
         }
 
         // GET: api/Doctor/
-        [HttpGet("/get/{category}")]
+        [HttpGet("get/{category}")]
         public async Task<ActionResult<IEnumerable<Doctor>>> GetDoctorsPerCategory(string category)
         {
             if (_context.Doctors == null)
