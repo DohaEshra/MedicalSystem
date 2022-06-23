@@ -4,6 +4,7 @@ import { DoctorLoginGuard } from "../_Guards/doctorLogin.guard";
 import { DoctorEditComponent } from "./doctor-edit/doctor-edit.component";
 import { DoctorHomeComponent } from "./doctor-home/doctor-home.component";
 import { DoctorInfoComponent } from "./doctor-info/doctor-info.component";
+import { DoctorPatientInfoComponent } from "./doctor-patient-info/doctor-patient-info.component";
 import { DoctorPatientSearchComponent } from "./doctor-patient-search/doctor-patient-search.component";
 
 
@@ -11,7 +12,8 @@ const routes:Routes =[
     {path:"",component:DoctorHomeComponent,canActivate:[DoctorLoginGuard],children:[
         {path:"info",component:DoctorInfoComponent},
         {path:"edit",component:DoctorEditComponent},
-        {path:"patientsearch",component:DoctorPatientSearchComponent}
+        {path:"patientsearch",component:DoctorPatientSearchComponent},
+        {path:"patientinfo/:id",component:DoctorPatientInfoComponent}
     ]},
     {path:"home",component:DoctorHomeComponent,canActivate:[DoctorLoginGuard]},
 ];

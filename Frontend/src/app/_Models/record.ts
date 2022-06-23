@@ -8,8 +8,7 @@ export class Record {
                 public attached_files :Byte[], 
                 public date :Date, 
                 public summary:string
-                )
-                {}
+                ){}
 
 }
 
