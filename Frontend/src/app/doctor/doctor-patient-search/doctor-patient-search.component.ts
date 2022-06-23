@@ -40,12 +40,6 @@ export class DoctorPatientSearchComponent implements OnInit,OnDestroy {
     this.Indicator=2;
   }
 
-  Search()
-  {
-    this.patientResult=this.searchByName.transform(this.PatientList,this.Name);
-    console.log(typeof(this.searchByName.transform(this.PatientList,this.Name)[0]))
-  }
-
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
   }

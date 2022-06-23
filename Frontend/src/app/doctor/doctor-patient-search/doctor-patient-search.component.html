@@ -2,7 +2,7 @@
   <div class="d-flex">
     
     <input  [(ngModel)]="ID" [ngModelOptions]="{standalone: true}" class="form-control me-2" style="width:300px"   *ngIf="Indicator==1" type="search" placeholder="Search patient by ID" aria-label="Search">
-    <input (keyup)="Search()" [(ngModel)]="Name" [ngModelOptions]="{standalone: true}" class="form-control me-2" style="width:300px" *ngIf="Indicator==2" type="search" placeholder="Search patient by Name" aria-label="Search">
+    <input  [(ngModel)]="Name" [ngModelOptions]="{standalone: true}" class="form-control me-2" style="width:300px" *ngIf="Indicator==2" type="search" placeholder="Search patient by Name" aria-label="Search">
     
     <div class="dropdown show">
         <a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -23,9 +23,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let patient of patientResult">
-        <td class="text-light">{{patient.ID}}</td>
-        <td class="text-light">{{patient.Fname}} {{patient.Lname}}</td>
+      <tr *ngFor="let patient of PatientList|searchByName:Name">
+        <td class="text-light">{{patient.id}}</td>
+        <td class="text-light">{{patient.fname}} {{patient.lname}}</td>
         <td>
           <a type="button" class="btn btn-primary text-light">View</a>
         </td>
