@@ -28,6 +28,7 @@ export class PatientRecordComponent implements OnInit {
         }
       }
     )
+    
   }
 
 }
