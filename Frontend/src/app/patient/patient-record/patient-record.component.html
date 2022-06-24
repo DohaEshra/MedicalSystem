@@ -1,7 +1,40 @@
-<p>patient-record works!</p>
-<ul>
-    <li *ngFor="let i of RecordListt">
-        {{i}}
-    </li>
-</ul>
+
+<div class="container my-5" >
+  <div class="shadow-4 rounded-5 overflow-hidden">
+    <table class="table align-middle mb-0 bg-white">
+      <thead class="bg-light" >
+        <tr>
+          <th>Doctor ID</th> <!--  should be doctor's name -->
+          <th>File Description</th>
+          <th>Attached Files</th>
+          <th>Date</th>
+          <th>Summary</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of RecordList">
+          <td>
+            <p class="text-muted mb-0">{{i.did}}</p>
+          </td>
+          <td>
+            <p class="text-muted mb-0">{{i.file_description}}</p>
+          </td>
+          <td>
+            <p class="text-muted mb-0">{{i.attached_files}}</p> 
+          </td>
+          <td>
+           
+            <p class="text-muted mb-0">{{i.date|date:'shortDate'}}</p>  
+          </td>
+          <td>
+            <p class="text-muted mb-0">{{i.summary}}</p>  
+          </td>
+        </tr>
+      </tbody>
+
+      </table>
+      </div>
+
+</div>
+
 
