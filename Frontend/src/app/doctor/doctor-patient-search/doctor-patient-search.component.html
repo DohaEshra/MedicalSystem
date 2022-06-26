@@ -23,16 +23,16 @@
       </tr>
     </thead>
     <tbody>
-      <tr  *ngFor="let patient of PatientList|searchByName:Name">
+      <tr  *ngFor="let patient of visitList|searchByName:Name">
         <td class="text-light">{{patient.id}}</td>
         <td class="text-light">{{patient.fname}} {{patient.lname}}</td>
         <td>
-          <a type="button" class="btn btn-primary text-light">View</a>
+          <a type="button" class="btn btn-primary text-light" [routerLink]="['/doctor/patientinfo',patient.id]">View</a>
         </td>
       </tr>
     </tbody>
   </table>
-  <table class="table table-striped table-dark" *ngIf="(PatientList|searchById:ID).id!=0">
+  <table class="table table-striped table-dark" *ngIf="(visitList|searchById:ID).id!=0">
     <thead>
       <tr>
         <th scope="col">ID</th>
@@ -42,10 +42,10 @@
     </thead>
     <tbody>
       <tr>
-        <td class="text-light">{{(PatientList|searchById:ID).id}}</td>
-        <td class="text-light">{{(PatientList|searchById:ID).fname}} {{(PatientList|searchById:ID).lname}}</td>
+        <td class="text-light">{{(visitList|searchById:ID).id}}</td>
+        <td class="text-light">{{(visitList|searchById:ID).fname}} {{(visitList|searchById:ID).lname}}</td>
         <td>
-          <a type="button" class="btn btn-primary text-light">View</a>
+          <a type="button" class="btn btn-primary text-light" [routerLink]="['/doctor/patientinfo',(visitList|searchById:ID).id]">View</a>
         </td>
       </tr>
     </tbody>

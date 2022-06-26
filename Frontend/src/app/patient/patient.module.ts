@@ -9,6 +9,8 @@ import {FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { FilterPipe } from './Pipes/filter.pipe';
 import { SearchForDoctorComponent } from './search-for-doctor/search-for-doctor.component';
 import {DropdownModule} from 'primeng/dropdown';
+import { PatientHomeComponent } from './patient-home/patient-home.component'
+import {RouterModule} from '@angular/router';
 //import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 //import { BrowserModule } from '@angular/platform-browser';
 
@@ -21,11 +23,12 @@ import {DropdownModule} from 'primeng/dropdown';
     GetDoctorPerCategoryComponent,
     PatientRecordComponent,
     FilterPipe,
-    SearchForDoctorComponent
+    SearchForDoctorComponent,
+    PatientHomeComponent
   ],
   imports: [
 
-    CommonModule, PatientRoutingModule, FormsModule, DropdownModule//, BrowserAnimationsModule//, BrowserModule 
+    CommonModule, PatientRoutingModule, FormsModule, DropdownModule, RouterModule //, BrowserAnimationsModule//, BrowserModule 
 
   ]
 })

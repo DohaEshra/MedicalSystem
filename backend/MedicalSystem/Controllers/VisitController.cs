@@ -32,6 +32,17 @@ namespace MedicalSystem.Controllers
             return await _context.Visits.ToListAsync();
         }
 
+        //GET: api/get/visit/{doctor_id}
+        [HttpGet("get/{id}")]
+        public async Task<ActionResult<IEnumerable<Visit>>> GetVisitsByDoctorID(int id)
+        {
+            if (_context.Visits == null)
+            {
+                return NotFound();
+            }
+            return await _context.Visits.Where(e => e.DID == id).ToListAsync();
+        }
+
         // GET: api/Visit/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Visit>> GetVisit(int id)

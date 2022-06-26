@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { PatientService } from 'src/app/patient/Patient.service';
-import { Patient } from 'src/app/_Models/patient';
+import { Visit } from 'src/app/_Models/visit';
+import { DoctorService } from '../doctor.service';
 import { SearchByNamePipe } from '../_Pipes/search-by-name.pipe';
 
 @Component({
@@ -13,17 +13,16 @@ export class DoctorPatientSearchComponent implements OnInit,OnDestroy {
   Indicator:number=0;
   ID:any="";
   Name:string="";
-  PatientList:Patient[]=[];
-  patientResult:Patient[]=[];
+  visitList:Visit[]=[];
   sub:Subscription|null=null;
-  constructor(public PatientSer:PatientService,private searchByName:SearchByNamePipe) { }
+  constructor(public doctorSer:DoctorService,private searchByName:SearchByNamePipe) { }
 
   ngOnInit(): void {
-    this.sub = this.PatientSer.getPatients().subscribe(
+    this.sub = this.doctorSer.getDoctorPatients().subscribe(
       data=>{
         if(data!=null)
         {
-          this.PatientList=data;
+          this.visitList=data;
         }
       }
     )

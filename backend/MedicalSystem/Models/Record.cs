@@ -15,8 +15,9 @@ namespace MedicalSystem.Models
         public int DID { get; set; }
         [Key]
         public int PID { get; set; }
+        [Key]
+        public int FNO { get; set; }
 
-       
         [Required]
         [StringLength(150 ,MinimumLength =1)]
         [Unicode(false)]
