@@ -5,7 +5,13 @@ import { GetDoctorPerCategoryComponent } from './get-doctor-per-category/get-doc
 import { PatientRoutingModule } from './patient.routing';
 //=======
 import { PatientRecordComponent } from './patient-record/patient-record.component';
-import {FormsModule} from '@angular/forms'
+import {FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { FilterPipe } from './Pipes/filter.pipe';
+import { SearchForDoctorComponent } from './search-for-doctor/search-for-doctor.component';
+import {DropdownModule} from 'primeng/dropdown';
+//import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+//import { BrowserModule } from '@angular/platform-browser';
+
 
 //>>>>>>> c139026ddd72e739c41a41647f8ef0270dd16f5e
 
@@ -13,11 +19,13 @@ import {FormsModule} from '@angular/forms'
 @NgModule({
   declarations: [
     GetDoctorPerCategoryComponent,
-    PatientRecordComponent
+    PatientRecordComponent,
+    FilterPipe,
+    SearchForDoctorComponent
   ],
   imports: [
 
-    CommonModule, PatientRoutingModule, FormsModule
+    CommonModule, PatientRoutingModule, FormsModule, DropdownModule//, BrowserAnimationsModule//, BrowserModule 
 
   ]
 })

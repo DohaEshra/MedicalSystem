@@ -32,5 +32,9 @@ export class DoctorService {
   editDoctor(doctor:Doctor){
     return this.http.put<undefined>(this.baseUrl+"doctor"+"/"+this.DoctorID,doctor);
   }
+  getAllDoctors()
+  {
+    return this.http.get<Doctor[]>(this.baseUrl+"Doctor");
+  }
 
 }
