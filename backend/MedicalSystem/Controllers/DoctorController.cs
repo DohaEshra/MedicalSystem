@@ -22,6 +22,15 @@ namespace MedicalSystem.Controllers
         {
             _context = context;
         }
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Doctor>>> GetAllDoctors()
+        {
+            if (_context.Doctors == null)
+            {
+                return NotFound();
+            }
+            return await _context.Doctors.ToListAsync();
+        }
 
         // GET: api/Doctor/
         [HttpGet("get/{category}")]

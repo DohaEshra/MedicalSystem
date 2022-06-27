@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {InterceptInterceptor } from './_Helper/intercept.interceptor';
-
-
+import {DropdownModule} from 'primeng/dropdown';
+import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -18,7 +18,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent, NavBarComponent, PatientRecordComponent
   ],
   imports: [
-    BrowserModule,HttpClientModule,AppRoutingModule, AccountModule , FormsModule, BrowserAnimationsModule 
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+     AccountModule , 
+     FormsModule, 
+     DropdownModule,
+     CommonModule, 
+     BrowserAnimationsModule
   ],
   providers: [  
     { provide: HTTP_INTERCEPTORS, useClass: InterceptInterceptor, multi: true }
