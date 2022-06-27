@@ -10,6 +10,7 @@ import { AccountModule } from './account/account.module';
 import { FormsModule } from '@angular/forms';
 import { NavBarComponent } from './_shared/NavBar/NavBar.component';
 import { PatientRecordComponent } from './patient/patient-record/patient-record.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -17,7 +18,7 @@ import { PatientRecordComponent } from './patient/patient-record/patient-record.
     AppComponent, NavBarComponent, PatientRecordComponent
   ],
   imports: [
-    BrowserModule,HttpClientModule,AppRoutingModule, AccountModule , FormsModule 
+    BrowserModule,HttpClientModule,AppRoutingModule, AccountModule , FormsModule, BrowserAnimationsModule 
   ],
   providers: [  
     { provide: HTTP_INTERCEPTORS, useClass: InterceptInterceptor, multi: true }

@@ -6,10 +6,8 @@ import { PatientHomeComponent } from "./patient-home/patient-home.component";
 import { PatientLoginGuard } from "../_Guards/patient-login.guard";
 const routes:Routes=[
     {path:"",component:PatientRecordComponent},
-
     // {path:"",component:PatientHomeComponent,canActivate:[PatientLoginGuard],children:[
     //     {path:"record",component:PatientRecordComponent},
-
     // ]},
     {path:"categories", component:GetDoctorPerCategoryComponent},
     {path:"home",component:PatientHomeComponent},
