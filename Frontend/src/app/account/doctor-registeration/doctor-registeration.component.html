@@ -106,10 +106,10 @@
         <div class="align-center">
             <label for="category" class="fs-5  fw-bold">Category <span style="color: red;"  >?</span> </label>
             <select name="category" class="form-select form-select-lg" style="border-radius:30px ;"  aria-label="Default select example" required #category="ngModel" [(ngModel)]="user.category">
-                <option class="fs-5" value="admin"> Dentist </option>
-                <option class="fs-5" value="doctor"> Medical Microbiology and Infectious Diseases </option>
-                <option class="fs-5" value="patient"> Cardiology</option>
-                <option class="fs-5" value="patient"> Obstetrics/Gynecology</option>
+                <option class="fs-5" value="Dentist"> Dentist </option>
+                <option class="fs-5" value="Medical Microbiology and Infectious Diseases"> Medical Microbiology and Infectious Diseases </option>
+                <option class="fs-5" value="Cardiology"> Cardiology</option>
+                <option class="fs-5" value="Obstetrics/Gynecology"> Obstetrics/Gynecology</option>
             </select>
            
             <div class="alert alert-danger fs-5" role="alert" *ngIf="category.errors && MyForm.submitted" >

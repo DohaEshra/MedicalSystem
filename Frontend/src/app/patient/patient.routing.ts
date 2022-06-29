@@ -14,9 +14,6 @@ const routes:Routes=[
     {path:"categories", component:GetDoctorPerCategoryComponent},
     {path:"home",component:PatientHomeComponent},
     {path:"search",component:SearchForDoctorComponent},
-    
-
-
 
 ]
 
