@@ -71,7 +71,7 @@ export class DoctorRegisterationComponent implements OnInit {
     reader.onload = (_event) => { 
       this.url = reader.result;
       this.user.image = this.url; 
-      // console.log("user " ,this.user)
+      //console.log("user " ,this.user)
     }
   }
 
@@ -83,16 +83,21 @@ export class DoctorRegisterationComponent implements OnInit {
       id: 0, 
       fname: this.user.fname, 
       lname:this.user.lname,
+      birthDate: this.user.birthDate,
       age: + this.user.age,
       email: this.user.email,
-      address: this.user.address, 
       phone: + this.user.phone, 
-      username:'DR', 
       password:this.user.password, 
-      category: this.user.category
+      category: this.user.category,
+      profilePic: this.user.image,
+      gender: this.user.gender,
+      city: this.user.city, 
+      area: this.user.area, 
+      street: this.user.street, 
+      buildingNumber: this.user.buildingNumber, 
     };
 
-    // console.log('dr ',doctor, 'fooooooooorm', myForm.valid);
+    console.log('dr ',doctor);
     if(myForm.valid && this.TruePassword){
       this.subscribe= this.account.addDoctor(doctor).subscribe({
         next: data =>

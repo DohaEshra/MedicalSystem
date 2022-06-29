@@ -4,6 +4,7 @@ import { PatientService } from 'src/app/patient/Patient.service';
 import { Record } from 'src/app/_Models/record';
 import { Doctor } from 'src/app/_Models/doctor';
 import { Router } from '@angular/router';
+import { getLocaleDateFormat } from '@angular/common';
 
 @Component({
   selector: 'app-patient-record',
@@ -14,7 +15,7 @@ export class PatientRecordComponent implements OnInit {
  
 
   RecordList:Record[]=[];
-  doctor:Doctor=new Doctor(Number(),"","",Number(),"","",Number(),"","","");
+  doctor:Doctor=new Doctor(Number(),"","",Number(),new Date,"","","","",Number(),Number(),"","","","");
   sub:Subscription|null=null;
   constructor(public PatientServ:PatientService, public router:Router) { }
 
@@ -24,9 +25,9 @@ export class PatientRecordComponent implements OnInit {
         if(data!=null)
         {
           this.RecordList=data;
-          
         }
-      }
+      },
+      err => console.log("error from patient Record component: ",err)
     )
     
   }

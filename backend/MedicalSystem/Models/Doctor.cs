@@ -31,28 +31,29 @@ namespace MedicalSystem.Models
         [Unicode(false)]
         public string Lname { get; set; }
 
-        [Required(ErrorMessage = "Age is required")]
-        [Range(0, 110, ErrorMessage = "Out of range")]
-        public int? age { get; set; }
+        [Required(ErrorMessage = "birthDate is required")]
+        public DateTime birthDate { get; set; }
 
         [EmailAddress]
         [Required(ErrorMessage = "Email is required")]
         [Unicode(false)]
         public string email { get; set; }
 
-        [StringLength(40, MinimumLength = 10)]
-        [Required(ErrorMessage = "Address is required")]
+        [Required(ErrorMessage = "City is required")]
         [Unicode(false)]
-        public string address { get; set; }
+        public string city { get; set; }
+        public string area { get; set; }
+        public string street { get; set; }
+        public int? buildingNumber { get; set; }
 
-      
+
         [Required(ErrorMessage = "Phone is required")]
         public int? phone { get; set; }
 
-        [Required(ErrorMessage = "Username is required")]
-        [StringLength(25, MinimumLength = 2)]
-        [Unicode(false)]
-        public string username { get; set; }
+        //[Required(ErrorMessage = "Username is required")]
+        //[StringLength(25, MinimumLength = 2)]
+        //[Unicode(false)]
+        //public string username { get; set; }
 
         [Required(ErrorMessage = "password is required")]
         //[RegularExpression("^(?=.*[A-Za-z])(?=.*/d)[A-Za-z/d]{8,}$")]
@@ -60,6 +61,13 @@ namespace MedicalSystem.Models
         public string password { get; set; }
         [Unicode(false)]
         public string category { get; set; }
+
+        public string profilePic { get; set; }
+
+        public char gender { get; set; }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public int? age { get; set; }
 
         [InverseProperty("DIDNavigation")]
         public virtual ICollection<Record> Records { get; set; }
