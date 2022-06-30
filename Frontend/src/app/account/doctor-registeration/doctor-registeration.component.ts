@@ -11,7 +11,8 @@ import { AccountService } from '../Account.service';
   styleUrls: ['./doctor-registeration.component.css']
 })
 export class DoctorRegisterationComponent implements OnInit {
-  
+  cities: string[]=[];
+  selectedCity: string="";
   subscribe : Subscription | null = null ;
   isRegistrationFailed = false; 
   TruePassword = false;
@@ -21,14 +22,42 @@ export class DoctorRegisterationComponent implements OnInit {
   profileImage = false;
   message = "There is no attached file.";
   agePattern = '^[0-9]+$';
+
   phonePattern = '^[(012)|(010)|(011)|(015)]{3}[0-9]{8}$';
   addressPattern = '^[A-Za-z0-9,_.-]{10,40}$';
   namePattern = '^[A-Za-z]{2,20}$';
   emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
-  user : any ={ id: 0, fname:'', lname:'', age:'', email:'', address:'', phone:'', username:'', password:'', category:'',confirmPass:'',image:null};
+  user : any ={ id: 0, fname:'', lname:'', birthDate:new Date , email:'', city:'',area:'', gender:'',buildingNumber:'',street:'', phone:'', username:'', password:'', category:'',confirmPass:'',image:null};
   
-  constructor(public account: AccountService , public router :Router ) { }
+  constructor(public account: AccountService , public router :Router ) {
+  
+   }
   ngOnInit() {
+    this.cities = [
+      'Alexandria',
+       'Cairo',
+      'Mansoura',
+      'Fayoum',
+      'Monefya',
+      'Gizeh', 
+      'Port Said', 
+      'Suez', 
+      'Luxor', 
+      'Tanta', 
+      'Asyut',
+      'Ismailia',
+      'Aswan', 
+      'Damietta', 
+      'Al-mnia', 
+      'Qena', 
+      'Sohag', 
+      'Arish', 
+      'Marsa Matrouh', 
+      'Kafr el-Sheikh',
+      'Hurghada', 
+      'Beni suef', 
+      '6th of October',
+  ];
   }
 
   ngOnDestroy(): void {

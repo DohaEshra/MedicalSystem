@@ -9,7 +9,7 @@ import { AgeValidationDirective } from './age-validation.directive';
 import {MatIconModule} from '@angular/material/icon';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { ConfirmPasswordValidationDirective } from './confirm-password-validation.directive';
-
+import {DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { ConfirmPasswordValidationDirective } from './confirm-password-validatio
     ConfirmPasswordValidationDirective,
   ],
   imports: [
-    CommonModule,FormsModule, RouterModule, MatIconModule, MatProgressBarModule
+    CommonModule,FormsModule, RouterModule,DropdownModule, MatIconModule, MatProgressBarModule
   ],
   exports:[
     LoginComponent, DoctorRegisterationComponent, PatientRegisterationComponent, AgeValidationDirective
