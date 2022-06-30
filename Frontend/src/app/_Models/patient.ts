@@ -8,9 +8,11 @@ export class Patient {
                 public age:number, 
                 public email:string, 
                 public address:string, 
-                public phone:number, 
+                public phone:number,                 
                 public username:string,
                 public records:Record[],
-                public visits:Visit[]
+                public visits:Visit[],
+                public password:string,
+                public profilePic:string,
             ){}
 }

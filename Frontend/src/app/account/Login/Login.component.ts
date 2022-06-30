@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, window } from 'rxjs';
 import { AccountService } from '../Account.service';
 
 @Component({
@@ -9,12 +9,12 @@ import { AccountService } from '../Account.service';
   styleUrls: ['./Login.component.css']
 })
 export class LoginComponent implements OnInit ,OnDestroy{
+  @Output() userRole = new EventEmitter<any>();
   subscribe : Subscription | null = null ;
   isLoginFailed = false;
   errorMessage = '';
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   user : any ={email:null,password:null,role:null};
-  list:number[]=[0,1,2]
   constructor(public authService: AccountService , public router :Router ) { }
 
   ngOnInit() {
@@ -23,17 +23,17 @@ export class LoginComponent implements OnInit ,OnDestroy{
   ngOnDestroy(): void {
     this.subscribe?.unsubscribe();
   }
-  
-  onSubmit(): void {
+   onSubmit(): void {
     const {email,password,role}= this.user ;
-
     this.subscribe= this.authService.login(email,password,role).subscribe({
     next: data=>
     {
       //console.log('dataaaaaaaaaa',data)
       this.isLoginFailed = false ; 
       this.authService.saveToken(data);
-      if (role =="doctor" ){
+      this.userRole.emit(role);
+      console.log('success')
+      if (role =="doctor"){
         this.router.navigateByUrl('/doctor');
       }
       else if (role =="patient" ){
@@ -42,10 +42,9 @@ export class LoginComponent implements OnInit ,OnDestroy{
       else if (role =="admin" ){
         this.router.navigateByUrl('/admin');
       }
-
     }
     ,error:err=>{
-      console.log('errooooooooor', err)
+      console.log('error from Login Component', err)
       this.isLoginFailed = true ; 
       this.errorMessage = err.error;
     }

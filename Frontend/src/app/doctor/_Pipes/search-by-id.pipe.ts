@@ -8,7 +8,7 @@ import { Visit } from 'src/app/_Models/visit';
 export class SearchByIdPipe implements PipeTransform {
 
   transform(visitList: Visit[],Id:number=Number()): Patient {
-    let patient:Patient=new Patient(Number(),"","",Number(),"","",Number(),"",[],[]);
+    let patient:Patient=new Patient(Number(),"","",Number(),"","",Number(),"",[],[],'','');
     let indicator=1;
     for(let i=0;i<visitList.length && indicator;i++)
     {

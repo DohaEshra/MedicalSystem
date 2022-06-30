@@ -1,8 +1,7 @@
 
 <div id="sect1"  > 
-      
     <div  class="col-lg-8 col-sm-12 d-flex align-items-center justify-content-center ">
-      
+      <!-- Card -->
       <div class="card card-container  ">
         <div  class="fs-2 text-center" style=" color: #a5c422;">LOGIN NOW </div>
             <!-- <img
@@ -13,7 +12,6 @@
             /> -->
             
         <form  name="form" (ngSubmit)="onSubmit()" #MyForm="ngForm" >
-         
           <!-- EMAIL -->
         <div class="form-group">
             <label for="email" class="fs-5">Email</label>
@@ -28,8 +26,6 @@
             <div class="alert alert-danger fs-5" role="alert" *ngIf="email.errors && MyForm.submitted" >
               <div *ngIf="email.errors['required']">email is required</div>
               <div *ngIf="email.errors['pattern']">email is invalid !</div>
-              
-              
             </div>
         </div>
 
@@ -38,14 +34,14 @@
           <label for="password" class="fs-5">Password</label>
           <input type="password"
                 style="border-radius:30px ;"
-                 class="form-control form-control-lg"
-                 name="password"
-                 [(ngModel)]="user.password"
-                 required
-                 minlength="3"
-                 #password="ngModel"
-                 placeholder ="Enter your password"/>
-            
+                class="form-control form-control-lg"
+                name="password"
+                [(ngModel)]="user.password"
+                required
+                minlength="3"
+                #password="ngModel"
+                placeholder ="Enter your password"/>
+           
           <div  class="alert alert-danger fs-5"
                 role="alert"
                 *ngIf="password.errors && MyForm.submitted">
@@ -63,13 +59,10 @@
                 <option class="fs-5" value="doctor">Doctor </option>
                 <option class="fs-5" value="patient"> Patient</option>
             </select>
-            <!-- <p-selectButton [options]="roles" [(ngModel)]="selectedCityCode" optionLabel="name" optionValue="code"></p-selectButton>
-            -->
         </div>
 
         <div class="form-group d-grid mx-auto"   >
             <button class="login btn-lg "> Login </button>
-
         </div>
         
           <div class="form-group form-control-lg">
@@ -85,13 +78,12 @@
 
       <label class="fs-5  fw-bold">Don't have an account <span style="color: red;"  >?</span></label>
       <div class="form-group d-grid mx-auto"   >
-          <a routerLink="/doctorregister" class="btn register  btn-lg my-3">  Register As Doctor</a>
-          <a routerLink="/patientregister" class="btn  register btn-lg">  Register As Patient</a>
+          <a routerLink="/doctorRegister" class="btn register  btn-lg my-3">  Register As Doctor</a>
+          <a routerLink="/patientRegister" class="btn  register btn-lg">  Register As Patient</a>
       </div>
 
         </div>
     </div>
-    <div class="col-lg-4">         </div>
 </div> 
 
 

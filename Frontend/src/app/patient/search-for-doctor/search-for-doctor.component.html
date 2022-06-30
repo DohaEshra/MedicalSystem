@@ -1,0 +1,13 @@
+<p>search-for-doctor works!</p>
+<!-- <select name="role" class="form-select form-select-lg"    style="border-radius:30px ;"  aria-label="Default select example"  #role="ngModel"[(ngModel)]="user.role">
+    <option class="fs-5" value="admin"> Admin </option>
+    <option class="fs-5" value="doctor">Doctor </option>
+    <option class="fs-5" value="patient"> Patient</option>
+</select> -->
+<p-dropdown [options]="ops" [(ngModel)]="op"></p-dropdown>
+<input [(ngModel)]="input">
+<ul>
+    <li *ngFor="let item of drs|filter:input:op">
+        {{item.fname + item.lname}} {{item.email}} {{item.phone}}
+    </li>
+</ul>

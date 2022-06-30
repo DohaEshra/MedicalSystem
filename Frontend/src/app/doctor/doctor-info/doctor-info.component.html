@@ -1,13 +1,16 @@
 <div class="mb-3 col-6 " *ngIf="doctor.id">
     <label for="ID" class="form-label alert text-light col-12">
         <u>ID :</u>  {{doctor.id}} <br>
-        <u>Address :</u>  {{doctor.address}} <br>
+        <u>Building Number :</u>  {{doctor.buildingNumber}} <br>
+        <u>Street :</u>  {{doctor.street}} <br>
+        <u>Area :</u>  {{doctor.area}} <br>
+        <u>City :</u>  {{doctor.city}} <br>
+        <u>Gender :</u>  {{doctor.gender ==('F' ||'f') ? 'Female':'Male'}} <br>
         <u>Email :</u> {{doctor.email}} <br>
+        <u>Birth date :</u>  {{doctor.birthDate}} <br>
         <u>Age :</u>  {{doctor.age}} <br>
-        <u>Username :</u>  {{doctor.username}} <br>
         <u>Phone :</u>  +20{{doctor.phone}} <br>
         <u>Name :</u>  {{doctor.fname}} {{doctor.lname}} <br>
         <u>Category :</u>  {{doctor.category}} <br>
-
     </label>
 </div>

@@ -1,15 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { AccountService } from 'src/app/account/Account.service';
 
 @Component({
   selector: 'app-NavBar',
   templateUrl: './NavBar.component.html',
   styleUrls: ['./NavBar.component.css']
 })
-export class NavBarComponent implements OnInit {
+export class NavBarComponent implements OnInit, OnChanges {
 
-  constructor() { }
+  constructor(public account: AccountService) { }
 
-  ngOnInit() {
+  @Input('login') loginFlag = '';
+  userRole = '';
+  userLoggedIn = false;
+  ngOnInit() {}
+
+  ngOnChanges(): void {
+      this.userRole = this.loginFlag
+      this.loginFlag == '' ? this.userLoggedIn = false : true;
+  }
+
+  clearToken(){
+    this.account.signOut();
   }
 
 }

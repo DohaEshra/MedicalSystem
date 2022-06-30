@@ -5,12 +5,17 @@ export class Doctor {
                 public fname:string,
                 public lname:string,
                 public age:number,
+                public birthDate:Date,
                 public email:string,
-                public address:string,
+                public city:string,
+                public area:string,
+                public street:string,
+                public buildingNumber:number,
                 public phone:number,
-                public username:string,
                 public password:string,
-                public category:string
+                public gender:string,
+                public category:string,
+                public profilePic:string
             )
     {}
 }
