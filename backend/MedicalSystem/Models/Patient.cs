@@ -13,51 +13,50 @@ namespace MedicalSystem.Models
     {
         public Patient()
         {
+            DoctorRatings = new HashSet<DoctorRating>();
             Records = new HashSet<Record>();
             Visits = new HashSet<Visit>();
         }
 
+        [StringLength(200)]
+        public string street { get; set; }
         [Key]
         public int ID { get; set; }
-
-        [StringLength(20 , MinimumLength = 2)]
-        [Required(ErrorMessage = "first name is required")]
+        [Required]
+        [StringLength(20)]
         [Unicode(false)]
         public string Fname { get; set; }
-
-        [StringLength(20, MinimumLength = 2)]
-        [Required(ErrorMessage = "last name is required")]
+        [Required]
+        [StringLength(20)]
         [Unicode(false)]
         public string Lname { get; set; }
-
-        [Required(ErrorMessage ="Age is required")]
-        [Range(0,110,ErrorMessage ="Out of range")]
         public int? age { get; set; }
-
-        [EmailAddress]
-        [Required(ErrorMessage = "Email is required")]
+        [Required]
+        [StringLength(100)]
         [Unicode(false)]
         public string email { get; set; }
-
-        [StringLength(40, MinimumLength = 10)]
-        [Required(ErrorMessage = "Address is required")]
+        [Required]
+        [StringLength(50)]
         [Unicode(false)]
-        public string address { get; set; }
-
-        [Phone]
-        [Required(ErrorMessage ="Phone is required")]
-        public int? phone { get; set; }
-
-        [Required(ErrorMessage = "Username is required")]
-        [StringLength(25, MinimumLength = 2)]
-        [Unicode(false)]
-        public string username { get; set; }
-
-        [Required(ErrorMessage = "password is required")]
-        [RegularExpression("^(?=.*[A-Za-z])(?=.*/d)[A-Za-z/d]{8,}$")]
+        public string phone { get; set; }
+        [Required]
         [Unicode(false)]
         public string password { get; set; }
+        [StringLength(50)]
+        public string area { get; set; }
+        public DateTime birthDate { get; set; }
+        public int? buildingNumber { get; set; }
+        [Required]
+        [StringLength(50)]
+        [Unicode(false)]
+        public string city { get; set; }
+        [Required]
+        [StringLength(1)]
+        public string gender { get; set; }
+        public string profilePic { get; set; }
 
+        [InverseProperty("PIDNavigation")]
+        public virtual ICollection<DoctorRating> DoctorRatings { get; set; }
         [InverseProperty("PIDNavigation")]
         public virtual ICollection<Record> Records { get; set; }
         [InverseProperty("PIDNavigation")]
