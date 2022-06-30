@@ -102,6 +102,8 @@ namespace MedicalSystem.Controllers
           {
               return Problem("Entity set 'MedicalSystemContext.Doctors'  is null.");
           }
+          // hashing password befor saving it into DB
+            doctor.password = AccountUser.hashPassword(doctor.password);
             _context.Doctors.Add(doctor);
             await _context.SaveChangesAsync();
 

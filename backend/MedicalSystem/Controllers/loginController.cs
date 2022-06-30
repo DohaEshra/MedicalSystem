@@ -23,8 +23,10 @@ namespace MedicalSystem.Controllers
         }
 
         [HttpPost]
-        public IActionResult login(User user)
-        { 
+        public IActionResult login(AccountUser user)
+        {
+            // Hash the user password
+            user.password = AccountUser.hashPassword(user.password);
             if (user.role == "doctor")
             {
                 doctor = db.Doctors.Where(a => a.email == user.email && a.password == user.password).FirstOrDefault();
