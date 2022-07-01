@@ -9,7 +9,9 @@ using Microsoft.EntityFrameworkCore;
 namespace MedicalSystem.Models
 {
     [Table("Doctor")]
-    [Index("ID", Name = "IX_Doctor", IsUnique = true)]
+    [Index("email", Name = "IX_Doctor", IsUnique = true)]
+    [Index("phone", Name = "X_Doctor", IsUnique = true)]
+
     public partial class Doctor
     {
         public Doctor()

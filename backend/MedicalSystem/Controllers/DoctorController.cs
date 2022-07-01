@@ -12,47 +12,47 @@ namespace MedicalSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PatientsController : ControllerBase
+    public class DoctorController : ControllerBase
     {
         private readonly MedicalSystemContext _context;
 
-        public PatientsController(MedicalSystemContext context)
+        public DoctorController(MedicalSystemContext context)
         {
             _context = context;
         }
 
-        // GET: api/Patients
+        // GET: api/Doctors
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Patient>>> GetPatients()
+        public async Task<ActionResult<IEnumerable<Doctor>>> GetDoctors()
         {
-            return await _context.Patients.ToListAsync();
+            return await _context.Doctors.ToListAsync();
         }
 
-        // GET: api/Patients/5
+        // GET: api/Doctors/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Patient>> GetPatient(int id)
+        public async Task<ActionResult<Doctor>> GetDoctor(int id)
         {
-            var patient = await _context.Patients.FindAsync(id);
+            var doctor = await _context.Doctors.FindAsync(id);
 
-            if (patient == null)
+            if (doctor == null)
             {
                 return NotFound();
             }
 
-            return patient;
+            return doctor;
         }
 
-        // PUT: api/Patients/5
+        // PUT: api/Doctors/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPatient(int id, Patient patient)
+        public async Task<IActionResult> PutDoctor(int id, Doctor doctor)
         {
-            if (id != patient.ID)
+            if (id != doctor.ID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(patient).State = EntityState.Modified;
+            _context.Entry(doctor).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace MedicalSystem.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PatientExists(id))
+                if (!DoctorExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace MedicalSystem.Controllers
             return NoContent();
         }
 
-        // POST: api/Patients
+        // POST: api/Doctors
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Patient>> PostPatient(Patient patient)
+        public async Task<ActionResult<Doctor>> PostDoctor(Doctor doctor)
         {
-            _context.Patients.Add(patient);
+            _context.Doctors.Add(doctor);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPatient", new { id = patient.ID }, patient);
+            return CreatedAtAction("GetDoctor", new { id = doctor.ID }, doctor);
         }
 
-        // DELETE: api/Patients/5
+        // DELETE: api/Doctors/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePatient(int id)
+        public async Task<IActionResult> DeleteDoctor(int id)
         {
-            var patient = await _context.Patients.FindAsync(id);
-            if (patient == null)
+            var doctor = await _context.Doctors.FindAsync(id);
+            if (doctor == null)
             {
                 return NotFound();
             }
 
-            _context.Patients.Remove(patient);
+            _context.Doctors.Remove(doctor);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool PatientExists(int id)
+        private bool DoctorExists(int id)
         {
-            return _context.Patients.Any(e => e.ID == id);
+            return _context.Doctors.Any(e => e.ID == id);
         }
     }
 }

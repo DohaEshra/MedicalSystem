@@ -12,47 +12,47 @@ namespace MedicalSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RecordsController : ControllerBase
+    public class VisitController : ControllerBase
     {
         private readonly MedicalSystemContext _context;
 
-        public RecordsController(MedicalSystemContext context)
+        public VisitController(MedicalSystemContext context)
         {
             _context = context;
         }
 
-        // GET: api/Records
+        // GET: api/Visits
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Record>>> GetRecords()
+        public async Task<ActionResult<IEnumerable<Visit>>> GetVisits()
         {
-            return await _context.Records.ToListAsync();
+            return await _context.Visits.ToListAsync();
         }
 
-        // GET: api/Records/5
+        // GET: api/Visits/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Record>> GetRecord(int id)
+        public async Task<ActionResult<Visit>> GetVisit(int id)
         {
-            var @record = await _context.Records.FindAsync(id);
+            var visit = await _context.Visits.FindAsync(id);
 
-            if (@record == null)
+            if (visit == null)
             {
                 return NotFound();
             }
 
-            return @record;
+            return visit;
         }
 
-        // PUT: api/Records/5
+        // PUT: api/Visits/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRecord(int id, Record @record)
+        public async Task<IActionResult> PutVisit(int id, Visit visit)
         {
-            if (id != @record.DID)
+            if (id != visit.PID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(@record).State = EntityState.Modified;
+            _context.Entry(visit).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace MedicalSystem.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RecordExists(id))
+                if (!VisitExists(id))
                 {
                     return NotFound();
                 }
@@ -73,19 +73,19 @@ namespace MedicalSystem.Controllers
             return NoContent();
         }
 
-        // POST: api/Records
+        // POST: api/Visits
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Record>> PostRecord(Record @record)
+        public async Task<ActionResult<Visit>> PostVisit(Visit visit)
         {
-            _context.Records.Add(@record);
+            _context.Visits.Add(visit);
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (RecordExists(@record.DID))
+                if (VisitExists(visit.PID))
                 {
                     return Conflict();
                 }
@@ -95,28 +95,28 @@ namespace MedicalSystem.Controllers
                 }
             }
 
-            return CreatedAtAction("GetRecord", new { id = @record.DID }, @record);
+            return CreatedAtAction("GetVisit", new { id = visit.PID }, visit);
         }
 
-        // DELETE: api/Records/5
+        // DELETE: api/Visits/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRecord(int id)
+        public async Task<IActionResult> DeleteVisit(int id)
         {
-            var @record = await _context.Records.FindAsync(id);
-            if (@record == null)
+            var visit = await _context.Visits.FindAsync(id);
+            if (visit == null)
             {
                 return NotFound();
             }
 
-            _context.Records.Remove(@record);
+            _context.Visits.Remove(visit);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool RecordExists(int id)
+        private bool VisitExists(int id)
         {
-            return _context.Records.Any(e => e.DID == id);
+            return _context.Visits.Any(e => e.PID == id);
         }
     }
 }
