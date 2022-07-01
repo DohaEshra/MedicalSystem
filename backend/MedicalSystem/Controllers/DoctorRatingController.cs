@@ -12,47 +12,47 @@ namespace MedicalSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class VisitsController : ControllerBase
+    public class DoctorRatingController : ControllerBase
     {
         private readonly MedicalSystemContext _context;
 
-        public VisitsController(MedicalSystemContext context)
+        public DoctorRatingController(MedicalSystemContext context)
         {
             _context = context;
         }
 
-        // GET: api/Visits
+        // GET: api/DoctorRatings
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Visit>>> GetVisits()
+        public async Task<ActionResult<IEnumerable<DoctorRating>>> GetDoctorRatings()
         {
-            return await _context.Visits.ToListAsync();
+            return await _context.DoctorRatings.ToListAsync();
         }
 
-        // GET: api/Visits/5
+        // GET: api/DoctorRatings/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Visit>> GetVisit(int id)
+        public async Task<ActionResult<DoctorRating>> GetDoctorRating(int id)
         {
-            var visit = await _context.Visits.FindAsync(id);
+            var doctorRating = await _context.DoctorRatings.FindAsync(id);
 
-            if (visit == null)
+            if (doctorRating == null)
             {
                 return NotFound();
             }
 
-            return visit;
+            return doctorRating;
         }
 
-        // PUT: api/Visits/5
+        // PUT: api/DoctorRatings/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutVisit(int id, Visit visit)
+        public async Task<IActionResult> PutDoctorRating(int id, DoctorRating doctorRating)
         {
-            if (id != visit.PID)
+            if (id != doctorRating.PID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(visit).State = EntityState.Modified;
+            _context.Entry(doctorRating).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace MedicalSystem.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!VisitExists(id))
+                if (!DoctorRatingExists(id))
                 {
                     return NotFound();
                 }
@@ -73,19 +73,19 @@ namespace MedicalSystem.Controllers
             return NoContent();
         }
 
-        // POST: api/Visits
+        // POST: api/DoctorRatings
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Visit>> PostVisit(Visit visit)
+        public async Task<ActionResult<DoctorRating>> PostDoctorRating(DoctorRating doctorRating)
         {
-            _context.Visits.Add(visit);
+            _context.DoctorRatings.Add(doctorRating);
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (VisitExists(visit.PID))
+                if (DoctorRatingExists(doctorRating.PID))
                 {
                     return Conflict();
                 }
@@ -95,28 +95,28 @@ namespace MedicalSystem.Controllers
                 }
             }
 
-            return CreatedAtAction("GetVisit", new { id = visit.PID }, visit);
+            return CreatedAtAction("GetDoctorRating", new { id = doctorRating.PID }, doctorRating);
         }
 
-        // DELETE: api/Visits/5
+        // DELETE: api/DoctorRatings/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteVisit(int id)
+        public async Task<IActionResult> DeleteDoctorRating(int id)
         {
-            var visit = await _context.Visits.FindAsync(id);
-            if (visit == null)
+            var doctorRating = await _context.DoctorRatings.FindAsync(id);
+            if (doctorRating == null)
             {
                 return NotFound();
             }
 
-            _context.Visits.Remove(visit);
+            _context.DoctorRatings.Remove(doctorRating);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool VisitExists(int id)
+        private bool DoctorRatingExists(int id)
         {
-            return _context.Visits.Any(e => e.PID == id);
+            return _context.DoctorRatings.Any(e => e.PID == id);
         }
     }
 }

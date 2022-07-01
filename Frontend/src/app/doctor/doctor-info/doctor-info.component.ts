@@ -22,6 +22,7 @@ export class DoctorInfoComponent implements OnInit,OnDestroy {
   ngOnInit(): void {
     this.doc.selectedDoctor$.subscribe(
       data=>{
+        console.log(data)
         this.doctor=data;
       }
     );
