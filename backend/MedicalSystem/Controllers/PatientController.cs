@@ -12,11 +12,11 @@ namespace MedicalSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PatientsController : ControllerBase
+    public class PatientController : ControllerBase
     {
         private readonly MedicalSystemContext _context;
 
-        public PatientsController(MedicalSystemContext context)
+        public PatientController(MedicalSystemContext context)
         {
             _context = context;
         }
@@ -78,6 +78,15 @@ namespace MedicalSystem.Controllers
         [HttpPost]
         public async Task<ActionResult<Patient>> PostPatient(Patient patient)
         {
+            var patientMail = _context.Patients.Where(a => a.email == patient.email).FirstOrDefault();
+            if (patientMail != null)
+                return BadRequest("This email already exists !");
+
+            var patientPhone = _context.Patients.Where(a => a.phone == patient.phone).FirstOrDefault();
+            if (patientPhone != null)
+                return BadRequest("This phone already exists !");
+
+            patient.password = AccountUser.hashPassword(patient.password);
             _context.Patients.Add(patient);
             await _context.SaveChangesAsync();
 

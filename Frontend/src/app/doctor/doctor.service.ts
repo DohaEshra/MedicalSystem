@@ -21,7 +21,7 @@ export class DoctorService {
  
   //get doctor profile
   getDoctorProfile(){
-    return this.http.get<Doctor>(this.baseUrl+"doctor/"+this.DoctorID);
+    return this.http.get<Doctor>(this.baseUrl+"doctors/"+this.DoctorID);
   }
 
   //get doctor by ID

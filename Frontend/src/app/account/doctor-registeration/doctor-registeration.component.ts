@@ -82,6 +82,8 @@ export class DoctorRegisterationComponent implements OnInit {
     const files = event.target.files;
     // console.log('files',files)
     if (files.length === 0){
+      
+      
       this.imageErrorMessage("There is no attached file.",imageInput)
       return;
     }
@@ -107,6 +109,10 @@ export class DoctorRegisterationComponent implements OnInit {
    onSubmit(myForm:NgForm): void {
     console.log('fooooooooorm', myForm)
 
+     this.user.gender== 'M' && this.user.image==null 
+     ?this.user.image = '../../../assets/M.jpg'
+     :this.user.image = '../../../assets/F.jpg';
+     
     // add DR data
     let doctor : Doctor = { 
       id: 0, 
@@ -131,15 +137,16 @@ export class DoctorRegisterationComponent implements OnInit {
       this.subscribe= this.account.addDoctor(doctor).subscribe({
         next: data =>
         {
-          this.isRegistrationFailed = true ; 
+          this.isRegistrationFailed = false ; 
           console.log('success to add doctor ' + data)
-          alert('You have registered successfully')
+          setTimeout(()=> alert('You have registered successfully'),0);
           this.router.navigateByUrl('/login');
         }
         ,error:err=>{
           console.log('error from doctor registeration component', err)
           this.isRegistrationFailed = true ; 
-          this.errorMessage = Object.values(err.error.errors).map((e: any)=> e.map((x:string)=> x))
+          this.errorMessage = err.error;
+          // Object.values(err.error.errors).map((e: any)=> e.map((x:string)=> x))
         }
       });
     }

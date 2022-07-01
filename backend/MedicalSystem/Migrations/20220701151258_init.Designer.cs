@@ -4,6 +4,7 @@ using MedicalSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalSystem.Migrations
 {
     [DbContext(typeof(MedicalSystemContext))]
-    partial class MedicalSystemContextModelSnapshot : ModelSnapshot
+    [Migration("20220701151258_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -111,10 +113,7 @@ namespace MedicalSystem.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex(new[] { "email" }, "IX_Doctor")
-                        .IsUnique();
-
-                    b.HasIndex(new[] { "phone" }, "X_Doctor")
+                    b.HasIndex(new[] { "ID" }, "IX_Doctor")
                         .IsUnique();
 
                     b.ToTable("Doctor");
@@ -297,12 +296,6 @@ namespace MedicalSystem.Migrations
                         .HasColumnType("nvarchar(200)");
 
                     b.HasKey("ID");
-
-                    b.HasIndex(new[] { "email" }, "IX_Patient")
-                        .IsUnique();
-
-                    b.HasIndex(new[] { "phone" }, "X_Patient")
-                        .IsUnique();
 
                     b.ToTable("Patient");
                 });
