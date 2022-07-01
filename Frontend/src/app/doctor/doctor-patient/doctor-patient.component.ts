@@ -14,8 +14,6 @@ export class DoctorPatientComponent implements OnInit,OnDestroy {
 
   private patient$ = new BehaviorSubject<any>({});
   selectedPatient$ = this.patient$.asObservable();
-  private RecordList$ = new BehaviorSubject<any>({});
-  selectedRecordList$ = this.patient$.asObservable();
 
   patient:Patient=new Patient();
   RecordList:Record[]=[];
@@ -31,7 +29,6 @@ export class DoctorPatientComponent implements OnInit,OnDestroy {
           this.patient=data;
           this.RecordList=data.records;
           this.patient$.next(this.patient);
-          this.RecordList$.next(this.RecordList);
         })   
       }
     ) 

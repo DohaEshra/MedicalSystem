@@ -18,7 +18,7 @@ export class PatientHistoryComponent implements OnInit,OnDestroy {
   ngOnInit(): void {
     this.comp.selectedPatient$.subscribe(
       data=>{
-        this.RecordList=data;
+        this.RecordList=data.records;
       }
     );
   }
