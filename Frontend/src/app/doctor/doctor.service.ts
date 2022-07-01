@@ -41,6 +41,8 @@ export class DoctorService {
   {
     return this.http.put<undefined>(this.baseUrl+"doctor/"+this.DoctorID,doctor);
   }
+
+  //get all doctors
   getAllDoctors()
   {
     return this.http.get<Doctor[]>(this.baseUrl+"Doctor");

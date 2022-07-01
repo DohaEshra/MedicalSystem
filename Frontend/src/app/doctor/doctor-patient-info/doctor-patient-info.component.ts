@@ -12,7 +12,7 @@ import { Record } from 'src/app/_Models/record';
 })
 export class DoctorPatientInfoComponent implements OnInit,OnDestroy {
 
-  patient:Patient=new Patient(Number(),"","",Number(),"","",Number(),"",[],[],'','');
+  patient:Patient=new Patient();
   RecordList:Record[]=[];
   sub:Subscription|null=null;
 
