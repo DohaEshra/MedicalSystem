@@ -80,23 +80,32 @@
               <div *ngIf="phone.errors['pattern']">phone is invalid !</div>
             </div>
         </div>
+        
+        <!-- Gender -->
+        <div class="align-center">
+            <label for="gender" class="fs-5">Gender</label>
+            <select name="gender" class="form-select form-select-lg" style="border-radius:30px ;" aria-label="Default select example" required #gender="ngModel" [(ngModel)]="user.gender">
+                <option class="fs-5" value="F"> Female </option>
+                <option class="fs-5" value="M"> Male </option>
+            </select>
+           
+            <div class="alert alert-danger fs-5" role="alert" *ngIf="gender.errors && MyForm.submitted" >
+              <div *ngIf="gender.errors['required']">Gender is required</div>
+            </div>
+        </div>
 
-         <!-- Age -->
+        <!-- Birth date -->
         <div class="form-group">
-            <label for="age" class="fs-5">Age</label>
-            <input  type="text"  
+            <label for="BirthDate" class="fs-5">Birth date</label>
+            <input  type="date"  
                     style="border-radius:30px ;"
                     class="form-control form-control-lg " 
-                    [pattern]="agePattern" 
-                    name="age"
-                    [(ngModel)]="user.age" 
-                    appAgeValidation
-                    placeholder ="Enter your Age" required #age="ngModel"/>
+                    name="BirthDate"
+                    [(ngModel)]="user.BirthDate" 
+                    placeholder ="Enter your Birth date" required #BirthDate="ngModel"/>
 
-            <div class="alert alert-danger fs-5" role="alert" *ngIf="age.errors && MyForm.submitted" >
-              <div *ngIf="age.errors['required']">Age is required</div>
-              <div *ngIf="age.errors['pattern']">Age is invalid !</div>
-              <div *ngIf="age.errors['phoneNumberInvalid']">Age must be older than 25 years</div>
+            <div class="alert alert-danger fs-5" role="alert" *ngIf="BirthDate.errors && MyForm.submitted" >
+              <div *ngIf="BirthDate.errors['required']">Birth date is required</div>
             </div>
         </div>
       </div>

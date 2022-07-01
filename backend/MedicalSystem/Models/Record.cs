@@ -24,7 +24,7 @@ namespace MedicalSystem.Models
         public string file_description { get; set; }
 
         //[Required]
-        public byte[] attached_files { get; set; }
+        public string attached_files { get; set; }
 
         [Key]
         [Required]
@@ -35,6 +35,9 @@ namespace MedicalSystem.Models
         [Required]
         [Unicode(false)]
         public string summary { get; set; }
+
+        [Required]
+        public string medicalPerscription { get; set; }
 
         [ForeignKey("DID")]
         [InverseProperty("Records")]

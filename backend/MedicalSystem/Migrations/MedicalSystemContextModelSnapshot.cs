@@ -48,7 +48,7 @@ namespace MedicalSystem.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Clinic");
+                    b.ToTable("Clinic", (string)null);
                 });
 
             modelBuilder.Entity("MedicalSystem.Models.Doctor", b =>
@@ -119,7 +119,7 @@ namespace MedicalSystem.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Doctor");
+                    b.ToTable("Doctor", (string)null);
                 });
 
             modelBuilder.Entity("MedicalSystem.Models.Patient", b =>
@@ -174,7 +174,7 @@ namespace MedicalSystem.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Patient");
+                    b.ToTable("Patient", (string)null);
                 });
 
             modelBuilder.Entity("MedicalSystem.Models.Record", b =>
@@ -209,7 +209,7 @@ namespace MedicalSystem.Migrations
 
                     b.HasIndex("PID");
 
-                    b.ToTable("Record");
+                    b.ToTable("Record", (string)null);
                 });
 
             modelBuilder.Entity("MedicalSystem.Models.Visit", b =>
@@ -233,7 +233,7 @@ namespace MedicalSystem.Migrations
 
                     b.HasIndex("DID");
 
-                    b.ToTable("Visit");
+                    b.ToTable("Visit", (string)null);
                 });
 
             modelBuilder.Entity("MedicalSystem.Models.Works_in", b =>
@@ -256,7 +256,7 @@ namespace MedicalSystem.Migrations
 
                     b.HasIndex("CID");
 
-                    b.ToTable("Works_in");
+                    b.ToTable("Works_in", (string)null);
                 });
 
             modelBuilder.Entity("MedicalSystem.Models.Record", b =>

@@ -25,7 +25,7 @@ export class DoctorRegisterationComponent implements OnInit {
   addressPattern = '^[A-Za-z0-9,_.-]{10,40}$';
   namePattern = '^[A-Za-z]{2,20}$';
   emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
-  user : any ={ id: 0, fname:'', lname:'', age:'', email:'', address:'', phone:'', username:'', password:'', category:'',confirmPass:'',image:null};
+  user : any ={ id: 0, fname:'', lname:'', age:'', email:'', address:'', phone:'', username:'', password:'',gender:'',birthDate:Date, category:'',confirmPass:'',image:null};
   
   constructor(public account: AccountService , public router :Router ) { }
   ngOnInit() {
