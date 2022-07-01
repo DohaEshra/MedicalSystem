@@ -5,6 +5,7 @@
               <tr>
                 <th scope="col">Date</th>
                 <th scope="col">Summary</th>
+                <th scope="col">Prescription</th>
                 <th scope="col">File Description</th>
                 <th scope="col">Attached File</th>
               </tr>
@@ -13,17 +14,17 @@
               <tr *ngFor="let record of RecordList|recordWithoutRedundancy">
                 <td class="text-light">{{record.date}}</td>
                 <td class="text-light">{{record.summary}}</td>
+                <td class="text-light">{{record.prescription}}</td>
+
                 <td>
                   <tr *ngFor="let fileDes of record.file_description">
                     <td>{{fileDes}}</td>
                   </tr>
-                  <!-- {{record.file_description}} -->
                 </td>
                 <td>
                   <tr *ngFor="let file of record.attached_files">
                     <td>{{file}}</td>
                   </tr>
-                  <!-- {{record.attached_files}} -->
                 </td>
               </tr>
             </tbody>
