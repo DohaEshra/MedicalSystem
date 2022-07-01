@@ -11,7 +11,7 @@
       <i class="fas fa-list"></i>
     </button>
     <!-- if user logged out -->
-    <div *ngIf="userRole == '' ;else navbar2" class="collapse navbar-collapse" id="navbarScroll">
+    <div *ngIf="getRole()==null" class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
         <li class="nav-item">
           <a class="nav-link active fs-5" aria-current="page" routerLink="/home">Home</a>
@@ -34,23 +34,49 @@
         </li> -->
       </ul>      
     </div>
- <!-- if user logged in -->
-    <ng-template #navbar2 class="collapse navbar-collapse" id="navbarScroll">
+ <!-- if user logged in  as patient-->
+
+  <div  *ngIf="getRole() =='patient'"  class="collapse navbar-collapse" id="navbarScroll" >
       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
         <li class="nav-item">
-          <a class="nav-link active fs-5" aria-current="page" routerLink="/home">Home</a>
+          <a class="nav-link active fs-5" aria-current="page" routerLink="/patient/home">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link fs-5" > Welcome {{userRole|lowercase}} </a>
+          <a class="nav-link active fs-5" aria-current="page" routerLink="/patient/categories">Catigory</a>
         </li>
+         <li class="nav-item">
+          <a class="nav-link active fs-5" aria-current="page" routerLink="/patient/search">Search</a>
+         </li>
+       
       </ul>
-      
       <ul class="navbar-nav  justify-content-end my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
        <li class="nav-item">
-          <a class="nav-link fs-5" routerLink="/login" (click)="clearToken()">Logout</a>
+          <a class="nav-link fs-5" routerLink="/login"  (click)="clearToken()" >Logout</a>
         </li>
       </ul>      
-    </ng-template>
+  </div>
+
+  <div  *ngIf="getRole() =='doctor'"  class="collapse navbar-collapse" id="navbarScroll" >
+    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+     
+      <li class="nav-item">
+        <a class="nav-link active fs-5" aria-current="page" routerLink="/doctor/home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active fs-5" aria-current="page" routerLink="/doctor/edit">Edit</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active fs-5" aria-current="page" routerLink="/doctor/info">Info</a>
+      </li><li class="nav-item">
+        <a class="nav-link active fs-5" aria-current="page" routerLink="/doctor/patientsearch">Patient search</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav  justify-content-end my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+     <li class="nav-item">
+        <a class="nav-link fs-5" routerLink="/login"  (click)="clearToken()" >Logout</a>
+      </li>
+    </ul>      
+</div>
   </div>
 </nav>
 
