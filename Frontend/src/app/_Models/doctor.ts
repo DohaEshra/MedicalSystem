@@ -11,7 +11,7 @@ export class Doctor {
                 public area:string,
                 public street:string,
                 public buildingNumber:number,
-                public phone:number,
+                public phone:string,
                 public password:string,
                 public gender:string,
                 public category:string,

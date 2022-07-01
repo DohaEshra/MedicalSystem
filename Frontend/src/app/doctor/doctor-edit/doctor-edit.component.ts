@@ -13,7 +13,7 @@ import { DoctorService } from '../doctor.service';
 export class DoctorEditComponent implements OnInit,OnDestroy {
 
   constructor(public doctorSer:DoctorService,public router:Router ,private doc:DoctorHomeComponent) { }
-  doctor:Doctor=new Doctor(Number(),"","",Number(),new Date,"","","","",Number(),Number(),"","","","");
+  doctor:Doctor=new Doctor(Number(),"","",Number(),new Date,"","","","",Number(),"","","","","");
   sub:Subscription|null=null;
   span:string="";
 

@@ -27,7 +27,7 @@ export class DoctorRegisterationComponent implements OnInit {
   addressPattern = '^[A-Za-z0-9,_.-]{10,40}$';
   namePattern = '^[A-Za-z]{2,20}$';
   emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
-  user : any ={ id: 0, fname:'', lname:'', birthDate:new Date , email:'', city:'',area:'', gender:'',buildingNumber:'',street:'', phone:'', username:'', password:'', category:'',confirmPass:'',image:null};
+  user : any ={ id: 0, fname:'', lname:'', birthDate:new Date , email:'', city:'',area:null, gender:'',buildingNumber:null,street:null, phone:'', username:'', password:'', category:'',confirmPass:'',image:null};
   
   constructor(public account: AccountService , public router :Router ) {
   
@@ -115,7 +115,7 @@ export class DoctorRegisterationComponent implements OnInit {
       birthDate: this.user.birthDate,
       age: + this.user.age,
       email: this.user.email,
-      phone: + this.user.phone, 
+      phone: this.user.phone, 
       password:this.user.password, 
       category: this.user.category,
       profilePic: this.user.image,
