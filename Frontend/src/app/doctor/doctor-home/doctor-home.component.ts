@@ -13,7 +13,7 @@ export class DoctorHomeComponent implements OnInit,OnDestroy {
 
   private doctor$ = new BehaviorSubject<any>({});
   selectedDoctor$ = this.doctor$.asObservable();
-  doctor:Doctor=new Doctor(Number(),"","",Number(),new Date,"","","","",Number(),"","","","","");
+  doctor:Doctor=new Doctor();
   sub:Subscription|null=null;
 
   constructor(public doctorSer:DoctorService,public router:Router) {}

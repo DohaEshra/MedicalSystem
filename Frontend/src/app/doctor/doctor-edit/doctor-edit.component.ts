@@ -13,7 +13,7 @@ import { DoctorService } from '../doctor.service';
 export class DoctorEditComponent implements OnInit,OnDestroy {
 
   constructor(public doctorSer:DoctorService,public router:Router ,private doc:DoctorHomeComponent) { }
-  doctor:Doctor=new Doctor(Number(),"","",Number(),new Date,"","","","",Number(),"","","","","");
+  doctor:Doctor=new Doctor();
   sub:Subscription|null=null;
   span:string="";
 
@@ -30,7 +30,7 @@ export class DoctorEditComponent implements OnInit,OnDestroy {
   edit(){
     this.doctorSer.editDoctor(this.doctor).subscribe(
       a=>{
-        this.router.navigateByUrl("doctor");
+        this.router.navigateByUrl("doctor/info");
       },
       error=>{
         this.span="Check inputs";

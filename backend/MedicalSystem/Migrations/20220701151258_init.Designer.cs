@@ -12,8 +12,13 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalSystem.Migrations
 {
     [DbContext(typeof(MedicalSystemContext))]
+<<<<<<<< HEAD:backend/MedicalSystem/Migrations/20220701151258_init.Designer.cs
     [Migration("20220701151258_init")]
     partial class init
+========
+    [Migration("20220701140937_intialcreate")]
+    partial class intialcreate
+>>>>>>>> 6cc4d98420b39905419304e1d127db98aae6017e:backend/MedicalSystem/Migrations/20220701140937_intialcreate.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

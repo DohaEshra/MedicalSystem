@@ -42,6 +42,17 @@ namespace MedicalSystem.Controllers
             return visit;
         }
 
+        //GET: api/get/visit/{doctor_id}
+        [HttpGet("get/{id}")]
+        public async Task<ActionResult<IEnumerable<Visit>>> GetVisitsByDoctorID(int id)
+        {
+            if (_context.Visits == null)
+            {
+                return NotFound();
+            }
+            return await _context.Visits.Where(e => e.DID == id).ToListAsync();
+        }
+
         // PUT: api/Visits/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

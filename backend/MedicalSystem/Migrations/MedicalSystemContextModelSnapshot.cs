@@ -111,10 +111,14 @@ namespace MedicalSystem.Migrations
 
                     b.HasKey("ID");
 
+<<<<<<< HEAD
                     b.HasIndex(new[] { "email" }, "IX_Doctor")
                         .IsUnique();
 
                     b.HasIndex(new[] { "phone" }, "X_Doctor")
+=======
+                    b.HasIndex(new[] { "ID" }, "IX_Doctor")
+>>>>>>> 6cc4d98420b39905419304e1d127db98aae6017e
                         .IsUnique();
 
                     b.ToTable("Doctor");
@@ -298,12 +302,15 @@ namespace MedicalSystem.Migrations
 
                     b.HasKey("ID");
 
+<<<<<<< HEAD
                     b.HasIndex(new[] { "email" }, "IX_Patient")
                         .IsUnique();
 
                     b.HasIndex(new[] { "phone" }, "X_Patient")
                         .IsUnique();
 
+=======
+>>>>>>> 6cc4d98420b39905419304e1d127db98aae6017e
                     b.ToTable("Patient");
                 });
 
@@ -333,6 +340,16 @@ namespace MedicalSystem.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(150)");
 
+<<<<<<< HEAD
+=======
+                    b.Property<string>("prescription")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(max)")
+                        .HasDefaultValue("");
+
+>>>>>>> 6cc4d98420b39905419304e1d127db98aae6017e
                     b.Property<string>("summary")
                         .IsRequired()
                         .IsUnicode(false)

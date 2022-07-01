@@ -15,7 +15,7 @@ export class PatientRecordComponent implements OnInit {
  
 
   RecordList:Record[]=[];
-  doctor:Doctor=new Doctor(Number(),"","",Number(),new Date,"","","","",Number(),"","","","","");
+  doctor:Doctor=new Doctor();
   sub:Subscription|null=null;
   constructor(public PatientServ:PatientService, public router:Router) { }
 
