@@ -30,7 +30,7 @@ export class DoctorEditComponent implements OnInit,OnDestroy {
   edit(){
     this.doctorSer.editDoctor(this.doctor).subscribe(
       a=>{
-        this.router.navigateByUrl("doctor");
+        this.router.navigateByUrl("doctor/info");
       },
       error=>{
         this.span="Check inputs";
