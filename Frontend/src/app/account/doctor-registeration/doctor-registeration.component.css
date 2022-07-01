@@ -79,6 +79,10 @@ label {
     height: 100px;
   }
 
+  .displayCategory{
+    display: none;
+  }
+
 img{
   display: none;
   width: 100%;

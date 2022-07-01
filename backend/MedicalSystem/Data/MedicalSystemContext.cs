@@ -88,6 +88,7 @@ namespace MedicalSystem.Data
 
             modelBuilder.Entity<Record>(entity =>
             {
+
                 entity.HasKey(e => new { e.DID, e.PID, e.date, e.FNO });
 
                 entity.HasOne(d => d.DIDNavigation)
@@ -106,6 +107,8 @@ namespace MedicalSystem.Data
                     .WithMany(p => p.Records)
                     .HasForeignKey(d => d.PID)
                     .HasConstraintName("FK_Record_Patient");
+
+                entity.Property(r => r.prescription).HasDefaultValue("");
             });
 
             modelBuilder.Entity<Visit>(entity =>

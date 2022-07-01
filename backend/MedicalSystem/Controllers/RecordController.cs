@@ -73,7 +73,7 @@ namespace MedicalSystem.Controllers
             return NoContent();
         }
 
-        // POST: api/Records
+        // POST: api/Record
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Record>> PostRecord(Record @record)

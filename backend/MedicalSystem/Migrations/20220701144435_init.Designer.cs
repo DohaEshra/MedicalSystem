@@ -12,8 +12,18 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalSystem.Migrations
 {
     [DbContext(typeof(MedicalSystemContext))]
+<<<<<<<< HEAD:backend/MedicalSystem/Migrations/20220701144435_init.Designer.cs
     [Migration("20220701144435_init")]
     partial class init
+========
+<<<<<<<< HEAD:backend/MedicalSystem/Migrations/20220701151258_init.Designer.cs
+    [Migration("20220701151258_init")]
+    partial class init
+========
+    [Migration("20220701140937_intialcreate")]
+    partial class intialcreate
+>>>>>>>> 6cc4d98420b39905419304e1d127db98aae6017e:backend/MedicalSystem/Migrations/20220701140937_intialcreate.Designer.cs
+>>>>>>>> 0a9e5617e86426a2102791ba681232278b22a957:backend/MedicalSystem/Migrations/20220701140937_intialcreate.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -113,10 +123,14 @@ namespace MedicalSystem.Migrations
 
                     b.HasKey("ID");
 
+<<<<<<<< HEAD:backend/MedicalSystem/Migrations/20220701144435_init.Designer.cs
                     b.HasIndex(new[] { "email" }, "IX_Doctor")
                         .IsUnique();
 
                     b.HasIndex(new[] { "phone" }, "X_Doctor")
+========
+                    b.HasIndex(new[] { "ID" }, "IX_Doctor")
+>>>>>>>> 0a9e5617e86426a2102791ba681232278b22a957:backend/MedicalSystem/Migrations/20220701140937_intialcreate.Designer.cs
                         .IsUnique();
 
                     b.ToTable("Doctor");
