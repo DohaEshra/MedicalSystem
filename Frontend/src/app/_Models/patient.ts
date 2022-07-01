@@ -8,7 +8,6 @@ export class Patient {
                 public age:number=Number(), 
                 public email:string='', 
                 public phone:string='',                 
-                public username:string='',
                 public password:string='',
                 public birthDate:Date=new Date(),
                 public gender:string='',
@@ -17,6 +16,7 @@ export class Patient {
                 public street:string='',
                 public area:string='',
                 public city:string='',
+                public username:string='',
                 public records:Record[]=[],
                 public visits:Visit[]=[],
             ){}
