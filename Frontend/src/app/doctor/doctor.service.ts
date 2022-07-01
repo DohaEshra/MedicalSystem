@@ -28,11 +28,14 @@ export class DoctorService {
   getDoctorById(Id:number){
     return this.http.get<Doctor>(this.baseUrl+"doctor/"+Id);
   }
-  
+  //getDoctor/{name}
+  getDoctorByName(name:string|undefined){
+    return this.http.get<any[]>(this.baseUrl+"doctor/getDoctor/"+name);
+  }
   //get doctors by category
   getDoctorByCategory(Category:string)
   {
-    return this.http.get<Doctor[]>(this.baseUrl+"Doctor/get/"+Category);
+    return this.http.get<any[]>(this.baseUrl+"Doctor/get/"+Category);
   }
 
   //edit doctor profile 

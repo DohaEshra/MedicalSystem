@@ -7,14 +7,14 @@ import { PatientLoginGuard } from "../_Guards/patient-login.guard";
 import { SearchForDoctorComponent } from "./search-for-doctor/search-for-doctor.component";
 
 const routes:Routes=[
-    {path:"",component:PatientRecordComponent},
+    {path:"",component:PatientHomeComponent},
+    {path:"record",component:PatientRecordComponent},
 
     // {path:"",component:PatientHomeComponent,canActivate:[PatientLoginGuard],children:[
     //     {path:"record",component:PatientRecordComponent},
 
     // ]},
-    {path:"categories", component:GetDoctorPerCategoryComponent},
-    {path:"home",component:PatientHomeComponent},
+    {path:"categories/:Category", component:GetDoctorPerCategoryComponent},
     {path:"search",component:SearchForDoctorComponent},
     
 

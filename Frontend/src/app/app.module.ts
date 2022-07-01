@@ -12,12 +12,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AccountModule } from './account/account.module';
 import { FormsModule } from '@angular/forms';
 import { NavBarComponent } from './_shared/NavBar/NavBar.component';
-import { PatientRecordComponent } from './patient/patient-record/patient-record.component';
+//import { PatientRecordComponent } from './patient/patient-record/patient-record.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent, NavBarComponent, PatientRecordComponent
+    AppComponent, NavBarComponent//, PatientRecordComponent
   ],
   imports: [
     BrowserModule,
