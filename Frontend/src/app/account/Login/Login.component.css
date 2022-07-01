@@ -12,7 +12,7 @@ label {
    #sect1 {  
     background: linear-gradient(rgba(178, 255, 91, 0.425), rgba(182, 221, 146, 0.397)), 
     url("../../../assets/login_background.jpg");
-  height: 100%;
+  /* height: 100%; */
   width: 100%;
   -webkit-background-size: cover;
   background-size: cover;

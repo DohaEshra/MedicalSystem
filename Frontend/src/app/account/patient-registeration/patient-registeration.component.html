@@ -1,0 +1,271 @@
+<div id="sect1"  > 
+      
+    <div  class="col-lg-8 col-sm-12 d-flex align-items-center justify-content-center ">
+      
+      <div class="card card-container">
+        <div  class="fs-2 text-center mb-3" style=" color: #a5c422;"> Registration </div>
+            <!-- <img
+                id="profile-img"
+                width="200px" height="200px"
+                class="profile-img-card"
+                src="https://www.jing.fm/clipimg/detail/398-3981675_avatar-for-login-form.png"
+            /> -->
+            
+        <form class="row"  name="form" (ngSubmit)="onSubmit(MyForm)" #MyForm="ngForm" >
+          <div class="left col-lg-6 col-sm-12 ">
+            <!-- First Name -->
+         <div class="form-group">
+            <label for="First Name" class="fs-5">First Name</label>
+            <input  type="text"  
+                    style="border-radius:30px ;"
+                    class="form-control form-control-lg " 
+                    [pattern]="namePattern" 
+                    name="First Name"
+                    [(ngModel)]="user.fname" 
+                    placeholder ="Enter your First name" required #fname="ngModel"/>
+
+            <div class="alert alert-danger fs-5" role="alert" *ngIf="fname.errors && MyForm.submitted" >
+              <div *ngIf="fname.errors['required']">First name is required</div>
+              <div *ngIf="fname.errors['pattern']">First name is invalid as it  must be with a minimum length of 2 and a maximum length of 20 !</div>
+            </div>
+        </div>
+
+            <!-- Last Name -->
+        <div class="form-group">
+            <label for="Last Name" class="fs-5">Last Name</label>
+            <input  type="text"  
+                    style="border-radius:30px ;"
+                    class="form-control form-control-lg " 
+                    [pattern]="namePattern" 
+                    name="Last Name"
+                    [(ngModel)]="user.lname" 
+                    placeholder ="Enter your Last name" required #lname="ngModel"/>
+
+            <div class="alert alert-danger fs-5" role="alert" *ngIf="lname.errors && MyForm.submitted" >
+              <div *ngIf="lname.errors['required']">Last name is required</div>
+              <div *ngIf="lname.errors['pattern']">Last name is invalid as it  must be with a minimum length of 2 and a maximum length of 20 !</div>
+            </div>
+        </div>
+        <!-- EMAIL -->
+        <div class="form-group">
+          <label for="email" class="fs-5">Email</label>
+          <input  type="email"  
+                  style="border-radius:30px ;"
+                  class="form-control form-control-lg " 
+                  [pattern]="emailPattern" 
+                  name="email"
+                  [(ngModel)]="user.email" 
+                  placeholder ="Enter your Email" required #email="ngModel"/>
+
+          <div class="alert alert-danger fs-5" role="alert" *ngIf="email.errors && MyForm.submitted" >
+            <div *ngIf="email.errors['required']">email is required</div>
+            <div *ngIf="email.errors['pattern']">email is invalid !</div>
+          </div>
+      </div>
+
+       
+         <!-- Phone -->
+        <div class="form-group">
+            <label for="phone" class="fs-5">Phone</label>
+            <input  type="text"  
+                    style="border-radius:30px ;"
+                    class="form-control form-control-lg " 
+                    [pattern]="phonePattern" 
+                    name="phone"
+                    [(ngModel)]="user.phone" 
+                    placeholder ="Enter your Phone" required #phone="ngModel"/>
+
+            <div class="alert alert-danger fs-5" role="alert" *ngIf="phone.errors && MyForm.submitted" >
+              <div *ngIf="phone.errors['required']">phone is required</div>
+              <div *ngIf="phone.errors['pattern']">phone is invalid !</div>
+            </div>
+        </div>
+
+      
+
+
+        
+          <!-- Birth date -->
+          <div class="form-group">
+            <label for="birthDate" class="fs-5">birth date</label>
+            <input  type="date"  
+                    style="border-radius:30px ;"
+                    class="form-control form-control-lg " 
+                    name="birthDate"
+                    [(ngModel)]="user.birthDate" 
+                    appAgeValidation
+                    placeholder ="Enter your birth date" required #birthDate="ngModel"/>
+
+            <div class="alert alert-danger fs-5" role="alert" *ngIf="birthDate.errors && MyForm.submitted" >
+              
+              <div *ngIf="(birthDate.errors['required'])||(birthDate.value=='mm/dd/yyyy')">Birth date is required</div>
+              <div *ngIf="birthDate.errors['pattern']">Birth date is invalid !</div>
+              <div *ngIf="birthDate.errors['phoneNumberInvalid']">Age must be older than 25 years</div>
+            </div>
+        </div>
+                <!-- Gender -->
+
+        <div class="align-center">
+            <label for="gender" class="fs-5">Gender</label>
+            <select name="gender" class="form-select form-select-lg" style="border-radius:30px ;" aria-label="Default select example" required #gender="ngModel" [(ngModel)]="user.gender">
+                <option class="fs-5" value="F"> Female </option>
+                <option class="fs-5" value="M"> Male </option>
+            </select>
+        
+            <div class="alert alert-danger fs-5" role="alert" *ngIf="gender.errors && MyForm.submitted" >
+            <div *ngIf="gender.errors['required']">Gender is required</div>
+            </div>
+        
+        </div>
+
+      </div>
+      
+      <div class="right verticalLine col-lg-6 col-sm-12">
+  <!-- Address -->
+          <!-- city -->
+          <div class="form-group row">
+            <div class="col-6">
+              <label for="city" class="fs-5">City </label>
+              <select name="city"  [(ngModel)]="user.city"  class="form-select form-select-lg" style="border-radius:30px ;"  aria-label="Default select example" required #city="ngModel">
+                <option class="fs-5" *ngFor=" let city of cities"> {{city}} </option>
+              </select>
+              <div class="alert alert-danger fs-5" role="alert" *ngIf="city.errors && MyForm.submitted" >
+                <div *ngIf="city.errors['required']">city is required</div>
+              </div>
+            </div>
+  
+            <!-- Area -->
+            <div class="col-6">
+              <label for="area" class="fs-5"> Area </label>
+              <input  type="text"  
+                      style="border-radius:30px ;"
+                      class="form-control form-control-lg " 
+                      name="area"
+                      [(ngModel)]="user.area" 
+                      placeholder =" Area "  #area="ngModel"/>
+              </div>
+          </div>
+  
+            <!-- Street -->
+          <div class="form-group row">
+            <div class="col-6">
+              <label for="street" class="fs-5">Street </label>
+              <input  type="text"  
+                      class="form-control form-control-lg " 
+                      style="border-radius:30px ;"
+                      name="street" 
+                      [(ngModel)]="user.street" 
+                      placeholder ="Street "  #street="ngModel"/> 
+            </div>
+  
+            <!-- Building number -->
+            <div class="col-6">
+              <label for="buildingNumber" class="fs-5"> Building number </label>
+              <input  type="text"  
+                      class="form-control form-control-lg " 
+                      name="buildingNumber"
+                      style="border-radius:30px ;"
+                      [(ngModel)]="user.buildingNumber" 
+                      [pattern]="agePattern" 
+                      placeholder ="building number "  #buildingNumber="ngModel"/>
+              <div class="alert alert-danger fs-5" role="alert" *ngIf="buildingNumber.errors && MyForm.submitted" >
+                <div *ngIf="buildingNumber.errors['pattern']">building Number is invalid !</div>
+              </div>
+            </div>
+          </div>
+         
+
+       
+
+     
+          <!-- PASSWORD -->
+        <div class="form-group">
+          <label for="password" class="fs-5">Password</label>
+          <input type="password"
+                style="border-radius:30px ;"
+                class="form-control form-control-lg"
+                name="password"
+                [(ngModel)]="user.password"
+                required
+                minlength="3"
+                #password="ngModel"
+                (keyup)="comparePassWords()"
+                placeholder ="Enter your password"/>
+            
+          <div  class="alert alert-danger fs-5"
+                role="alert"
+                *ngIf="password.errors && MyForm.submitted">
+              <div *ngIf="password.errors['required']">Password is required</div>
+              <div *ngIf="password.errors['minlength']">  Password must be at least 3 characters </div>
+          </div>
+        </div>
+
+        <!-- Password confirmation -->
+        <div class="form-group">
+          <label for="passwordCheck" class="fs-5">Confirm Password</label>
+          <input type="password"
+                style="border-radius:30px ;"
+                class="form-control form-control-lg"
+                name="passwordCheck"
+                [(ngModel)]="user.confirmPass"
+                required
+                #passwordCheck="ngModel"
+                (keyup)="comparePassWords()"
+                placeholder ="Confirm your password"/>
+                <!-- appConfirmPasswordValidation
+                [password1] = password.value -->
+                <div  class="alert alert-danger fs-5"
+                role="alert"
+                *ngIf="(TruePassword == false || passwordCheck.value ==='') && MyForm.submitted ">
+              <div *ngIf="passwordCheck.value ==='' ">Password is required</div>
+              <div *ngIf="!TruePassword"> Two passwords are not similar </div>
+                <!-- *ngIf="passwordCheck.errors && MyForm.submitted ">
+                <div *ngIf="passwordCheck.errors['required']"> Confirmation Password is required</div>
+                <div *ngIf="passwordCheck.errors['phoneNumberInvalid']"> Two passwords are not similar </div> -->
+          </div>
+        </div>
+
+        <!-- Image File -->
+        <div class="form-group">
+          <label for="img" class="fs-5">Profile Image</label>
+          <input type="file"
+                style="border-radius:30px ;"
+                class="file-input form-control form-control-lg"
+                name="img"
+                [(ngModel)]="user.image"
+                #image="ngModel"
+                placeholder ="Upload your profile image" 
+                accept="image/png, image/jpeg"
+                (change)="onFileSelected($event, imgTemplate)" />
+                
+                <div class="displayImg text-center mt-2" >
+                  <img #imgTemplate class="img-thumbnail" src={{url}} alt="Profile Picture">
+                </div>
+
+          <div  class="alert alert-warning fs-5"
+                role="alert"
+                *ngIf="profileImage == false && MyForm.submitted">
+              <div>{{message}}</div>
+          </div>
+        </div>
+      </div>
+
+        <div class="form-group d-grid mx-auto"   >
+            <button class="login btn-lg "> Register </button>
+        </div>
+        
+        <div class="form-group form-control-lg">
+          <div
+          class="alert alert-danger form-control-lg"
+          role="alert"
+          *ngIf="MyForm.submitted && isRegistrationFailed"
+          >
+          Registration failed: {{ errorMessage }}
+        </div>
+      </div>
+    </form>
+      
+        </div>
+    </div>
+</div> 
+

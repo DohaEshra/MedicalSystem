@@ -4,6 +4,7 @@ import { AccountService } from '../account/Account.service';
 import { Doctor } from '../_Models/doctor';
 import jwt_decode from 'jwt-decode';
 import { Visit } from '../_Models/visit';
+import { Record } from '../_Models/record';
 
 @Injectable({
   providedIn: 'root'
@@ -39,18 +40,25 @@ export class DoctorService {
   }
 
   //edit doctor profile 
-  editDoctor(doctor:Doctor){
+  editDoctor(doctor:Doctor)
+  {
     return this.http.put<undefined>(this.baseUrl+"doctor/"+this.DoctorID,doctor);
   }
+
+  //get all doctors
   getAllDoctors()
   {
     return this.http.get<Doctor[]>(this.baseUrl+"Doctor");
   }
 
   //get doctor's patients
-  getDoctorPatients(){
+  getDoctorPatients()
+  {
     return this.http.get<Visit[]>(this.baseUrl+"visit/get/"+this.DoctorID);
   }
 
-
+  //record prescription
+  recordPatientPrescription(record:Record){
+    return this.http.post<Record>(this.baseUrl+"record",record);
+  }
 }

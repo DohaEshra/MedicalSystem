@@ -1,6 +1,8 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DoctorRegisterationComponent } from './account/doctor-registeration/doctor-registeration.component';
 import { LoginComponent } from './account/Login/Login.component';
+import { PatientRegisterationComponent } from './account/patient-registeration/patient-registeration.component';
 import { PatientRecordComponent } from './patient/patient-record/patient-record.component';
 
 import { NotFoundComponent } from './_shared/NotFound/NotFound.component';
@@ -8,10 +10,10 @@ import { NotFoundComponent } from './_shared/NotFound/NotFound.component';
 const routes: Routes = [
   // {path:'home',component : HomeComponent},
   {path:'login',component : LoginComponent},
+  {path:'doctorRegister',component : DoctorRegisterationComponent},
+  {path:'patientRegister',component : PatientRegisterationComponent},
   {path:"doctor",loadChildren:()=>import('./doctor/doctor.module').then(m=>m.DoctorModule)},
-
   {path:"patient", loadChildren:()=>import('./patient/patient.module').then(p=>p.PatientModule)},
-
   {path:"",redirectTo:"login",pathMatch:"full"},
   {path:"**",component:NotFoundComponent}
 ];

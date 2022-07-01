@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
-import { PatientService } from './patient/Patient.service';
-//import { patient } from './_Models/patient';
+import jwtDecode from 'jwt-decode';
+import { AccountService } from './account/Account.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Frontend';
-  
-  constructor(public PatSer:PatientService){
-    // PatSer.getPatients().subscribe(a=>console.log(a))
+  loginFlag = '';
+
+  constructor(public acc:AccountService){}
+
+  NavBarChange(role:any){
+    console.log('role sent is '+role)
+    this.loginFlag = role;
   }
 }

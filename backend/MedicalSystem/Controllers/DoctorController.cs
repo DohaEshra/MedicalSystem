@@ -7,11 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MedicalSystem.Data;
 using MedicalSystem.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace MedicalSystem.Controllers
 {
-    //[Authorize(Roles = "Doctor")]
     [Route("api/[controller]")]
     [ApiController]
     public class DoctorController : ControllerBase
@@ -22,35 +20,18 @@ namespace MedicalSystem.Controllers
         {
             _context = context;
         }
+
+        // GET: api/Doctors
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Doctor>>> GetAllDoctors()
+        public async Task<ActionResult<IEnumerable<Doctor>>> GetDoctors()
         {
-            if (_context.Doctors == null)
-            {
-                return NotFound();
-            }
             return await _context.Doctors.ToListAsync();
         }
 
-        // GET: api/Doctor/
-        [HttpGet("get/{category}")]
-        public async Task<ActionResult<IEnumerable<Doctor>>> GetDoctorsPerCategory(string category)
-        {
-            if (_context.Doctors == null)
-            {
-                return NotFound();
-            }
-            return await _context.Doctors.Where(a => a.category == category).ToListAsync();
-        }
-
-        // GET: api/Doctor/5
+        // GET: api/Doctors/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Doctor>> GetDoctor(int id)
         {
-          if (_context.Doctors == null)
-          {
-              return NotFound();
-          }
             var doctor = await _context.Doctors.FindAsync(id);
 
             if (doctor == null)
@@ -61,7 +42,7 @@ namespace MedicalSystem.Controllers
             return doctor;
         }
 
-        // PUT: api/Doctor/5
+        // PUT: api/Doctors/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDoctor(int id, Doctor doctor)
@@ -92,30 +73,30 @@ namespace MedicalSystem.Controllers
             return NoContent();
         }
 
-        // POST: api/Doctor
+        // POST: api/Doctors
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        [AllowAnonymous]
         public async Task<ActionResult<Doctor>> PostDoctor(Doctor doctor)
         {
-          if (_context.Doctors == null)
-          {
-              return Problem("Entity set 'MedicalSystemContext.Doctors'  is null.");
-          }
+            var drMail = _context.Doctors.Where(a => a.email == doctor.email).FirstOrDefault();
+            if (drMail != null)
+                return BadRequest("This email already exists !");
+
+            var drPhone = _context.Doctors.Where(a => a.phone == doctor.phone).FirstOrDefault();
+            if (drPhone != null)
+                return BadRequest("This phone already exists !");
+
+            doctor.password = AccountUser.hashPassword(doctor.password);
             _context.Doctors.Add(doctor);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetDoctor", new { id = doctor.ID }, doctor);
         }
 
-        // DELETE: api/Doctor/5
+        // DELETE: api/Doctors/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDoctor(int id)
         {
-            if (_context.Doctors == null)
-            {
-                return NotFound();
-            }
             var doctor = await _context.Doctors.FindAsync(id);
             if (doctor == null)
             {
@@ -130,7 +111,7 @@ namespace MedicalSystem.Controllers
 
         private bool DoctorExists(int id)
         {
-            return (_context.Doctors?.Any(e => e.ID == id)).GetValueOrDefault();
+            return _context.Doctors.Any(e => e.ID == id);
         }
     }
 }

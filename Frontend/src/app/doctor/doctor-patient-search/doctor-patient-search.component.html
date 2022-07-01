@@ -27,7 +27,7 @@
         <td class="text-light">{{patient.id}}</td>
         <td class="text-light">{{patient.fname}} {{patient.lname}}</td>
         <td>
-          <a type="button" class="btn btn-primary text-light" [routerLink]="['/doctor/patientinfo',patient.id]">View</a>
+          <a type="button" class="btn btn-primary text-light" [routerLink]="['/doctor/patient',patient.id,'info']">View</a>
         </td>
       </tr>
     </tbody>
@@ -45,7 +45,7 @@
         <td class="text-light">{{(visitList|searchById:ID).id}}</td>
         <td class="text-light">{{(visitList|searchById:ID).fname}} {{(visitList|searchById:ID).lname}}</td>
         <td>
-          <a type="button" class="btn btn-primary text-light" [routerLink]="['/doctor/patientinfo',(visitList|searchById:ID).id]">View</a>
+          <a type="button" class="btn btn-primary text-light" [routerLink]="['/doctor/patient',(visitList|searchById:ID).id,'info']">View</a>
         </td>
       </tr>
     </tbody>
