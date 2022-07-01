@@ -17,7 +17,7 @@ const routes:Routes =[
         {path:"patientsearch",component:DoctorPatientSearchComponent},
         {path:"patient/:id",component:DoctorPatientComponent,children:[
             {path:"info",component:DoctorPatientInfoComponent},
-            {path:"history",component:PatientHistoryComponent},
+            {path:"history",component:PatientHistoryComponent}
         ]}
     ]},
     {path:"home",component:DoctorHomeComponent,canActivate:[DoctorLoginGuard]},
