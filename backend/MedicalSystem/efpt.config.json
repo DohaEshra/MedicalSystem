@@ -14,11 +14,15 @@
    "SelectedToBeGenerated": 0,
    "Tables": [
       {
-         "Name": "[dbo].[Clinic]",
+         "Name": "[dbo].[Doctor]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[Doctor]",
+         "Name": "[dbo].[DoctorRating]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Others]",
          "ObjectType": 0
       },
       {
@@ -36,9 +40,13 @@
       {
          "Name": "[dbo].[Works_in]",
          "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[getDoctorRating]",
+         "ObjectType": 2
       }
    ],
-   "UiHint": "medicalsystemserver.MedicalSystem",
+   "UiHint": "medical-system-server.MedicalSystem",
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": true,
    "UseDbContextSplitting": false,

@@ -9,10 +9,12 @@ using Microsoft.EntityFrameworkCore;
 namespace MedicalSystem.Models
 {
     [Table("Doctor")]
+    [Index("ID", Name = "IX_Doctor", IsUnique = true)]
     public partial class Doctor
     {
         public Doctor()
         {
+            DoctorRatings = new HashSet<DoctorRating>();
             Records = new HashSet<Record>();
             Visits = new HashSet<Visit>();
             Works_ins = new HashSet<Works_in>();
@@ -20,55 +22,48 @@ namespace MedicalSystem.Models
 
         [Key]
         public int ID { get; set; }
-
-        [StringLength(20, MinimumLength = 2)]
-        [Required(ErrorMessage = "first name is required")]
+        [Required]
+        [StringLength(20)]
         [Unicode(false)]
         public string Fname { get; set; }
-
-        [StringLength(20, MinimumLength = 2)]
-        [Required(ErrorMessage = "last name is required")]
+        [Required]
+        [StringLength(20)]
         [Unicode(false)]
         public string Lname { get; set; }
-
-        [Required(ErrorMessage = "birthDate is required")]
-        public DateTime birthDate { get; set; }
-
-        [EmailAddress]
-        [Required(ErrorMessage = "Email is required")]
+        public int? age { get; set; }
+        [Required]
+        [StringLength(100)]
         [Unicode(false)]
         public string email { get; set; }
-
-        [Required(ErrorMessage = "City is required")]
+        [Required]
+        [StringLength(50)]
         [Unicode(false)]
-        public string city { get; set; }
-        public string area { get; set; }
-        public string street { get; set; }
-        public int? buildingNumber { get; set; }
-
-
-        [Required(ErrorMessage = "Phone is required")]
-        public int? phone { get; set; }
-
-        //[Required(ErrorMessage = "Username is required")]
-        //[StringLength(25, MinimumLength = 2)]
-        //[Unicode(false)]
-        //public string username { get; set; }
-
-        [Required(ErrorMessage = "password is required")]
-        //[RegularExpression("^(?=.*[A-Za-z])(?=.*/d)[A-Za-z/d]{8,}$")]
+        public string phone { get; set; }
+        [Required]
         [Unicode(false)]
         public string password { get; set; }
+        [Required]
+        [StringLength(50)]
         [Unicode(false)]
         public string category { get; set; }
-
+        public int? DoctorRating { get; set; }
+        [StringLength(50)]
+        public string area { get; set; }
+        public DateTime birthDate { get; set; }
+        public int? buildingNumber { get; set; }
+        [Required]
+        [StringLength(50)]
+        [Unicode(false)]
+        public string city { get; set; }
+        [Required]
+        [StringLength(1)]
+        public string gender { get; set; }
         public string profilePic { get; set; }
+        [StringLength(200)]
+        public string street { get; set; }
 
-        public char gender { get; set; }
-
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public int? age { get; set; }
-
+        [InverseProperty("DIDNavigation")]
+        public virtual ICollection<DoctorRating> DoctorRatings { get; set; }
         [InverseProperty("DIDNavigation")]
         public virtual ICollection<Record> Records { get; set; }
         [InverseProperty("DIDNavigation")]

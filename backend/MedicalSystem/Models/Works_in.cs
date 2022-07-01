@@ -14,19 +14,9 @@ namespace MedicalSystem.Models
         [Key]
         public int DID { get; set; }
         [Key]
-        public int CID { get; set; }
+        public DateTime start_time { get; set; }
+        public DateTime end_time { get; set; }
 
-        [Required]
-        [DataType(DataType.Date)]
-        public DateTime? start_time { get; set; }
-
-        [Required]
-        [DataType(DataType.Date)]
-        public DateTime? end_time { get; set; }
-
-        [ForeignKey("CID")]
-        [InverseProperty("Works_ins")]
-        public virtual Clinic CIDNavigation { get; set; }
         [ForeignKey("DID")]
         [InverseProperty("Works_ins")]
         public virtual Doctor DIDNavigation { get; set; }

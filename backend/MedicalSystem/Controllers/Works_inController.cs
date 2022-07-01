@@ -25,10 +25,6 @@ namespace MedicalSystem.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Works_in>>> GetWorks_ins()
         {
-          if (_context.Works_ins == null)
-          {
-              return NotFound();
-          }
             return await _context.Works_ins.ToListAsync();
         }
 
@@ -36,10 +32,6 @@ namespace MedicalSystem.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Works_in>> GetWorks_in(int id)
         {
-          if (_context.Works_ins == null)
-          {
-              return NotFound();
-          }
             var works_in = await _context.Works_ins.FindAsync(id);
 
             if (works_in == null)
@@ -86,10 +78,6 @@ namespace MedicalSystem.Controllers
         [HttpPost]
         public async Task<ActionResult<Works_in>> PostWorks_in(Works_in works_in)
         {
-          if (_context.Works_ins == null)
-          {
-              return Problem("Entity set 'MedicalSystemContext.Works_ins'  is null.");
-          }
             _context.Works_ins.Add(works_in);
             try
             {
@@ -114,10 +102,6 @@ namespace MedicalSystem.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteWorks_in(int id)
         {
-            if (_context.Works_ins == null)
-            {
-                return NotFound();
-            }
             var works_in = await _context.Works_ins.FindAsync(id);
             if (works_in == null)
             {
@@ -132,7 +116,7 @@ namespace MedicalSystem.Controllers
 
         private bool Works_inExists(int id)
         {
-            return (_context.Works_ins?.Any(e => e.DID == id)).GetValueOrDefault();
+            return _context.Works_ins.Any(e => e.DID == id);
         }
     }
 }
