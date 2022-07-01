@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace MedicalSystem.Models
 {
     [Table("Visit")]
+    [Index("DID", Name = "IX_Visit_DID")]
     public partial class Visit
     {
         [Key]
@@ -16,15 +17,8 @@ namespace MedicalSystem.Models
         [Key]
         public int DID { get; set; }
         [Key]
-        public int CID { get; set; }
+        public DateTime appointment_time { get; set; }
 
-        [Required]
-        [DataType(DataType.Date)]
-        public DateTime? appointment_time { get; set; }
-
-        [ForeignKey("CID")]
-        [InverseProperty("Visits")]
-        public virtual Clinic CIDNavigation { get; set; }
         [ForeignKey("DID")]
         [InverseProperty("Visits")]
         public virtual Doctor DIDNavigation { get; set; }

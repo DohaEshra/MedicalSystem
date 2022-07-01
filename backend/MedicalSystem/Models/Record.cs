@@ -9,32 +9,26 @@ using Microsoft.EntityFrameworkCore;
 namespace MedicalSystem.Models
 {
     [Table("Record")]
+    [Index("PID", Name = "IX_Record_PID")]
     public partial class Record
     {
         [Key]
         public int DID { get; set; }
         [Key]
         public int PID { get; set; }
-        [Key]
-        public int FNO { get; set; }
-
         [Required]
-        [StringLength(150 ,MinimumLength =1)]
+        [StringLength(150)]
         [Unicode(false)]
         public string file_description { get; set; }
-
-        //[Required]
         public string attached_files { get; set; }
-
         [Key]
-        [Required]
-        [DataType(DataType.DateTime ,ErrorMessage ="Datatype must be datetime")]
-        public DateTime? date { get; set; }
-
-
+        public DateTime date { get; set; }
         [Required]
         [Unicode(false)]
         public string summary { get; set; }
+        [Key]
+        public int FNO { get; set; }
+        public int? OID { get; set; }
 
         [Required]
         public string medicalPerscription { get; set; }
@@ -42,6 +36,9 @@ namespace MedicalSystem.Models
         [ForeignKey("DID")]
         [InverseProperty("Records")]
         public virtual Doctor DIDNavigation { get; set; }
+        [ForeignKey("OID")]
+        [InverseProperty("Records")]
+        public virtual Other OIDNavigation { get; set; }
         [ForeignKey("PID")]
         [InverseProperty("Records")]
         public virtual Patient PIDNavigation { get; set; }
