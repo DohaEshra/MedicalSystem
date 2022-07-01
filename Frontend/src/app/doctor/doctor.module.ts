@@ -10,6 +10,8 @@ import { SearchByNamePipe } from './_Pipes/search-by-name.pipe';
 import { SearchByIdPipe } from './_Pipes/search-by-id.pipe';
 import { DoctorPatientInfoComponent } from './doctor-patient-info/doctor-patient-info.component';
 import { RecordWithoutRedundancyPipe } from './_Pipes/record-without-redundancy.pipe';
+import { DoctorPatientComponent } from './doctor-patient/doctor-patient.component';
+import { PatientHistoryComponent } from './patient-history/patient-history.component';
 
 
 
@@ -22,7 +24,9 @@ import { RecordWithoutRedundancyPipe } from './_Pipes/record-without-redundancy.
     SearchByNamePipe,
     SearchByIdPipe,
     DoctorPatientInfoComponent,
-    RecordWithoutRedundancyPipe
+    RecordWithoutRedundancyPipe,
+    DoctorPatientComponent,
+    PatientHistoryComponent
   ],
   imports: [
     CommonModule,doctorRoutingModule,FormsModule
