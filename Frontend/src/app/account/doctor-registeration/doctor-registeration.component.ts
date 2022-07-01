@@ -27,7 +27,7 @@ export class DoctorRegisterationComponent implements OnInit {
   addressPattern = '^[A-Za-z0-9,_.-]{10,40}$';
   namePattern = '^[A-Za-z]{2,20}$';
   emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
-  user : any ={ id: 0, fname:'', lname:'', birthDate:new Date , email:'', city:'',area:'', gender:'',buildingNumber:'',street:'', phone:'', username:'', password:'', category:'',confirmPass:'',image:null};
+  user : any ={ id: 0, fname:'', lname:'', birthDate:new Date , email:'', city:'',area:null, gender:'',buildingNumber:null,street:null, phone:'', username:'', password:'', category:'',confirmPass:'',image:null};
   
   constructor(public account: AccountService , public router :Router ) {
   
@@ -82,6 +82,8 @@ export class DoctorRegisterationComponent implements OnInit {
     const files = event.target.files;
     // console.log('files',files)
     if (files.length === 0){
+      
+      
       this.imageErrorMessage("There is no attached file.",imageInput)
       return;
     }
@@ -107,6 +109,10 @@ export class DoctorRegisterationComponent implements OnInit {
    onSubmit(myForm:NgForm): void {
     console.log('fooooooooorm', myForm)
 
+     this.user.gender== 'M' && this.user.image==null 
+     ?this.user.image = '../../../assets/M.jpg'
+     :this.user.image = '../../../assets/F.jpg';
+     
     // add DR data
     let doctor : Doctor = { 
       id: 0, 
@@ -115,7 +121,7 @@ export class DoctorRegisterationComponent implements OnInit {
       birthDate: this.user.birthDate,
       age: + this.user.age,
       email: this.user.email,
-      phone: + this.user.phone, 
+      phone: this.user.phone, 
       password:this.user.password, 
       category: this.user.category,
       profilePic: this.user.image,
@@ -124,6 +130,7 @@ export class DoctorRegisterationComponent implements OnInit {
       area: this.user.area, 
       street: this.user.street, 
       buildingNumber: this.user.buildingNumber, 
+      doctorrating:this.user.doctorrating
     };
 
     console.log('dr ',doctor);
@@ -131,15 +138,16 @@ export class DoctorRegisterationComponent implements OnInit {
       this.subscribe= this.account.addDoctor(doctor).subscribe({
         next: data =>
         {
-          this.isRegistrationFailed = true ; 
+          this.isRegistrationFailed = false ; 
           console.log('success to add doctor ' + data)
-          alert('You have registered successfully')
+          setTimeout(()=> alert('You have registered successfully'),0);
           this.router.navigateByUrl('/login');
         }
         ,error:err=>{
           console.log('error from doctor registeration component', err)
           this.isRegistrationFailed = true ; 
-          this.errorMessage = Object.values(err.error.errors).map((e: any)=> e.map((x:string)=> x))
+          this.errorMessage = err.error;
+          // Object.values(err.error.errors).map((e: any)=> e.map((x:string)=> x))
         }
       });
     }

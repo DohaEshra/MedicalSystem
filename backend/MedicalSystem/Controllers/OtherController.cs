@@ -78,6 +78,15 @@ namespace MedicalSystem.Controllers
         [HttpPost]
         public async Task<ActionResult<Other>> PostOther(Other other)
         {
+            var otherMail = _context.Others.Where(a => a.email == other.email).FirstOrDefault();
+            if (otherMail != null)
+                return BadRequest("This email already exists !");
+
+            var otherPhone = _context.Others.Where(a => a.phone == other.phone).FirstOrDefault();
+            if (otherPhone != null)
+                return BadRequest("This phone already exists !");
+
+            other.password = AccountUser.hashPassword(other.password);
             _context.Others.Add(other);
             await _context.SaveChangesAsync();
 
