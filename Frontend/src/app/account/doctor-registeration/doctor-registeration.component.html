@@ -6,14 +6,13 @@
         <div  class="fs-2 text-center mb-3" style=" color: #a5c422;">Doctor Registration </div>
             <!-- <img
                 id="profile-img"
-                src="https://www.jing.fm/clipimg/detail/398-3981675_avatar-for-login-form.png"
-                class="profile-img-card"
                 width="200px" height="200px"
+                class="profile-img-card"
+                src="https://www.jing.fm/clipimg/detail/398-3981675_avatar-for-login-form.png"
             /> -->
             
-        <form  name="form" (ngSubmit)="onSubmit(MyForm)" #MyForm="ngForm" >
-          <div class="row">
-          <div class="left col-lg-6 col-sm-12">
+        <form class="row"  name="form" (ngSubmit)="onSubmit(MyForm)" #MyForm="ngForm" >
+          <div class="left col-lg-6 col-sm-12 ">
             <!-- First Name -->
          <div class="form-group">
             <label for="First Name" class="fs-5">First Name</label>
@@ -82,21 +81,62 @@
             </div>
         </div>
 
-        <!-- Gender -->
-        <div class="align-center">
-          <label for="gender" class="fs-5">Gender</label>
-          <select name="gender" class="form-select form-select-lg" style="border-radius:30px ;" aria-label="Default select example" required #gender="ngModel" [(ngModel)]="user.gender">
-              <option class="fs-5" value="F"> Female </option>
-              <option class="fs-5" value="M"> Male </option>
-          </select>
+      
 
-          <div class="alert alert-danger fs-5" role="alert" *ngIf="gender.errors && MyForm.submitted" >
-            <div *ngIf="gender.errors['required']">Gender is required</div>
+
+          <!-- Address -->
+          <!-- city -->
+        <div class="form-group row">
+          <div class="col-6">
+            <label for="city" class="fs-5">City </label>
+            <select name="city"  [(ngModel)]="user.city"  class="form-select form-select-lg" style="border-radius:30px ;"  aria-label="Default select example" required #city="ngModel">
+              <option class="fs-5" *ngFor=" let city of cities"> {{city}} </option>
+            </select>
+            <div class="alert alert-danger fs-5" role="alert" *ngIf="city.errors && MyForm.submitted" >
+              <div *ngIf="city.errors['required']">city is required</div>
+            </div>
           </div>
-        </div>      
 
+          <!-- Area -->
+          <div class="col-6">
+            <label for="area" class="fs-5"> Area </label>
+            <input  type="text"  
+                    style="border-radius:30px ;"
+                    class="form-control form-control-lg " 
+                    name="area"
+                    [(ngModel)]="user.area" 
+                    placeholder =" Area "  #area="ngModel"/>
+            </div>
+        </div>
 
-   
+          <!-- Street -->
+        <div class="form-group row">
+          <div class="col-6">
+            <label for="street" class="fs-5">Street </label>
+            <input  type="text"  
+                    class="form-control form-control-lg " 
+                    style="border-radius:30px ;"
+                    name="street" 
+                    [(ngModel)]="user.street" 
+                    placeholder ="Street "  #street="ngModel"/> 
+          </div>
+
+          <!-- Building number -->
+          <div class="col-6">
+            <label for="buildingNumber" class="fs-5"> Building number </label>
+            <input  type="text"  
+                    class="form-control form-control-lg " 
+                    name="buildingNumber"
+                    style="border-radius:30px ;"
+                    [(ngModel)]="user.buildingNumber" 
+                    [pattern]="agePattern" 
+                    placeholder ="building number "  #buildingNumber="ngModel"/>
+            <div class="alert alert-danger fs-5" role="alert" *ngIf="buildingNumber.errors && MyForm.submitted" >
+              <div *ngIf="buildingNumber.errors['pattern']">building Number is invalid !</div>
+            </div>
+          </div>
+        </div>
+
       </div>
       
       <div class="right verticalLine col-lg-6 col-sm-12">
@@ -119,8 +159,20 @@
               <div *ngIf="birthDate.errors['phoneNumberInvalid']">Age must be older than 25 years</div>
             </div>
         </div>
+<!-- Gender -->
 
+<div class="align-center">
+  <label for="gender" class="fs-5">Gender</label>
+  <select name="gender" class="form-select form-select-lg" style="border-radius:30px ;" aria-label="Default select example" required #gender="ngModel" [(ngModel)]="user.gender">
+      <option class="fs-5" value="F"> Female </option>
+      <option class="fs-5" value="M"> Male </option>
+  </select>
 
+  <div class="alert alert-danger fs-5" role="alert" *ngIf="gender.errors && MyForm.submitted" >
+    <div *ngIf="gender.errors['required']">Gender is required</div>
+  </div>
+
+</div>
         <!-- Category -->
         <div class="align-center">
             <label for="category" class="fs-5  fw-bold">Category <span style="color: red;"  >?</span> </label>
@@ -207,59 +259,6 @@
               <div>{{message}}</div>
           </div>
         </div>
-      </div>
-          </div>
-    <div class="row">
-          <!-- Address -->
-          <!-- city -->
-          
-            <div class="col-lg-3 col-sm-6 form-group ">
-              <label for="city" class="fs-5">City </label>
-              <select name="city" placeholder="City" [(ngModel)]="user.city"  class="form-select form-select-lg" style="border-radius:30px ;"  aria-label="Default select example" required #city="ngModel">
-                <option class="fs-5" *ngFor=" let city of cities"> {{city}} </option>
-              </select>
-              <div class="alert alert-danger fs-5" role="alert" *ngIf="city.errors && MyForm.submitted" >
-                <div *ngIf="city.errors['required']">city is required</div>
-              </div>
-            </div>
-  
-            <!-- Area -->
-            <div class="col-lg-3 col-sm-6 form-group ">
-              <label for="area" class="fs-5"> Area </label>
-              <input  type="text"  
-                      style="border-radius:30px ;"
-                      class="form-control form-control-lg " 
-                      name="area"
-                      [(ngModel)]="user.area" 
-                      placeholder =" Area "  #area="ngModel"/>
-              </div>
-  
-            <!-- Street -->
-         
-            <div class="col-lg-3 col-sm-6 form-group ">
-              <label for="street" class="fs-5">Street </label>
-              <input  type="text"  
-                      class="form-control form-control-lg " 
-                      style="border-radius:30px ;"
-                      name="street" 
-                      [(ngModel)]="user.street" 
-                      placeholder ="Street "  #street="ngModel"/> 
-            </div>
-  
-            <!-- Building number -->
-            <div class="col-lg-3 col-sm-6 form-group ">
-              <label for="buildingNumber" class="fs-5"> Building number </label>
-              <input  type="text"  
-                      class="form-control form-control-lg " 
-                      name="buildingNumber"
-                      style="border-radius:30px ;"
-                      [(ngModel)]="user.buildingNumber" 
-                      [pattern]="agePattern" 
-                      placeholder ="building number "  #buildingNumber="ngModel"/>
-              <div class="alert alert-danger fs-5" role="alert" *ngIf="buildingNumber.errors && MyForm.submitted" >
-                <div *ngIf="buildingNumber.errors['pattern']">building Number is invalid !</div>
-              </div>
-            </div>
       </div>
 
         <div class="form-group d-grid mx-auto"   >
