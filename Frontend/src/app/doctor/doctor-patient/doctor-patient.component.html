@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="profile-img">
-                <img src="https://www.jing.fm/clipimg/detail/398-3981675_avatar-for-login-form.png" alt=""/>
+                <img src={{patient.profilePic}} alt=""/>
             </div>
         </div>
         <div class="col-md-6">
@@ -11,8 +11,8 @@
                       {{patient.fname}} {{patient.lname}}
                   </h3>
                   <div class="">
-                      <input type="submit" class="profile1-btn btn-outline-info" name="btnAddMore" value="Record Prescription"/>
-                      <input type="submit" class="profile2-btn btn-outline-info" name="btnAddMore" value="Record Medical tests"/>
+                      <input class="profile1-btn btn-secondary btn-outline-info" name="btnAddMore" value="Record Prescription"/>
+                      <input class="profile2-btn btn-secondary btn-outline-info" name="btnAddMore" value="Record Medical tests"/>
                   </div>
             </div>
         </div>
@@ -21,10 +21,10 @@
       <div class="col-md-10 offset-1 mt-2">
           <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item">
-                  <a class="nav-link active" id="home-tab" data-toggle="tab" routerLink="info" role="tab" aria-controls="home" aria-selected="true">About</a>
+                  <a class="nav-link" id="home-tab" data-toggle="tab" routerLinkActive="active" routerLink="info" role="tab" aria-controls="home" aria-selected="true" >About</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">History</a>
+                  <a class="nav-link" id="profile-tab" data-toggle="tab" routerLinkActive="active" routerLink="history" role="tab" aria-controls="profile" aria-selected="false">History</a>
               </li>
           </ul>
       </div>

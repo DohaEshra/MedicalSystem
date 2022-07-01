@@ -1,33 +1,28 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { PatientService } from 'src/app/patient/Patient.service';
-import { Patient } from 'src/app/_Models/patient';
 import { Record } from 'src/app/_Models/record';
 import { DoctorPatientComponent } from '../doctor-patient/doctor-patient.component';
 
 @Component({
-  selector: 'app-doctor-patient-info',
-  templateUrl: './doctor-patient-info.component.html',
-  styleUrls: ['./doctor-patient-info.component.css']
+  selector: 'app-patient-history',
+  templateUrl: './patient-history.component.html',
+  styleUrls: ['./patient-history.component.css']
 })
-export class DoctorPatientInfoComponent implements OnInit,OnDestroy {
+export class PatientHistoryComponent implements OnInit,OnDestroy {
 
-  patient:Patient=new Patient();
+  RecordList:Record[]=[];
   sub:Subscription|null=null;
-
+  
   constructor(private comp:DoctorPatientComponent) { }
 
   ngOnInit(): void {
     this.comp.selectedPatient$.subscribe(
       data=>{
-        this.patient=data;
+        this.RecordList=data.records;
       }
     );
   }
-
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
   }
-
 }

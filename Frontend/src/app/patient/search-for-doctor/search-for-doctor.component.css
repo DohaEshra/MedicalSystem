@@ -1,0 +1,15 @@
+thead{
+    color:#a5c422;
+    font-family:'Helvetica';
+    
+  }
+  .btn
+  {
+    background-color:#a5c422;
+
+  }
+  .border-light
+  {
+    border-color:#a5c422 !important;
+    padding: 2.5%;
+  }
