@@ -57,8 +57,13 @@ export class DoctorService {
     return this.http.get<Visit[]>(this.baseUrl+"visit/get/"+this.DoctorID);
   }
 
+  // //record prescription
+  // recordPatientPrescription(record:Record){
+  //   return this.http.post<Record>(this.baseUrl+"Record",record);
+  // }
+
   //record prescription
-  recordPatientPrescription(record:Record){
-    return this.http.post<Record>(this.baseUrl+"Record",record);
+  recordPatientPrescription(record:Record,pid:number,did:number,date:Date){
+    return this.http.put<undefined>(this.baseUrl+"Record/"+pid+"/"+did+"/"+date,record);
   }
 }

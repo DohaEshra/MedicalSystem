@@ -13,7 +13,7 @@ import { RecordWithoutRedundancyPipe } from './_Pipes/record-without-redundancy.
 import { DoctorPatientComponent } from './doctor-patient/doctor-patient.component';
 import { PatientHistoryComponent } from './patient-history/patient-history.component';
 import { RecordPrescriptionComponent } from './record-prescription/record-prescription.component';
-import { RecordTestsComponent } from './record-tests/record-tests.component';
+
 
 
 
@@ -30,7 +30,6 @@ import { RecordTestsComponent } from './record-tests/record-tests.component';
     DoctorPatientComponent,
     PatientHistoryComponent,
     RecordPrescriptionComponent,
-    RecordTestsComponent
   ],
   imports: [
     CommonModule,doctorRoutingModule,FormsModule

@@ -25,8 +25,10 @@ export class RecordWithoutRedundancyPipe implements PipeTransform {
           temp["file_description"].push(records[j].file_description||"");
         }
       }
+
+      recordsPerDate.forEach((record)=>{if(record.date==temp.date){indicator=false;}
+                                        else{indicator=true;}})
       
-      recordsPerDate.forEach((record)=>{if(record.date===temp.date){indicator=false;}})
       if(temp!=null && indicator)
       {
         recordsPerDate.push(temp);
@@ -34,7 +36,6 @@ export class RecordWithoutRedundancyPipe implements PipeTransform {
       }
       
     }
-
     return recordsPerDate;
   }
 
