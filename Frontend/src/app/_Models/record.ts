@@ -1,4 +1,4 @@
-import { Byte } from "@angular/compiler/src/util"
+import { Guid } from "guid-typescript";
 import { Doctor } from "./doctor"
 export class Record {
     constructor(

@@ -98,11 +98,10 @@ namespace MedicalSystem.Migrations
             //    {
             //        table.PrimaryKey("PK_Works_in_1", x => new { x.DID, x.start_time });
             //        table.ForeignKey(
-            //            name: "FK_Works_in_Doctor",
+            //            name: "FK_Works_in_Doctor1",
             //            column: x => x.DID,
             //            principalTable: "Doctor",
-            //            principalColumn: "ID",
-            //            onDelete: ReferentialAction.Cascade);
+            //            principalColumn: "ID");
             //    });
 
             //migrationBuilder.CreateTable(
@@ -138,11 +137,11 @@ namespace MedicalSystem.Migrations
             //        PID = table.Column<int>(type: "int", nullable: false),
             //        date = table.Column<DateTime>(type: "datetime2", nullable: false),
             //        FNO = table.Column<int>(type: "int", nullable: false),
-            //        file_description = table.Column<string>(type: "varchar(150)", unicode: false, maxLength: 150, nullable: false),
+            //        file_description = table.Column<string>(type: "varchar(150)", unicode: false, maxLength: 150, nullable: true),
             //        attached_files = table.Column<string>(type: "nvarchar(max)", nullable: true),
-            //        summary = table.Column<string>(type: "varchar(max)", unicode: false, nullable: false),
-            //        prescription = table.Column<string>(type: "varchar(max)", unicode: false, nullable: false, defaultValue: ""),
-            //        OID = table.Column<int>(type: "int", nullable: true)
+            //        summary = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
+            //        OID = table.Column<int>(type: "int", nullable: true),
+            //        prescription = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true)
             //    },
             //    constraints: table =>
             //    {
@@ -178,12 +177,12 @@ namespace MedicalSystem.Migrations
             //    {
             //        table.PrimaryKey("PK_Visit", x => new { x.PID, x.DID, x.appointment_time });
             //        table.ForeignKey(
-            //            name: "FK_Visit_Doctor1",
+            //            name: "FK_Visit_Doctor",
             //            column: x => x.DID,
             //            principalTable: "Doctor",
             //            principalColumn: "ID");
             //        table.ForeignKey(
-            //            name: "FK_Visit_Patient1",
+            //            name: "FK_Visit_Patient",
             //            column: x => x.PID,
             //            principalTable: "Patient",
             //            principalColumn: "ID",

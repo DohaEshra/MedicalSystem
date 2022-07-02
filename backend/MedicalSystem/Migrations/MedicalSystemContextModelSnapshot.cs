@@ -318,6 +318,9 @@ namespace MedicalSystem.Migrations
                     b.Property<DateTime>("date")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("FNO")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int?>("OID")
                         .HasColumnType("int");
 
@@ -330,16 +333,14 @@ namespace MedicalSystem.Migrations
                         .HasColumnType("varchar(150)");
 
                     b.Property<string>("prescription")
-                        .ValueGeneratedOnAdd()
                         .IsUnicode(false)
-                        .HasColumnType("varchar(max)")
-                        .HasDefaultValue("");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<string>("summary")
                         .IsUnicode(false)
                         .HasColumnType("varchar(max)");
 
-                    b.HasKey("DID", "PID", "date");
+                    b.HasKey("DID", "PID", "date", "FNO");
 
                     b.HasIndex("OID");
 
@@ -438,14 +439,14 @@ namespace MedicalSystem.Migrations
                         .WithMany("Visits")
                         .HasForeignKey("DID")
                         .IsRequired()
-                        .HasConstraintName("FK_Visit_Doctor1");
+                        .HasConstraintName("FK_Visit_Doctor");
 
                     b.HasOne("MedicalSystem.Models.Patient", "PIDNavigation")
                         .WithMany("Visits")
                         .HasForeignKey("PID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("FK_Visit_Patient1");
+                        .HasConstraintName("FK_Visit_Patient");
 
                     b.Navigation("DIDNavigation");
 
@@ -457,9 +458,8 @@ namespace MedicalSystem.Migrations
                     b.HasOne("MedicalSystem.Models.Doctor", "DIDNavigation")
                         .WithMany("Works_ins")
                         .HasForeignKey("DID")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("FK_Works_in_Doctor");
+                        .HasConstraintName("FK_Works_in_Doctor1");
 
                     b.Navigation("DIDNavigation");
                 });

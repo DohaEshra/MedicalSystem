@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalSystem.Migrations
 {
     [DbContext(typeof(MedicalSystemContext))]
-    [Migration("20220701231434_recordmigrate1")]
-    partial class recordmigrate1
+    [Migration("20220702042012_record")]
+    partial class record
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -332,10 +332,8 @@ namespace MedicalSystem.Migrations
                         .HasColumnType("varchar(150)");
 
                     b.Property<string>("prescription")
-                        .ValueGeneratedOnAdd()
                         .IsUnicode(false)
-                        .HasColumnType("varchar(max)")
-                        .HasDefaultValue("");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<string>("summary")
                         .IsUnicode(false)
@@ -440,14 +438,14 @@ namespace MedicalSystem.Migrations
                         .WithMany("Visits")
                         .HasForeignKey("DID")
                         .IsRequired()
-                        .HasConstraintName("FK_Visit_Doctor1");
+                        .HasConstraintName("FK_Visit_Doctor");
 
                     b.HasOne("MedicalSystem.Models.Patient", "PIDNavigation")
                         .WithMany("Visits")
                         .HasForeignKey("PID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("FK_Visit_Patient1");
+                        .HasConstraintName("FK_Visit_Patient");
 
                     b.Navigation("DIDNavigation");
 
@@ -459,9 +457,8 @@ namespace MedicalSystem.Migrations
                     b.HasOne("MedicalSystem.Models.Doctor", "DIDNavigation")
                         .WithMany("Works_ins")
                         .HasForeignKey("DID")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("FK_Works_in_Doctor");
+                        .HasConstraintName("FK_Works_in_Doctor1");
 
                     b.Navigation("DIDNavigation");
                 });

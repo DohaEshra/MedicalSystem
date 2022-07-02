@@ -16,22 +16,19 @@ namespace MedicalSystem.Models
         public int DID { get; set; }
         [Key]
         public int PID { get; set; }
-       
         [StringLength(150)]
         [Unicode(false)]
         public string file_description { get; set; }
         public string attached_files { get; set; }
         [Key]
         public DateTime date { get; set; }
-        
         [Unicode(false)]
         public string summary { get; set; }
-
-       
+        public int? OID { get; set; }
         [Unicode(false)]
         public string prescription { get; set; }
-
-        public int? OID { get; set; }
+        [Key]
+        public Guid FNO { get; set; }
 
         [ForeignKey("DID")]
         [InverseProperty("Records")]

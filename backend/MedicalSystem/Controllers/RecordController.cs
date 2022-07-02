@@ -49,6 +49,47 @@ namespace MedicalSystem.Controllers
             return @record;
         }
 
+        //api/Record/pid/did/date
+        [HttpPut("{pid}/{did}/{date}")]
+        public async Task<IActionResult> RecordTests(int pid,int did,DateTime date, Record @record)
+        {
+            if (did != @record.DID)
+            {
+                return BadRequest();
+            }
+            bool indicator = true;
+            Guid intiate = new Guid("00000000-0000-0000-0000-000000000000");
+            List<Record> Record = await _context.Records.Where(r =>  r.DID==did && r.PID==pid && r.date==date).ToListAsync();
+            if(Record != null)
+            {
+                for (int i = 1; i <= Record.Count && indicator && Record[i - 1].FNO == intiate; i++)
+                {
+                    _context.Procedures.Update_RecordAsync(@record.file_description, pid, did, date);
+                    indicator = false;
+                }
+            }
+            if(indicator)
+            {
+                _context.Procedures.Insert_RecordAsync(pid,did,date,@record.file_description,@record.summary,@record.prescription);
+            }
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                if (RecordExists(@record.DID))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return NoContent();
+        }
         // PUT: api/Records/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

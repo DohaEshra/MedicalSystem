@@ -4,15 +4,15 @@
             <thead>
               <tr>
                 <th scope="col">Date</th>
-                <th scope="col">Summary</th>
+                <th scope="col">Medical Diagnosis</th>
                 <th scope="col">Prescription</th>
-                <th scope="col">File Description</th>
-                <th scope="col">Attached File</th>
+                <th scope="col">Medical Tests</th>
+                <th scope="col">Result</th>
               </tr>
             </thead>
             <tbody >
               <tr *ngFor="let record of RecordList|recordWithoutRedundancy">
-                <td class="text-light">{{record.date}}</td>
+                <td class="text-light">{{record.date|date}}</td>
                 <td class="text-light">{{record.summary}}</td>
                 <td class="text-light">{{record.prescription}}</td>
 

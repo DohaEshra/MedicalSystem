@@ -88,8 +88,7 @@ namespace MedicalSystem.Data
 
             modelBuilder.Entity<Record>(entity =>
             {
-
-                entity.HasKey(e => new { e.DID, e.PID, e.date});
+                entity.HasKey(e => new { e.DID, e.PID, e.date, e.FNO });
 
                 entity.HasOne(d => d.DIDNavigation)
                     .WithMany(p => p.Records)
@@ -107,8 +106,6 @@ namespace MedicalSystem.Data
                     .WithMany(p => p.Records)
                     .HasForeignKey(d => d.PID)
                     .HasConstraintName("FK_Record_Patient");
-
-                entity.Property(r => r.prescription).HasDefaultValue("");
             });
 
             modelBuilder.Entity<Visit>(entity =>
@@ -119,12 +116,12 @@ namespace MedicalSystem.Data
                     .WithMany(p => p.Visits)
                     .HasForeignKey(d => d.DID)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Visit_Doctor1");
+                    .HasConstraintName("FK_Visit_Doctor");
 
                 entity.HasOne(d => d.PIDNavigation)
                     .WithMany(p => p.Visits)
                     .HasForeignKey(d => d.PID)
-                    .HasConstraintName("FK_Visit_Patient1");
+                    .HasConstraintName("FK_Visit_Patient");
             });
 
             modelBuilder.Entity<Works_in>(entity =>
@@ -135,10 +132,11 @@ namespace MedicalSystem.Data
                 entity.HasOne(d => d.DIDNavigation)
                     .WithMany(p => p.Works_ins)
                     .HasForeignKey(d => d.DID)
-                    .HasConstraintName("FK_Works_in_Doctor");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Works_in_Doctor1");
             });
 
-            OnModelCreatingGeneratedFunctions(modelBuilder);
+            OnModelCreatingGeneratedProcedures(modelBuilder);
             OnModelCreatingPartial(modelBuilder);
         }
 

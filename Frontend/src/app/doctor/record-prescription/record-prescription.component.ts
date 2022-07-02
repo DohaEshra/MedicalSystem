@@ -27,16 +27,28 @@ export class RecordPrescriptionComponent implements OnInit {
   }
 
   submit(){
+    console.log(this.record)
+
     this.docSer.recordPatientPrescription(this.record).subscribe(
       a=>{
-        
+        console.log(a)
+        if(a!=null)
+        {
+          this.router.navigateByUrl("doctor/patient/"+this.record.pid+"/history");
+        }
+
       },
       err=>{
         console.log(err);
       }
     )
-    this.router.navigateByUrl("doctor/patient/"+this.record.pid+"/history");
   }
+
+  back(){
+    this.router.navigateByUrl("doctor/patient/"+this.record.pid+"/info");
+  }
+
+
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
   }

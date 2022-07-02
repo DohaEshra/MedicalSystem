@@ -11,9 +11,6 @@ namespace MedicalSystem.Models
     [Table("Doctor")]
     [Index("email", Name = "IX_Doctor", IsUnique = true)]
     [Index("phone", Name = "X_Doctor", IsUnique = true)]
-
-
-
     public partial class Doctor
     {
         public Doctor()

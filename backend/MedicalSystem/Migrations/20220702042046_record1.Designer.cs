@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalSystem.Migrations
 {
     [DbContext(typeof(MedicalSystemContext))]
-    [Migration("20220701191228_intialcreate")]
-    partial class intialcreate
+    [Migration("20220702042046_record1")]
+    partial class record1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -320,8 +320,8 @@ namespace MedicalSystem.Migrations
                     b.Property<DateTime>("date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("FNO")
-                        .HasColumnType("int");
+                    b.Property<Guid>("FNO")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("OID")
                         .HasColumnType("int");
@@ -330,20 +330,15 @@ namespace MedicalSystem.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("file_description")
-                        .IsRequired()
                         .HasMaxLength(150)
                         .IsUnicode(false)
                         .HasColumnType("varchar(150)");
 
                     b.Property<string>("prescription")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
                         .IsUnicode(false)
-                        .HasColumnType("varchar(max)")
-                        .HasDefaultValue("");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<string>("summary")
-                        .IsRequired()
                         .IsUnicode(false)
                         .HasColumnType("varchar(max)");
 
@@ -446,14 +441,14 @@ namespace MedicalSystem.Migrations
                         .WithMany("Visits")
                         .HasForeignKey("DID")
                         .IsRequired()
-                        .HasConstraintName("FK_Visit_Doctor1");
+                        .HasConstraintName("FK_Visit_Doctor");
 
                     b.HasOne("MedicalSystem.Models.Patient", "PIDNavigation")
                         .WithMany("Visits")
                         .HasForeignKey("PID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("FK_Visit_Patient1");
+                        .HasConstraintName("FK_Visit_Patient");
 
                     b.Navigation("DIDNavigation");
 
@@ -465,9 +460,8 @@ namespace MedicalSystem.Migrations
                     b.HasOne("MedicalSystem.Models.Doctor", "DIDNavigation")
                         .WithMany("Works_ins")
                         .HasForeignKey("DID")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("FK_Works_in_Doctor");
+                        .HasConstraintName("FK_Works_in_Doctor1");
 
                     b.Navigation("DIDNavigation");
                 });
