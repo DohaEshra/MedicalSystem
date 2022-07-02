@@ -8,11 +8,11 @@
         <div class="col-md-6">
             <div class="profile-head">
                   <h3 class="mx-sm-5">
-                      {{patient.fname}} {{patient.lname}}
+                      {{patient.fname|uppercase}} {{patient.lname|uppercase}}
                   </h3>
                   <div class="">
-                      <input class="profile1-btn btn-secondary btn-outline-info" name="btnAddMore" value="Record Prescription"/>
-                      <input class="profile2-btn btn-secondary btn-outline-info" name="btnAddMore" value="Record Medical tests"/>
+                      <input class="profile1-btn btn-secondary btn-outline-info" [routerLink]="['/doctor/recordpre',patient.id]" name="btnAddMore" value="Record Prescription"/>
+                      <input class="profile2-btn btn-secondary btn-outline-info" [routerLink]="['/doctor/recordtests']" name="btnAddMore" value="Record Medical tests"/>
                   </div>
             </div>
         </div>

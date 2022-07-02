@@ -59,6 +59,6 @@ export class DoctorService {
 
   //record prescription
   recordPatientPrescription(record:Record){
-    return this.http.post<Record>(this.baseUrl+"record",record);
+    return this.http.post<Record>(this.baseUrl+"Record",record);
   }
 }

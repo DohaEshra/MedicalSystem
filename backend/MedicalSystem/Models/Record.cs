@@ -31,8 +31,6 @@ namespace MedicalSystem.Models
         [Unicode(false)]
         public string prescription { get; set; }
 
-        [Key]
-        public int FNO { get; set; }
         public int? OID { get; set; }
 
         [ForeignKey("DID")]
