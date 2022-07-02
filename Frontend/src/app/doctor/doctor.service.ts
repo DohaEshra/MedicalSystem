@@ -13,6 +13,10 @@ export class DoctorService {
   baseUrl="https://localhost:7089/api/";
   DoctorID=0;
   constructor(public http:HttpClient , public acc:AccountService) { 
+    
+  }
+
+  getDoctorId(){
     if(this.acc.getToken()!=null)
     {
       var decodeToken = JSON.parse(JSON.stringify(jwt_decode(this.acc.getToken()!)));
@@ -22,6 +26,7 @@ export class DoctorService {
  
   //get doctor profile
   getDoctorProfile(){
+    this.getDoctorId()
     return this.http.get<Doctor>(this.baseUrl+"doctor/"+this.DoctorID);
   }
 
@@ -29,16 +34,20 @@ export class DoctorService {
   getDoctorById(Id:number){
     return this.http.get<Doctor>(this.baseUrl+"doctor/"+Id);
   }
-  
+  //getDoctor/{name}
+  getDoctorByName(name:string|undefined){
+    return this.http.get<any[]>(this.baseUrl+"doctor/getDoctor/"+name);
+  }
   //get doctors by category
   getDoctorByCategory(Category:string)
   {
-    return this.http.get<Doctor[]>(this.baseUrl+"Doctor/get/"+Category);
+    return this.http.get<any[]>(this.baseUrl+"Doctor/get/"+Category);
   }
 
   //edit doctor profile 
   editDoctor(doctor:Doctor)
   {
+    this.getDoctorId()
     return this.http.put<undefined>(this.baseUrl+"doctor/"+this.DoctorID,doctor);
   }
 
@@ -51,11 +60,12 @@ export class DoctorService {
   //get doctor's patients
   getDoctorPatients()
   {
+    this.getDoctorId()
     return this.http.get<Visit[]>(this.baseUrl+"visit/get/"+this.DoctorID);
   }
 
   //record prescription
   recordPatientPrescription(record:Record){
-    return this.http.post<Record>(this.baseUrl+"record",record);
+    return this.http.post<Record>(this.baseUrl+"Record",record);
   }
 }

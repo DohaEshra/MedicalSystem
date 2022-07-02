@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MedicalSystem.Data;
 using MedicalSystem.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MedicalSystem.Controllers
 {
@@ -27,12 +28,40 @@ namespace MedicalSystem.Controllers
         {
             return await _context.Doctors.ToListAsync();
         }
+        // GET: api/Doctor/get/Dentist
+        [HttpGet("get/{category}")]
+        public async Task<ActionResult<IEnumerable<Doctor>>> GetDoctorsPerCategory(string category)
+        {
+            if (_context.Doctors == null)
+            {
+                return NotFound();
+            }
+            return await _context.Doctors.Where(a => a.category == category).ToListAsync();
+        }
 
         // GET: api/Doctors/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Doctor>> GetDoctor(int id)
         {
             var doctor = await _context.Doctors.FindAsync(id);
+
+            if (doctor == null)
+            {
+                return NotFound();
+            }
+
+            return doctor;
+        }
+        // GET: api/Doctors/getDoctor/Doctor1
+
+        [HttpGet("getDoctor/{name}")]
+        public async Task<ActionResult<IEnumerable<Doctor>>> GetDoctorbyName(string name)
+        {
+            if (_context.Doctors == null)
+            {
+                return NotFound();
+            }
+            var doctor = await _context.Doctors.Where(d => d.Fname.Equals(name) || d.Lname.Equals(name)).ToListAsync();
 
             if (doctor == null)
             {
@@ -76,6 +105,7 @@ namespace MedicalSystem.Controllers
         // POST: api/Doctors
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        //[Authorize(Roles = "admin")]
         public async Task<ActionResult<Doctor>> PostDoctor(Doctor doctor)
         {
             var drMail = _context.Doctors.Where(a => a.email == doctor.email).FirstOrDefault();

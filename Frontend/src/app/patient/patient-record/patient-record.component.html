@@ -12,9 +12,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let i of RecordList">
+        <tr *ngFor="let i of RecordList" >
           <td>
-            <p class="text-muted mb-0">{{i.didNavigation.fname}} {{i.didNavigation.lname}}</p>
+            <p class="text-muted mb-0">{{i.didNavigation?.fname}} {{i.didNavigation?.lname}}</p>
           </td>
           
           <td>

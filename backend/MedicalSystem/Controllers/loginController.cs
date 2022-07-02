@@ -1,5 +1,6 @@
 ﻿using MedicalSystem.Data;
 using MedicalSystem.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -9,6 +10,7 @@ using System.Text;
 
 namespace MedicalSystem.Controllers
 {
+    [AllowAnonymous]
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
@@ -17,6 +19,7 @@ namespace MedicalSystem.Controllers
         MedicalSystemContext db;
         Doctor doctor;
         Patient patient;
+        Other other;
         public loginController(MedicalSystemContext _db)
         {
             db = _db;
@@ -27,11 +30,10 @@ namespace MedicalSystem.Controllers
         {
             // Hash the user password
              user.password = AccountUser.hashPassword(user.password);
+
             if (user.role == "doctor")
             {
-
-                var doctor = db.Doctors.Where(a => a.email == user.email && a.password == user.password).FirstOrDefault();
-
+                doctor = db.Doctors.Where(a => a.email == user.email && a.password == user.password).FirstOrDefault();
                 if (doctor != null)
                 {
                     var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("my_secret_key_HRRDMF"));
@@ -55,9 +57,8 @@ namespace MedicalSystem.Controllers
                 {
                     return Unauthorized("Username or Password is incorrect");
                 }
-
             }
-            else if(user.role == "patient")
+            else if (user.role == "patient")
             {
                 patient = db.Patients.Where(a => a.email == user.email && a.password == user.password).FirstOrDefault();
                 if (patient != null)
@@ -84,9 +85,36 @@ namespace MedicalSystem.Controllers
                     return Unauthorized("Username or Password is incorrect");
                 }
             }
+            else if (user.role == "laboratory technician" || user.role == "radiographer" || user.role == "pharmacist")
+            {
+                other = db.Others.Where(a => a.email == user.email && a.password == user.password).FirstOrDefault();
+                if (other != null)
+                {
+                    var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("my_secret_key_HRRDMF"));
+
+                    var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+                    var data = new List<Claim>();
+                    data.Add(new Claim("ID", other.ID.ToString()));
+                    data.Add(new Claim(ClaimTypes.Role, user.role));
+                    data.Add(new Claim(ClaimTypes.Email, other.email));
+
+                    var token = new JwtSecurityToken(
+                        claims: data,
+                        expires: DateTime.Now.AddMinutes(120),
+                        signingCredentials: credentials
+                    );
+
+                    return Ok(new JwtSecurityTokenHandler().WriteToken(token));
+                }
+                else
+                {
+                    return Unauthorized("Username or Password is incorrect");
+                }
+            }
             else
             {
-                return  BadRequest("Invalid Role");
+                return BadRequest("Invalid Role");
             }
         }
     }

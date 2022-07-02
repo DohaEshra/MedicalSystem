@@ -1,0 +1,34 @@
+<div class="container patient-profile">
+    <div class="col-md-2 mb-2">
+        <button (click)="back()" class=" profile1-btn btn-success btn-outline-secondary">Back</button>
+    </div>
+    <div class="alert alert-secondary fs-5 d-flex justify-content-center mb-5" role="alert">
+        <b>Record</b> 
+    </div>
+    <form method="post">
+        <div class="form-group">
+            <label for="Date" class="fs-5">Date</label>
+            <label style="color: red;">*</label>
+            <input  type="date"  
+               style="border-radius:30px ;"
+               class="form-control form-control-lg " 
+               name="birthDate"
+               [(ngModel)]="record.date"  [ngModelOptions]="{standalone: true}"
+               appAgeValidation
+               placeholder ="Enter your birth date" required #birthDate="ngModel"/>
+        </div>
+        <div class="form-group">
+            <label for="Textarea1" class="fs-5 mt-4" >Medical Diagnosis</label>
+            <label style="color: red;">*</label>
+            <textarea class="form-control" id="Textarea1" rows="1" style="border-radius:30px ;" [(ngModel)]="record.summary" [ngModelOptions]="{standalone: true}"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="Textarea1" class="fs-5 mt-4" >Prescription</label>
+            <label style="color: red;">*</label>
+            <textarea class="form-control" id="Textarea1" rows="4" style="border-radius:30px ;" [(ngModel)]="record.prescription" [ngModelOptions]="{standalone: true}"></textarea>
+        </div>
+        <div class="form-group d-grid mx-auto">
+            <button (click)="submit()" class=" profile1-btn btn-secondary btn-outline-info">Submit</button>
+        </div>
+    </form>           
+</div>

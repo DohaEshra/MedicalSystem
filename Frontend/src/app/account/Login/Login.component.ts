@@ -29,24 +29,32 @@ export class LoginComponent implements OnInit ,OnDestroy{
   onSubmit(myForm: NgForm) {
     if(myForm.valid){
       let {email,password,role}= this.user ;
-      role='admin'
-      this.userRole.emit(role);
-      this.role = this.user.role;
+      //this.userRole.emit(role);
+      //this.role = this.user.role;
+      console.log('success', this.user)
       this.subscribe= this.authService.login(email,password,role).subscribe({
         next: data=>
         {
           //console.log('dataaaaaaaaaa',data)
           this.isLoginFailed = false ; 
         this.authService.saveToken(data);
-        console.log('success')
         if (role =="doctor"){
           this.router.navigateByUrl('/doctor');
         }
-        else if (role =="patient" ){
+        else if (role =="patient"){
           this.router.navigateByUrl('/patient');
         }
-        else if (role =="admin" ){
+        else if (role =="admin"){
           this.router.navigateByUrl('/admin');
+        }
+        else if (role =="laboratory technician"){
+          this.router.navigateByUrl('/lab');
+        }
+        else if (role =="pharmacist"){
+          this.router.navigateByUrl('/pharmacy');
+        }
+        else if (role =="radiographer"){
+          this.router.navigateByUrl('/scan');
         }
       }
       ,error:err=>{

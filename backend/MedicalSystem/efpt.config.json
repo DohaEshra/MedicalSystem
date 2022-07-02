@@ -42,8 +42,12 @@
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[getDoctorRating]",
-         "ObjectType": 2
+         "Name": "[dbo].[Insert_Record]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[Update_Record]",
+         "ObjectType": 1
       }
    ],
    "UiHint": "medical-system-server.MedicalSystem",

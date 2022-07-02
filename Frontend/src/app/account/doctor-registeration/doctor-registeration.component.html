@@ -190,6 +190,7 @@
         <div class="displayCategory align-center" #categoryTemplate>
             <label for="category" class="fs-5  fw-bold">Category <span style="color: rgb(58, 202, 58);"  >?</span> </label>
             <select name="category" class="form-select form-select-lg" style="border-radius:30px ;"  aria-label="Default select example" required #category="ngModel" [(ngModel)]="user.category">
+              <!-- [appDoctorCategoryValidation]="user.job" -->
                 <option class="fs-5" value="Dentist"> Dentist </option>
                 <option class="fs-5" value="Medical Microbiology and Infectious Diseases"> Medical Microbiology and Infectious Diseases </option>
                 <option class="fs-5" value="Cardiology"> Cardiology</option>

@@ -16,10 +16,10 @@ export class DoctorPatientInfoComponent implements OnInit,OnDestroy {
   patient:Patient=new Patient();
   sub:Subscription|null=null;
 
-  constructor(private patientSer:PatientService,private comp:DoctorPatientComponent) { }
+  constructor(private DoctorPatientcomp:DoctorPatientComponent) { }
 
   ngOnInit(): void {
-    this.comp.selectedPatient$.subscribe(
+    this.sub= this.DoctorPatientcomp.selectedPatient$.subscribe(
       data=>{
         this.patient=data;
       }

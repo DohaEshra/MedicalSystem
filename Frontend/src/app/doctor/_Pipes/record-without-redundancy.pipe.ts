@@ -8,30 +8,32 @@ import { RecordPerDate } from 'src/app/_Models/recordPerDate';
 export class RecordWithoutRedundancyPipe implements PipeTransform {
 
   transform(records:Record[]): RecordPerDate[] {
-    let temp:RecordPerDate=new RecordPerDate([],[],new Date(),"");
-    var recordsPerDate:RecordPerDate[]=[];
+    let temp:RecordPerDate=new RecordPerDate();
+    let recordsPerDate:RecordPerDate[]=[];
+    let indicator:boolean=true;
     for(let i=0;i<records.length;i++)
     {
-      temp=new RecordPerDate([],[],new Date(),"");
+      temp=new RecordPerDate();
       for(let j=0;j<records.length;j++)
       {
-        if(records[i].date==records[j].date)
+        if(records[i].date==records[j].date && records[i].pid==records[j].pid && records[i].did==records[j].did)
         {
           temp["date"]=records[i].date;
           temp["summary"]=records[i].summary;
-          temp["attached_files"].push(records[i].attached_files);
-          temp["file_description"].push(records[i].file_description);
+          temp["prescription"]=records[i].prescription;
+          temp["attached_files"].push(records[j].attached_files||"");
+          temp["file_description"].push(records[j].file_description||"");
         }
       }
-
-      recordsPerDate.push(temp);
-     
-      // temp["date"]=records[i].date;
-      // temp["summary"]=records[i].summary;
-      // temp["attached_files"].push(records[i].attached_files);
-      // temp["file_description"].push(records[i].file_description);
+      
+      recordsPerDate.forEach((record)=>{if(record.date===temp.date){indicator=false;}})
+      if(temp!=null && indicator)
+      {
+        recordsPerDate.push(temp);
+        indicator=true;
+      }
+      
     }
-
 
     return recordsPerDate;
   }

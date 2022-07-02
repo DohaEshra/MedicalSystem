@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Doctor } from '../_Models/doctor';
 import { Other } from '../_Models/other';
 import { Patient } from '../_Models/patient';
@@ -12,11 +13,20 @@ export class AccountService {
   TOKEN_KEY='auth-token';
   USER_KEY='user-token';
 
-constructor(public http:HttpClient) { }
+constructor(public http:HttpClient , public router : Router ) { }
     baseUrl="https://localhost:7089/api/";
+    
+    private loggedIn = new BehaviorSubject<boolean>(false); 
+    get isLoggedIn() {
+      return this.loggedIn.asObservable(); // {2}
+    }
+
+
 
     login(email:string,password:string,role:string):Observable<any>
     {
+      
+      this.loggedIn.next(true);
       return this.http.post<string>(this.baseUrl+"login/",{role,email,password})
     }
     
@@ -30,6 +40,8 @@ constructor(public http:HttpClient) { }
     }
 
     public signOut(): void {
+      this.loggedIn.next(false);
+      this.router.navigate(['/login']);
       window.sessionStorage.clear();
     }
 

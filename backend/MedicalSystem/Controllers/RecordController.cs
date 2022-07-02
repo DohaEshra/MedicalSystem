@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MedicalSystem.Data;
 using MedicalSystem.Models;
+using System.Security.Claims;
 
 namespace MedicalSystem.Controllers
 {
@@ -15,7 +16,7 @@ namespace MedicalSystem.Controllers
     public class RecordController : ControllerBase
     {
         private readonly MedicalSystemContext _context;
-
+        private Patient currentPatient { get; set; }
         public RecordController(MedicalSystemContext context)
         {
             _context = context;
@@ -25,7 +26,13 @@ namespace MedicalSystem.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Record>>> GetRecords()
         {
-            return await _context.Records.ToListAsync();
+            this.currentPatient = GetCurrentUser();
+            if (_context.Records == null)
+            {
+                return NotFound();
+            }
+            return await _context.Records.Where(a => a.PID == currentPatient.ID).ToListAsync();
+
         }
 
         // GET: api/Records/5
@@ -42,6 +49,47 @@ namespace MedicalSystem.Controllers
             return @record;
         }
 
+        //api/Record/pid/did/date
+        [HttpPut("{pid}/{did}/{date}")]
+        public async Task<IActionResult> RecordTests(int pid,int did,DateTime date, Record @record)
+        {
+            if (did != @record.DID)
+            {
+                return BadRequest();
+            }
+            bool indicator = true;
+            Guid intiate = new Guid("00000000-0000-0000-0000-000000000000");
+            List<Record> Record = await _context.Records.Where(r =>  r.DID==did && r.PID==pid && r.date==date).ToListAsync();
+            if(Record != null)
+            {
+                for (int i = 1; i <= Record.Count && indicator && Record[i - 1].FNO == intiate; i++)
+                {
+                    _context.Procedures.Update_RecordAsync(@record.file_description, pid, did, date);
+                    indicator = false;
+                }
+            }
+            if(indicator)
+            {
+                _context.Procedures.Insert_RecordAsync(pid,did,date,@record.file_description,@record.summary,@record.prescription);
+            }
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                if (RecordExists(@record.DID))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return NoContent();
+        }
         // PUT: api/Records/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -118,5 +166,20 @@ namespace MedicalSystem.Controllers
         {
             return _context.Records.Any(e => e.DID == id);
         }
+        private Patient GetCurrentUser()
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;// get identity of loggedin user
+            if (identity != null)
+            {
+                var userClaims = identity.Claims;
+                return new Patient
+                {
+                    ID = int.Parse(userClaims.FirstOrDefault(o => o.Type == "ID")?.Value),
+                    email = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.Email)?.Value
+                };
+            }
+            return null;
+        }
     }
 }
+

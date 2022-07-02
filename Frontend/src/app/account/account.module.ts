@@ -10,21 +10,21 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { ConfirmPasswordValidationDirective } from './confirm-password-validation.directive';
 import {DropdownModule} from 'primeng/dropdown';
+import { DoctorCategoryValidationDirective } from './doctor-category-validation.directive';
 
 @NgModule({
   declarations: [
-    // LoginComponent, 
+    LoginComponent, 
     DoctorRegisterationComponent, 
     PatientRegisterationComponent, 
     AgeValidationDirective, 
-    ConfirmPasswordValidationDirective,
+    ConfirmPasswordValidationDirective, DoctorCategoryValidationDirective,
   ],
   imports: [
     CommonModule,FormsModule, RouterModule,DropdownModule, MatIconModule, MatProgressBarModule
   ],
   exports:[
-    //LoginComponent, 
-    DoctorRegisterationComponent, PatientRegisterationComponent, AgeValidationDirective
+    LoginComponent, DoctorRegisterationComponent, PatientRegisterationComponent, AgeValidationDirective
   ]
 })
 export class AccountModule { }

@@ -1,9 +1,9 @@
 <div id="sect1" class="">
-    <div class="row col-12 ">
-      <div class="col-2" style="height: 477px;" >
+    <div class="row col-12 container">
+      <div class="col-2 my-4" style="height: 477px;" >
         <a class="navbar-brand">
             <img
-            src="https://www.jing.fm/clipimg/detail/398-3981675_avatar-for-login-form.png"
+            src={{doctor.profilePic}}
             width="80px" height="80px" style="border-radius: 100px;"/>
             <label class="mx-2 text-light">{{doctor.fname}} {{doctor.lname}}</label>
         </a>
@@ -12,13 +12,7 @@
         <a class="text-light btn btn btn-outline-info col-12 mt-3" (click)="send()" [routerLink]="['/doctor/edit']"> Edit Profile </a>
         <a class="text-light btn btn btn-outline-info col-12 mt-3"  [routerLink]="['/doctor/patientsearch']"> Search for a patient </a>
       </div>
-      <div class="col-9 mx-5">
-          <!-- <div class="navbar navbar-light">
-            <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div> -->
+      <div class="col-9 mx-5 my-4">
           <div class="row col-12">
             <router-outlet></router-outlet> 
           </div>

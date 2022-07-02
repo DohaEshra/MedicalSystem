@@ -28,7 +28,7 @@ export class DoctorRegisterationComponent implements OnInit {
   addressPattern = '^[A-Za-z0-9,_.-]{10,40}$';
   namePattern = '^[A-Za-z]{2,20}$';
   emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
-  user : any ={ id: 0, fname:'', lname:'', birthDate:new Date , email:'', city:'',area:null, gender:'',buildingNumber:null,street:null, phone:'', username:'',job:null, password:'', category:'',confirmPass:'',image:null};
+  user : any ={ id: 0, fname:'', lname:'', birthDate:new Date , email:'', city:'',area:null, gender:'',buildingNumber:null,street:null, phone:'', username:'',job:null, password:'', category:null,confirmPass:'',image:null};
   
   constructor(public account: AccountService , public router :Router ) {
   
@@ -90,8 +90,6 @@ export class DoctorRegisterationComponent implements OnInit {
     const files = event.target.files;
     // console.log('files',files)
     if (files.length === 0){
-      
-      
       this.imageErrorMessage("There is no attached file.",imageInput)
       return;
     }
@@ -117,14 +115,16 @@ export class DoctorRegisterationComponent implements OnInit {
 
    onSubmit(myForm:NgForm): void {
 
-    console.log('fooooooooorm', myForm)
-    if(myForm.valid && this.TruePassword){
+    console.log('fooooooooorm',myForm , myForm.valid, this.TruePassword)
+    this.user.gender== 'M' && this.user.image==null 
+    ?this.user.image = '../../../assets/M.jpg'
+    :this.user.image = '../../../assets/F.jpg';
 
-      this.user.gender== 'M' && this.user.image==null 
-      ?this.user.image = '../../../assets/M.jpg'
-      :this.user.image = '../../../assets/F.jpg';
-
-      if(this.user.job === 'Doctor'){
+    // if(this.user.job == 'Doctor')
+    //   myForm.form.errors.push(new Error())
+    
+    if(this.user.job === 'Doctor'){
+      if(myForm.valid && this.TruePassword){
         // add DR data
         let doctor : Doctor = { 
           id: 0, 
@@ -161,7 +161,9 @@ export class DoctorRegisterationComponent implements OnInit {
               // Object.values(err.error.errors).map((e: any)=> e.map((x:string)=> x))
             }
           });
-        }else{
+        }
+      }else{
+          if(myForm.form.controls['category'].errors != null && this.TruePassword){
           // add Other data
         let other : Other = { 
           id: 0, 
@@ -195,8 +197,9 @@ export class DoctorRegisterationComponent implements OnInit {
               this.errorMessage = err.error;
               // Object.values(err.error.errors).map((e: any)=> e.map((x:string)=> x))
             }
-          });
-        }
+          })
+        };
       }
     }
   }
+

@@ -1,13 +1,74 @@
-<p>search-for-doctor works!</p>
+<!-- <p>search-for-doctor works!</p> -->
 <!-- <select name="role" class="form-select form-select-lg"    style="border-radius:30px ;"  aria-label="Default select example"  #role="ngModel"[(ngModel)]="user.role">
     <option class="fs-5" value="admin"> Admin </option>
     <option class="fs-5" value="doctor">Doctor </option>
     <option class="fs-5" value="patient"> Patient</option>
 </select> -->
-<p-dropdown [options]="ops" [(ngModel)]="op"></p-dropdown>
-<input [(ngModel)]="input">
-<ul>
-    <li *ngFor="let item of drs|filter:input:op">
-        {{item.fname + item.lname}} {{item.email}} {{item.phone}}
-    </li>
-</ul>
+<!-- < class="border border-success"> -->
+<div class="container m-5 border border-light ">
+    <div class="row">
+
+    <span class="p-float-label col-lg-3">
+        <label for="Name"></label>
+        <input id="Name" type="text" placeholder="Name" pInputText [(ngModel)]="name"> 
+    </span>
+    <span class="p-float-label col-lg-3">
+    <label for="Address"></label>
+    <input id="Address" type="text" placeholder="Address" pInputText [(ngModel)]="address"> 
+</span>
+<span class="p-float-label col-lg-3">
+    <label for="Category"></label>
+    <input id="Category" type="text" placeholder="Category" pInputText [(ngModel)]="category"> 
+</span>
+<button class="btn btn-light col-lg-3" (click)="Search()">Search</button>
+
+</div>
+<!-- <button pButton type="button" label="Search" ></button>
+    <p-button label="Search" ></p-button> -->
+    <!-- <p-dropdown [options]="ops" [(ngModel)]="op"></p-dropdown>
+        <input [(ngModel)]="input">
+    -->
+    <!-- <ul>
+        <li *ngFor="let item of dr">
+            {{item.fname +" "+  item.lname}} {{item.email}} {{item.phone}}
+        </li>
+    </ul>  -->
+    <div class="container my-5" *ngIf="clicked==1" >
+        <div class="shadow-4 rounded-5 overflow-hidden">
+      <table class="table align-middle mb-0 bg-white">
+          <thead class="bg-light" >
+              <tr>
+                  <th>Doctor Name</th>
+                  <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Category</th>
+        </tr>
+    </thead>
+        <tbody>
+          <tr *ngFor="let i of dr">
+            <td>
+              <p class="text-muted mb-0">{{i.fname +" "+  i.lname}} </p>
+            </td>
+            
+            <td>
+              <p class="text-muted mb-0">{{i.email}}</p>
+            </td>
+            <td>
+                <p class="text-muted mb-0">{{i.phone}}</p> 
+            </td>
+            <td>
+             
+                <!-- <p class="text-muted mb-0">{{i.address}}</p>   -->
+              </td>          
+            <td>
+                
+                <p class="text-muted mb-0">{{i.category}}</p>  
+              </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</div>
+</div>
