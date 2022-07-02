@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MedicalSystem.Data;
 using MedicalSystem.Models;
+using System.Security.Claims;
 
 namespace MedicalSystem.Controllers
 {
@@ -15,7 +16,7 @@ namespace MedicalSystem.Controllers
     public class RecordController : ControllerBase
     {
         private readonly MedicalSystemContext _context;
-
+        private Patient currentPatient { get; set; }
         public RecordController(MedicalSystemContext context)
         {
             _context = context;
@@ -25,7 +26,13 @@ namespace MedicalSystem.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Record>>> GetRecords()
         {
-            return await _context.Records.ToListAsync();
+            this.currentPatient = GetCurrentUser();
+            if (_context.Records == null)
+            {
+                return NotFound();
+            }
+            return await _context.Records.Where(a => a.PID == currentPatient.ID).ToListAsync();
+
         }
 
         // GET: api/Records/5
@@ -118,5 +125,20 @@ namespace MedicalSystem.Controllers
         {
             return _context.Records.Any(e => e.DID == id);
         }
+        private Patient GetCurrentUser()
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;// get identity of loggedin user
+            if (identity != null)
+            {
+                var userClaims = identity.Claims;
+                return new Patient
+                {
+                    ID = int.Parse(userClaims.FirstOrDefault(o => o.Type == "ID")?.Value),
+                    email = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.Email)?.Value
+                };
+            }
+            return null;
+        }
     }
 }
+

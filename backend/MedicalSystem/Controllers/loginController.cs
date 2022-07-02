@@ -62,7 +62,7 @@ namespace MedicalSystem.Controllers
             {
 
                 patient = db.Patients.Where(a => a.email == user.email && a.password == user.password).FirstOrDefault();
-                if (patient != null)
+                if(patient != null)
                 {
                     var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("my_secret_key_HRRDMF"));
 
