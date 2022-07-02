@@ -16,6 +16,7 @@ export class Patient {
                 public street:string='',
                 public area:string='',
                 public city:string='',
+                public username:string='',
                 public records:Record[]=[],
                 public visits:Visit[]=[],
             ){}

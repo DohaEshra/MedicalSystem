@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { PatientService } from 'src/app/patient/Patient.service';
 import { Patient } from 'src/app/_Models/patient';
 import { Record } from 'src/app/_Models/record';
+import { DoctorPatientComponent } from '../doctor-patient/doctor-patient.component';
 
 @Component({
   selector: 'app-doctor-patient-info',
@@ -13,22 +14,16 @@ import { Record } from 'src/app/_Models/record';
 export class DoctorPatientInfoComponent implements OnInit,OnDestroy {
 
   patient:Patient=new Patient();
-  RecordList:Record[]=[];
   sub:Subscription|null=null;
 
-  constructor(private patientSer:PatientService,private activateRoute:ActivatedRoute) { }
+  constructor(private patientSer:PatientService,private comp:DoctorPatientComponent) { }
 
   ngOnInit(): void {
-    this.activateRoute.params.subscribe(
-      a=>{
-
-        this.patientSer.getPatientById(a['id']).subscribe(
-        data=>{
-          this.patient=data;
-          this.RecordList=data.records;
-        })   
+    this.comp.selectedPatient$.subscribe(
+      data=>{
+        this.patient=data;
       }
-    ) 
+    );
   }
 
   ngOnDestroy(): void {

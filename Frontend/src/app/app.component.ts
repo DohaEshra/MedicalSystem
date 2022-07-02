@@ -13,6 +13,6 @@ export class AppComponent {
 
   NavBarChange(role:any){
     console.log('role sent is '+role)
-    this.loginFlag = role;
+    this.loginFlag = 'false';
   }
 }

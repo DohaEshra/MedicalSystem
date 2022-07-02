@@ -4,14 +4,8 @@
       <!-- Card -->
       <div class="card card-container  ">
         <div  class="fs-2 text-center" style=" color: #a5c422;">LOGIN NOW </div>
-            <!-- <img
-                id="profile-img"
-                src="https://www.jing.fm/clipimg/detail/398-3981675_avatar-for-login-form.png"
-                class="profile-img-card"
-                width="200px" height="200px"
-            /> -->
             
-        <form  name="form" (ngSubmit)="onSubmit()" #MyForm="ngForm" >
+        <form  name="form" (ngSubmit)="onSubmit(MyForm)" #MyForm="ngForm" >
           <!-- EMAIL -->
         <div class="form-group">
             <label for="email" class="fs-5">Email</label>
@@ -58,9 +52,9 @@
                 <option class="fs-5" value="admin"> Admin </option>
                 <option class="fs-5" value="doctor">Doctor </option>
                 <option class="fs-5" value="patient"> Patient</option>
-                <option class="fs-5" value="Pharmacist">Pharmacist </option>
-                <option class="fs-5" value="Laboratory technician"> Laboratory technician</option>
-                <option class="fs-5" value="Radiographer">Radiographer </option>
+                <option class="fs-5" value="pharmacist">Pharmacist </option>
+                <option class="fs-5" value="laboratory technician"> Laboratory technician</option>
+                <option class="fs-5" value="radiographer">Radiographer </option>
             </select>
         </div>
 

@@ -13,7 +13,7 @@ import {DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
-    LoginComponent, 
+    // LoginComponent, 
     DoctorRegisterationComponent, 
     PatientRegisterationComponent, 
     AgeValidationDirective, 
@@ -23,7 +23,8 @@ import {DropdownModule} from 'primeng/dropdown';
     CommonModule,FormsModule, RouterModule,DropdownModule, MatIconModule, MatProgressBarModule
   ],
   exports:[
-    LoginComponent, DoctorRegisterationComponent, PatientRegisterationComponent, AgeValidationDirective
+    //LoginComponent, 
+    DoctorRegisterationComponent, PatientRegisterationComponent, AgeValidationDirective
   ]
 })
 export class AccountModule { }

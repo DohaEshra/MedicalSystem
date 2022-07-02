@@ -107,7 +107,8 @@ export class DoctorRegisterationComponent implements OnInit {
     const reader = new FileReader();
     this.imagePath = files;
     reader.readAsDataURL(files[0]); 
-    reader.onload = (_event) => { 
+    reader.onload = () => { 
+      console.log(reader)
       this.url = reader.result;
       this.user.image = this.url; 
       //console.log("user " ,this.user)

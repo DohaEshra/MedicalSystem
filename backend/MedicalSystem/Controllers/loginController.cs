@@ -26,13 +26,15 @@ namespace MedicalSystem.Controllers
         public IActionResult login(AccountUser user)
         {
             // Hash the user password
-            //user.password = AccountUser.hashPassword(user.password);
+             user.password = AccountUser.hashPassword(user.password);
             if (user.role == "doctor")
             {
-                doctor = db.Doctors.Where(a => a.email == user.email && a.password == user.password).FirstOrDefault();
+
+                var doctor = db.Doctors.Where(a => a.email == user.email && a.password == user.password).FirstOrDefault();
+
                 if (doctor != null)
                 {
-                    var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("my_secret_key_HRRDMF"));    
+                    var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("my_secret_key_HRRDMF"));
 
                     var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
@@ -43,7 +45,7 @@ namespace MedicalSystem.Controllers
 
                     var token = new JwtSecurityToken(
                         claims: data,
-                        expires: DateTime.Now.AddMinutes(120),
+                        expires: DateTime.Now.AddMinutes(460),
                         signingCredentials: credentials
                     );
 

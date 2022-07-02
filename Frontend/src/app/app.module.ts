@@ -11,17 +11,18 @@ import { FormsModule } from '@angular/forms';
 import { NavBarComponent } from './_shared/NavBar/NavBar.component';
 import { PatientRecordComponent } from './patient/patient-record/patient-record.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './account/Login/Login.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent, NavBarComponent
+    AppComponent, NavBarComponent, LoginComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-     AccountModule , 
+    // AccountModule , 
      FormsModule, 
      DropdownModule,
      CommonModule, 
