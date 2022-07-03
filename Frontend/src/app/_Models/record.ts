@@ -9,7 +9,8 @@ export class Record {
                 public date :Date=new Date(), 
                 public summary:string='',
                 public prescription:string='',
-                public didNavigation:Doctor|null=new Doctor()
+                public didNavigation:Doctor|null=new Doctor(),
+                public testType:String|null= null
                 ){}
 
 }

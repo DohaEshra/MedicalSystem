@@ -1,6 +1,7 @@
-<div class="container my-4">
-    <div class="navbar navbar-light">
-  <div class="d-flex">
+<div id="sect1">
+<div class="container">
+    <div class="navbar navbar-light ">
+  <div class="d-flex my-4">
     
     <input  [(ngModel)]="ID" [ngModelOptions]="{standalone: true}" class="form-control me-2" style="width:300px"   *ngIf="Indicator==1" type="search" placeholder="Search patient by ID" aria-label="Search">
     <input  [(ngModel)]="Name" [ngModelOptions]="{standalone: true}" class="form-control me-2" style="width:300px" *ngIf="Indicator==2" type="search" placeholder="Search patient by Name" aria-label="Search">
@@ -15,9 +16,9 @@
         </div>
     </div>
   </div>
+
   
-  <!-- 
-  <table class="table table-striped table-dark" *ngIf="Name!='' && !ID">
+  <!-- <table class="table table-striped table-dark" *ngIf="Name!='' && !ID">
     <thead>
       <tr>
         <th scope="col">ID</th>
@@ -26,7 +27,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr  *ngFor="let patient of visitList|searchByName:Name">
+      <tr  *ngFor="let patient of patientsList|searchByName:Name">
         <td class="text-light">{{patient.id}}</td>
         <td class="text-light">{{patient.fname}} {{patient.lname}}</td>
         <td>
@@ -34,24 +35,60 @@
         </td>
       </tr>
     </tbody>
-  </table>
+  </table> -->
 
-  <table class="table table-striped table-dark" *ngIf="(visitList|searchById:ID).id!=0">
+  <table class="table table-striped table-dark" *ngIf="(patientsList|searchById:+ID).id !=0">
     <thead>
-      <tr>
+      <tr class="text-center">
         <th scope="col">ID</th>
         <th scope="col">Name</th>
+        <th scope="col">Required Tests</th>
+        <th scope="col">Doctor</th>
+        <th scope="col">date</th>
         <th scope="col"></th>
-      </tr>
+        <ng-template #fileHead>
+            <th scope="col">added files</th>
+        </ng-template>
+    </tr>
     </thead>
     <tbody>
-      <tr>
-        <td class="text-light">{{(visitList|searchById:ID).id}}</td>
-        <td class="text-light">{{(visitList|searchById:ID).fname}} {{(visitList|searchById:ID).lname}}</td>
-        <td>
-          <a type="button" class="btn btn-primary text-light" [routerLink]="['/doctor/patient',(visitList|searchById:ID).id,'info']">View</a>
-        </td>
-      </tr>
+        <tr class="text-center" *ngFor="let record of ( (patientsList|searchById:+ID).records |filterRecords:'t'); let x=index">
+            <td style="vertical-align: middle" *ngIf="x == 0;else t1" class="text-light" [rowSpan]="( (patientsList|searchById:+ID).records |filterRecords:'t').length">{{ (patientsList|searchById:+ID).id }}</td>
+                <ng-template #t1></ng-template>
+            <td style="vertical-align: middle" *ngIf="x == 0;else t2" class="text-light"  [rowSpan]="( (patientsList|searchById:+ID).records |filterRecords:'t').length">{{ (patientsList|searchById:+ID).fname }} {{ (patientsList|searchById:+ID).lname }}</td>
+                <ng-template #t2></ng-template>
+            <td  style="vertical-align: middle" class="text-light" >
+                {{ record.file_description }} 
+            </td>
+            <td style="vertical-align: middle" class="text-light">
+                {{ record.didNavigation?.fname }} {{ record.didNavigation?.lname }}
+            </td>
+            <td style="vertical-align: middle" class="text-light">
+                {{ record.date|date }}
+            </td>
+            <td style="vertical-align: middle" >
+                <p-fileUpload 
+                name="myfiles[]"
+                [multiple]="true"
+                accept="application/pdf"
+                mode="basic" 
+                [fileLimit]="5"
+                [customUpload]="true"
+                (uploadHandler)="myUploader($event)"
+                (onProgress)="getUploadedFiles($event)"
+                >
+                 <ng-template pTemplate="toolbar"> <div>Upload 3 Files</div></ng-template>
+                 <ng-template let-file pTemplate="file"><div>Custom UI to display a file</div></ng-template>
+                 <ng-template pTemplate="content" let-files><div>Additional content.</div></ng-template>
+                </p-fileUpload>
+            </td>
+            <ng-template #file>
+                <td>
+
+                </td>
+            </ng-template>
+        </tr>
     </tbody>
   </table> 
--->
+
+</div>

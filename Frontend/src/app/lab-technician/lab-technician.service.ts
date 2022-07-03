@@ -25,6 +25,6 @@ export class LabTechnicianService {
   //get lab's patients
   getPatients()
   {
-    return this.http.get<Patient[]>(this.baseUrl+"/Patient");
+    return this.http.get<Patient[]>(this.baseUrl+"/patient/LabPatients");
   }
 }

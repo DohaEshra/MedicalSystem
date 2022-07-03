@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Patient } from 'src/app/_Models/patient';
 import { LabTechnicianService } from '../lab-technician.service';
 
 @Component({
@@ -9,11 +8,12 @@ import { LabTechnicianService } from '../lab-technician.service';
   styleUrls: ['./lab-techncian-home.component.css']
 })
 export class LabTechncianHomeComponent implements OnInit {
-Indicator:number=0;
-  ID:any="";
-  Name:string="";
-  patientsList:any;
-  sub:Subscription|null=null;
+Indicator =0;
+  ID:any="5";
+  Name ="";
+  patientsList:any= [];
+  uploadedFiles: any[] = [];
+  sub:Subscription|null = null;
   constructor(public labTechnicianService:LabTechnicianService) { }
 
   ngOnInit(): void {
@@ -29,6 +29,20 @@ Indicator:number=0;
           // Object.values(err.error.errors).map((e: any)=> e.map((x:string)=> x))
         }
       })
+  }
+
+  getUploadedFiles(event:any){
+    console.log('files',event)
+    for (let file of event.files) {
+      this.uploadedFiles.push(file);
+    }
+  }
+
+  myUploader(event:any) {
+    for(let file of event.files) {
+      console.log('uploading file',file)
+
+    }
   }
 
   //indicate to searching by id

@@ -14,6 +14,7 @@
         </div>
     </div>
   </div>
+  
   <table class="table table-striped table-dark" *ngIf="Name!='' && !ID">
     <thead>
       <tr>
@@ -32,6 +33,7 @@
       </tr>
     </tbody>
   </table>
+
   <table class="table table-striped table-dark" *ngIf="(visitList|searchById:ID).id!=0">
     <thead>
       <tr>

@@ -30,6 +30,9 @@ namespace MedicalSystem.Models
         [Key]
         public Guid FNO { get; set; }
 
+        public string testType { get; set; }
+
+
         //[Required]
         //public string medicalPerscription { get; set; }
 

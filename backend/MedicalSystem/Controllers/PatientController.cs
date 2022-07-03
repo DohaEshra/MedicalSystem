@@ -29,6 +29,14 @@ namespace MedicalSystem.Controllers
             return await _context.Patients.ToListAsync();
         }
 
+        //get patients who need to make scans/lab tests 
+        [HttpGet("LabPatients")]
+        public async Task<ActionResult<IEnumerable<Patient>>> GetPatientsForLab()
+        {
+            var patients = _context.Patients.Where(p => p.Records.Any(p => p.attached_files == null && p.file_description != string.Empty && p.testType == "t" )).ToListAsync();
+            return await patients;
+        }
+
         // GET: api/Patients/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Patient>> GetPatient(int id)
