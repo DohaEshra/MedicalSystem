@@ -64,13 +64,13 @@ namespace MedicalSystem.Controllers
             {
                 for (int i = 1; i <= Record.Count && indicator && Record[i - 1].FNO == intiate; i++)
                 {
-                    _context.Procedures.Update_RecordAsync(@record.file_description, pid, did, date);
+                    await _context.Procedures.Update_RecordAsync(@record.file_description, pid, did, date);
                     indicator = false;
                 }
             }
             if(indicator)
             {
-                _context.Procedures.Insert_RecordAsync(pid,did,date,@record.file_description,@record.summary,@record.prescription);
+                await _context.Procedures.Insert_RecordAsync(pid,did,date,@record.file_description,@record.summary,@record.prescription);
             }
 
             try
