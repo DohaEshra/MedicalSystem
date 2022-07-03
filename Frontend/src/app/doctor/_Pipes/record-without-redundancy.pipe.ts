@@ -18,6 +18,7 @@ export class RecordWithoutRedundancyPipe implements PipeTransform {
       {
         if(records[i].date==records[j].date && records[i].pid==records[j].pid && records[i].did==records[j].did)
         {
+          temp["did"]=records[i].did;
           temp["date"]=records[i].date;
           temp["summary"]=records[i].summary;
           temp["prescription"]=records[i].prescription;
