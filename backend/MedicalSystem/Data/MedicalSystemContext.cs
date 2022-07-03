@@ -90,6 +90,10 @@ namespace MedicalSystem.Data
             {
                 entity.HasKey(e => new { e.DID, e.PID, e.date, e.FNO });
 
+                entity.Property(e => e.prescription).HasDefaultValueSql("('')");
+
+                entity.Property(e => e.summary).HasDefaultValueSql("('')");
+
                 entity.HasOne(d => d.DIDNavigation)
                     .WithMany(p => p.Records)
                     .HasForeignKey(d => d.DID)

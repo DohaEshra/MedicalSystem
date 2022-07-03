@@ -12,9 +12,7 @@ import { Record } from '../_Models/record';
 export class DoctorService {
   baseUrl="https://localhost:7089/api/";
   DoctorID=0;
-  constructor(public http:HttpClient , public acc:AccountService) { 
-    
-  }
+  constructor(public http:HttpClient , public acc:AccountService) { }
 
   getDoctorId(){
     if(this.acc.getToken()!=null)

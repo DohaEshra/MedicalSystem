@@ -136,12 +136,13 @@ namespace MedicalSystem.Migrations
             //        DID = table.Column<int>(type: "int", nullable: false),
             //        PID = table.Column<int>(type: "int", nullable: false),
             //        date = table.Column<DateTime>(type: "datetime2", nullable: false),
-            //        FNO = table.Column<int>(type: "int", nullable: false),
+            //        FNO = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
             //        file_description = table.Column<string>(type: "varchar(150)", unicode: false, maxLength: 150, nullable: true),
             //        attached_files = table.Column<string>(type: "nvarchar(max)", nullable: true),
             //        summary = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
             //        OID = table.Column<int>(type: "int", nullable: true),
-            //        prescription = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true)
+            //        prescription = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
+            //        testType = table.Column<string>(type: "nvarchar(max)", nullable: true)
             //    },
             //    constraints: table =>
             //    {

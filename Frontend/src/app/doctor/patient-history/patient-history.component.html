@@ -15,7 +15,6 @@
                 <td class="text-light">{{record.date|date}}</td>
                 <td class="text-light">{{record.summary}}</td>
                 <td class="text-light">{{record.prescription}}</td>
-
                 <td>
                   <tr *ngFor="let fileDes of record.file_description">
                     <td>{{fileDes}}</td>
@@ -26,6 +25,7 @@
                     <td>{{file}}</td>
                   </tr>
                 </td>
+                
               </tr>
             </tbody>
         </table>

@@ -8,6 +8,7 @@ export class RecordPerDate {
                 public attached_files :string[]=[], 
                 public date :Date=new Date(), 
                 public summary:string='',
+                public testType:String[]= [],
                 public prescription:string=''
                 ){}
 

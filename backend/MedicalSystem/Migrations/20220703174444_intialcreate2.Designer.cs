@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalSystem.Migrations
 {
     [DbContext(typeof(MedicalSystemContext))]
-    [Migration("20220702042046_record1")]
-    partial class record1
+    [Migration("20220703174444_intialcreate2")]
+    partial class intialcreate2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -335,12 +335,17 @@ namespace MedicalSystem.Migrations
                         .HasColumnType("varchar(150)");
 
                     b.Property<string>("prescription")
+                        .IsRequired()
                         .IsUnicode(false)
                         .HasColumnType("varchar(max)");
 
                     b.Property<string>("summary")
+                        .IsRequired()
                         .IsUnicode(false)
                         .HasColumnType("varchar(max)");
+
+                    b.Property<string>("testType")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("DID", "PID", "date", "FNO");
 

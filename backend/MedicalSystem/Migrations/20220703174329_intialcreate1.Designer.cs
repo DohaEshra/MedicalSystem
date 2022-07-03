@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalSystem.Migrations
 {
     [DbContext(typeof(MedicalSystemContext))]
-    [Migration("20220702042012_record")]
-    partial class record
+    [Migration("20220703174329_intialcreate1")]
+    partial class intialcreate1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -320,6 +320,9 @@ namespace MedicalSystem.Migrations
                     b.Property<DateTime>("date")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("FNO")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int?>("OID")
                         .HasColumnType("int");
 
@@ -339,7 +342,10 @@ namespace MedicalSystem.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(max)");
 
-                    b.HasKey("DID", "PID", "date");
+                    b.Property<string>("testType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("DID", "PID", "date", "FNO");
 
                     b.HasIndex("OID");
 
