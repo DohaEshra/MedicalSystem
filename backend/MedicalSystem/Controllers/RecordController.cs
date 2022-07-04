@@ -75,7 +75,7 @@ namespace MedicalSystem.Controllers
             Record Record = await _context.Records.Where(r =>  r.DID==did && r.PID==pid && r.date==date ).FirstOrDefaultAsync();
             if(Record != null)
             {
-                await _context.Procedures.Update_RecordAsync(@record.file_description, @record.testType, pid, did, date,@record.FNO);
+                await _context.Procedures.Update_RecordAsync(@record.file_description, @record.testType, pid, did, date, @record.FNO, @record.summary, @record.prescription);
             }
             else
             {
@@ -99,17 +99,24 @@ namespace MedicalSystem.Controllers
             }
             return NoContent();
         }
+
+
+
+       
         // PUT: api/Records/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRecord(int id, Record @record)
+        public async Task<IActionResult> PutRecord(Guid id, Record @record)
         {
-            if (id != @record.DID)
+            if (id != @record.FNO)
             {
                 return BadRequest();
             }
-
-            _context.Entry(@record).State = EntityState.Modified;
+            Record Record = await _context.Records.Where(r => r.DID == @record.DID && r.PID == @record.PID  && r.FNO == @record.FNO).FirstOrDefaultAsync();
+            if (Record != null)
+            {
+                await _context.Procedures.Update_RecordAsync(@record.file_description, @record.testType, @record.PID, @record.DID, @record.date, @record.FNO, @record.summary, @record.prescription);
+            }
 
             try
             {
@@ -157,9 +164,9 @@ namespace MedicalSystem.Controllers
 
         // DELETE: api/Records/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRecord(int id)
+        public async Task<IActionResult> DeleteRecord(Guid id)
         {
-            var @record = await _context.Records.FindAsync(id);
+            var @record = await _context.Records.Where(r => r.FNO==id).FirstOrDefaultAsync();
             if (@record == null)
             {
                 return NotFound();
@@ -174,6 +181,10 @@ namespace MedicalSystem.Controllers
         private bool RecordExists(int id)
         {
             return _context.Records.Any(e => e.DID == id);
+        }
+        private bool RecordExists(Guid id)
+        {
+            return _context.Records.Any(e => e.FNO == id);
         }
         private Patient GetCurrentUser()
         {

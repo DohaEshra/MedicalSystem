@@ -73,4 +73,16 @@ export class DoctorService {
   recordPatientPrescription(record:Record,pid:number,did:number,date:Date){
     return this.http.put<undefined>(this.baseUrl+"Record/"+pid+"/"+did+"/"+date,record);
   }
+
+  //delete record
+  deleteRecordByFno(fno:Guid)
+  {
+    return this.http.delete<undefined>(this.baseUrl+"Record/"+fno);
+  }
+
+  //edit record
+  editRecordByFno(fno:Guid,record:FileInfo)
+  {
+    return this.http.put<undefined>(this.baseUrl+"Record/"+fno,record);
+  }
 }

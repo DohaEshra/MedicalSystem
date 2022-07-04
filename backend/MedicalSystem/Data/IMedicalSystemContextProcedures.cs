@@ -13,6 +13,6 @@ namespace MedicalSystem.Data
     public partial interface IMedicalSystemContextProcedures
     {
         Task<int> Insert_RecordAsync(int? pid, int? did, DateTime? date, string fileDesc, string fileType, string summary, string prescription, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
-        Task<int> Update_RecordAsync(string fileDesc, string fileType, int? pid, int? did, DateTime? date, Guid? fno, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
+        Task<int> Update_RecordAsync(string fileDesc, string fileType, int? pid, int? did, DateTime? date, Guid? fno, string summary, string pre, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
     }
 }

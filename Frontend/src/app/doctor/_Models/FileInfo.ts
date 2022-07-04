@@ -3,7 +3,7 @@ import { Doctor } from "src/app/_Models/doctor";
 
 export class FileInfo {
     constructor(
-                public fno:Guid|null=null,
+                public fno:Guid,
                 public file_description: string="", 
                 public testType:String= "",
                 public attached_files :string="", 

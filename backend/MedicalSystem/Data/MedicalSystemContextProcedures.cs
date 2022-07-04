@@ -113,7 +113,7 @@ namespace MedicalSystem.Data
             return _;
         }
 
-        public virtual async Task<int> Update_RecordAsync(string fileDesc, string fileType, int? pid, int? did, DateTime? date, Guid? fno, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
+        public virtual async Task<int> Update_RecordAsync(string fileDesc, string fileType, int? pid, int? did, DateTime? date, Guid? fno, string summary, string pre, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
         {
             var parameterreturnValue = new SqlParameter
             {
@@ -163,9 +163,23 @@ namespace MedicalSystem.Data
                     Value = fno ?? Convert.DBNull,
                     SqlDbType = System.Data.SqlDbType.UniqueIdentifier,
                 },
+                new SqlParameter
+                {
+                    ParameterName = "summary",
+                    Size = -1,
+                    Value = summary ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.VarChar,
+                },
+                new SqlParameter
+                {
+                    ParameterName = "pre",
+                    Size = -1,
+                    Value = pre ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.VarChar,
+                },
                 parameterreturnValue,
             };
-            var _ = await _context.Database.ExecuteSqlRawAsync("EXEC @returnValue = [dbo].[Update_Record] @fileDesc, @fileType, @pid, @did, @date, @fno", sqlParameters, cancellationToken);
+            var _ = await _context.Database.ExecuteSqlRawAsync("EXEC @returnValue = [dbo].[Update_Record] @fileDesc, @fileType, @pid, @did, @date, @fno, @summary, @pre", sqlParameters, cancellationToken);
 
             returnValue?.SetValue(parameterreturnValue.Value);
 
