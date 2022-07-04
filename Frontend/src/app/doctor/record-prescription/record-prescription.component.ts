@@ -11,6 +11,7 @@ import { DoctorService } from '../doctor.service';
 })
 export class RecordPrescriptionComponent implements OnInit {
 
+  recordList:Record[]=[];
   record:Record=new Record();
   medicalTests:string[]=[];
   testType:string[]=[];
@@ -57,6 +58,7 @@ export class RecordPrescriptionComponent implements OnInit {
       var element = document.getElementById(elementId);
       element?.parentNode?.removeChild(element);
       this.medicalTests.splice(parseInt(elementId.split('-')[1])-1,1);
+      this.testType.splice(parseInt(elementId.split('-')[1])-1,1);
     });
     
     //append elements in new div
@@ -70,6 +72,7 @@ export class RecordPrescriptionComponent implements OnInit {
     var p = document.getElementById(parentId);
     p?.appendChild(newElement);
     this.medicalTests.push(inputValue);
+    this.testType.push(testType);
   }
 
   //submit

@@ -9,14 +9,12 @@
         <div class="form-group">
             <label for="Date" class="fs-5">Date</label>
             <label style="color: red;">*</label>
-            <input  type="date"  
+            <input  type="datetime-local"  
                id="date" 
                style="border-radius:30px ;"
                class="form-control form-control-lg " 
-               name="birthDate"
-               [(ngModel)]="record.date"  [ngModelOptions]="{standalone: true}"
-               appAgeValidation
-               placeholder ="Enter your birth date" required #birthDate="ngModel"/>
+               [(ngModel)]="record.date" [ngModelOptions]="{standalone: true}"
+            />
         </div>
         <div class="form-group">
             <label for="Textarea1" class="fs-5 mt-4" >Medical Diagnosis</label>

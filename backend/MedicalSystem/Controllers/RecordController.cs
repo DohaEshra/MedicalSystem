@@ -49,6 +49,20 @@ namespace MedicalSystem.Controllers
             return @record;
         }
 
+        // GET: api/Records/pid/did/date
+        [HttpGet("{pid}/{did}/{date}")]
+        public async Task<ActionResult<IEnumerable<Record>>> GetSpecificRecords(int pid,int did,DateTime date)
+        {
+            List<Record> Record = await _context.Records.Where(r => r.DID == did && r.PID == pid && r.date == date).ToListAsync();
+
+            if (_context.Records == null)
+            {
+                return NotFound();
+            }
+
+            return Record;
+        }
+
         //api/Record/pid/did/date
         [HttpPut("{pid}/{did}/{date}")]
         public async Task<IActionResult> RecordTests(int pid,int did,DateTime date, Record @record)
@@ -57,20 +71,15 @@ namespace MedicalSystem.Controllers
             {
                 return BadRequest();
             }
-            bool indicator = true;
-            Guid intiate = new Guid("00000000-0000-0000-0000-000000000000");
-            List<Record> Record = await _context.Records.Where(r =>  r.DID==did && r.PID==pid && r.date==date).ToListAsync();
+
+            Record Record = await _context.Records.Where(r =>  r.DID==did && r.PID==pid && r.date==date ).FirstOrDefaultAsync();
             if(Record != null)
             {
-                for (int i = 1; i <= Record.Count && indicator && Record[i - 1].FNO == intiate; i++)
-                {
-                    await _context.Procedures.Update_RecordAsync(@record.file_description,@record.testType, pid, did, date);
-                    indicator = false;
-                }
+                await _context.Procedures.Update_RecordAsync(@record.file_description, @record.testType, pid, did, date,@record.FNO);
             }
-            if(indicator)
+            else
             {
-                await _context.Procedures.Insert_RecordAsync(pid, did, date, @record.file_description,@record.testType, @record.summary, @record.prescription);
+                await _context.Procedures.Insert_RecordAsync(pid, did, date, @record.file_description, @record.testType, @record.summary, @record.prescription);
             }
 
             try

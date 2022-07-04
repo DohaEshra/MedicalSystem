@@ -14,7 +14,7 @@
             <tbody >
               <tr *ngFor="let record of RecordList|recordWithoutRedundancy">
                 <td align="center">
-                  <a class="btn btn-default" *ngIf="record.did==doctorID" ><em class="fa fa-edit"></em></a>
+                  <a class="btn btn-default" *ngIf="record.did==doctorID" [routerLink]="['/doctor/editpre',record.pid,record.date]"><em class="fa fa-edit"></em></a>
                 </td>
                 <td class="">{{record.date|date}}</td>
                 <td class="">{{record.summary}}</td>
