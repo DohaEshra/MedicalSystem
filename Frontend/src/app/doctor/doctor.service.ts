@@ -50,6 +50,12 @@ export class DoctorService {
   {
     return this.http.get<Doctor[]>(this.baseUrl+"Doctor");
   }
+    
+  //get All Categories
+    getAllCategories()
+    {
+      return this.http.get<object[]>(this.baseUrl+"Doctor/getCategories");
+    }
 
   //get doctor's patients
   getDoctorPatients()

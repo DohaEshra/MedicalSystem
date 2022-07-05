@@ -10,8 +10,11 @@ import { Doctor } from 'src/app/_Models/doctor';
 export class SearchForDoctorComponent implements OnInit {
 mapping = new Map<string, string>();
 name:string = "";
-address:string = "";
+Area:string = "";
+City:string = "";
 category:string = "";
+cities:string[]=[]
+categories:object[]=[];
 //name:string=""
 drs:Doctor[]=[]
 dr:Doctor[]=[]
@@ -20,60 +23,124 @@ clicked:number = 0;
 ops:string[]=["Name", "Address"]
 op:string="";
 input:string = ""
-  constructor(public drServ:DoctorService) {}
+  constructor(public drServ:DoctorService) {
+   this.drServ.getAllCategories().subscribe(c=>this.categories =c)
+
+  }
   Search()
   {
+    //console.log(this.drs)
     this.mapping.set("Name", this.name);
-    this.mapping.set("Address", this.address);
+    this.mapping.set("Area", this.Area);
+    this.mapping.set("City", this.City);
     this.mapping.set("Category", this.category);
     this.dr = this.transform(this.drs, this.mapping);
+    //console.log(this.dr)
     this.clicked=1
     
   }
   transform(value: any[], Diction: Map<string, string>): any[] {
-  //let drs;
-  // if(value.length===0 || filteredName === '')
+  let drs;
+  //console.log(Map.prototype.)
+  // if(Map.arguments)
   // {
-    //   return value;
-    // }
+  //   console.log()
+  //     return value;
+  //   }
     const doctors = [];
     for(const v of  value)
     {
-      if(Diction.get("Name"))
+      if(Diction.get("Name") && Diction.get("City") && Diction.get("Area") && Diction.get("Category"))
       {
+
+      }
+      else{
+
+        if(Diction.get("Name"))
+        {
           
-          //this.drServ.getDoctorByName(Diction.get("Name")).subscribe(data=>drs=data)
-          if(v['fname'].includes(Diction.get("Name"))||v['lname'].includes(Diction.get("Name")))
+          this.drServ.getDoctorByName(Diction.get("Name")).subscribe(data=>drs=data)
+          if(v['fname'].toLowerCase().includes(Diction.get("Name")?.toLowerCase())||v['lname'].toLowerCase().includes(Diction.get("Name")?.toLowerCase()))
           {
             doctors.push(v)
             
           }
-        
-      }
-      if(Diction.get("Address")){
-        
-        if(v.address.includes(Diction.get("Address")))
-        {
-          doctors.push(v)
+          
         }
-      }      
-      if(Diction.get("Category")){
-        
-        if(v.category.includes(Diction.get("Category")))
+        if(Diction.get("Area")){
+          //console.log(v.area.includes(Diction.get("Area")))
+          //console.log(v.area)
+        //if(drs.area==Diction.get("Area"))
+        if(v.area!=null)
         {
-        
-          doctors.push(v)
-        }
 
+          if(v.area.toLowerCase().includes(Diction.get("Area")?.toLowerCase()))
+          {
+            
+            doctors.push(v)
+          }
         }
+        }
+        
+        
+      
+        
+        
+        
+        if(Diction.get("City")){
+          console.log(v.city.includes(Diction.get("City")))
+          
+          if(v.city.toLowerCase().includes(Diction.get("City")?.toLowerCase()))
+          {
+            //console.log("city");
+            doctors.push(v)
+          }
+        }    
+        if(Diction.get("Category")){
+          
+          if(v.category.toLowerCase().includes(Diction.get("Category")?.toLowerCase()))
+          {
+            doctors.push(v)
+          }
+          
+        }
+      }
       
     }
     //console.log(doctors)
-    const unique = [...new Set(doctors.map(item => item.email))];
+    const unique = [...new Set(doctors.map(item => item))];
+    //console.log([...new Set(doctors.map(item => item))])
     return unique;
   }
 
   ngOnInit(): void {
+    this.cities = [
+      'Alexandria',
+       'Cairo',
+      'Mansoura',
+      'Fayoum',
+      'Monefya',
+      'Gizeh', 
+      'Port Said', 
+      'Suez', 
+      'Luxor', 
+      'Tanta', 
+      'Asyut',
+      'Ismailia',
+      'Aswan', 
+      'Damietta', 
+      'Al-mnia', 
+      'Qena', 
+      'Sohag', 
+      'Arish', 
+      'Marsa Matrouh', 
+      'Kafr el-Sheikh',
+      'Hurghada', 
+      'Beni suef', 
+      '6th of October',
+  ];
+  //  this.drServ.getAllCategories().subscribe(c=>this.categories =c)
+   console.log(this.categories);
     //console.log(this.drs)
     this.drServ.getAllDoctors().subscribe(a=>this.drs=a)
   }

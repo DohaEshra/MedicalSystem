@@ -8,19 +8,27 @@
 <div class="container m-5 border border-light ">
     <div class="row">
 
-    <span class="p-float-label col-lg-3">
+    <span class="p-float-label m-2 col-lg-2">
         <label for="Name"></label>
         <input id="Name" type="text" placeholder="Name" pInputText [(ngModel)]="name"> 
     </span>
-    <span class="p-float-label col-lg-3">
-    <label for="Address"></label>
-    <input id="Address" type="text" placeholder="Address" pInputText [(ngModel)]="address"> 
+    <span class="p-float-label m-2 col-lg-2">
+    <label for="Area"></label>
+    <input id="Area" type="text" placeholder="Area" pInputText [(ngModel)]="Area"> 
 </span>
-<span class="p-float-label col-lg-3">
+<span class="p-float-label m-2 col-lg-2">
+    <label for="City"></label>
+    <input id="City" type="text" placeholder="City" pInputText [(ngModel)]="City"> 
+    <!-- <label for="city" class="fs-5">City </label> -->
+    <!-- <select name="city"  [(ngModel)]="city"  class="form-select form-select-lg" style="border-radius:30px ;"  aria-label="Default select example" required #city="ngModel">
+      <option class="fs-5" *ngFor=" let city of cities"> {{city}} </option>
+    </select> -->
+</span>
+<span class="p-float-label m-2 col-lg-2">
     <label for="Category"></label>
     <input id="Category" type="text" placeholder="Category" pInputText [(ngModel)]="category"> 
 </span>
-<button class="btn btn-light col-lg-3" (click)="Search()">Search</button>
+<button class="btn btn-light m-2 col-lg-3" (click)="Search()">Search</button>
 
 </div>
 <!-- <button pButton type="button" label="Search" ></button>
@@ -41,7 +49,8 @@
                   <th>Doctor Name</th>
                   <th>Email</th>
             <th>Phone</th>
-            <th>Address</th>
+            <th>Area</th>
+            <th>City</th>
             <th>Category</th>
         </tr>
     </thead>
@@ -58,9 +67,11 @@
                 <p class="text-muted mb-0">{{i.phone}}</p> 
             </td>
             <td>
-             
-                <!-- <p class="text-muted mb-0">{{i.address}}</p>   -->
-              </td>          
+                <p class="text-muted mb-0">{{i.area}}</p>  
+            </td>
+            <td>
+                <p class="text-muted mb-0">{{i.city}}</p>  
+            </td>          
             <td>
                 
                 <p class="text-muted mb-0">{{i.category}}</p>  

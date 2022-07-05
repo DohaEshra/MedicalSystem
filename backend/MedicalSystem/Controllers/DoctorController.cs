@@ -10,7 +10,7 @@ using MedicalSystem.Models;
 
 namespace MedicalSystem.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]")]//[controller]
     [ApiController]
     public class DoctorController : ControllerBase
     {
@@ -36,6 +36,16 @@ namespace MedicalSystem.Controllers
                 return NotFound();
             }
             return await _context.Doctors.Where(a => a.category == category).ToListAsync();
+        }
+        [HttpGet("getCategories")]
+        public async Task<ActionResult<IEnumerable<object>>> GetAllCategories()
+        {
+            if (_context.Doctors == null)
+            {
+                return NotFound();
+            }
+            //return await _context.Doctors.Select(cat => new { category = cat.category }).Distinct().ToListAsync();
+            return await _context.Doctors.Select(Doctor => Doctor.category).Distinct().ToListAsync();
         }
 
         // GET: api/Doctors/5

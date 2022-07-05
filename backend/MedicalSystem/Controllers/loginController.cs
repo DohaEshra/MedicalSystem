@@ -27,7 +27,7 @@ namespace MedicalSystem.Controllers
         {
             // Hash the user password
              //   user.password = AccountUser.hashPassword(user.password);
-            //user.password = AccountUser.hashPassword(user.password);
+            user.password = AccountUser.hashPassword(user.password);
             if (user.role == "doctor")
             {
 

@@ -32,7 +32,9 @@ namespace MedicalSystem.Models
         public string prescription { get; set; }
 
         [Key]
-        public int FNO { get; set; }
+        public Guid FNO { get; set; }
+        //[StringLength(1)]
+        //public string testType { get; set; }
         public int? OID { get; set; }
 
         [ForeignKey("DID")]
