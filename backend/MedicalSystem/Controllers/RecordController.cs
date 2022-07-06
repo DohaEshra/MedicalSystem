@@ -49,17 +49,74 @@ namespace MedicalSystem.Controllers
             return @record;
         }
 
-        // PUT: api/Records/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutRecord(int id, Record @record)
+        // GET: api/Records/pid/did/date
+        [HttpGet("{pid}/{did}/{date}")]
+        public async Task<ActionResult<IEnumerable<Record>>> GetSpecificRecords(int pid,int did,DateTime date)
         {
-            if (id != @record.DID)
+            List<Record> Record = await _context.Records.Where(r => r.DID == did && r.PID == pid && r.date == date).ToListAsync();
+
+            if (_context.Records == null)
+            {
+                return NotFound();
+            }
+
+            return Record;
+        }
+
+        //api/Record/pid/did/date
+        [HttpPut("{pid}/{did}/{date}")]
+        public async Task<IActionResult> RecordTests(int pid,int did,DateTime date, Record @record)
+        {
+            if (did != @record.DID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(@record).State = EntityState.Modified;
+            Record Record = await _context.Records.Where(r =>  r.DID==did && r.PID==pid && r.date==date ).FirstOrDefaultAsync();
+            if(Record != null)
+            {
+                await _context.Procedures.Update_RecordAsync(@record.file_description, @record.testType, pid, did, date, @record.FNO, @record.summary, @record.prescription);
+            }
+            else
+            {
+                await _context.Procedures.Insert_RecordAsync(pid, did, date, @record.file_description, @record.testType, @record.summary, @record.prescription);
+            }
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                if (RecordExists(@record.DID))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return NoContent();
+        }
+
+
+
+       
+        // PUT: api/Records/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutRecord(Guid id, Record @record)
+        {
+            if (id != @record.FNO)
+            {
+                return BadRequest();
+            }
+            Record Record = await _context.Records.Where(r => r.DID == @record.DID && r.PID == @record.PID  && r.FNO == @record.FNO).FirstOrDefaultAsync();
+            if (Record != null)
+            {
+                await _context.Procedures.Update_RecordAsync(@record.file_description, @record.testType, @record.PID, @record.DID, @record.date, @record.FNO, @record.summary, @record.prescription);
+            }
 
             try
             {
@@ -107,9 +164,9 @@ namespace MedicalSystem.Controllers
 
         // DELETE: api/Records/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRecord(int id)
+        public async Task<IActionResult> DeleteRecord(Guid id)
         {
-            var @record = await _context.Records.FindAsync(id);
+            var @record = await _context.Records.Where(r => r.FNO==id).FirstOrDefaultAsync();
             if (@record == null)
             {
                 return NotFound();
@@ -124,6 +181,10 @@ namespace MedicalSystem.Controllers
         private bool RecordExists(int id)
         {
             return _context.Records.Any(e => e.DID == id);
+        }
+        private bool RecordExists(Guid id)
+        {
+            return _context.Records.Any(e => e.FNO == id);
         }
         private Patient GetCurrentUser()
         {

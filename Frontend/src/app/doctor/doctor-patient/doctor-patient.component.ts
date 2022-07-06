@@ -22,7 +22,7 @@ export class DoctorPatientComponent implements OnInit,OnDestroy {
   constructor(private patientSer:PatientService,private activateRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.activateRoute.params.subscribe(
+    this.sub=this.activateRoute.params.subscribe(
       a=>{
         this.patientSer.getPatientById(a['id']).subscribe(
         data=>{

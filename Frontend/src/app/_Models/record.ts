@@ -1,17 +1,17 @@
-import { Byte } from "@angular/compiler/src/util"
+import { Guid } from "guid-typescript";
 import { Doctor } from "./doctor"
 export class Record {
     constructor(
                 public did:number=Number(), 
                 public pid:number=Number(), 
-                public oid:number=Number(), 
-                public fno:number=Number(), 
-                public file_description: string='', 
-                public attached_files :Byte[]=[], 
+                public oid:number|null=null, 
+                public file_description: string|null=null, 
+                public attached_files :string|null=null, 
                 public date :Date=new Date(), 
                 public summary:string='',
                 public prescription:string='',
-                public didNavigation:Doctor=new Doctor()
+                public didNavigation:Doctor|null=new Doctor(),
+                public testType:String|null= null
                 ){}
 
 }

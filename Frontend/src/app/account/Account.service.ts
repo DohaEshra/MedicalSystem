@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Doctor } from '../_Models/doctor';
+import { Other } from '../_Models/other';
 import { Patient } from '../_Models/patient';
 
 @Injectable({
@@ -56,5 +57,10 @@ constructor(public http:HttpClient , public router : Router ) { }
     //add patient 
     addPatient(user: Patient){
       return this.http.post<any>("https://localhost:7089/api/patient",user);
+    }
+
+    //add other 
+    addOther(user: Other){
+      return this.http.post<any>("https://localhost:7089/api/other",user);
     }
 }

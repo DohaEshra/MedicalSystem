@@ -90,6 +90,7 @@ export class PatientRegisterationComponent implements OnInit ,OnDestroy {
     }
 
     const mimeType = files[0].type;
+    // console.log(mimeType);
         if (!mimeType.match(/image\/*/) ) {
       this.imageErrorMessage("Only images are supported.",imageInput)
       return;

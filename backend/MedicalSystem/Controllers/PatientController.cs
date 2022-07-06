@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MedicalSystem.Data;
 using MedicalSystem.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MedicalSystem.Controllers
 {
@@ -26,6 +27,14 @@ namespace MedicalSystem.Controllers
         public async Task<ActionResult<IEnumerable<Patient>>> GetPatients()
         {
             return await _context.Patients.ToListAsync();
+        }
+
+        //get patients who need to make scans/lab tests 
+        [HttpGet("LabPatients")]
+        public async Task<ActionResult<IEnumerable<Patient>>> GetPatientsForLab()
+        {
+            var patients = _context.Patients.Where(p => p.Records.Any(p => p.attached_files == null && p.file_description != string.Empty && p.testType == "t" )).ToListAsync();
+            return await patients;
         }
 
         // GET: api/Patients/5
@@ -76,6 +85,7 @@ namespace MedicalSystem.Controllers
         // POST: api/Patients
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult<Patient>> PostPatient(Patient patient)
         {
             var patientMail = _context.Patients.Where(a => a.email == patient.email).FirstOrDefault();

@@ -32,7 +32,7 @@ namespace MedicalSystem.Data
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=medical-system-server.database.windows.net;Initial Catalog=MedicalSystem;User ID=Team;Password=Password123");
+                optionsBuilder.UseSqlServer("Data Source=medical-system-server.database.windows.net;Initial Catalog=MedicalSystem;Persist Security Info=True;User ID=Team;Password=Password123");
             }
         }
 
@@ -88,8 +88,11 @@ namespace MedicalSystem.Data
 
             modelBuilder.Entity<Record>(entity =>
             {
-
                 entity.HasKey(e => new { e.DID, e.PID, e.date, e.FNO });
+
+                entity.Property(e => e.prescription).HasDefaultValueSql("('')");
+
+                entity.Property(e => e.summary).HasDefaultValueSql("('')");
 
                 entity.HasOne(d => d.DIDNavigation)
                     .WithMany(p => p.Records)
@@ -107,8 +110,6 @@ namespace MedicalSystem.Data
                     .WithMany(p => p.Records)
                     .HasForeignKey(d => d.PID)
                     .HasConstraintName("FK_Record_Patient");
-
-                entity.Property(r => r.prescription).HasDefaultValue("");
             });
 
             modelBuilder.Entity<Visit>(entity =>
@@ -119,12 +120,12 @@ namespace MedicalSystem.Data
                     .WithMany(p => p.Visits)
                     .HasForeignKey(d => d.DID)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Visit_Doctor1");
+                    .HasConstraintName("FK_Visit_Doctor");
 
                 entity.HasOne(d => d.PIDNavigation)
                     .WithMany(p => p.Visits)
                     .HasForeignKey(d => d.PID)
-                    .HasConstraintName("FK_Visit_Patient1");
+                    .HasConstraintName("FK_Visit_Patient");
             });
 
             modelBuilder.Entity<Works_in>(entity =>
@@ -135,10 +136,11 @@ namespace MedicalSystem.Data
                 entity.HasOne(d => d.DIDNavigation)
                     .WithMany(p => p.Works_ins)
                     .HasForeignKey(d => d.DID)
-                    .HasConstraintName("FK_Works_in_Doctor");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Works_in_Doctor1");
             });
 
-            OnModelCreatingGeneratedFunctions(modelBuilder);
+            OnModelCreatingGeneratedProcedures(modelBuilder);
             OnModelCreatingPartial(modelBuilder);
         }
 

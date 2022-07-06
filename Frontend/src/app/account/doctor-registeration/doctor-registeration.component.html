@@ -81,9 +81,6 @@
             </div>
         </div>
 
-      
-
-
           <!-- Address -->
           <!-- city -->
         <div class="form-group row">
@@ -159,24 +156,41 @@
               <div *ngIf="birthDate.errors['phoneNumberInvalid']">Age must be older than 25 years</div>
             </div>
         </div>
-<!-- Gender -->
 
-<div class="align-center">
-  <label for="gender" class="fs-5">Gender</label>
-  <select name="gender" class="form-select form-select-lg" style="border-radius:30px ;" aria-label="Default select example" required #gender="ngModel" [(ngModel)]="user.gender">
-      <option class="fs-5" value="F"> Female </option>
-      <option class="fs-5" value="M"> Male </option>
-  </select>
-
-  <div class="alert alert-danger fs-5" role="alert" *ngIf="gender.errors && MyForm.submitted" >
-    <div *ngIf="gender.errors['required']">Gender is required</div>
-  </div>
-
-</div>
-        <!-- Category -->
+        <!-- Gender -->
         <div class="align-center">
-            <label for="category" class="fs-5  fw-bold">Category <span style="color: red;"  >?</span> </label>
+          <label for="gender" class="fs-5">Gender</label>
+          <select name="gender" class="form-select form-select-lg" style="border-radius:30px ;" aria-label="Default select example" required #gender="ngModel" [(ngModel)]="user.gender">
+              <option class="fs-5" value="F"> Female </option>
+              <option class="fs-5" value="M"> Male </option>
+          </select>
+
+          <div class="alert alert-danger fs-5" role="alert" *ngIf="gender.errors && MyForm.submitted" >
+            <div *ngIf="gender.errors['required']">Gender is required</div>
+          </div>
+
+        </div>
+
+        <!-- Job Title -->
+        <div class="align-center">
+            <label for="job" class="fs-5  fw-bold">Job <span style="color: red;"  >?</span> </label>
+            <select name="job" class="form-select form-select-lg" style="border-radius:30px ;"  aria-label="Default select example" required #job="ngModel" [(ngModel)]="user.job" (change)="displayCategory(job.value, categoryTemplate)">
+                <option class="fs-5" value="Doctor">Doctor </option>
+                <option class="fs-5" value="Pharmacist">Pharmacist </option>
+                <option class="fs-5" value="Laboratory technician"> Laboratory technician</option>
+                <option class="fs-5" value="Radiographer">Radiographer </option>
+            </select>
+           
+            <div class="alert alert-danger fs-5" role="alert" *ngIf="job.errors && MyForm.submitted" >
+              <div *ngIf="job.errors['required']">Job is required</div>
+            </div>
+        </div>
+
+        <!-- Category -->
+        <div class="displayCategory align-center" #categoryTemplate>
+            <label for="category" class="fs-5  fw-bold">Category <span style="color: rgb(58, 202, 58);"  >?</span> </label>
             <select name="category" class="form-select form-select-lg" style="border-radius:30px ;"  aria-label="Default select example" required #category="ngModel" [(ngModel)]="user.category">
+              <!-- [appDoctorCategoryValidation]="user.job" -->
                 <option class="fs-5" value="Dentist"> Dentist </option>
                 <option class="fs-5" value="Medical Microbiology and Infectious Diseases"> Medical Microbiology and Infectious Diseases </option>
                 <option class="fs-5" value="Cardiology"> Cardiology</option>

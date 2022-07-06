@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MedicalSystem.Data;
 using MedicalSystem.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MedicalSystem.Controllers
 {
@@ -114,6 +115,7 @@ namespace MedicalSystem.Controllers
         // POST: api/Doctors
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        //[Authorize(Roles = "admin")]
         public async Task<ActionResult<Doctor>> PostDoctor(Doctor doctor)
         {
             var drMail = _context.Doctors.Where(a => a.email == doctor.email).FirstOrDefault();

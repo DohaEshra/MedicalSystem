@@ -15,7 +15,7 @@ export class DoctorPatientSearchComponent implements OnInit,OnDestroy {
   Name:string="";
   visitList:Visit[]=[];
   sub:Subscription|null=null;
-  constructor(public doctorSer:DoctorService,private searchByName:SearchByNamePipe) { }
+  constructor(public doctorSer:DoctorService) { }
 
   ngOnInit(): void {
     this.sub = this.doctorSer.getDoctorPatients().subscribe(
@@ -23,8 +23,10 @@ export class DoctorPatientSearchComponent implements OnInit,OnDestroy {
         if(data!=null)
         {
           this.visitList=data;
+          // console.log(this.visitList)
         }
-      }
+      },
+      //err => console.log("error from doctor patient search component",err)
     )
   }
 

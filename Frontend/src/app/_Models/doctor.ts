@@ -16,7 +16,7 @@ export class Doctor {
                 public password:string='',
                 public gender: string = '',
                 public profilePic: string | null = null,
-                public doctorrating:number=Number()
+                public doctorRating:number=Number()
             )
     {}
 }
