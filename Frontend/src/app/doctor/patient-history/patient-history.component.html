@@ -1,6 +1,15 @@
 <div class="container">
     <div class=" col-md-10 mx-5  custyle" id="myTabContent">
-        <table class="table table-striped custab"  *ngIf="RecordList.length!=0">
+        <div id="custom-search-input">
+          <div class="input-group col-md-12">
+              <input type="text" class="search-query form-control" placeholder="Search" [(ngModel)]="searchText"/>
+              <button class="btn btn-success" type="button">
+                <em class="fa fa-search"></em>
+              </button>
+          </div>
+        </div>
+        <div class="tablearea">
+          <table class="table table-striped custab"  *ngIf="RecordList.length!=0">
             <thead>
               <tr>
                 <th class="text-center"><em class="fa fa-cog"></em></th>
@@ -11,8 +20,8 @@
                 <th scope="col">Result</th>
               </tr>
             </thead>
-            <tbody >
-              <tr *ngFor="let record of RecordList|recordWithoutRedundancy">
+            <tbody>
+              <tr *ngFor="let record of RecordList|searchInTable:searchText|recordWithoutRedundancy">
                 <td align="center">
                   <a class="btn btn-default" *ngIf="record.did==doctorID" [routerLink]="['/doctor/editpre',record.pid,record.date]"><em class="fa fa-edit"></em></a>
                 </td>
@@ -26,13 +35,15 @@
                 </td>
                 <td>
                   <tr *ngFor="let file of record.attached_files">
-                    <td>{{file}}</td>
+                    <!-- <td>{{file}}</td> -->
                   </tr>
                 </td>
                 
               </tr>
             </tbody>
-        </table>
+          </table>
+        </div>
+        
     </div>
 </div>
 

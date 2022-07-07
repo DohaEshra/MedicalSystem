@@ -14,6 +14,7 @@ import { DoctorPatientComponent } from './doctor-patient/doctor-patient.componen
 import { PatientHistoryComponent } from './patient-history/patient-history.component';
 import { RecordPrescriptionComponent } from './record-prescription/record-prescription.component';
 import { EditPrescriptionComponent } from './edit-prescription/edit-prescription.component';
+import { SearchInTable } from './_Pipes/search-in-table.pipe';
 
 
 
@@ -28,6 +29,7 @@ import { EditPrescriptionComponent } from './edit-prescription/edit-prescription
     SearchByIdPipe,
     DoctorPatientInfoComponent,
     RecordWithoutRedundancyPipe,
+    SearchInTable,
     DoctorPatientComponent,
     PatientHistoryComponent,
     RecordPrescriptionComponent,
