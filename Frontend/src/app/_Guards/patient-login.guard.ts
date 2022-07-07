@@ -12,11 +12,11 @@ export class PatientLoginGuard implements CanActivate{
     }
    
     canActivate(){
-        if(this.acc.getToken()!=null)
+       if(this.acc.getRole() =='patient')
         {
             return true;
         }
-    
+        this.acc.signOut();
         return false;
     }
     

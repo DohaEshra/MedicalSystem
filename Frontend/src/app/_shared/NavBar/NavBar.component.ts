@@ -19,14 +19,14 @@ export class NavBarComponent implements OnInit, OnChanges {
   userLoggedIn = false;
  
 
-  getRole(){
-    if(this.account.getToken()!=null)
-    {
-      var decodeToken = JSON.parse(JSON.stringify(jwt_decode(this.account.getToken()!)));
-      return decodeToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
-    }
-    return null ;
-  }
+  // getRole(){
+  //   if(this.account.getToken()!=null)
+  //   {
+  //     var decodeToken = JSON.parse(JSON.stringify(jwt_decode(this.account.getToken()!)));
+  //     return decodeToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+  //   }
+  //   return null ;
+  // }
 
   ngOnInit() {
   }

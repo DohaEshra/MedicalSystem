@@ -16,10 +16,12 @@ namespace MedicalSystem.Controllers
     public class DoctorController : ControllerBase
     {
         private readonly MedicalSystemContext _context;
+        //private IWebHostEnvironment _environment;
 
-        public DoctorController(MedicalSystemContext context)
+        public DoctorController(MedicalSystemContext context,IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            // _environment = webHostEnvironment;
         }
 
         // GET: api/Doctors
@@ -122,6 +124,31 @@ namespace MedicalSystem.Controllers
 
             return CreatedAtAction("GetDoctor", new { id = doctor.ID }, doctor);
         }
+
+        //[HttpPost("uploadFiles")]
+        ////[Authorize(Roles = "admin")]
+        //public IActionResult addFile()
+        //{
+        //    var form = Request.Form;
+        //    try
+        //    {
+        //        foreach(var file in form.Files)
+        //        {
+        //            var path = Path.Combine(_environment.WebRootPath,"Lab_Technician_Uploaded_Files", file.Name);
+        //            using(var fileStream = new FileStream(path,FileMode.Create))
+        //            {
+        //                file.CopyTo(fileStream);
+        //            }
+        //        }
+        //        return Ok();
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        return BadRequest();
+        //    }
+        //}
+
+
 
         // DELETE: api/Doctors/5
         [HttpDelete("{id}")]

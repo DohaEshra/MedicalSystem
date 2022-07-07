@@ -4,6 +4,7 @@ using MedicalSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalSystem.Migrations
 {
     [DbContext(typeof(MedicalSystemContext))]
-    partial class MedicalSystemContextModelSnapshot : ModelSnapshot
+    [Migration("20220706220100_file_delete")]
+    partial class file_delete
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -324,8 +326,8 @@ namespace MedicalSystem.Migrations
                     b.Property<int?>("OID")
                         .HasColumnType("int");
 
-                    b.Property<byte[]>("attached_files")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<byte?>("attached_files")
+                        .HasColumnType("tinyint");
 
                     b.Property<string>("file_description")
                         .HasMaxLength(150)

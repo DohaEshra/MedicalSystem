@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import jwtDecode from 'jwt-decode';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Doctor } from '../_Models/doctor';
 import { Other } from '../_Models/other';
@@ -63,4 +64,13 @@ constructor(public http:HttpClient , public router : Router ) { }
     addOther(user: Other){
       return this.http.post<any>("https://localhost:7089/api/other",user);
     }
+
+    getRole(){
+    if(this.getToken()!=null)
+    {
+      var decodeToken = JSON.parse(JSON.stringify(jwtDecode(this.getToken()!)));
+      return decodeToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+    }
+    return null;
+  }
 }
