@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Record } from 'src/app/_Models/record';
 import { DoctorService } from '../doctor.service';
+import { Guid } from "guid-typescript";
 
 @Component({
   selector: 'app-record-prescription',

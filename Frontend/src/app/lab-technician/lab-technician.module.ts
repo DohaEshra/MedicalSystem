@@ -4,23 +4,21 @@ import {FileUploadModule} from 'primeng/fileupload';
 import { LabTechnicianRoutingModule } from './lab-technician-routing.module';
 import { LabTechncianHomeComponent } from './lab-techncian-home/lab-techncian-home.component';
 import { FormsModule } from '@angular/forms';
-import { SearchByNamePipe } from './_pipes/search-by-name.pipe';
-import { SearchByIdPipe } from './_pipes/search-by-id.pipe';
 import { FilterRecordsPipe } from './_pipes/filter-records.pipe';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
   declarations: [
     LabTechncianHomeComponent,
-    SearchByNamePipe,
-    SearchByIdPipe,
     FilterRecordsPipe
   ],
   imports: [
     CommonModule,
     LabTechnicianRoutingModule,
     FormsModule,
-    FileUploadModule
+    FileUploadModule,
+    HttpClientModule
   ]
 })
 export class LabTechnicianModule { }

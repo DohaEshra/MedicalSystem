@@ -3,39 +3,32 @@ import { Injectable } from '@angular/core';
 import jwtDecode from 'jwt-decode';
 import { AccountService } from '../account/Account.service';
 import { Patient } from '../_Models/patient';
-import { Record } from '../_Models/record';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LabTechnicianService {
+export class RadiographerService {
 
-  technicianID=0;
+    radiographerID=0;
   baseUrl="https://localhost:7089/api";
 
   constructor(public http:HttpClient , public acc:AccountService) { 
   }
 
-  //get technician ID
-  getLabTechnicianId(){
+  //get radiographer ID
+  getRadiographerID(){
     if(this.acc.getToken()!=null)
     {
       var decodeToken = JSON.parse(JSON.stringify(jwtDecode(this.acc.getToken()!)));
-      this.technicianID = decodeToken.ID;
-      return +this.technicianID;
+      this.radiographerID = decodeToken.ID;
+      return +this.radiographerID;
     }
     return null;
   }
 
-  //get lab's patients
+  //get scan's patients
   getPatients()
   {
-    return this.http.get<Patient[]>(this.baseUrl+"/patient/LabPatients");
+    return this.http.get<Patient[]>(this.baseUrl+"/patient/ScanPatients");
   }
-
-  //Add Files
-  AddPatientFile(pid:number,did:number,date:Date, record:any){
-    return this.http.put<any>(this.baseUrl+"/Record/AddFile/"+pid+"/"+did+"/"+date,record);
-  }
-  
 }

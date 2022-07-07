@@ -13,6 +13,7 @@ const routes: Routes = [
   {path:"doctor",loadChildren:()=>import('./doctor/doctor.module').then(m=>m.DoctorModule)},
   {path:"patient", loadChildren:()=>import('./patient/patient.module').then(p=>p.PatientModule)},
   {path:"lab", loadChildren:()=>import('./lab-technician/lab-technician.module').then(p=>p.LabTechnicianModule)},
+  {path:"scan", loadChildren:()=>import('./radiographer/radiographer.module').then(p=>p.RadiographerModule)},
   {path:"",redirectTo:"login",pathMatch:"full"},
   {path:"**",component:NotFoundComponent}
 ];

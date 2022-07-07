@@ -33,10 +33,10 @@
     </tr>
     </thead>
     <tbody>
-        <tr class="text-center" *ngFor="let record of ( patient.records |filterRecords); let i=index">
-            <td style="vertical-align: middle" *ngIf="i == 0;else t1" class="text-light" [rowSpan]="( patient.records |filterRecords).length">{{ patient.id }}</td>
+        <tr class="text-center" *ngFor="let record of ( patient.records |recordFilteration); let i=index">
+            <td style="vertical-align: middle" *ngIf="i == 0;else t1" class="text-light" [rowSpan]="( patient.records |recordFilteration).length">{{ patient.id }}</td>
                 <ng-template #t1></ng-template>
-            <td style="vertical-align: middle" *ngIf="i == 0;else t2" class="text-light"  [rowSpan]="( patient.records |filterRecords).length">{{ patient.fname }} {{ patient.lname }}</td>
+            <td style="vertical-align: middle" *ngIf="i == 0;else t2" class="text-light"  [rowSpan]="( patient.records |recordFilteration).length">{{ patient.fname }} {{ patient.lname }}</td>
                 <ng-template #t2></ng-template>
             <td  style="vertical-align: middle" class="text-light" >
                 {{ record.file_description }} 
@@ -50,12 +50,12 @@
             <td style="vertical-align: middle" >
                 <p-fileUpload 
                 name="myfiles[]"
-                [url]="'https://localhost:7089/api/Record/AddFile/' + record.pid + '/' + record.did + '/' + record.date + '/' + record.file_description + '/' + labTechnicianId"
+                [url]="'https://localhost:7089/api/Record/AddFile/' + record.pid + '/' + record.did + '/' + record.date + '/' + record.file_description + '/' + radiographerID"
                 [multiple]="false"
                 accept="application/pdf"
                 mode="basic" 
                 [auto]="true"
-                chooseLabel="Medical Test"
+                chooseLabel="Scan"
                 (onUpload)="myUploader(record, $event)"
                 (onError)="errorInUploading($event)"
                 >
@@ -81,10 +81,10 @@
     </tr>
     </thead>
     <tbody>
-        <tr class="text-center" *ngFor="let record of ( patient.records |filterRecords); let i=index">
-            <td style="vertical-align: middle" *ngIf="i == 0;else t1" class="text-light" [rowSpan]="( patient.records |filterRecords).length">{{ patient.id }}</td>
+        <tr class="text-center" *ngFor="let record of ( patient.records |recordFilteration); let i=index">
+            <td style="vertical-align: middle" *ngIf="i == 0;else t1" class="text-light" [rowSpan]="( patient.records |recordFilteration).length">{{ patient.id }}</td>
                 <ng-template #t1></ng-template>
-            <td style="vertical-align: middle" *ngIf="i == 0;else t2" class="text-light"  [rowSpan]="( patient.records |filterRecords).length">{{ patient.fname }} {{ patient.lname }}</td>
+            <td style="vertical-align: middle" *ngIf="i == 0;else t2" class="text-light"  [rowSpan]="( patient.records |recordFilteration).length">{{ patient.fname }} {{ patient.lname }}</td>
                 <ng-template #t2></ng-template>
             <td  style="vertical-align: middle" class="text-light" >
                 {{ record.file_description }} 
@@ -98,12 +98,12 @@
             <td style="vertical-align: middle" >
                 <p-fileUpload 
                 name="myfiles[]"
-                [url]="'https://localhost:7089/api/Record/AddFile/' + record.pid + '/' + record.did + '/' + record.date + '/' + record.file_description + '/' + labTechnicianId"
+                [url]="'https://localhost:7089/api/Record/AddFile/' + record.pid + '/' + record.did + '/' + record.date + '/' + record.file_description + '/' + radiographerID"
                 [multiple]="false"
                 accept="application/pdf"
                 mode="basic" 
                 [auto]="true"
-                chooseLabel="Medical Test"
+                chooseLabel="Scan"
                 (onUpload)="myUploader(record, $event)"
                 (onError)="errorInUploading($event)"
                 >
@@ -114,3 +114,4 @@
   </table> 
 
 </div>
+

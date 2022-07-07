@@ -11,7 +11,8 @@ export class Record {
                 public summary:string='',
                 public prescription:string='',
                 public didNavigation:Doctor|null=new Doctor(),
-                public testType:String|null= null
+                public testType:String|null= null,
+                public fno:string|null = null
                 ){}
 
 }

@@ -101,7 +101,7 @@ namespace MedicalSystem.Controllers
 
                     var token = new JwtSecurityToken(
                         claims: data,
-                        expires: DateTime.Now.AddMinutes(120),
+                        expires: DateTime.Now.AddMinutes(460),
                         signingCredentials: credentials
                     );
 

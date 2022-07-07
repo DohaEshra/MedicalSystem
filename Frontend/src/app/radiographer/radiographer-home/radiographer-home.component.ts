@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Patient } from 'src/app/_Models/patient';
 import { Record } from 'src/app/_Models/record';
-import { LabTechnicianService } from '../lab-technician.service';
+import { RadiographerService } from '../radiographer.service';
 
 @Component({
-  selector: 'app-lab-techncian-home',
-  templateUrl: './lab-techncian-home.component.html',
-  styleUrls: ['./lab-techncian-home.component.css']
+  selector: 'app-radiographer-home',
+  templateUrl: './radiographer-home.component.html',
+  styleUrls: ['./radiographer-home.component.css']
 })
-export class LabTechncianHomeComponent implements OnInit {
-Indicator =0;
+export class RadiographerHomeComponent implements OnInit {
+
+  Indicator =0;
   ID:any="";
   Name=""
   patientsList:any= [];
@@ -18,20 +19,20 @@ Indicator =0;
   uploadedFiles: any[] = [];
   patient = new Patient()
   sub:Subscription|null = null;
-  labTechnicianId
-  constructor(public labTechnicianService:LabTechnicianService) {
-    this.labTechnicianId = this.labTechnicianService.getLabTechnicianId();
+  radiographerID
+  constructor(public radiographerService:RadiographerService) {
+    this.radiographerID = this.radiographerService.getRadiographerID();
    }
 
   ngOnInit(): void {
-    this.sub = this.labTechnicianService.getPatients().subscribe({
+    this.sub = this.radiographerService.getPatients().subscribe({
         next: data =>
         {
           this.patientsList = data
           console.log('success to add patient ' , data)
         }
         ,error:err=>{
-          console.log('error from lab technician home component', err)
+          console.log('error from radiographer home component', err)
           // this.errorMessage = err.error;
           // Object.values(err.error.errors).map((e: any)=> e.map((x:string)=> x))
         }
@@ -94,4 +95,5 @@ Indicator =0;
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
   }
+
 }
