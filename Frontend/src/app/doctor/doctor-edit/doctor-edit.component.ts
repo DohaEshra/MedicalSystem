@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Doctor } from 'src/app/_Models/doctor';
 import { DoctorHomeComponent } from '../doctor-home/doctor-home.component';
 import { DoctorService } from '../doctor.service';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-doctor-edit',
@@ -25,11 +26,19 @@ export class DoctorEditComponent implements OnInit,OnDestroy {
   addressPattern = '^[A-Za-z0-9,_.-]{10,40}$';
   namePattern = '^[A-Za-z]{2,20}$';
   emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
+
+  counter:number=0;
+  firstName:string=''
+  lastName:string=''
+
   ngOnInit(): void {
     //get doctor data
     this.sub = this.doc.selectedDoctor$.subscribe(
       data=>{
         this.doctor=data;
+        this.firstName = this.doctor.fname
+        this.lastName = this.doctor.lname
+        this.counter = 0;
       }
     );
   }
@@ -38,6 +47,13 @@ export class DoctorEditComponent implements OnInit,OnDestroy {
   edit(){
     this.doctorSer.editDoctor(this.doctor).subscribe(
       a=>{
+        this.doctor.fname = this.firstName
+        this.doctor.lname = this.lastName
+        this.counter++;
+        if(this.counter==1)
+        {
+          this.edit();
+        }
         this.router.navigateByUrl("doctor/info");
       },
       error=>{

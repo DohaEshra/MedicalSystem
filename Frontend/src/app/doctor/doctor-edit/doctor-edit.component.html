@@ -13,8 +13,9 @@
                     style="border-radius:30px ;"
                     class="form-control form-control-lg "  
                     name="First Name"
-                    [(ngModel)]="doctor.fname" 
+                    [(ngModel)]="this.firstName" 
                     />
+                    
         </div>
 
             <!-- Last Name -->
@@ -24,8 +25,8 @@
                     style="border-radius:30px ;"
                     class="form-control form-control-lg " 
                     name="Last Name"
-                    [(ngModel)]="doctor.lname" 
-                    placeholder ="Enter your Last name" required #lname="ngModel"/>
+                    [(ngModel)]="this.lastName" 
+                    />
         </div>
         <!-- EMAIL -->
         <div class="form-group">
