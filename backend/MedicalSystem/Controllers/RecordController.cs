@@ -72,7 +72,7 @@ namespace MedicalSystem.Controllers
                 return BadRequest();
             }
 
-            Record Record = await _context.Records.Where(r =>  r.DID==did && r.PID==pid && r.date==date ).FirstOrDefaultAsync();
+            Record Record = await _context.Records.Where(r =>  r.DID==did && r.PID==pid && r.date==date && r.FNO==@record.FNO).FirstOrDefaultAsync();
             if(Record != null)
             {
                 await _context.Procedures.Update_RecordAsync(@record.file_description, @record.testType, pid, did, date, @record.FNO, @record.summary, @record.prescription);

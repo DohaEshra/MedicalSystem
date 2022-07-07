@@ -33,6 +33,7 @@ export class EditPrescriptionComponent implements OnInit {
           }
         )
       }
+      
     ) 
   }
   
@@ -44,7 +45,6 @@ export class EditPrescriptionComponent implements OnInit {
       this.recordList[0].testType="";
       this.docSer.editRecordByFno(fno,this.recordList[0]).subscribe(
         a=>{
-          this.recordList=this.recordList.filter(obj=>{return obj.fno!=fno;})
         }
       );
       
@@ -85,7 +85,7 @@ export class EditPrescriptionComponent implements OnInit {
       }
       if(this.count == this.recordList.length && this.validation(date,summary,prescription))
       {
-        this.router.navigateByUrl("doctor/patient/"+this.recordList[0].pid+"/history");
+        this.router.navigateByUrl("doctor/patient/"+this.recordList[0]?.pid+"/history");
       }
     }
    
@@ -113,10 +113,24 @@ export class EditPrescriptionComponent implements OnInit {
     return true;
   }
 
-
+  newFile:Record= new Record();
   //add inputs
-  add(){
-    
+  add(desc:string,type:string){
+    if(desc && type)
+    {
+      this.newFile = new Record(this.recordList[0].did,this.recordList[0].pid,null,desc,"",this.recordList[0].date,this.recordList[0].summary,this.recordList[0].prescription,null,type);
+      this.docSer.recordPatientPrescription(this.newFile,this.recordList[0].pid,this.recordList[0].did,this.recordList[0].date).subscribe(
+        a=>{
+          this.docSer.getPatientPrescription(this.recordList[0].pid,this.docSer.DoctorID,this.recordList[0].date).subscribe(
+            data=>{
+              this.recordList = data;
+              this.indicator=true;
+              this.newFile=new Record();
+            }
+          )
+        }
+      )
+    }
   }
 
   ngOnDestroy(): void {

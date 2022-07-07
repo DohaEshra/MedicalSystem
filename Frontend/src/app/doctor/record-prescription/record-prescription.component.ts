@@ -31,12 +31,16 @@ export class RecordPrescriptionComponent implements OnInit {
   
 
   //add field
+  empty:string="";
   fieldId= 0; 
   addField(){
-    this.fieldId++;
     var inputValue = (<HTMLInputElement>document.getElementById('newField')).value;
     var testType = (<HTMLInputElement>document.getElementById('type')).value;
-    this.addEl('fields', 'p', 'field-' + this.fieldId, inputValue,testType);
+    if(inputValue && testType)
+    {
+      this.fieldId++;
+      this.addEl('fields', 'p', 'field-' + this.fieldId, inputValue,testType);
+    }
   }
 
 
