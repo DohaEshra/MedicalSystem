@@ -5,6 +5,8 @@ import { Doctor } from '../_Models/doctor';
 import jwt_decode from 'jwt-decode';
 import { Visit } from '../_Models/visit';
 import { Record } from '../_Models/record';
+import { Guid } from 'guid-typescript';
+import { FileInfo } from './_Models/FileInfo';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +14,7 @@ import { Record } from '../_Models/record';
 export class DoctorService {
   baseUrl="https://localhost:7089/api/";
   DoctorID=0;
-  constructor(public http:HttpClient , public acc:AccountService) { 
-    
-  }
+  constructor(public http:HttpClient , public acc:AccountService) { }
 
   getDoctorId(){
     if(this.acc.getToken()!=null)
@@ -64,13 +64,25 @@ export class DoctorService {
     return this.http.get<Visit[]>(this.baseUrl+"visit/get/"+this.DoctorID);
   }
 
-  // //record prescription
-  // recordPatientPrescription(record:Record){
-  //   return this.http.post<Record>(this.baseUrl+"Record",record);
-  // }
+  //get prescription
+  getPatientPrescription(pid:number,did:number,date:Date){
+    return this.http.get<FileInfo[]>(this.baseUrl+"Record/"+pid+"/"+did+"/"+date);
+  }
 
   //record prescription
   recordPatientPrescription(record:Record,pid:number,did:number,date:Date){
     return this.http.put<undefined>(this.baseUrl+"Record/"+pid+"/"+did+"/"+date,record);
+  }
+
+  //delete record
+  deleteRecordByFno(fno:Guid)
+  {
+    return this.http.delete<undefined>(this.baseUrl+"Record/"+fno);
+  }
+
+  //edit record
+  editRecordByFno(fno:Guid,record:FileInfo)
+  {
+    return this.http.put<undefined>(this.baseUrl+"Record/"+fno,record);
   }
 }

@@ -49,6 +49,20 @@ namespace MedicalSystem.Controllers
             return @record;
         }
 
+        // GET: api/Records/pid/did/date
+        [HttpGet("{pid}/{did}/{date}")]
+        public async Task<ActionResult<IEnumerable<Record>>> GetSpecificRecords(int pid,int did,DateTime date)
+        {
+            List<Record> Record = await _context.Records.Where(r => r.DID == did && r.PID == pid && r.date == date).ToListAsync();
+
+            if (_context.Records == null)
+            {
+                return NotFound();
+            }
+
+            return Record;
+        }
+
         //api/Record/pid/did/date
         [HttpPut("{pid}/{did}/{date}")]
         public async Task<IActionResult> RecordTests(int pid,int did,DateTime date, Record @record)
@@ -57,20 +71,15 @@ namespace MedicalSystem.Controllers
             {
                 return BadRequest();
             }
-            bool indicator = true;
-            Guid intiate = new Guid("00000000-0000-0000-0000-000000000000");
-            List<Record> Record = await _context.Records.Where(r =>  r.DID==did && r.PID==pid && r.date==date).ToListAsync();
+
+            Record Record = await _context.Records.Where(r =>  r.DID==did && r.PID==pid && r.date==date && r.FNO==@record.FNO).FirstOrDefaultAsync();
             if(Record != null)
             {
-                for (int i = 1; i <= Record.Count && indicator && Record[i - 1].FNO == intiate; i++)
-                {
-                    await _context.Procedures.Update_RecordAsync(@record.file_description, pid, did, date);
-                    indicator = false;
-                }
+                await _context.Procedures.Update_RecordAsync(@record.file_description, @record.testType, pid, did, date, @record.FNO, @record.summary, @record.prescription);
             }
-            if(indicator)
+            else
             {
-                await _context.Procedures.Insert_RecordAsync(pid,did,date,@record.file_description,@record.summary,@record.prescription);
+                await _context.Procedures.Insert_RecordAsync(pid, did, date, @record.file_description, @record.testType, @record.summary, @record.prescription);
             }
 
             try
@@ -128,14 +137,17 @@ namespace MedicalSystem.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRecord(int id, Record @record)
+        public async Task<IActionResult> PutRecord(Guid id, Record @record)
         {
-            if (id != @record.DID)
+            if (id != @record.FNO)
             {
                 return BadRequest();
             }
-
-            _context.Entry(@record).State = EntityState.Modified;
+            Record Record = await _context.Records.Where(r => r.DID == @record.DID && r.PID == @record.PID  && r.FNO == @record.FNO).FirstOrDefaultAsync();
+            if (Record != null)
+            {
+                await _context.Procedures.Update_RecordAsync(@record.file_description, @record.testType, @record.PID, @record.DID, @record.date, @record.FNO, @record.summary, @record.prescription);
+            }
 
             try
             {
@@ -183,9 +195,9 @@ namespace MedicalSystem.Controllers
 
         // DELETE: api/Records/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRecord(int id)
+        public async Task<IActionResult> DeleteRecord(Guid id)
         {
-            var @record = await _context.Records.FindAsync(id);
+            var @record = await _context.Records.Where(r => r.FNO==id).FirstOrDefaultAsync();
             if (@record == null)
             {
                 return NotFound();
@@ -200,6 +212,10 @@ namespace MedicalSystem.Controllers
         private bool RecordExists(int did,int pid, DateTime date)
         {
             return _context.Records.Any(e => e.DID == did && e.PID == pid && e.date == date);
+        }
+        private bool RecordExists(Guid id)
+        {
+            return _context.Records.Any(e => e.FNO == id);
         }
         private Patient GetCurrentUser()
         {

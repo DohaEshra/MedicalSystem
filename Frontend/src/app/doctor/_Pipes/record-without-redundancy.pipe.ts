@@ -18,11 +18,14 @@ export class RecordWithoutRedundancyPipe implements PipeTransform {
       {
         if(records[i].date==records[j].date && records[i].pid==records[j].pid && records[i].did==records[j].did)
         {
+          temp["did"]=records[i].did;
+          temp["pid"]=records[i].pid;
           temp["date"]=records[i].date;
           temp["summary"]=records[i].summary;
           temp["prescription"]=records[i].prescription;
           temp["attached_files"].push(records[j].attached_files||"");
           temp["file_description"].push(records[j].file_description||"");
+          temp["testType"].push(records[j].testType||"");
         }
       }
 

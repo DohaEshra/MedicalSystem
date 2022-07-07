@@ -7,6 +7,7 @@ import { DoctorInfoComponent } from "./doctor-info/doctor-info.component";
 import { DoctorPatientInfoComponent } from "./doctor-patient-info/doctor-patient-info.component";
 import { DoctorPatientSearchComponent } from "./doctor-patient-search/doctor-patient-search.component";
 import { DoctorPatientComponent } from "./doctor-patient/doctor-patient.component";
+import { EditPrescriptionComponent } from "./edit-prescription/edit-prescription.component";
 import { PatientHistoryComponent } from "./patient-history/patient-history.component";
 import { RecordPrescriptionComponent } from "./record-prescription/record-prescription.component";
 
@@ -20,7 +21,8 @@ const routes:Routes =[
             {path:"info",component:DoctorPatientInfoComponent},
             {path:"history",component:PatientHistoryComponent},
         ]},
-        {path:"recordpre/:id",component:RecordPrescriptionComponent}
+        {path:"recordpre/:id",component:RecordPrescriptionComponent},
+        {path:"editpre/:id/:date",component:EditPrescriptionComponent}
     ]},
     {path:"home",component:DoctorHomeComponent,canActivate:[DoctorLoginGuard]},
 ];

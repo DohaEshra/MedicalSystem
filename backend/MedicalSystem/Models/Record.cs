@@ -22,19 +22,17 @@ namespace MedicalSystem.Models
         public byte[]? attached_files { get; set; }
         [Key]
         public DateTime date { get; set; }
+        [Required]
         [Unicode(false)]
         public string summary { get; set; }
         public int? OID { get; set; }
+        [Required]
         [Unicode(false)]
         public string prescription { get; set; }
+        [StringLength(1)]
+        public string testType { get; set; }
         [Key]
         public Guid FNO { get; set; }
-
-        public string testType { get; set; }
-
-
-        //[Required]
-        //public string medicalPerscription { get; set; }
 
         [ForeignKey("DID")]
         [InverseProperty("Records")]

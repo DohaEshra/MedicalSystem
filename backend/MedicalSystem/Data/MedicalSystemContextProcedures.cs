@@ -46,7 +46,7 @@ namespace MedicalSystem.Data
             _context = context;
         }
 
-        public virtual async Task<int> Insert_RecordAsync(int? pid, int? did, DateTime? date, string fileDesc, string summary, string prescription, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
+        public virtual async Task<int> Insert_RecordAsync(int? pid, int? did, DateTime? date, string fileDesc, string fileType, string summary, string prescription, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
         {
             var parameterreturnValue = new SqlParameter
             {
@@ -82,6 +82,13 @@ namespace MedicalSystem.Data
                     Size = 150,
                     Value = fileDesc ?? Convert.DBNull,
                     SqlDbType = System.Data.SqlDbType.VarChar,
+                },
+                new SqlParameter
+                {
+                    ParameterName = "fileType",
+                    Size = 2,
+                    Value = fileType ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.NVarChar,
                 },
                 new SqlParameter
                 {
@@ -99,14 +106,14 @@ namespace MedicalSystem.Data
                 },
                 parameterreturnValue,
             };
-            var _ = await _context.Database.ExecuteSqlRawAsync("EXEC @returnValue = [dbo].[Insert_Record] @pid, @did, @date, @fileDesc, @summary, @prescription", sqlParameters, cancellationToken);
+            var _ = await _context.Database.ExecuteSqlRawAsync("EXEC @returnValue = [dbo].[Insert_Record] @pid, @did, @date, @fileDesc, @fileType, @summary, @prescription", sqlParameters, cancellationToken);
 
             returnValue?.SetValue(parameterreturnValue.Value);
 
             return _;
         }
 
-        public virtual async Task<int> Update_RecordAsync(string fileDesc, int? pid, int? did, DateTime? date, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
+        public virtual async Task<int> Update_RecordAsync(string fileDesc, string fileType, int? pid, int? did, DateTime? date, Guid? fno, string summary, string pre, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
         {
             var parameterreturnValue = new SqlParameter
             {
@@ -123,6 +130,13 @@ namespace MedicalSystem.Data
                     Size = 150,
                     Value = fileDesc ?? Convert.DBNull,
                     SqlDbType = System.Data.SqlDbType.VarChar,
+                },
+                new SqlParameter
+                {
+                    ParameterName = "fileType",
+                    Size = 2,
+                    Value = fileType ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.NVarChar,
                 },
                 new SqlParameter
                 {
@@ -143,9 +157,29 @@ namespace MedicalSystem.Data
                     Value = date ?? Convert.DBNull,
                     SqlDbType = System.Data.SqlDbType.DateTime2,
                 },
+                new SqlParameter
+                {
+                    ParameterName = "fno",
+                    Value = fno ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.UniqueIdentifier,
+                },
+                new SqlParameter
+                {
+                    ParameterName = "summary",
+                    Size = -1,
+                    Value = summary ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.VarChar,
+                },
+                new SqlParameter
+                {
+                    ParameterName = "pre",
+                    Size = -1,
+                    Value = pre ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.VarChar,
+                },
                 parameterreturnValue,
             };
-            var _ = await _context.Database.ExecuteSqlRawAsync("EXEC @returnValue = [dbo].[Update_Record] @fileDesc, @pid, @did, @date", sqlParameters, cancellationToken);
+            var _ = await _context.Database.ExecuteSqlRawAsync("EXEC @returnValue = [dbo].[Update_Record] @fileDesc, @fileType, @pid, @did, @date, @fno, @summary, @pre", sqlParameters, cancellationToken);
 
             returnValue?.SetValue(parameterreturnValue.Value);
 

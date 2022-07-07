@@ -333,10 +333,12 @@ namespace MedicalSystem.Migrations
                         .HasColumnType("varchar(150)");
 
                     b.Property<string>("prescription")
+                        .IsRequired()
                         .IsUnicode(false)
                         .HasColumnType("varchar(max)");
 
                     b.Property<string>("summary")
+                        .IsRequired()
                         .IsUnicode(false)
                         .HasColumnType("varchar(max)");
 

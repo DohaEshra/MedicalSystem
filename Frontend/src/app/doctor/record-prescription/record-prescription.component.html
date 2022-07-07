@@ -9,34 +9,39 @@
         <div class="form-group">
             <label for="Date" class="fs-5">Date</label>
             <label style="color: red;">*</label>
-            <input  type="date"  
+            <input  type="datetime-local"  
+               id="date" 
                style="border-radius:30px ;"
                class="form-control form-control-lg " 
-               name="birthDate"
-               [(ngModel)]="record.date"  [ngModelOptions]="{standalone: true}"
-               appAgeValidation
-               placeholder ="Enter your birth date" required #birthDate="ngModel"/>
+               [(ngModel)]="record.date" [ngModelOptions]="{standalone: true}"
+            />
         </div>
         <div class="form-group">
             <label for="Textarea1" class="fs-5 mt-4" >Medical Diagnosis</label>
             <label style="color: red;">*</label>
-            <textarea class="form-control" id="Textarea1" rows="1" style="border-radius:30px ;" [(ngModel)]="record.summary" [ngModelOptions]="{standalone: true}"></textarea>
+            <textarea class="form-control" id="summary" rows="1" style="border-radius:30px ;" [(ngModel)]="record.summary" [ngModelOptions]="{standalone: true}"></textarea>
         </div>
         <div class="form-group">
             <label for="Textarea1" class="fs-5 mt-4" >Prescription</label>
             <label style="color: red;">*</label>
-            <textarea class="form-control" id="Textarea1" rows="4" style="border-radius:30px ;" [(ngModel)]="record.prescription" [ngModelOptions]="{standalone: true}"></textarea>
+            <textarea class="form-control" id="prescription" rows="4" style="border-radius:30px ;" [(ngModel)]="record.prescription" [ngModelOptions]="{standalone: true}"></textarea>
         </div>
         <div class="form-group">
             <label for="Textarea1" class="fs-5 mt-4" >Medical Tests</label>
             <div class="d-flex mb-3">
-                <input class="form-control mx-2" id="newField" style="border-radius:30px ;width: 50%;"/>
+                <input class="form-control mx-2" id="newField" style="border-radius:30px ;width: 80%;" />
+                <select id="type" class="form-select mx-2" style="border-radius:30px; width:20%" aria-label="Default select example" required [(ngModel)]="record.testType" [ngModelOptions]="{standalone: true}">
+                    <option class="fs-7" value="S">S</option>
+                    <option class="fs-7" value="T">T</option>
+                </select>
                 <input name="addFieldButton" type="button" class="btn btn-success btn-outline-success text-light col-md-1 " value="+" style="border-radius:30px ;" (click)="addField()" />
             </div>
         </div>
         <div class="form-group">
             <span id="fields"></span>
             <p></p>
+        </div>
+        <div class="form-group" id="error">
         </div>
         <div class="form-group d-grid mx-auto">
             <button (click)="submit()" class=" profile1-btn btn-secondary btn-outline-info ">Submit</button>
