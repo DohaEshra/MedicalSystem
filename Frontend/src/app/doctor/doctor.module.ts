@@ -14,6 +14,8 @@ import { DoctorPatientComponent } from './doctor-patient/doctor-patient.componen
 import { PatientHistoryComponent } from './patient-history/patient-history.component';
 import { RecordPrescriptionComponent } from './record-prescription/record-prescription.component';
 import { EditPrescriptionComponent } from './edit-prescription/edit-prescription.component';
+import { SafePipe } from './_Pipes/safe.pipe';
+import {DialogModule} from 'primeng/dialog';
 
 
 
@@ -32,9 +34,10 @@ import { EditPrescriptionComponent } from './edit-prescription/edit-prescription
     PatientHistoryComponent,
     RecordPrescriptionComponent,
     EditPrescriptionComponent,
+    SafePipe,
   ],
   imports: [
-    CommonModule,doctorRoutingModule,FormsModule
+    CommonModule,doctorRoutingModule,FormsModule,DialogModule
   ],
   providers:[
     SearchByNamePipe

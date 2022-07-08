@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MedicalSystem.Data;
 using MedicalSystem.Models;
 using System.Security.Claims;
+using System.Text;
 
 namespace MedicalSystem.Controllers
 {
@@ -111,8 +112,8 @@ namespace MedicalSystem.Controllers
             var form = Request.Form;
             using (var ms = new MemoryStream())
             {
-                form.Files[0].CopyTo(ms);
-                var fileBytes = ms.ToArray();
+                await form.Files[0].CopyToAsync(ms);
+                var fileBytes =  ms.ToArray();
                 record.attached_files = fileBytes;
             }
             record.OID = oid;

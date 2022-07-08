@@ -6,7 +6,7 @@ export class Record {
                 public pid:number=Number(), 
                 public oid:number|null=null, 
                 public file_description: string|null=null, 
-                public attached_files :string|null=null, 
+                public attached_files :Blob|null=null, 
                 public date :Date=new Date(), 
                 public summary:string='',
                 public prescription:string='',

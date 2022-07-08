@@ -118,7 +118,7 @@ export class EditPrescriptionComponent implements OnInit {
   add(desc:string,type:string){
     if(desc && type)
     {
-      this.newFile = new Record(this.recordList[0].did,this.recordList[0].pid,null,desc,"",this.recordList[0].date,this.recordList[0].summary,this.recordList[0].prescription,null,type);
+      this.newFile = new Record(this.recordList[0].did,this.recordList[0].pid,null,desc,null,this.recordList[0].date,this.recordList[0].summary,this.recordList[0].prescription,null,type);
       this.docSer.recordPatientPrescription(this.newFile,this.recordList[0].pid,this.recordList[0].did,this.recordList[0].date).subscribe(
         a=>{
           this.docSer.getPatientPrescription(this.recordList[0].pid,this.docSer.DoctorID,this.recordList[0].date).subscribe(
