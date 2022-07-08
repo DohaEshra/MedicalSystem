@@ -2,46 +2,44 @@
 label {
     display: block;
     margin-top: 10px;
-  }
+}
+   
+.profile-img-card {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 10px;
+  display: block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
 
 
-  
-  .profile-img-card {
-    width: 96px;
-    height: 96px;
-    margin: 0 auto 10px;
-    display: block;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-  }
+.login{
+  margin-top: 30px;
+  background: #a5c422;
+  border-radius: 30px;
+  border-color: white;
+  color: #ffffff;
+  font-weight: 600;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
 
+.login:hover{
+  background: #426d11;
+  color: #ffffff !important;
+}
 
-   .login{
-    margin-top: 30px;
-    background: #a5c422;
-    border-radius: 30px;
-    border-color: white;
-    color: #ffffff;
-    font-weight: 600;
-    padding-top: 12px;
-    padding-bottom: 12px;
-  }
+.displayImg{
+  display: none;
+}
 
-   .login:hover{
-    background: #426d11;
-    color: #ffffff !important;
-  }
-
-  displayImg{
-    display: none;
-  }
-
-  #display-image{
-    display: none;
-    width: 100px;
-    height: 100px;
-  }
+#display-image{
+  display: none;
+  width: 100px;
+  height: 100px;
+}
 
 img{
   display: none;
@@ -53,6 +51,7 @@ img{
 body{
   background: -webkit-linear-gradient(left, #3931af, #00c6ff);
 }
+
 .emp-profile{
   padding: 3%;
   margin-top: 3%;
