@@ -1,9 +1,9 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Patient } from 'src/app/_Models/patient';
 import { Visit } from 'src/app/_Models/visit';
 import { DoctorService } from '../doctor.service';
 import { SearchByNamePipe } from '../_Pipes/search-by-name.pipe';
-
 @Component({
   selector: 'app-doctor-patient-search',
   templateUrl: './doctor-patient-search.component.html',
@@ -15,6 +15,8 @@ export class DoctorPatientSearchComponent implements OnInit,OnDestroy {
   Name:string="";
   visitList:Visit[]=[];
   sub:Subscription|null=null;
+  selectedDay: string = '';
+
   constructor(public doctorSer:DoctorService) { }
 
   ngOnInit(): void {
@@ -23,7 +25,7 @@ export class DoctorPatientSearchComponent implements OnInit,OnDestroy {
         if(data!=null)
         {
           this.visitList=data;
-          // console.log(this.visitList)
+          console.log(this.visitList)
         }
       },
       //err => console.log("error from doctor patient search component",err)
@@ -43,5 +45,10 @@ export class DoctorPatientSearchComponent implements OnInit,OnDestroy {
 
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
+  }
+  //event handler for the select element's change event
+  selectChangeHandler (event: any) {
+    //update the ui
+    this.selectedDay = event.target.value;
   }
 }
