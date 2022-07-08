@@ -13,6 +13,7 @@ export class PatientHistoryComponent implements OnInit,OnDestroy {
 
   RecordList:Record[]=[];
   doctorID:number|null=null;
+  searchText:string="";
   sub:Subscription|null=null;
   fileDialogVisibility = false;
 

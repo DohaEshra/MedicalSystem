@@ -3,9 +3,9 @@
   <div class="d-flex justify-content-center">
    
     <div class="dropdown show">
-      <a class="dropdown-toggle searchby" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <div class="dropdown-toggle searchby" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Search  by 
-      </a>  
+      </div>  
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
         <a class="dropdown-item" (click)="setIndicatorForId()">ID</a>
         <a class="dropdown-item" (click)="setIndicatorForName()">Name</a>
@@ -13,13 +13,13 @@
     </div>
 
     <div class="searchbar">
-      <input class="search_input" [(ngModel)]="ID" [ngModelOptions]="{standalone: true}"    *ngIf="Indicator==1" type="search" placeholder="Search by ID ..." aria-label="Search">
+      <input class="search_input" [(ngModel)]="ID" [ngModelOptions]="{standalone: true}"  *ngIf="Indicator==1" type="search" placeholder="Search by ID ..." aria-label="Search">
       <input class="search_input" [(ngModel)]="Name" [ngModelOptions]="{standalone: true}"  *ngIf="Indicator==2" type="search" placeholder="Search by name ..." aria-label="Search">
       <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
     </div>
   </div>
 
-  <table class="table table-striped" *ngIf="Name!='' && !ID">
+  <table class="table table-striped" *ngIf="(Indicator==0 && !Name && !ID) || (Indicator==1 && (!Name && !ID)) || (Indicator==2 && (!Name && !ID)) || (Indicator==2 && !Name && ID) || (Indicator==1 && Name && !ID)">
     <thead>
       <tr>
         <th scope="col"></th>
@@ -28,7 +28,26 @@
       </tr>
     </thead>
     <tbody>
-      <tr   *ngFor="let patient of visitList|searchByName:Name">
+      <tr *ngFor="let patient of visitList">
+        <td>
+          <a  class="text-light fs-6" [routerLink]="['/doctor/patient',patient.pidNavigation.id,'info']"><i class="fa fa-eye" aria-hidden="true"></i></a>
+        </td>
+        <td class="text-light fs-6">{{patient.pidNavigation.id}}</td>
+        <td class="text-light fs-6">{{patient.pidNavigation.fname}} {{patient.pidNavigation.lname}}</td>
+      </tr>
+    </tbody>
+  </table> 
+
+  <table class="table table-striped" *ngIf="Name!=''&&Indicator==2">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let patient of visitList|searchByName:Name">
         <td>
           <a  class="text-light fs-6" [routerLink]="['/doctor/patient',patient.id,'info']"><i class="fa fa-eye" aria-hidden="true"></i></a>
         </td>
@@ -38,7 +57,7 @@
     </tbody>
   </table>
 
-  <table class="table table-striped" *ngIf="(visitList|searchById:ID).id!=0">
+  <table class="table table-striped" *ngIf="(visitList|searchById:ID).id!=0&&Indicator==1">
     <thead>
       <tr>
         <th class="text-center"><em class="fa fa-cog"></em></th>
@@ -56,5 +75,8 @@
       </tr>
     </tbody>
   </table>
+</div> 
 
-</div>
+
+
+

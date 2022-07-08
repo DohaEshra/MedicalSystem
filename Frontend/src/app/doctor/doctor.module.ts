@@ -16,6 +16,7 @@ import { RecordPrescriptionComponent } from './record-prescription/record-prescr
 import { EditPrescriptionComponent } from './edit-prescription/edit-prescription.component';
 import { SafePipe } from './_Pipes/safe.pipe';
 import {DialogModule} from 'primeng/dialog';
+import { SearchInTable } from './_Pipes/search-in-table.pipe';
 
 
 
@@ -30,6 +31,7 @@ import {DialogModule} from 'primeng/dialog';
     SearchByIdPipe,
     DoctorPatientInfoComponent,
     RecordWithoutRedundancyPipe,
+    SearchInTable,
     DoctorPatientComponent,
     PatientHistoryComponent,
     RecordPrescriptionComponent,
