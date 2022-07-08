@@ -46,9 +46,4 @@ export class DoctorPatientSearchComponent implements OnInit,OnDestroy {
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
   }
-  //event handler for the select element's change event
-  selectChangeHandler (event: any) {
-    //update the ui
-    this.selectedDay = event.target.value;
-  }
 }
