@@ -28,7 +28,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr   *ngFor="let patient of visitList|searchByName:Name">
+      <tr *ngFor="let patient of visitList|searchByName:Name">
         <td>
           <a  class="text-light fs-6" [routerLink]="['/doctor/patient',patient.id,'info']"><i class="fa fa-eye" aria-hidden="true"></i></a>
         </td>
@@ -59,14 +59,6 @@
 
 </div> 
 
-<!-- <select (change)="selectChangeHandler($event)">
-  <option value="Monday">Monday</option>
-  <option value="Tuesday">Tuesday</option>
-  <option value="Wednesday">Wednesday</option>
-  <option value="Thursday">Thursday</option>
-  <option value="Friday">Friday</option>
-</select>
-<p><span>You selected: </span><b>{{selectedDay}}</b></p> -->
 
 
 
