@@ -1,8 +1,4 @@
-<div id="sect1"  > 
-      
-    <div  class="col-lg-8 col-sm-12 d-flex align-items-center justify-content-center ">
-      
-      <div class="card card-container">
+<div class="container emp-profile" *ngIf="doctor.id">
         <div  class="fs-2 text-center mb-3" style=" color: #a5c422;">Edit Your Profile </div>
         <form class="row"  name="form" #MyForm="ngForm" >
           <div class="left col-lg-6 col-sm-12 ">
@@ -14,8 +10,7 @@
                     class="form-control form-control-lg "  
                     name="First Name"
                     [(ngModel)]="this.firstName" 
-                    />
-                    
+                    />          
         </div>
 
             <!-- Last Name -->
@@ -39,7 +34,6 @@
                   placeholder ="Enter your Email" required #email="ngModel"/>
       </div>
 
-       
          <!-- Phone -->
         <div class="form-group">
             <label for="phone" class="fs-5">Phone</label>
@@ -50,9 +44,6 @@
                     [(ngModel)]="doctor.phone" 
                     placeholder ="Enter your Phone" required #phone="ngModel"/>
         </div>
-
-      
-
 
           <!-- Address -->
           <!-- city -->
@@ -167,9 +158,5 @@
         <div class="form-group d-grid mx-auto"   >
             <button (click)="edit()" class="login btn-lg">Edit</button>
         </div>
-      
     </form>
-      
-        </div>
-    </div>
-</div> 
+</div>
