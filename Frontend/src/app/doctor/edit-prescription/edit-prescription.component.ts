@@ -4,7 +4,7 @@ import { Guid } from 'guid-typescript';
 import { Subscription } from 'rxjs';
 import { Record } from 'src/app/_Models/record';
 import { DoctorService } from '../doctor.service';
-import { FileInfo } from '../_Models/FileInfo';
+import { FileInfo } from '../../_Models/FileInfo';
 
 @Component({
   selector: 'app-edit-prescription',
@@ -13,7 +13,7 @@ import { FileInfo } from '../_Models/FileInfo';
 })
 export class EditPrescriptionComponent implements OnInit {
 
-  recordList:FileInfo[]=[];
+  recordList:Record[]=[];
   indicator=false;
 
   sub:Subscription|null=null;
@@ -113,19 +113,19 @@ export class EditPrescriptionComponent implements OnInit {
     return true;
   }
 
-  newFile:Record= new Record();
+  newFile:FileInfo= new FileInfo();
   //add inputs
   add(desc:string,type:string){
     if(desc && type)
     {
-      this.newFile = new Record(this.recordList[0].did,this.recordList[0].pid,null,desc,null,this.recordList[0].date,this.recordList[0].summary,this.recordList[0].prescription,null,type);
+      this.newFile = new FileInfo(this.recordList[0].did,this.recordList[0].pid,null,desc,null,this.recordList[0].date,this.recordList[0].summary,this.recordList[0].prescription,null,type);
       this.docSer.recordPatientPrescription(this.newFile,this.recordList[0].pid,this.recordList[0].did,this.recordList[0].date).subscribe(
         a=>{
           this.docSer.getPatientPrescription(this.recordList[0].pid,this.docSer.DoctorID,this.recordList[0].date).subscribe(
             data=>{
               this.recordList = data;
               this.indicator=true;
-              this.newFile=new Record();
+              this.newFile=new FileInfo();
             }
           )
         }

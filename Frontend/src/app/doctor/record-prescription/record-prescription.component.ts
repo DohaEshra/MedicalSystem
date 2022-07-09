@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Record } from 'src/app/_Models/record';
 import { DoctorService } from '../doctor.service';
 import { Guid } from "guid-typescript";
+import { FileInfo } from 'src/app/_Models/FileInfo';
 
 @Component({
   selector: 'app-record-prescription',
@@ -12,8 +13,8 @@ import { Guid } from "guid-typescript";
 })
 export class RecordPrescriptionComponent implements OnInit {
 
-  recordList:Record[]=[];
-  record:Record=new Record();
+  recordList:FileInfo[]=[];
+  record:FileInfo=new FileInfo();
   medicalTests:string[]=[];
   testType:string[]=[];
   sub:Subscription|null=null;
