@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Record } from 'src/app/_Models/record';
 import { DoctorService } from '../doctor.service';
+import { Guid } from "guid-typescript";
+import { FileInfo } from 'src/app/_Models/FileInfo';
 
 @Component({
   selector: 'app-record-prescription',
@@ -11,8 +13,8 @@ import { DoctorService } from '../doctor.service';
 })
 export class RecordPrescriptionComponent implements OnInit {
 
-  recordList:Record[]=[];
-  record:Record=new Record();
+  recordList:FileInfo[]=[];
+  record:FileInfo=new FileInfo();
   medicalTests:string[]=[];
   testType:string[]=[];
   sub:Subscription|null=null;
@@ -31,12 +33,16 @@ export class RecordPrescriptionComponent implements OnInit {
   
 
   //add field
+  empty:string="";
   fieldId= 0; 
   addField(){
-    this.fieldId++;
     var inputValue = (<HTMLInputElement>document.getElementById('newField')).value;
     var testType = (<HTMLInputElement>document.getElementById('type')).value;
-    this.addEl('fields', 'p', 'field-' + this.fieldId, inputValue,testType);
+    if(inputValue && testType)
+    {
+      this.fieldId++;
+      this.addEl('fields', 'p', 'field-' + this.fieldId, inputValue,testType);
+    }
   }
 
 

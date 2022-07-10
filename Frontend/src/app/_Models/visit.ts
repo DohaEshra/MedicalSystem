@@ -7,6 +7,7 @@ export class Visit {
                 public pid:number,
                 public did:number,
                 public appointment_time:Date,
+                public appointmentStatus:number,
                 public didNavigation:Doctor,
                 public pidNavigation:Patient
             ){}

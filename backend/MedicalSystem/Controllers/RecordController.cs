@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MedicalSystem.Data;
 using MedicalSystem.Models;
 using System.Security.Claims;
+using System.Text;
 
 namespace MedicalSystem.Controllers
 {
@@ -72,7 +73,7 @@ namespace MedicalSystem.Controllers
                 return BadRequest();
             }
 
-            Record Record = await _context.Records.Where(r =>  r.DID==did && r.PID==pid && r.date==date ).FirstOrDefaultAsync();
+            Record Record = await _context.Records.Where(r =>  r.DID==did && r.PID==pid && r.date==date && r.FNO==@record.FNO).FirstOrDefaultAsync();
             if(Record != null)
             {
                 await _context.Procedures.Update_RecordAsync(@record.file_description, @record.testType, pid, did, date, @record.FNO, @record.summary, @record.prescription);
@@ -88,7 +89,7 @@ namespace MedicalSystem.Controllers
             }
             catch (DbUpdateException)
             {
-                if (RecordExists(@record.DID))
+                if (RecordExists(@record.DID, record.PID, record.date))
                 {
                     return Conflict();
                 }
@@ -100,11 +101,42 @@ namespace MedicalSystem.Controllers
             return NoContent();
         }
 
+        //api/Record/AddFile/pid/did/date   
+        [HttpPost("AddFile/{pid}/{did}/{date}/{file_Description}/{oid}")]
+        public async Task<IActionResult> PutRecord(int pid, int did, DateTime date, string file_description, int oid)
+        {
+            var record = await _context.Records.FirstOrDefaultAsync(e => e.DID == did && e.PID == pid && e.date == date && e.file_description == file_description);
+            if (record == null)
+                return BadRequest();
 
+            var form = Request.Form;
+            using (var ms = new MemoryStream())
+            {
+                await form.Files[0].CopyToAsync(ms);
+                var fileBytes =  ms.ToArray();
+                record.attached_files = fileBytes;
+            }
+            record.OID = oid;
+            record.testType = "F";
 
-       
-        // PUT: api/Records/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!RecordExists(record.DID, record.PID, record.date))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return NoContent();
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRecord(Guid id, Record @record)
         {
@@ -124,7 +156,7 @@ namespace MedicalSystem.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RecordExists(id))
+                if (!RecordExists(@record.DID, record.PID, record.date))
                 {
                     return NotFound();
                 }
@@ -149,7 +181,7 @@ namespace MedicalSystem.Controllers
             }
             catch (DbUpdateException)
             {
-                if (RecordExists(@record.DID))
+                if (RecordExists(@record.DID,record.PID,record.date))
                 {
                     return Conflict();
                 }
@@ -178,9 +210,9 @@ namespace MedicalSystem.Controllers
             return NoContent();
         }
 
-        private bool RecordExists(int id)
+        private bool RecordExists(int did,int pid, DateTime date)
         {
-            return _context.Records.Any(e => e.DID == id);
+            return _context.Records.Any(e => e.DID == did && e.PID == pid && e.date == date);
         }
         private bool RecordExists(Guid id)
         {

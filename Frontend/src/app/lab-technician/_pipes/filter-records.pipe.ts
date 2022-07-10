@@ -2,15 +2,16 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Record } from 'src/app/_Models/record';
 
 @Pipe({
-  name: 'filterRecords'
+  name: 'filterRecords',
+  pure: false
 })
 export class FilterRecordsPipe implements PipeTransform {
 
-  transform(recordsList: Record[], filterBy:string) {
+  transform(recordsList: Record[]) {
     let records =[];
     for(let i=0;i<recordsList.length;i++)
     {
-      if(recordsList[i].testType === filterBy)
+      if(recordsList[i].testType == 'T')
       {
         records.push(recordsList[i]);
       }

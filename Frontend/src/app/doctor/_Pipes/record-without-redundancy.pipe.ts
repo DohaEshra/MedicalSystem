@@ -23,7 +23,7 @@ export class RecordWithoutRedundancyPipe implements PipeTransform {
           temp["date"]=records[i].date;
           temp["summary"]=records[i].summary;
           temp["prescription"]=records[i].prescription;
-          temp["attached_files"].push(records[j].attached_files||"");
+          temp["attached_files"].push(records[j].attached_files||null);
           temp["file_description"].push(records[j].file_description||"");
           temp["testType"].push(records[j].testType||"");
         }

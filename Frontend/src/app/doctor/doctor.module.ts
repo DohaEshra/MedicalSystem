@@ -14,6 +14,11 @@ import { DoctorPatientComponent } from './doctor-patient/doctor-patient.componen
 import { PatientHistoryComponent } from './patient-history/patient-history.component';
 import { RecordPrescriptionComponent } from './record-prescription/record-prescription.component';
 import { EditPrescriptionComponent } from './edit-prescription/edit-prescription.component';
+import { SafePipe } from './_Pipes/safe.pipe';
+import {DialogModule} from 'primeng/dialog';
+import { SearchInTable } from './_Pipes/search-in-table.pipe';
+import { DoctorAppointmentComponent } from './doctor-appointment/doctor-appointment.component';
+import { DateTimePipe } from './_Pipes/date-time.pipe';
 
 
 
@@ -28,13 +33,17 @@ import { EditPrescriptionComponent } from './edit-prescription/edit-prescription
     SearchByIdPipe,
     DoctorPatientInfoComponent,
     RecordWithoutRedundancyPipe,
+    SearchInTable,
     DoctorPatientComponent,
     PatientHistoryComponent,
     RecordPrescriptionComponent,
     EditPrescriptionComponent,
+    SafePipe,
+    DoctorAppointmentComponent,
+    DateTimePipe,
   ],
   imports: [
-    CommonModule,doctorRoutingModule,FormsModule
+    CommonModule,doctorRoutingModule,FormsModule,DialogModule
   ],
   providers:[
     SearchByNamePipe

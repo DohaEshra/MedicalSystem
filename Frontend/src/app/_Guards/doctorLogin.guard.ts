@@ -12,11 +12,12 @@ export class DoctorLoginGuard implements CanActivate{
     }
    
     canActivate(){
-        if(this.acc.getToken()!=null)
+        if(this.acc.getRole() =='doctor')
         {
             return true;
         }
         //this.router.navigateByUrl("login");
+        this.acc.signOut();
         return false;
     }
     

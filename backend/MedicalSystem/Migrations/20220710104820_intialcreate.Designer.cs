@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalSystem.Migrations
 {
     [DbContext(typeof(MedicalSystemContext))]
-    [Migration("20220703174301_intialcreate")]
+    [Migration("20220710104820_intialcreate")]
     partial class intialcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -326,8 +326,8 @@ namespace MedicalSystem.Migrations
                     b.Property<int?>("OID")
                         .HasColumnType("int");
 
-                    b.Property<string>("attached_files")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("attached_files")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("file_description")
                         .HasMaxLength(150)
@@ -335,15 +335,22 @@ namespace MedicalSystem.Migrations
                         .HasColumnType("varchar(150)");
 
                     b.Property<string>("prescription")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
                         .IsUnicode(false)
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("varchar(max)")
+                        .HasDefaultValueSql("('')");
 
                     b.Property<string>("summary")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
                         .IsUnicode(false)
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("varchar(max)")
+                        .HasDefaultValueSql("('')");
 
                     b.Property<string>("testType")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1)
+                        .HasColumnType("nvarchar(1)");
 
                     b.HasKey("DID", "PID", "date", "FNO");
 

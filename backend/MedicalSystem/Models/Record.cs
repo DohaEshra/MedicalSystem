@@ -19,7 +19,7 @@ namespace MedicalSystem.Models
         [StringLength(150)]
         [Unicode(false)]
         public string file_description { get; set; }
-        public string attached_files { get; set; }
+        public byte[]? attached_files { get; set; }
         [Key]
         public DateTime date { get; set; }
         [Required]
@@ -29,10 +29,10 @@ namespace MedicalSystem.Models
         [Required]
         [Unicode(false)]
         public string prescription { get; set; }
-        [Key]
-        public Guid FNO { get; set; }
         [StringLength(1)]
         public string testType { get; set; }
+        [Key]
+        public Guid FNO { get; set; }
 
         [ForeignKey("DID")]
         [InverseProperty("Records")]

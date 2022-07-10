@@ -5,7 +5,7 @@ export class RecordPerDate {
                 public did:number=Number(), 
                 public pid:number=Number(), 
                 public file_description: string[]=[], 
-                public attached_files :string[]=[], 
+                public attached_files :any[]=[], 
                 public date :Date=new Date(), 
                 public summary:string='',
                 public testType:String[]= [],

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MedicalSystem.Data;
 using MedicalSystem.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Text;
 
 namespace MedicalSystem.Controllers
 {
@@ -26,15 +27,39 @@ namespace MedicalSystem.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Patient>>> GetPatients()
         {
-            return await _context.Patients.ToListAsync();
+            var patients = await _context.Patients.ToListAsync();
+            //using (var ms = new MemoryStream())
+            //{
+            //    foreach (var pat in patients)
+            //        foreach (var record in pat.Records)
+            //            if (record.attached_files != null)
+            //                using (MemoryStream stream = new MemoryStream())
+            //                {
+            //                    using (StreamReader streamReader = new StreamReader(stream))
+            //                    {
+            //                        var x = streamReader.ReadToEnd();
+            //                    }
+            //                }
+                //record.attached_files = Encoding.Default.GetString(record.attached_files);
+                // var fileBytes = ms.ToArray();
+            //}
+            return patients;
         }
 
-        //get patients who need to make scans/lab tests 
+        //get patients who need to make lab tests 
         [HttpGet("LabPatients")]
         public async Task<ActionResult<IEnumerable<Patient>>> GetPatientsForLab()
         {
-            var patients = _context.Patients.Where(p => p.Records.Any(p => p.attached_files == null && p.file_description != string.Empty && p.testType == "t" )).ToListAsync();
+            var patients = _context.Patients.Where(p => p.Records.Any(p => p.attached_files == null && p.file_description != string.Empty && p.testType == "T")).ToListAsync();
             return await patients;
+        }
+
+        //get patients who need to make scans
+        [HttpGet("ScanPatients")]
+        public async Task<ActionResult<IEnumerable<Patient>>> GetPatientsForScan()
+        {
+            var patients = await _context.Patients.Where(p => p.Records.Any(p => p.attached_files == null && p.file_description != string.Empty && p.testType == "S")).ToListAsync();
+            return patients;
         }
 
         // GET: api/Patients/5

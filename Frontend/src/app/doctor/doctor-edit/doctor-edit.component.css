@@ -7,23 +7,9 @@ label {
   .card-container.card {
     border-radius: 30px;
     /* max-width: 600px !important; */
-    padding: 40px 40px;
+    padding: 40px  40px;
+    margin-top: 30px;
   }
-
-   #sect1 {  
-  /* height: 100%; */
-  width: 100%;
-  -webkit-background-size: cover;
-  background-size: cover;
-  background-position: center center;
-  position:sticky;
-    /* height: 100%; 
-    width: 100%; 
-    color: black;
-    background-image:url("../../assets/12.jpg"); 
-    background-size:100% ;  
-    position:absolute; */
-} 
   
   .card {
    /* box-shadow:200px; */
@@ -52,31 +38,31 @@ label {
   }
 
 
-   .login{
-    margin-top: 30px;
-    background: #a5c422;
-    border-radius: 30px;
-    border-color: white;
-    color: #ffffff;
-    font-weight: 600;
-    padding-top: 12px;
-    padding-bottom: 12px;
-  }
+.login{
+  margin-top: 30px;
+  background: #a5c422;
+  border-radius: 30px;
+  border-color: white;
+  color: #ffffff;
+  font-weight: 600;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
 
-   .login:hover{
-    background: #426d11;
-    color: #ffffff !important;
-  }
+.login:hover{
+  background: #426d11;
+  color: #ffffff !important;
+}
 
-  displayImg{
-    display: none;
-  }
+.displayImg{
+  display: none;
+}
 
-  #display-image{
-    display: none;
-    width: 100px;
-    height: 100px;
-  }
+#display-image{
+  display: none;
+  width: 100px;
+  height: 100px;
+}
 
 img{
   display: none;
@@ -85,3 +71,15 @@ img{
   border-radius: 50px;
 }
 
+body{
+  background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+}
+
+.emp-profile{
+  padding: 3%;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  margin-left: 4%;
+  border-radius: 0.5rem;
+  background: #fff;
+}

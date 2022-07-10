@@ -6,7 +6,7 @@ import jwt_decode from 'jwt-decode';
 import { Visit } from '../_Models/visit';
 import { Record } from '../_Models/record';
 import { Guid } from 'guid-typescript';
-import { FileInfo } from './_Models/FileInfo';
+import { FileInfo } from '../_Models/FileInfo';
 
 @Injectable({
   providedIn: 'root'
@@ -72,11 +72,11 @@ export class DoctorService {
 
   //get prescription
   getPatientPrescription(pid:number,did:number,date:Date){
-    return this.http.get<FileInfo[]>(this.baseUrl+"Record/"+pid+"/"+did+"/"+date);
+    return this.http.get<Record[]>(this.baseUrl+"Record/"+pid+"/"+did+"/"+date);
   }
 
   //record prescription
-  recordPatientPrescription(record:Record,pid:number,did:number,date:Date){
+  recordPatientPrescription(record:FileInfo,pid:number,did:number,date:Date){
     return this.http.put<undefined>(this.baseUrl+"Record/"+pid+"/"+did+"/"+date,record);
   }
 
@@ -87,7 +87,7 @@ export class DoctorService {
   }
 
   //edit record
-  editRecordByFno(fno:Guid,record:FileInfo)
+  editRecordByFno(fno:Guid,record:Record)
   {
     return this.http.put<undefined>(this.baseUrl+"Record/"+fno,record);
   }

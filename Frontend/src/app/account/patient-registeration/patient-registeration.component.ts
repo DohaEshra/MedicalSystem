@@ -130,7 +130,6 @@ export class PatientRegisterationComponent implements OnInit ,OnDestroy {
       area: this.user.area, 
       street: this.user.street, 
       buildingNumber: this.user.buildingNumber, 
-      username:'',
       records:[],
       visits:[],
     };
