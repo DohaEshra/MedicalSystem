@@ -30,10 +30,10 @@
     <tbody>
       <tr *ngFor="let patient of visitList">
         <td [align]="'center'">
-          <a  class="text-light fs-6" [routerLink]="['/doctor/patient',patient.pidNavigation.id,'info']"><i class="fa fa-eye" aria-hidden="true"></i></a>
+          <a  class="text-light fs-6" [routerLink]="['/doctor/patient',patient.pidNavigation?.id,'info']"><i class="fa fa-eye" aria-hidden="true"></i></a>
         </td>
-        <td class="text-light fs-6">{{patient.pidNavigation.id}}</td>
-        <td class="text-light fs-6">{{patient.pidNavigation.fname}} {{patient.pidNavigation.lname}}</td>
+        <td class="text-light fs-6">{{patient.pidNavigation?.id}}</td>
+        <td class="text-light fs-6">{{patient.pidNavigation?.fname}} {{patient.pidNavigation?.lname}}</td>
       </tr>
     </tbody>
   </table> 
@@ -57,7 +57,7 @@
     </tbody>
   </table>
 
-  <table class="table table-striped" *ngIf="(visitList|searchById:ID).id!=0&&Indicator==1">
+  <table class="table table-striped" *ngIf="(visitList|searchById:ID)?.id!=0&&Indicator==1">
     <thead>
       <tr>
         <th class="text-center"><em class="fa fa-cog"></em></th>
@@ -68,10 +68,10 @@
     <tbody>
       <tr>
         <td align="center">
-          <a class="text-light fs-6" [routerLink]="['/doctor/patient',(visitList|searchById:ID).id,'info']"><i class="fa fa-eye" aria-hidden="true"></i></a>
+          <a class="text-light fs-6" [routerLink]="['/doctor/patient',(visitList|searchById:ID)?.id,'info']"><i class="fa fa-eye" aria-hidden="true"></i></a>
         </td>
-        <td class="text-light fs-6">{{(visitList|searchById:ID).id}}</td>
-        <td class="text-light fs-6">{{(visitList|searchById:ID).fname}} {{(visitList|searchById:ID).lname}}</td>
+        <td class="text-light fs-6">{{(visitList|searchById:ID)?.id}}</td>
+        <td class="text-light fs-6">{{(visitList|searchById:ID)?.fname}} {{(visitList|searchById:ID)?.lname}}</td>
       </tr>
     </tbody>
   </table>

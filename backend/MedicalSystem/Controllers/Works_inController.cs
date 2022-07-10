@@ -30,9 +30,9 @@ namespace MedicalSystem.Controllers
 
         // GET: api/Works_in/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Works_in>> GetWorks_in(int id)
+        public async Task<ActionResult<IEnumerable<Works_in>>> GetWorks_in(int id)
         {
-            var works_in = await _context.Works_ins.FindAsync(id);
+            List<Works_in> works_in = await _context.Works_ins.Where(r => r.DID == id ).ToListAsync();
 
             if (works_in == null)
             {
