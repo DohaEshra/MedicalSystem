@@ -22,13 +22,9 @@ export class DoctorHomeComponent implements OnInit,OnDestroy {
     this.sub = this.doctorSer.getDoctorProfile().subscribe(
       a=>{
         this.doctor=a;
+        this.doctor$.next(this.doctor);
       }
     );
-  }
-
-  send()
-  {
-    this.doctor$.next(this.doctor);
   }
 
   ngOnDestroy(): void {
