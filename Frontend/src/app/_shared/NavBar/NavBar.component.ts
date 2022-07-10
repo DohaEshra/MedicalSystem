@@ -31,9 +31,10 @@ export class NavBarComponent implements OnInit, OnChanges {
   //   return null ;
   // }
 
-  ngOnInit() {
+  ngOnInit(): void {
     
   }
+  
 
   ngOnChanges(): void {
       this.userRole = this.loginFlag
