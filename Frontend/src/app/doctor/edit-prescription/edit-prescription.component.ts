@@ -15,6 +15,8 @@ export class EditPrescriptionComponent implements OnInit {
 
   recordList:Record[]=[];
   indicator=false;
+  medicine:string[] = [];
+  info:string[]=[];
 
   sub:Subscription|null=null;
   sub1:Subscription|null=null;
@@ -23,17 +25,22 @@ export class EditPrescriptionComponent implements OnInit {
   constructor(private activateRoute:ActivatedRoute,private docSer:DoctorService,private router:Router) { }
 
   ngOnInit(): void {
-
     this.sub1=this.activateRoute.params.subscribe(
       a=>{
         this.sub2=this.docSer.getPatientPrescription(a['id'],this.docSer.DoctorID,a['date']).subscribe(
           data=>{
             this.recordList = data;
+            //var dummy= data[0].prescription.split(',');
+            console.log(data);
+            // dummy.forEach(element => {
+            //   this.medicine.push( element.split(': ')[0])
+            //   this.info.push( element.split(': ')[1])
+            // });
+            console.log(this.medicine,this.info);
             this.indicator=true;
           }
         )
       }
-      
     ) 
   }
   
@@ -47,7 +54,6 @@ export class EditPrescriptionComponent implements OnInit {
         a=>{
         }
       );
-      
     }
     else if(this.recordList.length>1 && this.recordList[0].testType!="")
     {
@@ -57,7 +63,6 @@ export class EditPrescriptionComponent implements OnInit {
         }
       )
     }
-   
   }
 
   //edit

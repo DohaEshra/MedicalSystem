@@ -14,6 +14,7 @@ const routes: Routes = [
   {path:"patient", loadChildren:()=>import('./patient/patient.module').then(p=>p.PatientModule)},
   {path:"lab", loadChildren:()=>import('./lab-technician/lab-technician.module').then(p=>p.LabTechnicianModule)},
   {path:"scan", loadChildren:()=>import('./radiographer/radiographer.module').then(p=>p.RadiographerModule)},
+  {path:"pharmacy", loadChildren:()=>import('./pharmacy/pharmacy.module').then(p=>p.PharmacyModule)},
   {path:"",redirectTo:"login",pathMatch:"full"},
   {path:"**",component:NotFoundComponent}
 ];
