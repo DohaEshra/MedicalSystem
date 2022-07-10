@@ -32,7 +32,6 @@ export class NavBarComponent implements OnInit, OnChanges {
   // }
 
   ngOnInit(): void {
-    
   }
   
 
@@ -45,6 +44,8 @@ export class NavBarComponent implements OnInit, OnChanges {
         }
       );
   }
+
+  
 
   clearToken(){
     this.account.signOut();
