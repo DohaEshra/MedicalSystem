@@ -39,7 +39,7 @@ namespace MedicalSystem.Controllers
             return await _context.Doctors.Where(a => a.category == category).ToListAsync();
         }
         [HttpGet("getCategories")]
-        public async Task<ActionResult<IEnumerable<object>>> GetAllCategories()
+        public async Task<ActionResult<IEnumerable<string>>> GetAllCategories()
         {
             if (_context.Doctors == null)
             {

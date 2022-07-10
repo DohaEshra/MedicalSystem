@@ -14,11 +14,11 @@
     </span>
     <span class="p-float-label m-2 col-lg-2">
     <label for="Area"></label>
-    <input id="Area" type="text" placeholder="Area" pInputText [(ngModel)]="Area"> 
+    <input id="Area" type="text" placeholder="Area" pInputText [(ngModel)]="area"> 
 </span>
 <span class="p-float-label m-2 col-lg-2">
     <label for="City"></label>
-    <input id="City" type="text" placeholder="City" pInputText [(ngModel)]="City"> 
+    <input id="City" type="text" placeholder="City" pInputText [(ngModel)]="city"> 
     <!-- <label for="city" class="fs-5">City </label> -->
     <!-- <select name="city"  [(ngModel)]="city"  class="form-select form-select-lg" style="border-radius:30px ;"  aria-label="Default select example" required #city="ngModel">
       <option class="fs-5" *ngFor=" let city of cities"> {{city}} </option>
@@ -55,7 +55,8 @@
         </tr>
     </thead>
         <tbody>
-          <tr *ngFor="let i of dr">
+          <tr *ngFor="let i of drs | filter: name: 'Name'| filter:city: 'city'| filter:area: 'area'| filter:category: 'category' "> 
+            <!-- | filter: name: 'Name'| filter:city: 'city') -->
             <td>
               <p class="text-muted mb-0">{{i.fname +" "+  i.lname}} </p>
             </td>
