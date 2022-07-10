@@ -16,7 +16,7 @@ export class DoctorHomeComponent implements OnInit,OnDestroy {
   doctor:Doctor=new Doctor();
   sub:Subscription|null=null;
 
-  constructor(public doctorSer:DoctorService,public router:Router) {}
+  constructor(private doctorSer:DoctorService) {}
 
   ngOnInit(): void {
     this.sub = this.doctorSer.getDoctorProfile().subscribe(

@@ -1,20 +1,6 @@
-
 <div id="sect1" class="">
-    <div class="row col-12 d-flex">
-      <div class="col-2 my-4" style="height:477px;" >
-        <a class="navbar-brand">
-            <img
-            src={{doctor.profilePic}}
-            width="80px" height="80px" style="border-radius: 100px;"/>
-            <label class="mx-2 text-light">{{doctor.fname}} {{doctor.lname}}</label>
-        </a>
-       
-      </div>
-
-      <div class="col-9 mx-5">
-        <router-outlet></router-outlet> 
-          
-      </div>
+    <div class="row col-12 d-flex justify-content-center">
+      <router-outlet></router-outlet> 
     </div>
 </div>
 

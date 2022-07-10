@@ -1,4 +1,4 @@
-<div class="navbar navbar-light ">
+<div class="navbar navbar-light d-flex justify-content-center">
 
   <div class="d-flex justify-content-center">
    
@@ -19,7 +19,7 @@
     </div>
   </div>
 
-  <table class="table table-striped" *ngIf="(Indicator==0 && !Name && !ID) || (Indicator==1 && (!Name && !ID)) || (Indicator==2 && (!Name && !ID)) || (Indicator==2 && !Name && ID) || (Indicator==1 && Name && !ID)">
+  <table class="table table-striped primaryTable" *ngIf="(Indicator==0 && !Name && !ID) || (Indicator==1 && (!Name && !ID)) || (Indicator==2 && (!Name && !ID)) || (Indicator==2 && !Name && ID) || (Indicator==1 && Name && !ID)">
     <thead>
       <tr>
         <th scope="col"></th>

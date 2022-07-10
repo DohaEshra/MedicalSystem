@@ -115,6 +115,7 @@ namespace MedicalSystem.Data
             modelBuilder.Entity<Visit>(entity =>
             {
                 entity.HasKey(e => new { e.PID, e.DID, e.appointment_time });
+                entity.Property(e => e.AppointmentStatus).HasComputedColumnSql("([dbo].[Appointment_Status](PID,DID,appointment_time))", false);
 
                 entity.HasOne(d => d.DIDNavigation)
                     .WithMany(p => p.Visits)

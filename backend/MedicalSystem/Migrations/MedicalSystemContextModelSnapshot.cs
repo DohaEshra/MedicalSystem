@@ -334,16 +334,21 @@ namespace MedicalSystem.Migrations
 
                     b.Property<string>("prescription")
                         .IsRequired()
+                        .ValueGeneratedOnAdd()
                         .IsUnicode(false)
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("varchar(max)")
+                        .HasDefaultValueSql("('')");
 
                     b.Property<string>("summary")
                         .IsRequired()
+                        .ValueGeneratedOnAdd()
                         .IsUnicode(false)
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("varchar(max)")
+                        .HasDefaultValueSql("('')");
 
                     b.Property<string>("testType")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1)
+                        .HasColumnType("nvarchar(1)");
 
                     b.HasKey("DID", "PID", "date", "FNO");
 
@@ -364,6 +369,11 @@ namespace MedicalSystem.Migrations
 
                     b.Property<DateTime>("appointment_time")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("AppointmentStatus")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("int")
+                        .HasComputedColumnSql("([dbo].[Appointment_Status](PID,DID,appointment_time))", false);
 
                     b.HasKey("PID", "DID", "appointment_time");
 

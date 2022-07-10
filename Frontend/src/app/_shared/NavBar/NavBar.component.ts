@@ -1,7 +1,9 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { BehaviorSubject, observable, Observable } from 'rxjs';
+import { BehaviorSubject, observable, Observable, Subscription } from 'rxjs';
 import { AccountService } from 'src/app/account/Account.service';
 import jwt_decode from 'jwt-decode';
+import { Doctor } from 'src/app/_Models/doctor';
+import { DoctorService } from 'src/app/doctor/doctor.service';
 
 @Component({
   selector: 'app-NavBar',
@@ -10,9 +12,10 @@ import jwt_decode from 'jwt-decode';
 })
 export class NavBarComponent implements OnInit, OnChanges {
 
-  constructor(public account: AccountService) {
-    
-   }
+  doctor:Doctor=new Doctor();
+  sub:Subscription|null=null;
+  
+  constructor(public account: AccountService,private doctorSer:DoctorService) {}
 
   @Input('login') loginFlag = '';
   userRole = '';
@@ -29,11 +32,17 @@ export class NavBarComponent implements OnInit, OnChanges {
   // }
 
   ngOnInit() {
+    
   }
 
   ngOnChanges(): void {
       this.userRole = this.loginFlag
       this.loginFlag == '' ? this.userLoggedIn = false : true;
+      this.sub = this.doctorSer.getDoctorProfile().subscribe(
+        a=>{
+          this.doctor=a;
+        }
+      );
   }
 
   clearToken(){
