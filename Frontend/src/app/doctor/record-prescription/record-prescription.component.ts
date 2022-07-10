@@ -5,7 +5,6 @@ import { Record } from 'src/app/_Models/record';
 import { DoctorService } from '../doctor.service';
 import { Guid } from "guid-typescript";
 import { FileInfo } from 'src/app/_Models/FileInfo';
-
 @Component({
   selector: 'app-record-prescription',
   templateUrl: './record-prescription.component.html',
@@ -18,6 +17,7 @@ export class RecordPrescriptionComponent implements OnInit {
   medicalTests:string[]=[];
   testType:string[]=[];
   sub:Subscription|null=null;
+  medicalPrescription:string[]=[];   // prescription
 
   constructor(private activateRoute:ActivatedRoute,private docSer:DoctorService,private router:Router) { }
 
@@ -31,9 +31,7 @@ export class RecordPrescriptionComponent implements OnInit {
     ) 
   }
   
-
   //add field
-  empty:string="";
   fieldId= 0; 
   addField(){
     var inputValue = (<HTMLInputElement>document.getElementById('newField')).value;
@@ -42,9 +40,25 @@ export class RecordPrescriptionComponent implements OnInit {
     {
       this.fieldId++;
       this.addEl('fields', 'p', 'field-' + this.fieldId, inputValue,testType);
+      this.medicalTests.push(inputValue);
+      this.testType.push(testType);
     }
   }
 
+  // add field prescription
+  fieldId2= 0; 
+  addFieldPrescription(){
+    var presc = "";
+    let medicineInputValue = (<HTMLInputElement>document.getElementById('medicine')).value;
+    let medicineInfoInputValue = (<HTMLInputElement>document.getElementById('info')).value;
+    if(medicineInputValue && medicineInfoInputValue)
+    {
+      this.fieldId2++;
+      this.addEl('fields2', 'p', 'field-' + this.fieldId2, medicineInputValue,medicineInfoInputValue);
+      presc=medicineInputValue+': '+medicineInfoInputValue;
+      this.medicalPrescription.push(presc);
+    }
+  }
 
   //add new field
   addEl(parentId:string, elementTag:string, elementId:string , inputValue:string,testType:string) {
@@ -52,7 +66,8 @@ export class RecordPrescriptionComponent implements OnInit {
     //label for input values
     var htmlLabel = document.createElement('div');
     htmlLabel.setAttribute('class',"ms-5 col-md-4");
-    htmlLabel.append(inputValue ,"  -->  ", testType);
+    htmlLabel.setAttribute("style","padding-top: 11px;");
+    htmlLabel.append(inputValue.toUpperCase() ,"  :  ", testType=='S'?testType='SCAN':testType=='T'?testType='TEST':testType);
 
     //button for removing 
     var htmlbutton = document.createElement('input');
@@ -77,8 +92,6 @@ export class RecordPrescriptionComponent implements OnInit {
     //append new div in p
     var p = document.getElementById(parentId);
     p?.appendChild(newElement);
-    this.medicalTests.push(inputValue);
-    this.testType.push(testType);
   }
 
   //submit
@@ -86,9 +99,14 @@ export class RecordPrescriptionComponent implements OnInit {
   submit(){
     var date = (<HTMLInputElement>document.getElementById('date')).value;
     var summary = (<HTMLInputElement>document.getElementById('summary')).value;
-    var prescription = (<HTMLInputElement>document.getElementById('prescription')).value;
+    //var prescription = (<HTMLInputElement>document.getElementById('prescription')).value;
+    
+    if(this.medicalPrescription.length>0){
+      this.record.prescription=this.medicalPrescription.join(',');
+      console.log(this.record.prescription);
+    }
 
-    if(this.medicalTests.length==0 && this.validation(date,summary,prescription))
+    if(this.medicalTests.length==0 && this.validation(date,summary,this.record.prescription))
     {
       this.docSer.recordPatientPrescription(this.record,this.record.pid,this.record.did,this.record.date).subscribe(
         a=>{},
@@ -109,9 +127,9 @@ export class RecordPrescriptionComponent implements OnInit {
       }
     }
    
-    if(this.count == this.medicalTests.length && this.validation(date,summary,prescription))
+    if(this.count == this.medicalTests.length && this.validation(date,summary,this.record.prescription))
     {
-      this.router.navigateByUrl("doctor/patient/"+this.record.pid+"/history");
+      setTimeout(()=>{this.router.navigateByUrl("doctor/patient/"+this.record.pid+"/history");},0)
     }
   }
 

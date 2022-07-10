@@ -69,6 +69,11 @@ export class DoctorService {
     return this.http.get<Record[]>(this.baseUrl+"Record/"+pid+"/"+did+"/"+date);
   }
 
+   //get prescription
+   getPatientPrescriptionForPharmacy(pid:number,did:number,date:Date){
+    return this.http.get<Record>(this.baseUrl+"Record/pharmacy/"+pid+"/"+did+"/"+date);
+  }
+
   //record prescription
   recordPatientPrescription(record:FileInfo,pid:number,did:number,date:Date){
     return this.http.put<undefined>(this.baseUrl+"Record/"+pid+"/"+did+"/"+date,record);
