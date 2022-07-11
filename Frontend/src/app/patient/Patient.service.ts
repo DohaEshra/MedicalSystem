@@ -8,14 +8,18 @@ import jwt_decode from 'jwt-decode';
   providedIn: 'root'
 })
 export class PatientService {
+  getPatientId(){
+    if(this.acc.getToken()!=null)
+    {
+      var decodeToken = JSON.parse(JSON.stringify(jwt_decode(this.acc.getToken()!)));
+      this.PatientID = decodeToken.ID;
+    }
+  }
 
 constructor(public http:HttpClient, public acc:AccountService) {
-  if(this.acc.getToken()!=null)
-  {
-    var decodeToken = JSON.parse(JSON.stringify(jwt_decode(this.acc.getToken()!)));
-    this.PatientID = decodeToken.ID;
-  }
- }
+  this.getPatientId();
+}
+
 baseUrl="https://localhost:7089/api/patient/";
 PatientID=0;
 getPatient()
@@ -30,9 +34,14 @@ getPatients()
 {
   return this.http.get<Patient[]>(this.baseUrl)
 }
-EditPatient(pat:Patient, ID:number)
+// EditPatient(pat:Patient, ID:number)
+// {
+//   return this.http.put(this.baseUrl,{id:ID, patient:pat})
+// }
+editPatient(patient:Patient)
 {
-  return this.http.put(this.baseUrl,{id:ID, patient:pat})
+  this.getPatientId()
+  return this.http.put<undefined>(this.baseUrl+this.PatientID,patient);
 }
 AddPatient(pat:Patient)
 {

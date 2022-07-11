@@ -39,14 +39,18 @@
   <div  *ngIf="account.getRole() =='patient'"  class="collapse navbar-collapse" id="navbarScroll" >
       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
         <li class="nav-item">
-          <a class="nav-link active fs-5" aria-current="page" routerLink="/patient/home">Home</a>
+          <a class="nav-link active fs-5" aria-current="page" [routerLink]="['/patient']">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active fs-5" aria-current="page" routerLink="/patient/categories">Category</a>
+          <a class="nav-link active fs-5" aria-current="page" [routerLink]="['/patient/info']">Profile</a>
         </li>
-         <li class="nav-item">
-          <a class="nav-link active fs-5" aria-current="page" routerLink="/patient/search">Search</a>
-         </li>
+        <li class="nav-item">
+          <a class="nav-link active fs-5" aria-current="page" [routerLink]="['/patient/record']">Medical History</a>
+        </li>  
+        <li class="nav-item">
+          <a class="nav-link active fs-5" aria-current="page" [routerLink]="['/patient/search']">Doctors</a>
+        </li>
+
       </ul>
       <ul class="navbar-nav  justify-content-end my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
        <li class="nav-item">
