@@ -16,9 +16,7 @@ export class PatientService {
 baseUrl="https://localhost:7089/api/patient/";
 PatientID=0;
 
-constructor(public http:HttpClient, public acc:AccountService) {
-  this.getPatientId();
-}
+constructor(public http:HttpClient, public acc:AccountService) {}
 
 
  getPatientId(){

@@ -1,4 +1,6 @@
-<div class="col-md-8">
+<app-loading *ngIf="!patient.id"></app-loading>
+
+<div class="col-md-8" *ngIf="patient.id">
     <div class="tab-content profile-tab" id="myTabContent">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <div class="row">

@@ -1,4 +1,7 @@
-<div class="navbar navbar-light d-flex justify-content-center">
+<app-loading *ngIf="!visitListWithoutDuplication.length"></app-loading>
+
+
+<div class="navbar navbar-light d-flex justify-content-center" *ngIf="visitListWithoutDuplication.length!=0">
 
   <div class="d-flex justify-content-center">
    
@@ -38,7 +41,7 @@
     </tbody>
   </table> 
 
-  <table class="table table-striped" *ngIf="Name!=''&&Indicator==2">
+  <table class="table table-striped" *ngIf="Name!=''&&(visitListWithoutDuplication|searchByName:Name).length!=0 &&Indicator==2">
     <thead>
       <tr>
         <th scope="col"></th>

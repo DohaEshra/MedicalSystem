@@ -12,12 +12,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AccountModule } from './account/account.module';
 import { FormsModule } from '@angular/forms';
 import { NavBarComponent } from './_shared/NavBar/NavBar.component';
+import { LoadingComponent } from './_shared/_Loading/loading.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
   declarations: [
-    AppComponent, NavBarComponent
+    AppComponent, NavBarComponent,LoadingComponent
   ],
   imports: [
     BrowserModule,

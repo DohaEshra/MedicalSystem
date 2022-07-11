@@ -1,3 +1,5 @@
+<app-loading *ngIf="!doctor.id"></app-loading>
+
 <div class="container emp-profile" *ngIf="doctor.id">
         <div  class="fs-2 text-center mb-3" style=" color: #a5c422;">Edit Your Profile </div>
         <form class="row"  name="form" #MyForm="ngForm" >

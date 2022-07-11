@@ -39,6 +39,7 @@ export class PatientAppointmentComponent implements OnInit,OnDestroy {
     if(selectedAppointment!=null || selectedAppointment!="Select ...")
     {
       this.visit.did = this.doctorId;
+      this.patientser.getPatientId();
       this.visit.pid = this.patientser.PatientID;
       this.visit.appointment_time = new Date(selectedAppointment.split('To')[0].trim());
       this.patientser.addAppointment(this.visit).subscribe(
