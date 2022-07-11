@@ -15,10 +15,11 @@ import {RouterModule} from '@angular/router';
 //import { BrowserModule } from '@angular/platform-browser';
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
-
-
-//>>>>>>> c139026ddd72e739c41a41647f8ef0270dd16f5e
-
+import {DialogModule} from 'primeng/dialog';
+import { SafePipe } from './Pipes/safe.pipe';
+import {RatingModule} from 'primeng/rating';
+import { NumberOfRecordsInSameDatePipe } from './Pipes/number-of-records-in-same-date.pipe';
+import { NgbRatingModule  } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -26,12 +27,23 @@ import {ButtonModule} from 'primeng/button';
     PatientRecordComponent,
     FilterPipe,
     SearchForDoctorComponent,
-    PatientHomeComponent
+    PatientHomeComponent,
+    SafePipe,
+    NumberOfRecordsInSameDatePipe
   ],
   imports: [
-
-    CommonModule, PatientRoutingModule, FormsModule, DropdownModule, RouterModule, InputTextModule, ButtonModule //, BrowserAnimationsModule//, BrowserModule 
-
+    CommonModule,
+    PatientRoutingModule,
+    FormsModule,
+    DropdownModule,
+    RouterModule,
+    InputTextModule,
+    ButtonModule,
+    //BrowserAnimationsModule,
+    //BrowserModule,
+    DialogModule,
+    RatingModule,
+    NgbRatingModule
   ]
 })
 export class PatientModule { }

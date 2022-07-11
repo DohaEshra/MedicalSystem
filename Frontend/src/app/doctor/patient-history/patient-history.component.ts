@@ -25,7 +25,7 @@ export class PatientHistoryComponent implements OnInit,OnDestroy {
       data=>{
         this.RecordList=data.records;
       },
-      err =>{console.log('error from patient history component: ',err);}
+      // err =>{console.log('error from patient history component: ',err);}
     );
     this.doctorID=this.docSer.DoctorID;
   }
