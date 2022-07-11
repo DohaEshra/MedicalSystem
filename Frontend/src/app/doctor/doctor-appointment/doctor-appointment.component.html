@@ -48,7 +48,7 @@
                     <tbody>
                       <tr *ngFor="let visit of visits">
     
-                        <td> <img src={{visit.pidNavigation.profilePic}} width="25px" height="25px" style="border-radius: 100px;"/> {{visit.pidNavigation.fname}} {{visit.pidNavigation.lname}}</td>
+                        <td> <img src={{visit.pidNavigation?.profilePic}} width="25px" height="25px" style="border-radius: 100px;"/> {{visit.pidNavigation?.fname}} {{visit.pidNavigation?.lname}}</td>
                         <td>{{(visit.appointment_time|dateTime)[0]}}</td>
                         <td>{{(visit.appointment_time|dateTime)[1]}}</td>
                         <td *ngIf="visit.appointmentStatus==0"><i class="fa fa-spinner" style="color: red;" aria-hidden="true"></i></td>

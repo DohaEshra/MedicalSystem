@@ -21,11 +21,62 @@
             <label style="color: red;">*</label>
             <textarea class="form-control" id="summary" rows="1" style="border-radius:30px ;" [(ngModel)]="recordList[0].summary" [ngModelOptions]="{standalone: true}"></textarea>
         </div>
-        <div class="form-group" >
-            <label for="Textarea1" class="fs-5 mt-4" >Prescription</label>
-            <label style="color: red;">*</label>
-            <textarea class="form-control" id="prescription" rows="4" style="border-radius:30px ;" [(ngModel)]="recordList[0].prescription" [ngModelOptions]="{standalone: true}"></textarea>
-        </div>
+
+        <!-- <div class="form-group fs-5">
+          <label for="Textarea1" class="fs-5 mt-4" >Prescription</label>
+          <label style="color: red;">*</label>
+          <div class="d-flex mb-3">
+              <input class="form-control mx-2" id="medicine" placeholder="Enter medicine name " style="border-radius:30px ;width: 30%;" />
+              <input class="form-control mx-2" id="info" placeholder="Enter extra info" style="border-radius:30px ;width: 70%;" />
+              <input name="addFieldButton" type="button" class="btn btn-success btn-outline-success text-light col-md-1 " value="+" style="border-radius:30px ;" />
+          </div>
+      </div>
+      <div class="form-group fs-5" >
+          <span id="fields2" ></span>
+          <p></p>
+      </div> -->
+
+      <div class="form-group">
+        <table class="table table-striped custab"  *ngIf="recordList.length!=0">
+            <thead>
+              <tr>
+                <th class="text-center"><em class="fa fa-cog"></em></th>
+                <th scope="col">Medicine</th>
+                <th scope="col">Extra info</th>
+              </tr>
+            </thead>
+            <tbody >
+              <tr *ngFor="let record of recordList">
+                <td align="center">
+                  <a (click)="deleteTest(record.fno)" class="btn btn-default"><em class="fa fa-trash"></em></a>
+                </td>
+                <td class="">
+                  <input type="text" class="form-control"  [(ngModel)]="record.file_description" [ngModelOptions]="{standalone: true}">
+                </td>
+                <td class="">
+                 
+                </td>
+              </tr>
+              <tr>
+                <td align="center">
+                  <a (click)="add(desc.value,type.value)" class="btn btn-default"><em class="fa fa-plus"></em></a>
+                </td>
+                <td class="">
+                  <input type="text" class="form-control" #desc id="desc" [(ngModel)]="newFile.file_description" [ngModelOptions]="{standalone: true}">
+                </td>
+                <td class="">
+                  <select id="type" class="form-select" aria-label="Default select example" #type [(ngModel)]="newFile.testType" [ngModelOptions]="{standalone: true}">
+                    <option class="fs-7" value="S">S</option>
+                    <option class="fs-7" value="T">T</option>
+                </select>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
         <div class="form-group">
             <table class="table table-striped custab"  *ngIf="recordList.length!=0">
                 <thead>
@@ -62,6 +113,7 @@
                         <option class="fs-7" value="S">S</option>
                         <option class="fs-7" value="T">T</option>
                     </select>
+                    </td>
                   </tr>
                 </tbody>
             </table>

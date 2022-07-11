@@ -19,7 +19,7 @@
     </div>
   </div>
 
-  <table class="table table-striped primaryTable" *ngIf="(visitList.length!=0) && (Indicator==0 && !Name && !ID) || (Indicator==1 && (!Name && !ID)) || (Indicator==2 && (!Name && !ID)) || (Indicator==2 && !Name && ID) || (Indicator==1 && Name && !ID)">
+  <table class="table table-striped primaryTable" *ngIf="(visitListWithoutDuplication.length!=0) && (Indicator==0 && !Name && !ID) || (Indicator==1 && (!Name && !ID)) || (Indicator==2 && (!Name && !ID)) || (Indicator==2 && !Name && ID) || (Indicator==1 && Name && !ID)">
     <thead>
       <tr>
         <th class="text-center"><em class="fa fa-cog"></em></th>
@@ -28,12 +28,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let patient of visitList">
+      <tr *ngFor="let patient of visitListWithoutDuplication">
         <td [align]="'center'">
-          <a  class="text-light fs-6" [routerLink]="['/doctor/patient',patient.pidNavigation.id,'info']"><i class="fa fa-eye" aria-hidden="true"></i></a>
+          <a  class="text-light fs-6" [routerLink]="['/doctor/patient',patient.pidNavigation?.id,'info']"><i class="fa fa-eye" aria-hidden="true"></i></a>
         </td>
-        <td class="text-light fs-6">{{patient.pidNavigation.id}}</td>
-        <td class="text-light fs-6">{{patient.pidNavigation.fname}} {{patient.pidNavigation.lname}}</td>
+        <td class="text-light fs-6">{{patient.pidNavigation?.id}}</td>
+        <td class="text-light fs-6">{{patient.pidNavigation?.fname}} {{patient.pidNavigation?.lname}}</td>
       </tr>
     </tbody>
   </table> 
@@ -47,7 +47,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let patient of visitList|searchByName:Name">
+      <tr *ngFor="let patient of visitListWithoutDuplication|searchByName:Name">
         <td>
           <a  class="text-light fs-6" [routerLink]="['/doctor/patient',patient.id,'info']"><i class="fa fa-eye" aria-hidden="true"></i></a>
         </td>
@@ -57,7 +57,7 @@
     </tbody>
   </table>
 
-  <table class="table table-striped" *ngIf="(visitList|searchById:ID).id!=0&&Indicator==1">
+  <table class="table table-striped" *ngIf="(visitListWithoutDuplication|searchById:ID)?.id!=0&&Indicator==1">
     <thead>
       <tr>
         <th class="text-center"><em class="fa fa-cog"></em></th>
@@ -68,10 +68,10 @@
     <tbody>
       <tr>
         <td align="center">
-          <a class="text-light fs-6" [routerLink]="['/doctor/patient',(visitList|searchById:ID).id,'info']"><i class="fa fa-eye" aria-hidden="true"></i></a>
+          <a class="text-light fs-6" [routerLink]="['/doctor/patient',(visitListWithoutDuplication|searchById:ID)?.id,'info']"><i class="fa fa-eye" aria-hidden="true"></i></a>
         </td>
-        <td class="text-light fs-6">{{(visitList|searchById:ID).id}}</td>
-        <td class="text-light fs-6">{{(visitList|searchById:ID).fname}} {{(visitList|searchById:ID).lname}}</td>
+        <td class="text-light fs-6">{{(visitListWithoutDuplication|searchById:ID)?.id}}</td>
+        <td class="text-light fs-6">{{(visitListWithoutDuplication|searchById:ID)?.fname}} {{(visitListWithoutDuplication|searchById:ID)?.lname}}</td>
       </tr>
     </tbody>
   </table>

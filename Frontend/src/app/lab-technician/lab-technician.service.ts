@@ -14,7 +14,7 @@ export class LabTechnicianService {
   baseUrl="https://localhost:7089/api";
 
   constructor(public http:HttpClient , public acc:AccountService) { 
-  }
+  }                  
 
   //get technician ID
   getLabTechnicianId(){
@@ -33,9 +33,9 @@ export class LabTechnicianService {
     return this.http.get<Patient[]>(this.baseUrl+"/patient/LabPatients");
   }
 
-  //Add Files
-  AddPatientFile(pid:number,did:number,date:Date, record:any){
-    return this.http.put<any>(this.baseUrl+"/Record/AddFile/"+pid+"/"+did+"/"+date,record);
-  }
+  // //Add Files
+  // AddPatientFile(pid:number,did:number,date:Date, record:any){
+  //   return this.http.put<any>(this.baseUrl+"/Record/AddFile/"+pid+"/"+did+"/"+date,record);
+  // }
   
 }

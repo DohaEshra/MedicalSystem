@@ -1,4 +1,5 @@
 import { Byte } from "@angular/compiler/src/util"
+import { Doctor } from "./doctor";
 
 export class RecordPerDate {
     constructor(
@@ -9,7 +10,8 @@ export class RecordPerDate {
                 public date :Date=new Date(), 
                 public summary:string='',
                 public testType:String[]= [],
-                public prescription:string=''
+                public prescription:string='',
+                public didNavigation:Doctor|null=null
                 ){}
 
 }

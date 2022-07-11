@@ -128,10 +128,13 @@ namespace MedicalSystem.Migrations
                     b.Property<int>("DID")
                         .HasColumnType("int");
 
+                    b.Property<int>("VisitNumber")
+                        .HasColumnType("int");
+
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.HasKey("PID", "DID");
+                    b.HasKey("PID", "DID", "VisitNumber");
 
                     b.HasIndex("DID");
 
@@ -369,6 +372,9 @@ namespace MedicalSystem.Migrations
 
                     b.Property<DateTime>("appointment_time")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("AppointmentNo")
+                        .HasColumnType("int");
 
                     b.Property<int?>("AppointmentStatus")
                         .ValueGeneratedOnAddOrUpdate()

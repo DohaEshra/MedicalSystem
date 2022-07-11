@@ -1,5 +1,6 @@
 import { Guid } from "guid-typescript";
 import { Doctor } from "./doctor"
+import { Patient } from "./patient";
 export class Record {
     constructor(
                 public fno:Guid,
@@ -13,6 +14,8 @@ export class Record {
                 public summary:string='',
                 public prescription:string='',
                 public didNavigation:Doctor|null=new Doctor(),
+                public pidNavigation:Patient|null=new Patient(),
+
                 ){}
 
 }

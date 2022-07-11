@@ -9,18 +9,18 @@ namespace MedicalSystem.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
-                name: "AppointmentStatus",
+                name: "AppointmentNo",
                 table: "Visit",
                 type: "int",
                 nullable: true,
-                computedColumnSql: "([dbo].[Appointment_Status](PID,DID,appointment_time))",
+                computedColumnSql: "([dbo].[Set_Count_Patient](DID,appointment_time))",
                 stored: false);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "AppointmentStatus",
+                name: "AppointmentNo",
                 table: "Visit");
         }
     }

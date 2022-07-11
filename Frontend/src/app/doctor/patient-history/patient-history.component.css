@@ -6,7 +6,6 @@
 
 #custom-search-input {
     margin:0;
-    margin-top: 10px;
     padding: 0;
 }
 
@@ -34,7 +33,7 @@
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-    color:greenyellow;
+    color:#a5c422;
 }
 
 .search-query:focus + button {
@@ -44,22 +43,23 @@
 
 .search-query:focus{
     outline: none !important;
-    border:1px solid greenyellow;
-    box-shadow: 0 0 10px rgb(148, 222, 38); 
+    border:1px solid #a5c422;
+    box-shadow: 0 0 10px #a5c422; 
 }
 
-.tablearea{
+#sailorTableArea{
     max-height: 300px;
     overflow-x: auto;
     overflow-y: auto;
 }
-.table{
+#sailorTable{
     white-space: normal;
 }
-tbody{
+tbody {
     display:block;
     height:200px;
-    overflow:auto;
+    overflow-x:auto;
+    overflow-y:auto;
 }
 thead, tbody tr {
     display:table;

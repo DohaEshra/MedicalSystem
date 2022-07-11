@@ -14,6 +14,7 @@ export class DoctorPatientSearchComponent implements OnInit,OnDestroy {
   ID:any="";
   Name:string="";
   visitList:Visit[]=[];
+  visitListWithoutDuplication:Visit[]=[];
   sub:Subscription|null=null;
   selectedDay: string = '';
 
@@ -27,8 +28,11 @@ export class DoctorPatientSearchComponent implements OnInit,OnDestroy {
           this.visitList=data;
           console.log(this.visitList)
         }
+        for (let i = 0; i < this.visitList.length-1; i++) {
+          if (this.visitList[i]!=this.visitList[i+1]) 
+          this.visitListWithoutDuplication.push(this.visitList[i+1]);
+        }
       },
-      //err => console.log("error from doctor patient search component",err)
     )
   }
 

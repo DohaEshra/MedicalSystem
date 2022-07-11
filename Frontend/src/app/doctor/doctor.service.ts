@@ -56,6 +56,12 @@ export class DoctorService {
   {
     return this.http.get<Doctor[]>(this.baseUrl+"Doctor");
   }
+    
+  //get All Categories
+    getAllCategories()
+    {
+      return this.http.get<string[]>(this.baseUrl+"Doctor/getCategories");
+    }
 
   //get doctor's patients
   getDoctorPatients()
@@ -67,6 +73,11 @@ export class DoctorService {
   //get prescription
   getPatientPrescription(pid:number,did:number,date:Date){
     return this.http.get<Record[]>(this.baseUrl+"Record/"+pid+"/"+did+"/"+date);
+  }
+
+   //get prescription
+   getPatientPrescriptionForPharmacy(pid:number,did:number,date:Date){
+    return this.http.get<Record>(this.baseUrl+"Record/pharmacy/"+pid+"/"+did+"/"+date);
   }
 
   //record prescription

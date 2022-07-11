@@ -172,7 +172,8 @@ namespace MedicalSystem.Migrations
             //    {
             //        PID = table.Column<int>(type: "int", nullable: false),
             //        DID = table.Column<int>(type: "int", nullable: false),
-            //        appointment_time = table.Column<DateTime>(type: "datetime2", nullable: false)
+            //        appointment_time = table.Column<DateTime>(type: "datetime2", nullable: false),
+            //        AppointmentStatus = table.Column<int>(type: "int", nullable: true, computedColumnSql: "([dbo].[Appointment_Status](PID,DID,appointment_time))", stored: false)
             //    },
             //    constraints: table =>
             //    {
