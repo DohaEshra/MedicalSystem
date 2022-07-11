@@ -58,21 +58,26 @@
   <div  *ngIf="account.getRole() =='doctor'"  class="collapse navbar-collapse" id="navbarScroll" >
     <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
       <li class="nav-item">
-        <a class="nav-link active fs-5" aria-current="page" routerLink="/doctor/home">Home</a>
+        <a class="nav-link active fs-5" aria-current="page" [routerLink]="['/doctor']">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active fs-5" aria-current="page" routerLink="/doctor/edit">Edit</a>
+        <a class="nav-link active fs-5" aria-current="page" [routerLink]="['/doctor/info']">Profile</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active fs-5" aria-current="page" routerLink="/doctor/info">Info</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active fs-5" aria-current="page" routerLink="/doctor/patientsearch">Patient search</a>
+        <a class="nav-link active fs-5" aria-current="page" [routerLink]="['/doctor/patientsearch']">Search</a>
       </li>
     </ul>
     <ul class="navbar-nav  justify-content-end my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-     <li class="nav-item">
-        <a class="nav-link fs-5" routerLink="/login"  (click)="clearToken()" >Logout</a>
+      <li class="nav-item">
+        <a class="nav-link fs-5">
+          <img
+            src={{account.getDoctor().profilePic}}
+            width="25px" height="25px" style="border-radius: 100px;"/>
+            <label class="mx-2">{{account.getDoctor().fname}} {{account.getDoctor().lname}}</label>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link fs-5" routerLink="/login"  (click)="clearToken()" ><i class="fas fa-sign-out-alt"></i></a>
       </li>
     </ul>      
   </div>

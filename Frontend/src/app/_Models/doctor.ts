@@ -11,7 +11,7 @@ export class Doctor {
                 public category:string='',
                 public buildingNumber:number|null=null,
                 public city:string='',
-                public area: string | null = null,
+                public area: string |null=null,
                 public street:string|null=null,
                 public password:string='',
                 public gender: string = '',

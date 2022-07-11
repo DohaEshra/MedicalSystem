@@ -17,6 +17,8 @@ import { EditPrescriptionComponent } from './edit-prescription/edit-prescription
 import { SafePipe } from './_Pipes/safe.pipe';
 import {DialogModule} from 'primeng/dialog';
 import { SearchInTable } from './_Pipes/search-in-table.pipe';
+import { DoctorAppointmentComponent } from './doctor-appointment/doctor-appointment.component';
+import { DateTimePipe } from './_Pipes/date-time.pipe';
 
 
 
@@ -37,6 +39,8 @@ import { SearchInTable } from './_Pipes/search-in-table.pipe';
     RecordPrescriptionComponent,
     EditPrescriptionComponent,
     SafePipe,
+    DoctorAppointmentComponent,
+    DateTimePipe,
   ],
   imports: [
     CommonModule,doctorRoutingModule,FormsModule,DialogModule

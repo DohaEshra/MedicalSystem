@@ -34,25 +34,41 @@ namespace MedicalSystem.Controllers
             return await _context.Records.Where(a => a.PID == PID).ToListAsync();
         }
 
-        // GET: api/Records/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Record>> GetRecord(int id)
+        // GET: api/Records/5/2
+        [HttpGet("{pid}/{did}")]
+        public async Task<ActionResult<IEnumerable<Record>>> GetRecord(int pid, int did)  // not working as the date needed !
         {
-            var @record = await _context.Records.FindAsync(id);
+            var Record = await _context.Records.Select(a=>a).Where(r => r.DID == did && r.PID == pid ).ToListAsync();
 
-            if (@record == null)
+            if (_context.Records == null)
+            {
+                return NotFound();
+            }
+            return Record;
+        }
+
+        // GET: api/Records/pharmacy/pid/did/date
+        [HttpGet("pharmacy/{pid}/{did}/{date}")]
+        public async Task<ActionResult<Record>> GetOneRecord(int pid, int did, DateTime date)
+        {
+
+            Record Record = await _context.Records.Where(r => r.DID == did && r.PID == pid && r.date.Date == date.Date).FirstOrDefaultAsync();
+
+            if (_context.Records == null)
             {
                 return NotFound();
             }
 
-            return @record;
+            return Record;
         }
+
 
         // GET: api/Records/pid/did/date
         [HttpGet("{pid}/{did}/{date}")]
         public async Task<ActionResult<IEnumerable<Record>>> GetSpecificRecords(int pid, int did, DateTime date)
         {
-            List<Record> Record = await _context.Records.Where(r => r.DID == did && r.PID == pid && r.date == date).ToListAsync();
+
+            List<Record> Record = await _context.Records.Where(r => r.DID == did && r.PID == pid && r.date.Date == date.Date).ToListAsync();
 
             if (_context.Records == null)
             {

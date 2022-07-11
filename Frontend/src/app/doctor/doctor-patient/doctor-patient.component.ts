@@ -16,7 +16,6 @@ export class DoctorPatientComponent implements OnInit,OnDestroy {
   selectedPatient$ = this.patient$.asObservable();
 
   patient:Patient=new Patient();
-  RecordList:Record[]=[];
   sub:Subscription|null=null;
 
   constructor(private patientSer:PatientService,private activateRoute:ActivatedRoute) { }
@@ -27,7 +26,6 @@ export class DoctorPatientComponent implements OnInit,OnDestroy {
         this.patientSer.getPatientById(a['id']).subscribe(
         data=>{
           this.patient=data;
-          this.RecordList=data.records;
           this.patient$.next(this.patient);
         })   
       }

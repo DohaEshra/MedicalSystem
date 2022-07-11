@@ -373,6 +373,14 @@ namespace MedicalSystem.Migrations
                     b.Property<DateTime>("appointment_time")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("AppointmentNo")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("AppointmentStatus")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("int")
+                        .HasComputedColumnSql("([dbo].[Appointment_Status](PID,DID,appointment_time))", false);
+
                     b.HasKey("PID", "DID", "appointment_time");
 
                     b.HasIndex(new[] { "DID" }, "IX_Visit_DID");

@@ -5,6 +5,8 @@ import { PatientRecordComponent } from "./patient-record/patient-record.componen
 import { PatientHomeComponent } from "./patient-home/patient-home.component";
 import { PatientLoginGuard } from "../_Guards/patient-login.guard";
 import { SearchForDoctorComponent } from "./search-for-doctor/search-for-doctor.component";
+import { PatientAppointmentComponent } from "./patient-appointment/patient-appointment.component";
+import { ShowappointmentsComponent } from "./showappointments/showappointments.component";
 
 const routes:Routes=[
     {path:"",component:PatientHomeComponent,canActivate:[PatientLoginGuard],children:[
@@ -12,7 +14,9 @@ const routes:Routes=[
         {path:"categories/:Category", component:GetDoctorPerCategoryComponent},
         {path:"search",component:SearchForDoctorComponent},
     ]},
-    {path:"home",component:PatientHomeComponent},
+    { path: "home", component: PatientHomeComponent },
+    { path: "appointments", component: ShowappointmentsComponent },
+    { path: "appointment/:did", component: PatientAppointmentComponent },
     ]
 
 @NgModule({

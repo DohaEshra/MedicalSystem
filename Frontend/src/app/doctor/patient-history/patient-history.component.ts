@@ -1,5 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { PatientService } from 'src/app/patient/Patient.service';
 import { Record } from 'src/app/_Models/record';
 import { DoctorPatientComponent } from '../doctor-patient/doctor-patient.component';
 import { DoctorService } from '../doctor.service';
@@ -9,7 +11,7 @@ import { DoctorService } from '../doctor.service';
   templateUrl: './patient-history.component.html',
   styleUrls: ['./patient-history.component.css']
 })
-export class PatientHistoryComponent implements OnInit,OnDestroy {
+export class PatientHistoryComponent implements OnInit,OnDestroy{
 
   RecordList:Record[]=[];
   doctorID:number|null=null;
@@ -17,18 +19,23 @@ export class PatientHistoryComponent implements OnInit,OnDestroy {
   sub:Subscription|null=null;
   fileDialogVisibility = false;
 
-  constructor(private comp:DoctorPatientComponent , private docSer:DoctorService) { }
+  constructor(private patientSer:PatientService,private comp:DoctorPatientComponent , private docSer:DoctorService) { }
 
-  
   ngOnInit(): void {
+    
     this.comp.selectedPatient$.subscribe(
       data=>{
-        this.RecordList=data.records;
+        this.patientSer.getPatientById(data.id).subscribe(
+          data=>{
+            this.RecordList=data.records;
+          })   
       },
       // err =>{console.log('error from patient history component: ',err);}
     );
     this.doctorID=this.docSer.DoctorID;
   }
+
+  
 
   showDialog(){
     this.fileDialogVisibility = true;
