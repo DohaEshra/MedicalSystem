@@ -12,7 +12,7 @@ import { DoctorService } from '../doctor.service';
 })
 export class DoctorAppointmentComponent implements OnInit,OnDestroy {
 
-  status:number=0;
+  searchText:string="";
   doctor:Doctor=new Doctor();
   visits:Visit[]=[];
   sub:Subscription|null=null;
