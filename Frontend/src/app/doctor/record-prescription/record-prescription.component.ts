@@ -78,8 +78,12 @@ export class RecordPrescriptionComponent implements OnInit {
     htmlbutton.addEventListener("click",()=>{
       var element = document.getElementById(elementId);
       element?.parentNode?.removeChild(element);
-      this.medicalTests.splice(parseInt(elementId.split('-')[1])-1,1);
-      this.testType.splice(parseInt(elementId.split('-')[1])-1,1);
+      if(parentId ==='fields'){ //to remove from test type 
+        this.medicalTests.splice(parseInt(elementId.split('-')[1])-1,1);
+        this.testType.splice(parseInt(elementId.split('-')[1])-1,1);
+      }else{ //to remove from prescription
+        this.medicalPrescription.splice(parseInt(elementId.split('-')[1])-1,1);
+      } 
     });
     
     //append elements in new div
