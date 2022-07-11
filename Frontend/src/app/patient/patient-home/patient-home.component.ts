@@ -3,10 +3,11 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { Patient } from 'src/app/_Models/patient';
 import { PatientService } from '../Patient.service';
+
 @Component({
   selector: 'app-patient-home',
   templateUrl: './patient-home.component.html',
-  styleUrls: ['./patient-home.component.css']
+  styleUrls: ['./patient-home.component.css'],
 })
 export class PatientHomeComponent implements OnInit,OnDestroy {
 par:string = ""
@@ -18,26 +19,27 @@ selectedPatient$ = this.patient$.asObservable();
 
   ngOnInit(): void {
     this.sub = this.patientService.getPatient().subscribe({
-      next: data =>{
-        this.patient =  data;
-        console.log('patient: ',this.patient);
+      next: (data) => {
+        this.patient = data;
+        console.log('patient: ', this.patient);
       },
-      error: err => {console.log('error from patient home component: ',err);}
-    })
+      error: (err) => {
+        console.log('error from patient home component: ', err);
+      },
+    });
   }
 
-  send(){
+  send() {
     this.patient$.next(this.patient);
   }
-  
+
   getSelectedPatient(): Observable<Patient> {
-    return new Observable(obs => {
+    return new Observable((obs) => {
       obs.next(this.patient);
-    })
+    });
   }
 
   ngOnDestroy(): void {
       this.sub?.unsubscribe();
   }
-
 }

@@ -29,6 +29,7 @@ constructor(public http:HttpClient, public acc:AccountService) {
   return null;
 }
 
+
 getPatient()
 {
   this.getPatientId();
@@ -45,14 +46,17 @@ getPatients()
   return this.http.get<Patient[]>(this.baseUrl)
 }
 
-EditPatient(pat:Patient, ID:number)
+editPatient(patient:Patient)
 {
-  return this.http.put(this.baseUrl,{id:ID, patient:pat})
+  this.getPatientId()
+  return this.http.put<undefined>(this.baseUrl+this.PatientID,patient);
 }
+
 AddPatient(pat:Patient)
 {
   return this.http.post<Patient>(this.baseUrl,{patient:pat})
 }
+
 DeletePatient(ID:number)
 {
   return this.http.delete(this.baseUrl+ID)
@@ -62,6 +66,7 @@ getPatientRecords(){
   this.getPatientId();
   return this.http.get<Record[]>("https://localhost:7089/api/Record/list/"+this.PatientID);
 }
+
 getRecords()
 {
   return this.http.get<Record[]>("https://localhost:7089/api/Record")

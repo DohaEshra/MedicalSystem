@@ -33,6 +33,17 @@ namespace MedicalSystem.Controllers
             }
             return await _context.Records.Where(a => a.PID == PID).ToListAsync();
         }
+        // GET: api/Record/list/5
+        //show all records to patient
+        [HttpGet("list/{PID}")]
+        public async Task<ActionResult<IEnumerable<Record>>> GetRecords(int PID)
+        {
+            if (_context.Records == null)
+            {
+                return NotFound();
+            }
+            return await _context.Records.Where(a => a.PID == PID).ToListAsync();
+        }
 
         // GET: api/Records/5/2
         [HttpGet("{pid}/{did}")]
