@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalSystem.Migrations
 {
     [DbContext(typeof(MedicalSystemContext))]
-    [Migration("20220710104820_intialcreate")]
-    partial class intialcreate
+    [Migration("20220711004107_intialcreate2")]
+    partial class intialcreate2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -371,6 +371,14 @@ namespace MedicalSystem.Migrations
 
                     b.Property<DateTime>("appointment_time")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("AppointmentNo")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("AppointmentStatus")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("int")
+                        .HasComputedColumnSql("([dbo].[Appointment_Status](PID,DID,appointment_time))", false);
 
                     b.HasKey("PID", "DID", "appointment_time");
 
