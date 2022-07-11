@@ -12,7 +12,7 @@ import { PatientService } from '../Patient.service';
 })
 export class PatientEditComponent implements OnInit {
 
-  constructor(public patientSer:PatientService,public router:Router) { }
+  constructor(public patientSer:PatientService,public router:Router,public patHomeComp:PatientHomeComponent) { }
   patient:Patient=new Patient();
   sub:Subscription|null=null;
   span:string="";
@@ -30,7 +30,7 @@ export class PatientEditComponent implements OnInit {
   lastName:string=''
 
   ngOnInit(): void {
-    this.sub = this.patientSer.getPatient().subscribe(
+    this.sub = this.patHomeComp.selectedPatient$.subscribe(
       data=>{
         this.patient=data;
         this.firstName = this.patient.fname
