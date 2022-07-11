@@ -19,7 +19,7 @@ namespace MedicalSystem.Models
         [StringLength(150)]
         [Unicode(false)]
         public string file_description { get; set; }
-        public byte[]? attached_files { get; set; }
+        public byte[] attached_files { get; set; }
         [Key]
         public DateTime date { get; set; }
         [Required]

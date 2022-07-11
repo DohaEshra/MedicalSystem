@@ -18,11 +18,8 @@ namespace MedicalSystem.Models
         public int DID { get; set; }
         [Key]
         public DateTime appointment_time { get; set; }
-
         public int? AppointmentStatus { get; set; }
-
         public int? AppointmentNo { get; set; }
-
 
         [ForeignKey("DID")]
         [InverseProperty("Visits")]

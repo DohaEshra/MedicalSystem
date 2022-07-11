@@ -8,6 +8,7 @@ export class Visit {
                 public did:number=Number(),
                 public appointment_time:Date=new Date(),
                 public appointmentStatus:number=Number(),
+                public appointmentNo:number=Number(),
                 public didNavigation:Doctor|null=null,
                 public pidNavigation:Patient|null=null
             ){}

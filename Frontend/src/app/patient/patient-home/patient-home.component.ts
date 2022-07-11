@@ -13,7 +13,7 @@ export class PatientHomeComponent implements OnInit, OnDestroy {
   par: string = '';
   sub: Subscription | null = null;
   patient = new Patient();
-  patient$ = new BehaviorSubject<Patient>(this.patient);
+  private patient$ = new BehaviorSubject<Patient>(this.patient);
   selectedPatient$ = this.patient$.asObservable();
   constructor(public router: Router, public patientService: PatientService) {}
 
@@ -21,6 +21,8 @@ export class PatientHomeComponent implements OnInit, OnDestroy {
     this.sub = this.patientService.getPatient().subscribe({
       next: (data) => {
         this.patient = data;
+        this.patient$.next(this.patient);
+
         console.log('patient: ', this.patient);
       },
       error: (err) => {
