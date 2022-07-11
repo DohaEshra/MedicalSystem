@@ -78,9 +78,9 @@
             </tbody>
           </table>
           
-          <!-- <div style="background-color: #d8e4dc; height: 70px; padding: 25px;" class="d-flex justify-content-center" *ngIf="(visitListWithoutDuplication|searchByName:Name).length==0 && ((visitListWithoutDuplication|searchById:ID)==null) &&Indicator==1 ">           
+          <div style="background-color: #d8e4dc; height: 70px; padding: 25px;" class="d-flex justify-content-center" *ngIf="((visitListWithoutDuplication|searchByName:Name).length==0 &&Indicator==2)|| (((visitListWithoutDuplication|searchById:ID)==null)&&Indicator==1&&ID) ">           
             <label class="fs-3"><em style="color: black;" class="fas fa-cog fa-spin"></em> No Patients Found</label>
-          </div> -->
+          </div>
     </div>
   </div>
 
