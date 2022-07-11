@@ -18,6 +18,7 @@ export class RecordPrescriptionComponent implements OnInit {
   testType:string[]=[];
   sub:Subscription|null=null;
   medicalPrescription:string[]=[];   // prescription
+  
 
   constructor(private activateRoute:ActivatedRoute,private docSer:DoctorService,private router:Router) { }
 
@@ -26,7 +27,8 @@ export class RecordPrescriptionComponent implements OnInit {
     this.record.didNavigation=null;
     this.sub=this.activateRoute.params.subscribe(
       a=>{
-        this.record.pid=a['id'];
+        this.record.pid=a['pid'];
+        this.record.date=a['date'];
       }
     ) 
   }
@@ -107,11 +109,11 @@ export class RecordPrescriptionComponent implements OnInit {
     
     if(this.medicalPrescription.length>0){
       this.record.prescription=this.medicalPrescription.join(',');
-      console.log(this.record.prescription);
     }
 
     if(this.medicalTests.length==0 && this.validation(date,summary,this.record.prescription))
     {
+      console.log(this.medicalTests.length)
       this.docSer.recordPatientPrescription(this.record,this.record.pid,this.record.did,this.record.date).subscribe(
         a=>{},
         err=>{}
@@ -119,6 +121,7 @@ export class RecordPrescriptionComponent implements OnInit {
     }
     else
     {
+      console.log(this.medicalTests.length)
       for(let i=0;i<this.medicalTests.length;i++)
       {
         this.record.file_description=this.medicalTests[i];
@@ -139,7 +142,7 @@ export class RecordPrescriptionComponent implements OnInit {
 
   //back
   back(){
-    this.router.navigateByUrl("doctor/patient/"+this.record.pid+"/info");
+    this.router.navigateByUrl("doctor");
   }
 
   //check validation

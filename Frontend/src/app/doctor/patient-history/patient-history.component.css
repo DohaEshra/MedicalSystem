@@ -4,7 +4,7 @@
 
 
 
-#custom-search-input {
+/* #custom-search-input {
     margin:0;
     padding: 0;
 }
@@ -45,8 +45,68 @@
     outline: none !important;
     border:1px solid #a5c422;
     box-shadow: 0 0 10px #a5c422; 
-}
+} */
 
+
+
+.searchbar{
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 40px;
+    background-color: #d8e4dc;
+    color: #637517;
+    border-radius: 30px;
+    padding: 1px;
+    padding-bottom: 2px;
+    }
+    .search_input{
+    color:#637517;
+    border: 0;
+    outline: 0;
+    background: none;
+    padding: 0 10px;
+    width: 450px;
+    caret-color:#a5c422;
+    line-height: 40px;
+    
+    }
+    ::placeholder { 
+        color: #637517;
+    }
+    
+    .searchbar:hover > .search_icon{
+    color: greenyellow;
+    }
+    .search_icon{
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:#637517;
+    text-decoration:none;
+    }
+    
+    .dropdown{
+    margin-top: auto;
+    margin-bottom: 0;
+    }
+    
+    .searchby{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 5px;
+    background-color: #d8e4dc;
+    color: #637517;
+    text-decoration: none;
+    font-size: medium;
+    border-radius: 30px;
+    padding: 10px 40px;
+    }
+
+    
 #sailorTableArea{
     max-height: 300px;
     overflow-x: auto;
