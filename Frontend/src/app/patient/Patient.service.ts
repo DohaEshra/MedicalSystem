@@ -14,9 +14,7 @@ export class PatientService {
 baseUrl="https://localhost:7089/api/patient/";
 PatientID=0;
 
-constructor(public http:HttpClient, public acc:AccountService) {
-    this.getPatientId();
-}
+constructor(public http:HttpClient, public acc:AccountService) {}
 
  getPatientId(){
   if(this.acc.getToken()!=null)
@@ -51,6 +49,7 @@ DeletePatient(ID:number)
   return this.http.delete(this.baseUrl+ID)
 }
 getPatientRecords(){
+  this.getPatientId();
   return this.http.get<Record[]>("https://localhost:7089/api/Record/list/"+this.PatientID);
 }
 getRecords()

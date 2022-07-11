@@ -1,4 +1,6 @@
-<div class="container emp-profile " *ngIf="doctor.id">
+<app-loading *ngIf="visits.length==0"></app-loading>
+
+<div class="container emp-profile " *ngIf="doctor.id && visits.length">
     <div class="d-flex justify-content-center">
         <div class="card mb-3" style="max-width: 540px; margin-right: 1%;" >
             <div class="row g-0">
