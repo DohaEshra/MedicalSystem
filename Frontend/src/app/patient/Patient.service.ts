@@ -4,6 +4,8 @@ import { Record } from '../_Models/record';
 import { HttpClient} from '@angular/common/http';
 import { AccountService } from '../account/Account.service';
 import jwt_decode from 'jwt-decode';
+import { Visit } from '../_Models/visit';
+import { Works_in } from '../_Models/works_in';
 @Injectable({
   providedIn: 'root'
 })
@@ -52,6 +54,14 @@ getRecords()
 
 getPatientRecordsById(Id:number){
   return this.http.get<Record[]>("https://localhost:7089/api/Record/list/"+Id);
+}
+
+addAppointment(visit:Visit){
+  return this.http.post<Visit>("https://localhost:7089/api/Visit",visit);
+}
+
+GetAppointments(did:number){
+  return this.http.get<Works_in[]>("https://localhost:7089/api/works_in/"+did);
 }
 
 }

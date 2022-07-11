@@ -4,5 +4,6 @@
         {{item.id}}
         {{item.fname}}
         {{item.lname}}
+        <a class="btn btn-default" [routerLink]="['/patient/appointment',item.id]"><i style="color: yellowgreen;" class="fa fa-calendar" aria-hidden="true"></i></a>
     </li>
 </ul> 

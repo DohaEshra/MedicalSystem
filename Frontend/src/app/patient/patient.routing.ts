@@ -5,6 +5,7 @@ import { PatientRecordComponent } from "./patient-record/patient-record.componen
 import { PatientHomeComponent } from "./patient-home/patient-home.component";
 import { PatientLoginGuard } from "../_Guards/patient-login.guard";
 import { SearchForDoctorComponent } from "./search-for-doctor/search-for-doctor.component";
+import { PatientAppointmentComponent } from "./patient-appointment/patient-appointment.component";
 
 const routes:Routes=[
     {path:"",component:PatientHomeComponent},
@@ -16,9 +17,7 @@ const routes:Routes=[
     // ]},
     {path:"categories/:Category", component:GetDoctorPerCategoryComponent},
     {path:"search",component:SearchForDoctorComponent},
-    
-
-
+    {path:"appointment/:did",component:PatientAppointmentComponent},
 
 ]
 

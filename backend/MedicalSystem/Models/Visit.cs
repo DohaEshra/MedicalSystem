@@ -21,6 +21,9 @@ namespace MedicalSystem.Models
 
         public int? AppointmentStatus { get; set; }
 
+        public int? AppointmentNo { get; set; }
+
+
         [ForeignKey("DID")]
         [InverseProperty("Visits")]
         public virtual Doctor DIDNavigation { get; set; }

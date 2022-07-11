@@ -14,6 +14,5 @@ export class FileInfo {
                 public didNavigation:Doctor|null=new Doctor(),
                 public testType:String|null= null
             ){}
-
 }
 

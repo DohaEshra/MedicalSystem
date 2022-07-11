@@ -16,6 +16,8 @@ import {RouterModule} from '@angular/router';
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import { SortPipe } from './Pipes/sort.pipe';
+import { PatientAppointmentComponent } from './patient-appointment/patient-appointment.component';
+import { FromToDatesPipe } from './Pipes/from-to-dates.pipe';
 
 
 //>>>>>>> c139026ddd72e739c41a41647f8ef0270dd16f5e
@@ -29,6 +31,9 @@ import { SortPipe } from './Pipes/sort.pipe';
     SearchForDoctorComponent,
     PatientHomeComponent,
     SortPipe
+    PatientHomeComponent,
+    PatientAppointmentComponent,
+    FromToDatesPipe
   ],
   imports: [
 
