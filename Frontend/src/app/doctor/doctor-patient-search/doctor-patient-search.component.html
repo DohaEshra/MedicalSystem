@@ -59,7 +59,7 @@
             </tbody>
           </table>
         
-          <table class="tablearea table table-striped table-success" *ngIf="(visitListWithoutDuplication|searchById:ID)?.id!=0&&Indicator==1">
+          <table class="tablearea table table-striped table-success" *ngIf="(visitListWithoutDuplication|searchById:ID)!=null&&Indicator==1">
             <thead>
               <tr>
                 <th class="text-center text-dark"><em class="fa fa-cog"></em></th>
@@ -78,12 +78,9 @@
             </tbody>
           </table>
           
-          <!-- <div style="background-color: #d8e4dc; height: 70px; padding: 25px;" class="d-flex justify-content-center" *ngIf="(visitListWithoutDuplication|searchById:ID)?.id==0&&(visitListWithoutDuplication|searchByName:Name).length==0 ">
-            
+          <!-- <div style="background-color: #d8e4dc; height: 70px; padding: 25px;" class="d-flex justify-content-center" *ngIf="(visitListWithoutDuplication|searchByName:Name).length==0 && ((visitListWithoutDuplication|searchById:ID)==null) &&Indicator==1 ">           
             <label class="fs-3"><em style="color: black;" class="fas fa-cog fa-spin"></em> No Patients Found</label>
           </div> -->
-
-        </div>
     </div>
   </div>
 
