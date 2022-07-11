@@ -30,7 +30,7 @@ export class PatientRecordComponent implements OnInit,OnDestroy {
   ngOnInit() {
     this.patHomeComp.selectedPatient$.subscribe( data => {
       this.patient = data
-      console.log('meeeeeee',data);
+      //console.log('meeeeeee',data);
     })
   }
   
@@ -49,7 +49,7 @@ export class PatientRecordComponent implements OnInit,OnDestroy {
     this.doctorRating.did = record.did;
     this.doctorRating.Rating = rat.rate;
 
-    console.log(this.doctorRating);
+    //console.log(this.doctorRating);
 
     this.sub = this.PatientServ.addDoctorRating(this.doctorRating).subscribe({
       next: data => {console.log(data) }

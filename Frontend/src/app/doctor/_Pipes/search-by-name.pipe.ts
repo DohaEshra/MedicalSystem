@@ -11,9 +11,9 @@ export class SearchByNamePipe implements PipeTransform {
     let patients:Patient[]=[];
     for(let i=0;i<PatientList.length;i++)
     {
-      if(PatientList[i].pidNavigation.fname.includes(Name) || PatientList[i].pidNavigation.lname.includes(Name))
+      if(PatientList[i].pidNavigation?.fname.includes(Name) || PatientList[i].pidNavigation?.lname.includes(Name))
       {
-        patients.push(PatientList[i].pidNavigation);
+        patients.push(PatientList[i].pidNavigation!);
       }
     }
     return patients;

@@ -1,0 +1,12 @@
+<form>
+    <div class="mb-3 ">
+        <label for="Select" class="form-label fs-4">Appointment </label>
+        <select id="Select" class="form-select">
+          <option disabled [defaultSelected]="true">Select ...</option>
+          <option *ngFor="let appointment of appointments">
+            {{appointment.start_time}} To {{appointment.end_time}}
+          </option>
+        </select>
+      </div>
+      <button type="submit" (click)="Book()" class="btn btn-primary">Book</button>
+</form>

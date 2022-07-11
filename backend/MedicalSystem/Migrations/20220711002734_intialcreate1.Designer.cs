@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalSystem.Migrations
 {
     [DbContext(typeof(MedicalSystemContext))]
-    [Migration("20220703174444_intialcreate2")]
-    partial class intialcreate2
+    [Migration("20220711002734_intialcreate1")]
+    partial class intialcreate1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -326,8 +326,8 @@ namespace MedicalSystem.Migrations
                     b.Property<int?>("OID")
                         .HasColumnType("int");
 
-                    b.Property<string>("attached_files")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("attached_files")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("file_description")
                         .HasMaxLength(150)
@@ -336,16 +336,21 @@ namespace MedicalSystem.Migrations
 
                     b.Property<string>("prescription")
                         .IsRequired()
+                        .ValueGeneratedOnAdd()
                         .IsUnicode(false)
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("varchar(max)")
+                        .HasDefaultValueSql("('')");
 
                     b.Property<string>("summary")
                         .IsRequired()
+                        .ValueGeneratedOnAdd()
                         .IsUnicode(false)
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("varchar(max)")
+                        .HasDefaultValueSql("('')");
 
                     b.Property<string>("testType")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1)
+                        .HasColumnType("nvarchar(1)");
 
                     b.HasKey("DID", "PID", "date", "FNO");
 
@@ -366,6 +371,16 @@ namespace MedicalSystem.Migrations
 
                     b.Property<DateTime>("appointment_time")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("AppointmentNo")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("int")
+                        .HasComputedColumnSql("([dbo].[Set_Count_Patient](DID,appointment_time))", false);
+
+                    b.Property<int?>("AppointmentStatus")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("int")
+                        .HasComputedColumnSql("([dbo].[Appointment_Status](PID,DID,appointment_time))", false);
 
                     b.HasKey("PID", "DID", "appointment_time");
 

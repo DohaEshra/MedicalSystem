@@ -4,7 +4,7 @@ import { Guid } from 'guid-typescript';
 import { Subscription } from 'rxjs';
 import { Record } from 'src/app/_Models/record';
 import { DoctorService } from '../doctor.service';
-import { FileInfo } from '../_Models/FileInfo';
+import { FileInfo } from '../../_Models/FileInfo';
 
 @Component({
   selector: 'app-edit-prescription',
@@ -13,8 +13,10 @@ import { FileInfo } from '../_Models/FileInfo';
 })
 export class EditPrescriptionComponent implements OnInit {
 
-  recordList:FileInfo[]=[];
+  recordList:Record[]=[];
   indicator=false;
+  medicine:string[] = [];
+  info:string[]=[];
 
   sub:Subscription|null=null;
   sub1:Subscription|null=null;
@@ -23,17 +25,22 @@ export class EditPrescriptionComponent implements OnInit {
   constructor(private activateRoute:ActivatedRoute,private docSer:DoctorService,private router:Router) { }
 
   ngOnInit(): void {
-
     this.sub1=this.activateRoute.params.subscribe(
       a=>{
         this.sub2=this.docSer.getPatientPrescription(a['id'],this.docSer.DoctorID,a['date']).subscribe(
           data=>{
             this.recordList = data;
+            //var dummy= data[0].prescription.split(',');
+            console.log(data);
+            // dummy.forEach(element => {
+            //   this.medicine.push( element.split(': ')[0])
+            //   this.info.push( element.split(': ')[1])
+            // });
+            console.log(this.medicine,this.info);
             this.indicator=true;
           }
         )
       }
-      
     ) 
   }
   
@@ -47,7 +54,6 @@ export class EditPrescriptionComponent implements OnInit {
         a=>{
         }
       );
-      
     }
     else if(this.recordList.length>1 && this.recordList[0].testType!="")
     {
@@ -57,7 +63,6 @@ export class EditPrescriptionComponent implements OnInit {
         }
       )
     }
-   
   }
 
   //edit
@@ -113,19 +118,19 @@ export class EditPrescriptionComponent implements OnInit {
     return true;
   }
 
-  newFile:Record= new Record();
+  newFile:FileInfo= new FileInfo();
   //add inputs
   add(desc:string,type:string){
     if(desc && type)
     {
-      this.newFile = new Record(this.recordList[0].did,this.recordList[0].pid,null,desc,null,this.recordList[0].date,this.recordList[0].summary,this.recordList[0].prescription,null,type);
+      this.newFile = new FileInfo(this.recordList[0].did,this.recordList[0].pid,null,desc,null,this.recordList[0].date,this.recordList[0].summary,this.recordList[0].prescription,null,type);
       this.docSer.recordPatientPrescription(this.newFile,this.recordList[0].pid,this.recordList[0].did,this.recordList[0].date).subscribe(
         a=>{
           this.docSer.getPatientPrescription(this.recordList[0].pid,this.docSer.DoctorID,this.recordList[0].date).subscribe(
             data=>{
               this.recordList = data;
               this.indicator=true;
-              this.newFile=new Record();
+              this.newFile=new FileInfo();
             }
           )
         }

@@ -89,6 +89,8 @@ namespace MedicalSystem.Controllers
         [HttpPost]
         public async Task<ActionResult<Visit>> PostVisit(Visit visit)
         {
+            List<Visit> visits = await _context.Visits.Where(v => v.DID==visit.DID && v.appointment_time==visit.appointment_time).ToListAsync();
+            visit.AppointmentNo = visits.Count() + 1;
             _context.Visits.Add(visit);
             try
             {
@@ -129,5 +131,6 @@ namespace MedicalSystem.Controllers
         {
             return _context.Visits.Any(e => e.PID == id);
         }
+        
     }
 }

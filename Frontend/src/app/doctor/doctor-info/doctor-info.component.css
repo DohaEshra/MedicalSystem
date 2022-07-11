@@ -1,11 +1,12 @@
 @import "../doctor.style.css";
 body{
-    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+    background: -webkit-linear-gradient(center, #3931af, #00c6ff);
 }
 .emp-profile{
     padding: 3%;
     margin-top: 3%;
     margin-bottom: 3%;
+    margin-left: 4%;
     border-radius: 0.5rem;
     background: #fff;
 }
@@ -36,7 +37,7 @@ body{
     color: #333;
 }
 .profile-head h6{
-    color: #0062cc;
+    color: #a5c422;
 }
 .profile-edit-btn{
     border: none;
@@ -66,7 +67,7 @@ body{
 }
 .profile-head .nav-tabs .nav-link.active{
     border: none;
-    border-bottom:2px solid #0062cc;
+    border-bottom:2px solid #a5c422;
 }
 .profile-work{
     padding: 14%;
@@ -92,5 +93,5 @@ body{
 }
 .profile-tab p{
     font-weight: 600;
-    color: #0062cc;
+    color: #a5c422;
 }

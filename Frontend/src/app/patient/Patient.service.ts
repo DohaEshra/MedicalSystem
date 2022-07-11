@@ -4,17 +4,22 @@ import { Record } from '../_Models/record';
 import { HttpClient} from '@angular/common/http';
 import { AccountService } from '../account/Account.service';
 import jwt_decode from 'jwt-decode';
+import { Visit } from '../_Models/visit';
+import { Works_in } from '../_Models/works_in';
 import { DoctorRating } from '../_Models/doctor-rating';
 @Injectable({
   providedIn: 'root'
 })
 export class PatientService {
 
-constructor(public http:HttpClient, public acc:AccountService) {}
 baseUrl="https://localhost:7089/api/patient/";
 PatientID=0;
 
-getPatientID(){
+constructor(public http:HttpClient, public acc:AccountService) {
+    this.getPatientId();
+}
+
+ getPatientId(){
   if(this.acc.getToken()!=null)
   {
     var decodeToken = JSON.parse(JSON.stringify(jwt_decode(this.acc.getToken()!)));
@@ -26,7 +31,7 @@ getPatientID(){
 
 getPatient()
 {
-  this.getPatientID();
+  this.getPatientId();
   return this.http.get<Patient>(this.baseUrl+this.PatientID)
 }
 
@@ -54,12 +59,24 @@ DeletePatient(ID:number)
 }
 
 getPatientRecords(){
-  this.getPatientID();
+  this.getPatientId();
   return this.http.get<Record[]>("https://localhost:7089/api/Record/list/"+this.PatientID);
+}
+getRecords()
+{
+  return this.http.get<Record[]>("https://localhost:7089/api/Record")
 }
 
 getPatientRecordsById(Id:number){
   return this.http.get<Record[]>("https://localhost:7089/api/Record/list/"+Id);
+}
+
+addAppointment(visit:Visit){
+  return this.http.post<Visit>("https://localhost:7089/api/Visit",visit);
+}
+
+GetAppointments(did:number){
+  return this.http.get<Works_in[]>("https://localhost:7089/api/works_in/"+did);
 }
 
 addDoctorRating(drRating:any){

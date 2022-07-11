@@ -1,0 +1,69 @@
+<div class="container emp-profile " *ngIf="doctor.id">
+    <div class="d-flex justify-content-center">
+        <div class="card mb-3" style="max-width: 540px; margin-right: 1%;" >
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src={{doctor.profilePic}} class="img-fluid rounded-start"/>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h3 class="card-title"><b>Welcome Dr , <label style="color: rgb(143, 213, 38);"> {{doctor.fname}} {{doctor.lname}}</label></b></h3>
+                  <p class="card-text mx-1" style="color: rgb(108, 108, 108);">Whatever you do, do with determination. You have one life to live; do your work with passion and give your best.</p>
+                </div>
+              </div>
+            </div>
+        </div>
+    
+        <div class="card mb-3 " style="max-width: 230px;" >
+            <div class="row g-0 d-flex justify-content-center">
+              <div class="col-md-2 mx-2 mt-1">
+                <img src="../../../assets/calendar.jpg" class="img-fluid rounded-start"/>
+                
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                    <label>Total Appointment</label>
+                </div>
+                <div class="card-body mx-4">
+                    <h1 style="color: rgb(143, 213, 38);">{{visits.length}}</h1>
+                </div>
+              </div>
+    
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="card mb-3 col-12" style="max-width: 780px;" *ngIf="visits.length!=0">
+            <h3 class="mx-3"><b>Appointments</b></h3>
+            <div class="row g-0">
+                <table class="tablearea table table-striped table-success">
+                    <thead>
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let visit of visits">
+    
+                        <td> <img src={{visit.pidNavigation?.profilePic}} width="25px" height="25px" style="border-radius: 100px;"/> {{visit.pidNavigation?.fname}} {{visit.pidNavigation?.lname}}</td>
+                        <td>{{(visit.appointment_time|dateTime)[0]}}</td>
+                        <td>{{(visit.appointment_time|dateTime)[1]}}</td>
+                        <td *ngIf="visit.appointmentStatus==0"><i class="fa fa-spinner" style="color: red;" aria-hidden="true"></i></td>
+                        <td *ngIf="visit.appointmentStatus==1"><i class="fa fa-check" style="color: green;" aria-hidden="true"></i></td>
+
+                      </tr>
+                    </tbody>
+                  </table>
+    
+            </div>
+        </div>
+    </div>
+    
+    
+
+
+</div>
+

@@ -1,6 +1,7 @@
 import {NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { DoctorLoginGuard } from "../_Guards/doctorLogin.guard";
+import { DoctorAppointmentComponent } from "./doctor-appointment/doctor-appointment.component";
 import { DoctorEditComponent } from "./doctor-edit/doctor-edit.component";
 import { DoctorHomeComponent } from "./doctor-home/doctor-home.component";
 import { DoctorInfoComponent } from "./doctor-info/doctor-info.component";
@@ -14,6 +15,7 @@ import { RecordPrescriptionComponent } from "./record-prescription/record-prescr
 
 const routes:Routes =[
     {path:"",component:DoctorHomeComponent,canActivate:[DoctorLoginGuard],children:[
+        {path:"",component:DoctorAppointmentComponent},
         {path:"info",component:DoctorInfoComponent},
         {path:"edit",component:DoctorEditComponent},
         {path:"patientsearch",component:DoctorPatientSearchComponent},
