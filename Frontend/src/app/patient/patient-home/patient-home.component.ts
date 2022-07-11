@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BehaviorSubject, Subscription } from 'rxjs';
+import { Patient } from 'src/app/_Models/patient';
+import { PatientService } from '../Patient.service';
 @Component({
   selector: 'app-patient-home',
   templateUrl: './patient-home.component.html',
@@ -7,9 +10,11 @@ import { Router } from '@angular/router';
 })
 export class PatientHomeComponent implements OnInit {
 par:string = ""
-  constructor(public router:Router) { }
+
+  constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

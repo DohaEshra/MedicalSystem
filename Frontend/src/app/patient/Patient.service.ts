@@ -11,17 +11,23 @@ import { Works_in } from '../_Models/works_in';
 })
 export class PatientService {
 
+baseUrl="https://localhost:7089/api/patient/";
+PatientID=0;
+
 constructor(public http:HttpClient, public acc:AccountService) {
+    this.getPatientId();
+}
+
+ getPatientId(){
   if(this.acc.getToken()!=null)
   {
     var decodeToken = JSON.parse(JSON.stringify(jwt_decode(this.acc.getToken()!)));
     this.PatientID = decodeToken.ID;
   }
- }
-baseUrl="https://localhost:7089/api/patient/";
-PatientID=0;
+}
 getPatient()
 {
+  this.getPatientId();
   return this.http.get<Patient>(this.baseUrl+this.PatientID)
 }
 getPatientById(Id:number)

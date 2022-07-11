@@ -6,11 +6,12 @@ import { PatientHomeComponent } from "./patient-home/patient-home.component";
 import { PatientLoginGuard } from "../_Guards/patient-login.guard";
 import { SearchForDoctorComponent } from "./search-for-doctor/search-for-doctor.component";
 import { PatientAppointmentComponent } from "./patient-appointment/patient-appointment.component";
+import { ShowappointmentsComponent } from "./showappointments/showappointments.component";
 
 const routes:Routes=[
     {path:"",component:PatientHomeComponent},
     {path:"record",component:PatientRecordComponent},
-
+    {path:"appointments",component:ShowappointmentsComponent},
     // {path:"",component:PatientHomeComponent,canActivate:[PatientLoginGuard],children:[
     //     {path:"record",component:PatientRecordComponent},
 
