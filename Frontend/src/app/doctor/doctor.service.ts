@@ -60,7 +60,7 @@ export class DoctorService {
   //get All Categories
     getAllCategories()
     {
-      return this.http.get<object[]>(this.baseUrl+"Doctor/getCategories");
+      return this.http.get<string[]>(this.baseUrl+"Doctor/getCategories");
     }
 
   //get doctor's patients

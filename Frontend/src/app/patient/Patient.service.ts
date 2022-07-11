@@ -45,6 +45,10 @@ DeletePatient(ID:number)
 getPatientRecords(){
   return this.http.get<Record[]>("https://localhost:7089/api/Record/list/"+this.PatientID);
 }
+getRecords()
+{
+  return this.http.get<Record[]>("https://localhost:7089/api/Record")
+}
 
 getPatientRecordsById(Id:number){
   return this.http.get<Record[]>("https://localhost:7089/api/Record/list/"+Id);

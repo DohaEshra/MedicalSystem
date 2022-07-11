@@ -20,7 +20,7 @@ export class PatientRecordComponent implements OnInit {
   constructor(public PatientServ:PatientService, public router:Router) { }
 
   ngOnInit(): void {
-    this.sub = this.PatientServ.getPatientRecords().subscribe(
+    this.sub = this.PatientServ.getRecords().subscribe(
       data=>{
         if(data!=null)
         {

@@ -12,10 +12,14 @@ mapping = new Map<string, string>();
 name:string = "";
 area:string = "";
 city:string = "";
+city2:string = "";
 category:string = "";
 cities:string[]=[]
-categories:object[]=[];
-//name:string=""
+categories:string[]=[];
+n:string = "";
+a:string = "";
+c:string = "";
+cat:string = "";
 drs:Doctor[]=[]
 dr:Doctor[]=[]
 clicked:number = 0;
@@ -24,27 +28,54 @@ ops:string[]=["Name", "Address"]
 op:string="";
 input:string = ""
   constructor(public drServ:DoctorService) {
-   //this.drServ.getAllCategories().subscribe(c=>this.categories =c)
-  //  this.drServ.getAllDoctors().subscribe(a=>this.drs=a)
 
   }
   Search()
   {
     this.clicked=1;
+    this.n=this.name;
+    this.a = this.area;
+    this.cat = this.category;
+    this.c = this.city2;
+
     console.log(this.drs)
     console.log(this.area)
 
     this.drs = this.drs;
-
-    
   }
   
 
   ngOnInit(): void {
     
    console.log(this.categories);
-    //console.log(this.drs)
+
      this.drServ.getAllDoctors().subscribe(a=>this.drs=a)
+     this.drServ.getAllCategories().subscribe(a=>this.categories=a)
+     this.cities = [
+      'Alexandria',
+       'Cairo',
+      'Mansoura',
+      'Fayoum',
+      'Monefya',
+      'Gizeh', 
+      'Port Said', 
+      'Suez', 
+      'Luxor', 
+      'Tanta', 
+      'Asyut',
+      'Ismailia',
+      'Aswan', 
+      'Damietta', 
+      'Al-mnia', 
+      'Qena', 
+      'Sohag', 
+      'Arish', 
+      'Marsa Matrouh', 
+      'Kafr el-Sheikh',
+      'Hurghada', 
+      'Beni suef', 
+      '6th of October',
+  ];
   }
 
 }

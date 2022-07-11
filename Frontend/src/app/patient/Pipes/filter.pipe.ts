@@ -5,10 +5,16 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterPipe implements PipeTransform {
   transform(value: any[], filteredName:string, prop:string ): any[] {
-    if(value.length===0 || filteredName === ''|| prop === '')
+    if(value.length===0 || prop === ''|| filteredName==='' ||filteredName===null)
     {
       return value;
     }
+    console.log(filteredName, prop)
+    // if(filteredName==='')
+    // {
+    //   return ["none"];
+    // }
+
     const doctors = [];
     for(const v of  value)
     {
@@ -26,12 +32,12 @@ export class FilterPipe implements PipeTransform {
 
           if(v[prop].toLowerCase().includes(filteredName.toLowerCase()))
           {
-            console.log(v)
+            //console.log(v)
             doctors.push(v)
           }
         }
         else{
-          console.log(v)
+          //console.log(v)
         }
       }
     }

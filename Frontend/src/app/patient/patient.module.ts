@@ -15,6 +15,7 @@ import {RouterModule} from '@angular/router';
 //import { BrowserModule } from '@angular/platform-browser';
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
+import { SortPipe } from './Pipes/sort.pipe';
 
 
 //>>>>>>> c139026ddd72e739c41a41647f8ef0270dd16f5e
@@ -26,7 +27,8 @@ import {ButtonModule} from 'primeng/button';
     PatientRecordComponent,
     FilterPipe,
     SearchForDoctorComponent,
-    PatientHomeComponent
+    PatientHomeComponent,
+    SortPipe
   ],
   imports: [
 
