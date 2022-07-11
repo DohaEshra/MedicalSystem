@@ -3,11 +3,11 @@ import { Record } from 'src/app/_Models/record';
 import { RecordPerDate } from 'src/app/_Models/recordPerDate';
 
 @Pipe({
-  name: 'recordWithoutRedundancy'
+  name: 'numberOfRecordsInSameDate'
 })
-export class RecordWithoutRedundancyPipe implements PipeTransform {
+export class NumberOfRecordsInSameDatePipe implements PipeTransform {
 
-  transform(records:Record[]): RecordPerDate[] {
+transform(records:Record[]): RecordPerDate[] {
     let temp:RecordPerDate=new RecordPerDate();
     let recordsPerDate:RecordPerDate[]=[];
     let indicator:boolean=true;
@@ -22,6 +22,7 @@ export class RecordWithoutRedundancyPipe implements PipeTransform {
           temp["pid"]=records[i].pid;
           temp["date"]=records[i].date;
           temp["summary"]=records[i].summary;
+          temp["didNavigation"]=records[i].didNavigation;
           temp["prescription"]=records[i].prescription;
           temp["attached_files"].push(records[j].attached_files||null);
           temp["file_description"].push(records[j].file_description||"");

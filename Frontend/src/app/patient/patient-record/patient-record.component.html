@@ -4,35 +4,61 @@
     <table class="table align-middle mb-0 bg-white">
       <thead class="bg-light" >
         <tr>
-          <th>Doctor Name</th>
-          <th>File Description</th>
-          <th>Attached Files</th>
-          <th>Date</th>
-          <th>Summary</th>
+          <th class="text-center">Doctor Name</th>
+          <th class="text-center">Doctor Category</th>
+          <th class="text-center">File Description</th>
+          <th class="text-center">Date</th>
+          <th class="text-center">Summary</th>
+          <th class="text-center">Attached Files</th>
+          <th class="text-center">Rating</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let i of RecordList" >
-          <td>
-            <p class="text-muted mb-0">{{i.didNavigation?.fname}} {{i.didNavigation?.lname}}</p>
+        <tr *ngFor="let record of patient.records|numberOfRecordsInSameDate;" >
+
+          <td class="text-center">
+            <p class="text-muted mb-0 text-center">{{record.didNavigation?.fname}} {{record.didNavigation?.lname}}</p>
           </td>
-          
+
+          <td class="text-center">
+            <p class="text-muted mb-0 text-center">{{record.didNavigation?.category}} </p>
+          </td>
+
           <td>
-            <p class="text-muted mb-0">{{i.file_description}}</p>
+            <tr *ngFor="let fileDes of record.file_description">
+              <td class="text-center">{{fileDes}}</td>
+            </tr>
+          </td>
+
+          <td>
+            <p class="text-muted mb-0 text-center">{{record.date|date:'shortDate'}}</p>  
+          </td>
+
+          <td class="text-center">
+            {{record.summary}}
+          </td>
+
+          <td class="text-center">
+            <tr *ngFor="let file of record.attached_files">
+              <td class="text-center">
+                <button class="btn btn-primary" *ngIf="file != null; else t1" (click)="showDialog()"><em class="pi pi-file-pdf"></em></button>
+              </td>
+              <p-dialog [(visible)]="fileDialogVisibility" [style]="{width: '1000px',height: '800px'}" header="File Details" [modal]="true" styleClass="p-fluid">
+                <object class="text-center" [style]="{width: '100%',height: '95%'}" [data]="('data:application/pdf;base64,'+file)|safe:'url'" ></object>
+              </p-dialog>
+              <ng-template class="text-center" #t1>haven't uploaded yet</ng-template>
+            </tr>
           </td>
           <td>
-            <p class="text-muted mb-0">{{i.attached_files}}</p> 
-          </td>
-          <td>
-           
-            <p class="text-muted mb-0">{{i.date|date:'shortDate'}}</p>  
-          </td>
-          <td>
-            <p class="text-muted mb-0">{{i.summary}}</p>  
+            <ngb-rating (rate)="rate" [rate]="intialRate"  [max]="5" (click)="ratingDoctor(record, rat)" #rat>
+              <ng-template let-fill="fill" let-index="index">
+                <span class="star" [class.filled]="fill === 100" >&#9733;</span> 
+              </ng-template>
+            </ngb-rating>
+            <!-- <p-rating class="text-center text-muted" [cancel]="false" (ngModelChange)="ratingDoctor(record)" (ngModel)="rate"></p-rating> -->
           </td>
         </tr>
       </tbody>
-
       </table>
       </div>
 

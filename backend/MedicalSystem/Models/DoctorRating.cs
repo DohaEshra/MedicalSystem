@@ -15,6 +15,8 @@ namespace MedicalSystem.Models
         public int PID { get; set; }
         [Key]
         public int DID { get; set; }
+        [Key]
+        public int VisitNumber { get; set; }
         public int Rating { get; set; }
 
         [ForeignKey("DID")]

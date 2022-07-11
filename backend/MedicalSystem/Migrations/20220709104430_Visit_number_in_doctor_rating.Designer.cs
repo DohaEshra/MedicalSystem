@@ -4,6 +4,7 @@ using MedicalSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalSystem.Migrations
 {
     [DbContext(typeof(MedicalSystemContext))]
-    partial class MedicalSystemContextModelSnapshot : ModelSnapshot
+    [Migration("20220709104430_Visit_number_in_doctor_rating")]
+    partial class Visit_number_in_doctor_rating
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -372,14 +374,6 @@ namespace MedicalSystem.Migrations
 
                     b.Property<DateTime>("appointment_time")
                         .HasColumnType("datetime2");
-
-                    b.Property<int?>("AppointmentNo")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("AppointmentStatus")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("int")
-                        .HasComputedColumnSql("([dbo].[Appointment_Status](PID,DID,appointment_time))", false);
 
                     b.HasKey("PID", "DID", "appointment_time");
 

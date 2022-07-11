@@ -53,7 +53,7 @@ namespace MedicalSystem.Data
 
             modelBuilder.Entity<DoctorRating>(entity =>
             {
-                entity.HasKey(e => new { e.PID, e.DID });
+                entity.HasKey(e => new { e.PID, e.DID,e.VisitNumber });
 
                 entity.HasOne(d => d.DIDNavigation)
                     .WithMany(p => p.DoctorRatings)

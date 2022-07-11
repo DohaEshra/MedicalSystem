@@ -1,4 +1,4 @@
-@import "../doctor.style.css";
+@import "../patient.style.css";
 
 label {
     display: block;
@@ -76,11 +76,11 @@ body{
   background: -webkit-linear-gradient(left, #3931af, #00c6ff);
 }
 
-.emp-profile{
+.pat-profile{
   padding: 3%;
   margin-top: 3%;
   margin-bottom: 3%;
-  margin-left: 3.5%;
+  margin-left: 4%;
   border-radius: 0.5rem;
   background: #fff;
 }

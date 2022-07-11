@@ -13,6 +13,7 @@ import { AccountModule } from './account/account.module';
 import { FormsModule } from '@angular/forms';
 import { NavBarComponent } from './_shared/NavBar/NavBar.component';
 import { LoadingComponent } from './_shared/_Loading/loading.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { LoadingComponent } from './_shared/_Loading/loading.component';
       FormsModule,
       DropdownModule,
       CommonModule,
-      BrowserAnimationsModule
+      BrowserAnimationsModule,
+      NgbModule
   ],
   providers: [  
     { provide: HTTP_INTERCEPTORS, useClass: InterceptInterceptor, multi: true }
