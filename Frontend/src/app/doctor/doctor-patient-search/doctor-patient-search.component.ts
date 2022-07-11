@@ -10,7 +10,7 @@ import { SearchByNamePipe } from '../_Pipes/search-by-name.pipe';
   styleUrls: ['./doctor-patient-search.component.css']
 })
 export class DoctorPatientSearchComponent implements OnInit,OnDestroy {
-  Indicator:number=0;
+  Indicator:number=1;
   ID:any="";
   Name:string="";
   visitList:Visit[]=[];

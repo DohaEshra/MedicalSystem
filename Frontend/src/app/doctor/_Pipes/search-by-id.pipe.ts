@@ -18,7 +18,6 @@ export class SearchByIdPipe implements PipeTransform {
         patient=visitList[i].pidNavigation;
       }
     }
-    
     return patient;
   }
 
