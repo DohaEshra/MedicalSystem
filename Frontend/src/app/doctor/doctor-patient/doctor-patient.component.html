@@ -11,14 +11,13 @@
                       {{patient.fname|uppercase}} {{patient.lname|uppercase}}
                   </h3>
                   <div class="">
-                      <input class="profile1-btn btn-secondary btn-outline-info" [routerLink]="['/doctor/recordpre',patient.id]" name="btnAddMore" value="Record Prescription"/>
-                      <!-- <input class="profile2-btn btn-secondary btn-outline-info" [routerLink]="['/doctor/recordtests']" name="btnAddMore" value="Record Medical tests"/> -->
+                      <input class="profile1-btn btn-secondary" [routerLink]="['/doctor/recordpre',patient.id]" name="btnAddMore" value="Record Prescription"/>
                   </div>
             </div>
         </div>
     </div>
     <div class="row">
-      <div class="col-md-10 offset-1 mt-2">
+      <div class="col-md-10 col-sm-8 offset-1 mt-2">
           <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item">
                   <a class="nav-link" id="home-tab" data-toggle="tab" routerLinkActive="active" routerLink="info" role="tab" aria-controls="home" aria-selected="true" >About</a>

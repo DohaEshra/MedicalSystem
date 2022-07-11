@@ -27,7 +27,6 @@ export class PatientHistoryComponent implements OnInit,OnDestroy{
       data=>{
         this.patientSer.getPatientById(data.id).subscribe(
           data=>{
-            console.log(data)
             this.RecordList=data.records;
           })   
       },
