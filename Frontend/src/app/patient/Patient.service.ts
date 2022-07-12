@@ -79,7 +79,9 @@ getPatientRecordsById(Id:number){
 addAppointment(visit:Visit){
   return this.http.post<Visit>("https://localhost:7089/api/Visit",visit);
 }
-
+deleteAppointment(pid:number,did:number,date:Date){
+  return this.http.delete<undefined>("https://localhost:7089/api/Visit/"+pid+"/"+did+"/"+date);
+}
 GetAppointments(did:number){
   return this.http.get<Works_in[]>("https://localhost:7089/api/works_in/"+did);
 }

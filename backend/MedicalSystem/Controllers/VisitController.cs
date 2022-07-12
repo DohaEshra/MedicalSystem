@@ -111,16 +111,17 @@ namespace MedicalSystem.Controllers
         }
 
         // DELETE: api/Visits/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteVisit(int id)
+        [HttpDelete("{pid}/{did}/{date}")]
+        public async Task<IActionResult> DeleteVisit(int pid,int did,DateTime date)
         {
-            var visit = await _context.Visits.FindAsync(id);
+            var visit = await _context.Visits.Where(e => e.DID == did && e.PID==pid && e.appointment_time==date).FirstOrDefaultAsync();
             if (visit == null)
             {
                 return NotFound();
             }
 
-            _context.Visits.Remove(visit);
+            await _context.Procedures.Delete_VisitAsync(visit.PID, visit.DID, visit.appointment_time);
+
             await _context.SaveChangesAsync();
 
             return NoContent();
