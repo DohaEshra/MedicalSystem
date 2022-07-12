@@ -1,0 +1,23 @@
+#load {
+    -webkit-animation: cssAnimation 20s forwards; 
+    animation: cssAnimation 10s forwards;
+}
+@keyframes cssAnimation {
+    0%   {opacity: 1;}
+    90%  {opacity: 1;}
+    100% {opacity: 0;}
+}
+@-webkit-keyframes cssAnimation {
+    0%   {opacity: 1;}
+    90%  {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+#showMe {
+  animation: cssAnimation1 0s 10s forwards;
+  visibility: hidden;
+}
+
+@keyframes cssAnimation1 {
+  to   { visibility: visible; }
+}
