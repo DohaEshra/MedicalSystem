@@ -9,6 +9,8 @@ import { PatientInfoComponent } from './patient-info/patient-info.component';
 import { PatientEditComponent } from './patient-edit/patient-edit.component';
 import { PatientAppointmentComponent } from "./patient-appointment/patient-appointment.component";
 import { ShowappointmentsComponent } from "./showappointments/showappointments.component";
+import { PatientEditComponent } from './patient-edit/patient-edit.component';
+import { PatientInfoComponent } from './patient-info/patient-info.component';
 
 const routes: Routes = [
   {

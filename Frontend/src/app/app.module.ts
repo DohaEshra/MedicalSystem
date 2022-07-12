@@ -11,14 +11,13 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AccountModule } from './account/account.module';
 import { FormsModule } from '@angular/forms';
-import { NavBarComponent } from './_shared/NavBar/NavBar.component';
-import { LoadingComponent } from './_shared/_Loading/loading.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CoreModule } from './core/core.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent, NavBarComponent,LoadingComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,10 +28,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       DropdownModule,
       CommonModule,
       BrowserAnimationsModule,
-      NgbModule
+      NgbModule,
+      CoreModule,
   ],
   exports:[
-    LoadingComponent
   ],
   providers: [  
     { provide: HTTP_INTERCEPTORS, useClass: InterceptInterceptor, multi: true }
