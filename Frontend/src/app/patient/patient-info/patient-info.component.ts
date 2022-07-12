@@ -21,11 +21,9 @@ export class PatientInfoComponent implements OnInit {
   
 
   ngOnInit(): void {
-
-    
     this.sub = this.patHomeComp.selectedPatient$.subscribe( data => {
       this.patient = data
-      console.log(this.patHomeComp);
+      console.log("data from info:"+ this.patient.email);
     })
 
   }
