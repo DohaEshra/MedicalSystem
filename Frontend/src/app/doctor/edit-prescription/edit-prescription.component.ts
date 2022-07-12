@@ -104,7 +104,7 @@ export class EditPrescriptionComponent implements OnInit {
 
   //back
   back(){
-    this.router.navigateByUrl("doctor/patient/"+this.recordList[0].pid+"/history");
+    this.router.navigateByUrl("doctor");
   }
 
   //check validation

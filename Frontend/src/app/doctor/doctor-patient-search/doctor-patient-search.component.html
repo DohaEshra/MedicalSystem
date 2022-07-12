@@ -1,4 +1,4 @@
-<app-loading *ngIf="(visitListWithoutDuplication.length==0)"></app-loading>
+<app-loading  *ngIf="(visitListWithoutDuplication.length==0)"></app-loading>
 
 <div class="navbar navbar-light d-flex justify-content-center patient-profile" *ngIf="(visitListWithoutDuplication.length!=0)">  
   
@@ -78,9 +78,9 @@
             </tbody>
           </table>
           
-          <div style="background-color: #d8e4dc; height: 70px; padding: 25px;" class="d-flex justify-content-center" *ngIf="((visitListWithoutDuplication|searchByName:Name).length==0 &&Indicator==2)|| (((visitListWithoutDuplication|searchById:ID)==null)&&Indicator==1&&ID) ">           
-            <label class="fs-3"><em style="color: black;" class="fas fa-cog fa-spin"></em> No Patients Found</label>
-          </div>
+          <div  style=" height: 70px; " class="d-flex justify-content-center" *ngIf="((visitListWithoutDuplication|searchByName:Name).length==0 &&Indicator==2)|| (((visitListWithoutDuplication|searchById:ID)==null)&&Indicator==1&&ID) ">           
+            <label class="fs-3" style="color: rgb(153, 155, 158);"><em style="color: yellowgreen;" class="fas fa-cog fa-spin"></em> No Patient Found</label>
+        </div>
     </div>
   </div>
 

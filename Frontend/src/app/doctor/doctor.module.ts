@@ -24,7 +24,6 @@ import { CoreModule } from '../core/core.module';
 
 
 
-
 @NgModule({
   declarations: [
     DoctorInfoComponent,
@@ -46,7 +45,7 @@ import { CoreModule } from '../core/core.module';
     searchAppointmentPipe
   ],
   imports: [
-    CommonModule,doctorRoutingModule,FormsModule,DialogModule,CoreModule,
+    CommonModule,doctorRoutingModule,FormsModule,DialogModule,CoreModule
   ],
   providers:[
     SearchByNamePipe

@@ -5,7 +5,7 @@
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <div class="row">
                         <div class="col-md-6">
-                            <label>Patient Id</label>
+                            <label><i class='fas fa-id-card-alt mx-2' style="color: #a5c422;"></i>ID</label>
                         </div>
                         <div class="col-md-6">
                             <p>{{patient.id}}</p>
@@ -13,7 +13,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label>Name</label>
+                            <label><i class="fa fa-user mx-2" style="color: #a5c422;" aria-hidden="true"></i>Name</label>
                         </div>
                         <div class="col-md-6">
                             <p>{{patient.fname}} {{patient.lname}}</p>
@@ -21,7 +21,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label>Email</label>
+                            <label><i class="fa fa-envelope mx-2" style="color: #a5c422;" aria-hidden="true"></i>Email</label>
                         </div>
                         <div class="col-md-6 mb-3">
                             <a href="mailto:">{{patient.email}}</a>
@@ -29,7 +29,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label>Phone</label>
+                            <label><i class="fa fa-phone mx-2" style="color: #a5c422;"aria-hidden="true"></i>Phone</label>
                         </div>
                         <div class="col-md-6">
                             <p>{{patient.phone}}</p>
@@ -37,15 +37,15 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label>Address</label>
+                            <label><i class="fa fa-map-marker mx-2" style="color: #a5c422;"></i> Address</label>
                         </div>
                         <div class="col-md-6">
-                            <p>{{patient.buildingNumber}}/{{patient.street}},{{patient.area}},{{patient.city}}</p>
+                            <p>{{patient.buildingNumber}},{{patient.street}},{{patient.area}},{{patient.city}}</p>
                         </div>
                     </div>
                     <div class="row">
                       <div class="col-md-6">
-                          <label>Age</label>
+                          <label><i class="fa fa-child mx-2" style="color: #a5c422;" aria-hidden="true"></i>Age</label>
                       </div>
                       <div class="col-md-6">
                           <p>{{patient.age}}</p>
@@ -53,60 +53,12 @@
                     </div>
                     <div class="row">
                       <div class="col-md-6">
-                          <label>Gender</label>
+                          <label><i class="fa fa-transgender mx-2" style="color: #a5c422;" aria-hidden="true"></i>Gender</label>
                       </div>
                       <div class="col-md-6">
-                          <p>{{patient.gender|uppercase}}</p>
+                          <p>{{patient.gender ==('F' ||'f') ? 'Female':'Male'}}</p>
                       </div>
                     </div>
-        </div>
-        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Experience</label>
-                        </div>
-                        <div class="col-md-6">
-                            <p>Expert</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Hourly Rate</label>
-                        </div>
-                        <div class="col-md-6">
-                            <p>10$/hr</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Total Projects</label>
-                        </div>
-                        <div class="col-md-6">
-                            <p>230</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>English Level</label>
-                        </div>
-                        <div class="col-md-6">
-                            <p>Expert</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Availability</label>
-                        </div>
-                        <div class="col-md-6">
-                            <p>6 months</p>
-                        </div>
-                    </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <label>Your Bio</label><br/>
-                    <p>Your detail description</p>
-                </div>
-            </div>
         </div>
     </div>
 </div>
