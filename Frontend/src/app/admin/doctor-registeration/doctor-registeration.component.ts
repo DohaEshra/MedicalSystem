@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Doctor } from 'src/app/_Models/doctor';
 import { Other } from 'src/app/_Models/other';
-import { AccountService } from '../Account.service';
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-doctor-registeration',
@@ -30,7 +30,7 @@ export class DoctorRegisterationComponent implements OnInit {
   emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
   user : any ={ id: 0, fname:'', lname:'', birthDate:new Date , email:'', city:'',area:null, gender:'',buildingNumber:null,street:null, phone:'', username:'',job:null, password:'', category:null,confirmPass:'',image:null};
   
-  constructor(public account: AccountService , public router :Router ) {
+  constructor(public adminService: AdminService , public router :Router ) {
   
    }
   ngOnInit() {
@@ -146,7 +146,7 @@ export class DoctorRegisterationComponent implements OnInit {
         };
   
         console.log('dr ',doctor);
-          this.subscribe= this.account.addDoctor(doctor).subscribe({
+          this.subscribe= this.adminService.addDoctor(doctor).subscribe({
             next: data =>
             {
               this.isRegistrationFailed = false ; 
@@ -183,7 +183,7 @@ export class DoctorRegisterationComponent implements OnInit {
         };
   
         console.log('other ',other);
-        this.subscribe= this.account.addOther(other).subscribe({
+        this.subscribe= this.adminService.addOther(other).subscribe({
             next: data =>
             {
               this.isRegistrationFailed = false ; 

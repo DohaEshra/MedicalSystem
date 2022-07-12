@@ -20,16 +20,14 @@ constructor(public http:HttpClient , public router : Router ) {}
     
     private loggedIn = new BehaviorSubject<boolean>(false); 
     get isLoggedIn() {
-      return this.loggedIn.asObservable(); // {2}
+      return this.loggedIn.asObservable(); 
     }
-
-
 
     login(email:string,password:string,role:string):Observable<any>
     {
       
       this.loggedIn.next(true);
-      return this.http.post<string>(this.baseUrl+"login/",{role,email,password})
+      return this.http.post<string>(this.baseUrl + "login/",{role,email,password})
     }
     
     public saveToken(token: string): void {
@@ -42,7 +40,6 @@ constructor(public http:HttpClient , public router : Router ) {}
     }
 
     public signOut(): void {
-      this.doctor=new Doctor();
       this.count=0;
       this.loggedIn.next(false);
       this.router.navigate(['/login']);
@@ -53,20 +50,10 @@ constructor(public http:HttpClient , public router : Router ) {}
         window.location.reload();
     }
 
-    //add doctor 
-    addDoctor(user: Doctor){
-      return this.http.post<any>("https://localhost:7089/api/doctor",user);
-    }
-
-    //add patient 
-    addPatient(user: Patient){
-      return this.http.post<any>("https://localhost:7089/api/patient",user);
-    }
-
-    //add other 
-    addOther(user: Other){
-      return this.http.post<any>("https://localhost:7089/api/other",user);
-    }
+  //add patient 
+  addPatient(user: Patient) {
+    return this.http.post<any>(this.baseUrl + "patient", user);
+  }
 
     getRole(){
     if(this.getToken()!=null)
@@ -77,20 +64,51 @@ constructor(public http:HttpClient , public router : Router ) {}
     return null;
   }
 
-  doctor:Doctor=new Doctor();
-
-  getDoctor(){
+  
+  getUser(userRole:string){
     if(this.getToken()!=null && this.count==0)
     {
-      var decodeToken = JSON.parse(JSON.stringify(jwtDecode(this.getToken()!)));
-      this.http.get<Doctor>(this.baseUrl+"doctor/"+decodeToken.ID).subscribe(
-        data=>{
-          this.doctor=data;
-        }
-      );
-      this.count++;
+      if(userRole == 'doctor'){
+        var doctor:Doctor=new Doctor();
+        var decodeToken = JSON.parse(JSON.stringify(jwtDecode(this.getToken()!)));
+        this.http.get<Doctor>(this.baseUrl + userRole +"/"+decodeToken.ID).subscribe(
+          data=>{
+            doctor=data;
+          }
+        );
+        this.count++;
+        return doctor;
+      } else if (userRole == 'pharmacist' || userRole == 'radiographer' || userRole == 'laboratory technician'){
+        var other: Other = new Other();
+        var decodeToken = JSON.parse(JSON.stringify(jwtDecode(this.getToken()!)));
+        this.http.get<Other>(this.baseUrl + userRole + "/" + decodeToken.ID).subscribe(
+          data => {
+            other = data;
+          }
+        );
+        this.count++;
+        return other;
+      } else if (userRole == 'admin'){
+        return {
+          fname: 'admin',
+          lname: '',
+          profilePic:'./../../assets/admin.png'
+        };
+      } else if (userRole == 'patient'){
+        var patient: Patient = new Patient();
+        var decodeToken = JSON.parse(JSON.stringify(jwtDecode(this.getToken()!)));
+        this.http.get<Patient>(this.baseUrl + userRole + "/" + decodeToken.ID).subscribe(
+          data => {
+            patient = data;
+          }
+        );
+        this.count++;
+        return patient;
+      }else{
+        return null;
+      }
     }
-    return this.doctor;
+    return null
   }
 
   

@@ -53,10 +53,18 @@
   
         </ul>
         <ul class="navbar-nav  justify-content-end my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-         <li class="nav-item">
-            <a class="nav-link fs-5" routerLink="/login"  (click)="clearToken()" >Logout</a>
-          </li>
-        </ul>      
+        <li class="nav-item">
+          <a class="nav-link fs-5">
+            <img
+              src={{account.getUser(account.getRole())?.profilePic}}
+              width="25px" height="25px" style="border-radius: 100px;"/>
+              <label class="mx-2">{{account.getUser(account.getRole())?.fname}} {{account.getUser(account.getRole())?.lname}}</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-5" routerLink="/login"  (click)="clearToken()" ><i class="fas fa-sign-out-alt"></i></a>
+        </li>
+      </ul>      
     </div>
   
     <div  *ngIf="account.getRole() =='doctor'"  class="collapse navbar-collapse" id="navbarScroll" >
@@ -75,9 +83,9 @@
         <li class="nav-item">
           <a class="nav-link fs-5">
             <img
-              src={{account.getDoctor().profilePic}}
+              src={{account.getUser(account.getRole())?.profilePic}}
               width="25px" height="25px" style="border-radius: 100px;"/>
-              <label class="mx-2">{{account.getDoctor().fname}} {{account.getDoctor().lname}}</label>
+              <label class="mx-2">{{account.getUser(account.getRole())?.fname}} {{account.getUser(account.getRole())?.lname}}</label>
           </a>
         </li>
         <li class="nav-item">
@@ -102,10 +110,18 @@
        
       </ul>
       <ul class="navbar-nav  justify-content-end my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-       <li class="nav-item">
-          <a class="nav-link fs-5" routerLink="/login"  (click)="clearToken()" >Logout</a>
+        <li class="nav-item">
+          <a class="nav-link fs-5">
+            <img
+              src={{account.getUser(account.getRole())?.profilePic}}
+              width="25px" height="25px" style="border-radius: 100px;"/>
+              <label class="mx-2">{{account.getUser(account.getRole())?.fname}} {{account.getUser(account.getRole())?.lname}}</label>
+          </a>
         </li>
-      </ul>      
+        <li class="nav-item">
+          <a class="nav-link fs-5" routerLink="/login"  (click)="clearToken()" ><i class="fas fa-sign-out-alt"></i></a>
+        </li>
+      </ul>    
     </div>
   
     <div  *ngIf="account.getRole() === 'laboratory technician'"  class="collapse navbar-collapse" id="navbarScroll" >
@@ -113,10 +129,37 @@
        
       </ul>
       <ul class="navbar-nav  justify-content-end my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-       <li class="nav-item">
-          <a class="nav-link fs-5" routerLink="/login"  (click)="clearToken()" >Logout</a>
+        <li class="nav-item">
+          <a class="nav-link fs-5">
+            <img
+              src={{account.getUser(account.getRole())?.profilePic}}
+              width="25px" height="25px" style="border-radius: 100px;"/>
+              <label class="mx-2">{{account.getUser(account.getRole())?.fname}} {{account.getUser(account.getRole())?.lname}}</label>
+          </a>
         </li>
-      </ul>      
+        <li class="nav-item">
+          <a class="nav-link fs-5" routerLink="/login"  (click)="clearToken()" ><i class="fas fa-sign-out-alt"></i></a>
+        </li>
+      </ul>    
+    </div>
+
+    <div  *ngIf="account.getRole() === 'admin'"  class="collapse navbar-collapse" id="navbarScroll" >
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+       
+      </ul>
+      <ul class="navbar-nav  justify-content-end my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+        <li class="nav-item">
+          <a class="nav-link fs-5">
+            <img
+              src={{account.getUser(account.getRole())?.profilePic}}
+              width="25px" height="25px" style="border-radius: 100px;"/>
+              <label class="mx-2">{{account.getUser(account.getRole())?.fname}} {{account.getUser(account.getRole())?.lname}}</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-5" routerLink="/login"  (click)="clearToken()" ><i class="fas fa-sign-out-alt"></i></a>
+        </li>
+      </ul>    
     </div>
   
   </div>
