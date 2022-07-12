@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MedicalSystem.Controllers
 {
-    [Authorize(Roles ="admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class OtherController : ControllerBase
@@ -24,6 +23,7 @@ namespace MedicalSystem.Controllers
         }
 
         // GET: api/Other
+        [Authorize(Roles ="admin")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Other>>> GetOthers()
         {
@@ -31,6 +31,7 @@ namespace MedicalSystem.Controllers
         }
 
         // GET: api/Other/5
+        [Authorize(Roles = "admin,radiographer,laboratory technician,pharmacist")]
         [HttpGet("{id}")]
         public async Task<ActionResult<Other>> GetOther(int id)
         {
@@ -46,6 +47,7 @@ namespace MedicalSystem.Controllers
 
         // PUT: api/Other/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Roles ="admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutOther(int id, Other other)
         {
@@ -77,6 +79,7 @@ namespace MedicalSystem.Controllers
 
         // POST: api/Other
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Roles ="admin")]
         [HttpPost]
         public async Task<ActionResult<Other>> PostOther(Other other)
         {
@@ -96,6 +99,7 @@ namespace MedicalSystem.Controllers
         }
 
         // DELETE: api/Other/5
+        [Authorize(Roles ="admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOther(int id)
         {

@@ -104,7 +104,6 @@ constructor(public http:HttpClient , public router : Router ) {}
           error: err => console.log("Error decoding: ", err)
         });
         this.count++;
-        return patient;
       }else{
         return null;
       }

@@ -31,7 +31,6 @@ export class NavBarComponent implements OnInit {
   // }
 
   ngOnInit(): void {
-    console.log("mmmm",this.x)
   }
   
 

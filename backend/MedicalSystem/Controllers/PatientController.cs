@@ -60,8 +60,8 @@ namespace MedicalSystem.Controllers
         }
 
         // GET: api/Patients/5
+        [Authorize(Roles = "patient,radiographer,admin,doctor,laboratory technician")]
         [HttpGet("{id}")]
-        [Authorize(Roles = "radiographer,admin,doctor,laboratory technician,patient")]
         public async Task<ActionResult<Patient>> GetPatient(int id)
         {
             var patient = await _context.Patients.FindAsync(id);
