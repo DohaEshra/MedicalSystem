@@ -20,7 +20,6 @@ export class NavBarComponent implements OnInit {
   userRole = '';
   userLoggedIn = false;
  
-  x:any = this.account.getUser(this.account.getRole())
 
   // getRole(){
   //   if(this.account.getToken()!=null)

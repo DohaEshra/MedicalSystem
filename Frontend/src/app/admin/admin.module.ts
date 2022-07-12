@@ -12,14 +12,19 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from '../core/core.module';
 import { DialogModule } from 'primeng/dialog';
+import { EmployeeRegisterComponent } from './employee-register/employee-register.component';
+import { AgeValDirective } from './_directives/age-val.directive';
 
 @NgModule({
   declarations: [
-    AdminHomeComponent, 
     DoctorRegisterationComponent,
     FileUpadateOrDeleteComponent,
     SafePipe,
     RecordFilterationPipe,
+    AdminHomeComponent,
+    DoctorRegisterationComponent,
+    //EmployeeRegisterComponent,
+    AgeValDirective
   ],
   imports: [
     CommonModule,

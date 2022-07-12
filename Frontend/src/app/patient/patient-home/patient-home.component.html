@@ -1,8 +1,14 @@
-<div class="page">
+
+<div id="sect1" class="">
+    <div class="row col-12 d-flex justify-content-center">
+ <div class="page">
     <div class="m-5"> 
         <a class="text-dark btn btn-outline-success  col-12 mt-3" [routerLink]="['/patient/appointments']"> Show Appointments </a>
         <a class="text-dark btn btn-outline-success  col-12 mt-3" [routerLink]="['/patient/record']" (click)="send()"> Show Records </a>
         <a class="text-dark btn btn-outline-success  col-12 mt-3" [routerLink]="['/patient/search']"> Search for Doctor </a>
+    </div>
+    <div>
+        <router-outlet></router-outlet>
     </div>
     <!-- slider -->
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
@@ -176,5 +182,9 @@
 </div>
 </div>
 </div>
+</div>
+</div> 
+
+
 
 <!-- </div> -->

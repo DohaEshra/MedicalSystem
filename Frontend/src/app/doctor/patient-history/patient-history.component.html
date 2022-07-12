@@ -1,5 +1,9 @@
-<div *ngIf="!RecordList.length" class="fa-3x d-flex justify-content-center" >
+
+<div id="load" class="fa-3x d-flex justify-content-center" *ngIf="!RecordList.length">
   <i class="fas fa-spinner fa-spin" style="color: yellowgreen;" aria-hidden="true"></i>
+</div>
+<div id="showMe" style=" height: 70px;" class="d-flex justify-content-center" *ngIf="!RecordList.length">           
+  <label class="fs-3" style="color: black;"><em style="color: yellowgreen;" class="fas fa-cog fa-spin"></em> Not Found</label>
 </div>
 
 <div class="container" *ngIf="RecordList.length">

@@ -6,6 +6,7 @@ import { DoctorRegisterationComponent } from './doctor-registeration/doctor-regi
 import { FileUpadateOrDeleteComponent } from './file-upadate-or-delete/file-upadate-or-delete.component';
 
 const routes: Routes =[
+  { path:"addemployee", component: DoctorRegisterationComponent },
     {path:"",component:AdminHomeComponent,canActivate:[AdminLoginGuard],children:[
         {path:"",component:AdminHomeComponent},
         { path: 'doctorRegister', component: DoctorRegisterationComponent },
@@ -25,6 +26,6 @@ const routes: Routes =[
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AdminRoutingModule { }

@@ -28,6 +28,7 @@ export class DoctorRegisterationComponent implements OnInit {
   addressPattern = '^[A-Za-z0-9,_.-]{10,40}$';
   namePattern = '^[A-Za-z]{2,20}$';
   emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
+  passPattern='((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))';
   user : any ={ id: 0, fname:'', lname:'', birthDate:new Date , email:'', city:'',area:null, gender:'',buildingNumber:null,street:null, phone:'', username:'',job:null, password:'', category:null,confirmPass:'',image:null};
   
   constructor(public adminService: AdminService , public router :Router ) {
@@ -151,8 +152,8 @@ export class DoctorRegisterationComponent implements OnInit {
             {
               this.isRegistrationFailed = false ; 
               console.log('success to add doctor ' + data)
-              setTimeout(()=> alert('You have registered successfully'),0);
-              this.router.navigateByUrl('/login');
+              setTimeout(()=> alert(doctor.fname+' '+doctor.lname+' has been added successfully'),0);
+              this.router.navigateByUrl('/admin/home');
             }
             ,error:err=>{
               console.log('error from doctor registeration component', err)
@@ -188,8 +189,8 @@ export class DoctorRegisterationComponent implements OnInit {
             {
               this.isRegistrationFailed = false ; 
               console.log('success to add other ' + data)
-              setTimeout(()=> alert('You have registered successfully'),0);
-              this.router.navigateByUrl('/login');
+              setTimeout(()=> alert(other.fname+' '+other.lname +' has been added successfully'),0);
+              this.router.navigateByUrl('/admin/home');
             }
             ,error:err=>{
               console.log('error from doctor registration component', err)

@@ -4,6 +4,7 @@ import { Patient } from 'src/app/_Models/patient';
 import { Visit } from 'src/app/_Models/visit';
 import { DoctorService } from '../doctor.service';
 import { SearchByNamePipe } from '../_Pipes/search-by-name.pipe';
+import { LoadingComponent } from 'src/app/core/loading/loading.component';
 @Component({
   selector: 'app-doctor-patient-search',
   templateUrl: './doctor-patient-search.component.html',
@@ -27,7 +28,6 @@ export class DoctorPatientSearchComponent implements OnInit,OnDestroy {
         if(data!=null)
         {
           this.visitList=data;
-          console.log(this.visitList)
         }
         for (let i = 0; i < this.visitList.length-1; i++) {
           if (this.visitList[i]!=this.visitList[i+1]) 

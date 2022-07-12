@@ -87,35 +87,38 @@ namespace MedicalSystem.Controllers
         [Authorize(Roles = "doctor,admin")]
         public async Task<IActionResult> RecordTests(int pid, int did, DateTime date, Record @record)
         {
-            if (did != @record.DID)
+            for(int i=0;i<@record.Length;i++)
             {
-                return BadRequest();
-            }
-
-            Record Record = await _context.Records.Where(r => r.DID == did && r.PID == pid && r.date == date).FirstOrDefaultAsync();
-            if (Record != null)
-            {
-                await _context.Procedures.Update_RecordAsync(@record.file_description, @record.testType, pid, did, date, @record.FNO, @record.summary, @record.prescription);
-            }
-            else
-            {
-                await _context.Procedures.Insert_RecordAsync(pid, did, date, @record.file_description, @record.testType, @record.summary, @record.prescription);
-            }
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (RecordExists(@record.DID))
+                if (did != @record[i].DID)
                 {
-                    return Conflict();
+                    return BadRequest();
+                }
+
+                Record Record = await _context.Records.Where(r => r.DID == did && r.PID == pid && r.date == date && r.FNO == @record[i].FNO).FirstOrDefaultAsync();
+                if (Record != null)
+                {
+                    await _context.Procedures.Update_RecordAsync(@record[i].file_description, @record[i].testType, pid, did, date, @record[i].FNO, @record[0].summary, @record[0].prescription);
                 }
                 else
                 {
-                    throw;
+                    await _context.Procedures.Insert_RecordAsync(pid, did, date, @record[i].file_description, @record[i].testType, @record[0].summary, @record[0].prescription);
                 }
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateException)
+                {
+                    if (RecordExists(@record[i].DID))
+                    {
+                        return Conflict();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+
             }
             return NoContent();
         }
@@ -219,6 +222,7 @@ namespace MedicalSystem.Controllers
                 await _context.Procedures.Update_RecordAsync(@record.file_description, @record.testType, @record.PID, @record.DID, @record.date, @record.FNO, @record.summary, @record.prescription);
             }
 
+
             try
             {
                 await _context.SaveChangesAsync();
@@ -267,15 +271,20 @@ namespace MedicalSystem.Controllers
         // DELETE: api/Records/5
         [HttpDelete("{id}")]
         [Authorize(Roles = "doctor")]
-        public async Task<IActionResult> DeleteRecord(Guid id)
+        [HttpDelete]
+        public async Task<IActionResult> DeleteRecord(Guid [] id)
         {
-            var @record = await _context.Records.Where(r => r.FNO == id).FirstOrDefaultAsync();
-            if (@record == null)
+            for(int i = 0; i < id.Length; i++)
             {
-                return NotFound();
-            }
+                var @record = await _context.Records.Where(r => r.FNO == id[i]).FirstOrDefaultAsync();
+                if (@record == null)
+                {
+                    return NotFound();
+                }
 
-            _context.Records.Remove(@record);
+                _context.Records.Remove(@record);
+            }
+            
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -286,7 +295,7 @@ namespace MedicalSystem.Controllers
             return _context.Records.Any(e => e.DID == id);
         }
 
-        private bool RecordExists(Guid id)
+        private bool RecordExists(Guid ?id)
         {
             return _context.Records.Any(e => e.FNO == id);
         }
