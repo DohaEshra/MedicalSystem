@@ -85,7 +85,7 @@ namespace MedicalSystem.Controllers
         //api/Record/pid/did/date
         [HttpPut("{pid}/{did}/{date}")]
         [Authorize(Roles = "doctor,admin")]
-        public async Task<IActionResult> RecordTests(int pid, int did, DateTime date, Record @record)
+        public async Task<IActionResult> RecordTests(int pid, int did, DateTime date, Record[] @record)
         {
             for(int i=0;i<@record.Length;i++)
             {
