@@ -1,25 +1,22 @@
-<app-loading *ngIf="!patient.id"></app-loading>
+<app-loading  *ngIf="!patient.id"></app-loading>
 
-<div class="container patient-profile" *ngIf="patient.id">
+<div class="container patient-profile col-md-10" *ngIf="patient.id">
     <div class="row">
         <div class="col-md-4">
             <div class="profile-img">
                 <img src={{patient.profilePic}} alt=""/>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" >
             <div class="profile-head">
-                  <h3 class="mx-sm-5">
-                      {{patient.fname|uppercase}} {{patient.lname|uppercase}}
-                  </h3>
-                  <!-- <div class="">
-                      <input class="profile1-btn btn-secondary" [routerLink]="['/doctor/recordpre',patient.id]" name="btnAddMore" value="Record Prescription"/>
-                  </div> -->
+                <h3>
+                    {{patient.fname|uppercase}} {{patient.lname|uppercase}}
+                </h3>  
             </div>
         </div>
     </div>
     <div class="row">
-      <div class="col-md-10 col-sm-8 offset-1 mt-2">
+      <div class="col-md-6 col-sm-8 offset-1 mt-2">
           <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item">
                   <a class="nav-link" id="home-tab" data-toggle="tab" routerLinkActive="active" routerLink="info" role="tab" aria-controls="home" aria-selected="true" >About</a>

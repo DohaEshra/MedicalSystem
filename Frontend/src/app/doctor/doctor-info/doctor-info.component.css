@@ -16,7 +16,10 @@ body{
 .profile-img img{
     width: 70%;
     height: 100%;
+    border-radius: 50%;
 }
+
+
 .profile-img .file {
     position: relative;
     overflow: hidden;
@@ -58,14 +61,14 @@ body{
     font-size: 15px;
     font-weight: 600;
 }
-.profile-head .nav-tabs{
+.nav-tabs{
     margin-bottom:5%;
 }
-.profile-head .nav-tabs .nav-link{
+.nav-link{
     font-weight:600;
     border: none;
 }
-.profile-head .nav-tabs .nav-link.active{
+.nav-link.active{
     border: none;
     border-bottom:2px solid #a5c422;
 }
@@ -93,5 +96,11 @@ body{
 }
 .profile-tab p{
     font-weight: 600;
-    color: #a5c422;
+    color:black;
 }
+.profile-tab a{
+    text-decoration: none;
+    font-weight: 600;
+    color: black;
+}
+

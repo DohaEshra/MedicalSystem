@@ -1,21 +1,23 @@
-
 <div id="load" class="fa-3x d-flex justify-content-center" *ngIf="!RecordList.length">
   <i class="fas fa-spinner fa-spin" style="color: yellowgreen;" aria-hidden="true"></i>
 </div>
 <div id="showMe" style=" height: 70px;" class="d-flex justify-content-center" *ngIf="!RecordList.length">           
-  <label class="fs-3" style="color: black;"><em style="color: yellowgreen;" class="fas fa-cog fa-spin"></em> Not Found</label>
+  <label class="fs-3" style="color: rgb(153, 155, 158);"><em style="color: yellowgreen;" class="fas fa-cog fa-spin"></em> Not Found</label>
 </div>
 
 <div class="container" *ngIf="RecordList.length">
     <div class=" col-md-10 col-sm-8 offset-1 mb-1" id="myTabContent">
         
         <div class="searchbar">
-          <input type="text" class="search_input" placeholder="Search" [(ngModel)]="searchText"/>
+          <input type="text" class="search_input" placeholder="Search Prescription ... " [(ngModel)]="searchText"/>
           <a class="search_icon"><i class="fas fa-search"></i></a>
         </div>
 
         <div class="table-responsive col-md-12" id="sailorTableArea">
-          <table id="sailorTable" class="table table-striped  table-success" width="100%" *ngIf="RecordList.length!=0">
+          <div style=" height: 70px; " class="d-flex justify-content-center" *ngIf="(RecordList|searchInTable:searchText|recordWithoutRedundancy).length==0 ">           
+            <label class="fs-3" style="color: rgb(153, 155, 158);"><em style="color: yellowgreen;" class="fas fa-cog fa-spin"></em> No Prescription Found</label>
+          </div>
+          <table id="sailorTable" class="table table-striped  table-success" width="100%" *ngIf="(RecordList|searchInTable:searchText|recordWithoutRedundancy).length">
               <thead>
                   <tr>
                     <th class="text-center"><em class="fa fa-cog"></em></th>
@@ -47,13 +49,14 @@
                     <p-dialog [(visible)]="fileDialogVisibility" [style]="{width: '1000px',height: '800px'}" header="File Details" [modal]="true" styleClass="p-fluid">
                         <object class="text-center" [style]="{width: '100%',height: '95%'}" [data]="('data:application/pdf;base64,'+file)|safe:'url'" ></object>
                     </p-dialog>
-                    <ng-template #t1>have not uploaded yet</ng-template>
+                    <ng-template #t1><i class="fas fa-spinner fa-spin" aria-hidden="true"></i></ng-template>
                     </tr>
                   </td>
                 </tr>
               </tbody>
           </table>
-          </div>
+          
+        </div>
         
     </div>
 </div>
