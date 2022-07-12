@@ -9,13 +9,13 @@ import { PatientService } from '../Patient.service';
   templateUrl: './patient-home.component.html',
   styleUrls: ['./patient-home.component.css'],
 })
-export class PatientHomeComponent implements OnInit,OnDestroy {
-par:string = ""
-sub:Subscription|null = null
-patient = new Patient();
-patient$ = new BehaviorSubject<Patient>(this.patient)
-selectedPatient$ = this.patient$.asObservable();
-  constructor(public router:Router, public patientService:PatientService) { }
+export class PatientHomeComponent implements OnInit, OnDestroy {
+  par: string = '';
+  sub: Subscription | null = null;
+  patient = new Patient();
+  private patient$ = new BehaviorSubject<Patient>(this.patient);
+  selectedPatient$ = this.patient$.asObservable();
+  constructor(public router: Router, public patientService: PatientService) {}
 
   ngOnInit(): void {
     this.sub = this.patientService.getPatient().subscribe({

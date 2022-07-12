@@ -4,13 +4,10 @@
 
 <div class="container" *ngIf="RecordList.length">
     <div class=" col-md-10 col-sm-8 offset-1 mb-1" id="myTabContent">
-        <div id="custom-search-input">
-          <div class="input-group col-md-12 mb-1">
-              <input type="text" class="search-query form-control" placeholder="Search" [(ngModel)]="searchText"/>
-              <button class="btn btn-success" type="button">
-                <em class="fa fa-search"></em>
-              </button>
-          </div>
+        
+        <div class="searchbar">
+          <input type="text" class="search_input" placeholder="Search" [(ngModel)]="searchText"/>
+          <a class="search_icon"><i class="fas fa-search"></i></a>
         </div>
 
         <div class="table-responsive col-md-12" id="sailorTableArea">

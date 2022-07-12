@@ -20,6 +20,7 @@ import { SearchInTable } from './_Pipes/search-in-table.pipe';
 import { DoctorAppointmentComponent } from './doctor-appointment/doctor-appointment.component';
 import { DateTimePipe } from './_Pipes/date-time.pipe';
 import { LoadingComponent } from './_Loading/loading.component';
+import { searchAppointmentPipe } from './_Pipes/search-appointment';
 
 
 
@@ -42,7 +43,8 @@ import { LoadingComponent } from './_Loading/loading.component';
     SafePipe,
     DoctorAppointmentComponent,
     DateTimePipe,
-    LoadingComponent
+    LoadingComponent,
+    searchAppointmentPipe
   ],
   imports: [
     CommonModule,doctorRoutingModule,FormsModule,DialogModule

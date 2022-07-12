@@ -1,83 +1,90 @@
 <app-loading *ngIf="!visitListWithoutDuplication.length"></app-loading>
 
-
-<div class="navbar navbar-light d-flex justify-content-center" *ngIf="visitListWithoutDuplication.length!=0">
-
+<div class="navbar navbar-light d-flex justify-content-center patient-profile" *ngIf="visitListWithoutDuplication.length!=0">  
+  
   <div class="d-flex justify-content-center">
-   
-    <div class="dropdown show">
-      <div class="dropdown-toggle searchby" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Search  by 
-      </div>  
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" (click)="setIndicatorForId()">ID</a>
-        <a class="dropdown-item" (click)="setIndicatorForName()">Name</a>
+    <div class="card mb-3 col-12" style="max-width: 780px;" *ngIf="(visitListWithoutDuplication.length!=0)">
+      <h3 class="mx-3"><em class="fa fa-users"></em><b> Patients</b></h3>
+      <div class="d-flex justify-content-center PatientSearch mb-4">
+        <div class="dropdown show">
+          <div class="dropdown-toggle searchby" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by</div>  
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" (click)="setIndicatorForId()">ID</a>
+            <a class="dropdown-item" (click)="setIndicatorForName()">Name</a>
+          </div>
+        </div>
+    
+        <div class="searchbar">
+          <input class="search_input" [(ngModel)]="ID" [ngModelOptions]="{standalone: true}"  *ngIf="Indicator==1" type="search" placeholder="ID ..." aria-label="Search">
+          <input class="search_input" [(ngModel)]="Name" [ngModelOptions]="{standalone: true}"  *ngIf="Indicator==2" type="search" placeholder="Name ..." aria-label="Search">
+          <a class="search_icon"><i class="fas fa-search"></i></a>
+        </div>
       </div>
-    </div>
-
-    <div class="searchbar">
-      <input class="search_input" [(ngModel)]="ID" [ngModelOptions]="{standalone: true}"  *ngIf="Indicator==1" type="search" placeholder="Search by ID ..." aria-label="Search">
-      <input class="search_input" [(ngModel)]="Name" [ngModelOptions]="{standalone: true}"  *ngIf="Indicator==2" type="search" placeholder="Search by name ..." aria-label="Search">
-      <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+        <div class="row g-0">
+          <table class="tablearea table table-striped table-success" *ngIf="(visitListWithoutDuplication.length!=0) && (Indicator==0 && !Name && !ID) || (Indicator==1 && (!Name && !ID)) || (Indicator==2 && (!Name && !ID)) || (Indicator==2 && !Name && ID) || (Indicator==1 && Name && !ID)">
+            <thead>
+              <tr>
+                <th class="text-center"><em class="fa fa-cog"></em></th>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let patient of visitListWithoutDuplication">
+                <td [align]="'center'">
+                  <a  class="text-dark fs-6" [routerLink]="['/doctor/patient',patient.pidNavigation?.id,'info']"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                </td>
+                <td class="fs-6">{{patient.pidNavigation?.id}}</td>
+                <td class="fs-6">{{patient.pidNavigation?.fname}} {{patient.pidNavigation?.lname}}</td>
+              </tr>
+            </tbody>
+          </table> 
+        
+          <table class="tablearea table table-striped table-success" *ngIf="Name!=''&&(visitListWithoutDuplication|searchByName:Name).length!=0 &&Indicator==2">
+            <thead>
+              <tr>
+                <th scope="col" class="text-center"><em class="fa fa-cog"></em></th>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let patient of visitListWithoutDuplication|searchByName:Name">
+                <td [align]="'center'"> 
+                  <a  class="fs-6 text-dark" [routerLink]="['/doctor/patient',patient.id,'info']"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                </td>
+                <td class="fs-6">{{patient.id}}</td>
+                <td class="fs-6">{{patient.fname}} {{patient.lname}}</td>
+              </tr>
+            </tbody>
+          </table>
+        
+          <table class="tablearea table table-striped table-success" *ngIf="(visitListWithoutDuplication|searchById:ID)!=null&&Indicator==1">
+            <thead>
+              <tr>
+                <th class="text-center text-dark"><em class="fa fa-cog"></em></th>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td [align]="'center'">
+                  <a class="fs-6 text-dark" [routerLink]="['/doctor/patient',(visitListWithoutDuplication|searchById:ID)?.id,'info']"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                </td>
+                <td class="fs-6">{{(visitListWithoutDuplication|searchById:ID)?.id}}</td>
+                <td class="fs-6">{{(visitListWithoutDuplication|searchById:ID)?.fname}} {{(visitListWithoutDuplication|searchById:ID)?.lname}}</td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <div style="background-color: #d8e4dc; height: 70px; padding: 25px;" class="d-flex justify-content-center" *ngIf="((visitListWithoutDuplication|searchByName:Name).length==0 &&Indicator==2)|| (((visitListWithoutDuplication|searchById:ID)==null)&&Indicator==1&&ID) ">           
+            <label class="fs-3"><em style="color: black;" class="fas fa-cog fa-spin"></em> No Patients Found</label>
+          </div>
     </div>
   </div>
 
-  <table class="table table-striped primaryTable" *ngIf="(visitListWithoutDuplication.length!=0) && (Indicator==0 && !Name && !ID) || (Indicator==1 && (!Name && !ID)) || (Indicator==2 && (!Name && !ID)) || (Indicator==2 && !Name && ID) || (Indicator==1 && Name && !ID)">
-    <thead>
-      <tr>
-        <th class="text-center"><em class="fa fa-cog"></em></th>
-        <th scope="col">ID</th>
-        <th scope="col">Name</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let patient of visitListWithoutDuplication">
-        <td [align]="'center'">
-          <a  class="text-light fs-6" [routerLink]="['/doctor/patient',patient.pidNavigation?.id,'info']"><i class="fa fa-eye" aria-hidden="true"></i></a>
-        </td>
-        <td class="text-light fs-6">{{patient.pidNavigation?.id}}</td>
-        <td class="text-light fs-6">{{patient.pidNavigation?.fname}} {{patient.pidNavigation?.lname}}</td>
-      </tr>
-    </tbody>
-  </table> 
-
-  <table class="table table-striped" *ngIf="Name!=''&&(visitListWithoutDuplication|searchByName:Name).length!=0 &&Indicator==2">
-    <thead>
-      <tr>
-        <th scope="col"></th>
-        <th scope="col">ID</th>
-        <th scope="col">Name</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let patient of visitListWithoutDuplication|searchByName:Name">
-        <td>
-          <a  class="text-light fs-6" [routerLink]="['/doctor/patient',patient.id,'info']"><i class="fa fa-eye" aria-hidden="true"></i></a>
-        </td>
-        <td class="text-light fs-6">{{patient.id}}</td>
-        <td class="text-light fs-6">{{patient.fname}} {{patient.lname}}</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <table class="table table-striped" *ngIf="(visitListWithoutDuplication|searchById:ID)?.id!=0&&Indicator==1">
-    <thead>
-      <tr>
-        <th class="text-center"><em class="fa fa-cog"></em></th>
-        <th scope="col">ID</th>
-        <th scope="col">Name</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td align="center">
-          <a class="text-light fs-6" [routerLink]="['/doctor/patient',(visitListWithoutDuplication|searchById:ID)?.id,'info']"><i class="fa fa-eye" aria-hidden="true"></i></a>
-        </td>
-        <td class="text-light fs-6">{{(visitListWithoutDuplication|searchById:ID)?.id}}</td>
-        <td class="text-light fs-6">{{(visitListWithoutDuplication|searchById:ID)?.fname}} {{(visitListWithoutDuplication|searchById:ID)?.lname}}</td>
-      </tr>
-    </tbody>
-  </table>
+  
 </div> 
 
 

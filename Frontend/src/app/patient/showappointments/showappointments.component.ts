@@ -13,6 +13,7 @@ export class ShowappointmentsComponent implements OnInit,OnDestroy {
   selectedPatient$ = this.patient$.asObservable();
   patient:Patient=new Patient();
   sub:Subscription|null=null;
+  sub1:Subscription|null=null;
   constructor(public patientSer:PatientService) { }
 
   ngOnInit(): void {
@@ -23,8 +24,17 @@ export class ShowappointmentsComponent implements OnInit,OnDestroy {
       }
     );
   }
+  deleteMedicine(pid:number,did:number,date:Date){
+    this.sub1=this.patientSer.deleteAppointment(pid,did,date).subscribe(
+      a=>{
+        this.ngOnInit();
+      },
+      err=>{console.log(err)}
+    )
+  }
 
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
+    this.sub1?.unsubscribe();
   }
 }

@@ -1,31 +1,47 @@
+body{
+    background: -webkit-linear-gradient(left, #a5c422, #00c6ff);
+}
+.patient-profile{
+    padding: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    margin-left: 3.5%;
+    border-radius: 0.5rem;
+    background: #fff;
+}
+
+.PatientSearch{
+    width:100%
+}
+
 
 .searchbar{
 margin-bottom: auto;
 margin-top: auto;
-height: 60px;
-background-color: #353b48;
+height: 40px;
+background-color: #d8e4dc;
+color: #637517;
 border-radius: 30px;
-padding: 10px;
+padding: 1px;
+padding-bottom: 2px;
 }
 .search_input{
-color: white;
+color:#637517;
 border: 0;
 outline: 0;
 background: none;
-width: 0;
-caret-color:transparent;
-line-height: 40px;
-transition: width 0.4s linear;
-}
-.searchbar:hover > .search_input{
 padding: 0 10px;
-width: 450px;
+width: 800px;
 caret-color:#a5c422;
-transition: width 0.4s linear;
+line-height: 40px;
+
 }
+::placeholder { 
+    color: #637517;
+}
+
 .searchbar:hover > .search_icon{
-background: white;
-color: #a5c422;
+color: greenyellow;
 }
 .search_icon{
 height: 40px;
@@ -35,37 +51,37 @@ display: flex;
 justify-content: center;
 align-items: center;
 border-radius: 50%;
-color:white;
+color:#637517;
 text-decoration:none;
 }
 
 .dropdown{
 margin-top: auto;
-margin-bottom: auto;
+margin-bottom: 0;
 }
 
 .searchby{
 margin-top: auto;
 margin-bottom: auto;
 margin-right: 5px;
-background-color: #353b48;
-color: white;
+background-color: #d8e4dc;
+color: #637517;
 text-decoration: none;
 font-size: medium;
 border-radius: 30px;
-padding: 20px 60px;
+padding: 10px 40px;
 }
 
 .dropdown-menu{
 margin-bottom: auto;
-border-radius: 20px;
+border-radius: 30px;
 padding: 10px;
-width: 95%;
-background-color: #353b48;
+width: 50%;
+background-color: #d8e4dc;
 }
 
 .dropdown-item{
-color: white;
+color: #637517;
 }
 
 .dropdown-item:hover{
@@ -73,15 +89,24 @@ background: white;
 color: #a5c422;
 } 
 
-
-.table{
-background-color: #353b48;
-color: lightslategray;
-margin-top: 30px;
-width: 80%;
+.tablearea{
+  max-height: 100px;
+  overflow-x: auto;
+  overflow-y: auto;
 }
 
-.primaryTable{
-    margin-top: 7%;
+.table{
+  white-space: normal;
+}
+
+tbody{
+  display:block;
+  height:150px;
+  overflow:auto;
+}
+thead, tbody tr {
+  display:table;
+  width:100%;
+  table-layout:fixed;
 }
 

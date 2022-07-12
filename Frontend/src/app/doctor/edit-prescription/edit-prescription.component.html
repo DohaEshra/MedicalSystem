@@ -13,6 +13,7 @@
             <label style="color: red;">*</label>
             <input  type="datetime-local"  
                id="date" 
+               disabled
                style="border-radius:30px ;"
                class="form-control form-control-lg " 
                [(ngModel)]="recordList[0].date" [ngModelOptions]="{standalone: true}"
@@ -24,20 +25,6 @@
             <textarea class="form-control" id="summary" rows="1" style="border-radius:30px ;" [(ngModel)]="recordList[0].summary" [ngModelOptions]="{standalone: true}"></textarea>
         </div>
 
-        <!-- <div class="form-group fs-5">
-          <label for="Textarea1" class="fs-5 mt-4" >Prescription</label>
-          <label style="color: red;">*</label>
-          <div class="d-flex mb-3">
-              <input class="form-control mx-2" id="medicine" placeholder="Enter medicine name " style="border-radius:30px ;width: 30%;" />
-              <input class="form-control mx-2" id="info" placeholder="Enter extra info" style="border-radius:30px ;width: 70%;" />
-              <input name="addFieldButton" type="button" class="btn btn-success btn-outline-success text-light col-md-1 " value="+" style="border-radius:30px ;" />
-          </div>
-      </div>
-      <div class="form-group fs-5" >
-          <span id="fields2" ></span>
-          <p></p>
-      </div> -->
-
 
 
 
@@ -45,7 +32,7 @@
 
 
       <div class="form-group">
-        <table class="table table-striped custab"  *ngIf="recordList.length!=0">
+        <table  #table class="table table-striped custab"  *ngIf="recordList.length!=0">
             <thead>
               <tr>
                 <th class="text-center"><em class="fa fa-cog"></em></th>
@@ -55,35 +42,30 @@
             </thead>
 
             <tbody >
-
-              <tr *ngFor="let record of recordList">
-
-                <td align="center">
-                  <a (click)="deleteTest(record.fno)" class="btn btn-default"><em class="fa fa-trash"></em></a>
+              <tr *ngFor="let med of medicines; let i = index ;" >
+                <td align="center" style=" width:15%">
+                  <a (click)="deleteMedicine(i)" class="btn btn-default"><em class="fa fa-trash"></em></a>
                 </td>
-
-                <td class="">
-                  <tr>
-                    <td>
-                      <input type="text" class="form-control"  >
-                    </td>
-                  </tr>
+                <td class="" style=" width:20%" >
+                  <input type="text" class="form-control"  [value]="medicines[i][0]" >
+                </td>
+                <td class="" style=" width:60%">
+                  <input type="text" class="form-control"   [value]="medicines[i][1]" >
                 </td>
                 
               </tr>
-
               <tr>
 
                 <td align="center">
-                  <a (click)="add(desc.value,type.value)" class="btn btn-default"><em class="fa fa-plus"></em></a>
+                  <a (click)="add2(medicine,info)" class="btn btn-default"><em class="fa fa-plus"></em></a>
                 </td>
 
                 <td class="">
-                  <input type="text" class="form-control" #desc id="desc" >
+                  <input type="text" class="form-control" #medicine id="medicine" >
                 </td>
 
                 <td class="">
-                  <input type="text" class="form-control" #desc id="desc" #type>
+                  <input type="text" class="form-control" #info id="info">
                 </td>
                 
               </tr>
@@ -91,27 +73,6 @@
             </tbody>
         </table>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <div class="form-group">
             <table class="table table-striped custab"  *ngIf="recordList.length!=0">
                 <thead>

@@ -24,6 +24,9 @@ namespace MedicalSystem.Controllers
 
         // GET: api/Record/list/5
         //show all records to patient
+
+        // GET: api/Record/list/5
+        //show all records to patient
         [HttpGet("list/{PID}")]
         public async Task<ActionResult<IEnumerable<Record>>> GetRecords(int PID)
         {

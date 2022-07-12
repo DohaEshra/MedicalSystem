@@ -10,6 +10,12 @@
   } */
   /* new */
   /*search box css start here*/
+  #book:hover{
+    background-color:#a5c422 !important;
+  }
+  #book:hover #cal{
+    color:#fff !important;
+  }
   .btn
   {
     background-color:#a5c422 ;
