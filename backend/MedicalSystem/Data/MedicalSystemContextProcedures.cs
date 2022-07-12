@@ -225,7 +225,7 @@ namespace MedicalSystem.Data
             return _;
         }
 
-        public virtual async Task<int> Update_VisitAsync(int? pid, int? did, DateTime? date, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
+        public virtual async Task<int> Update_VisitAsync(int? pid, int? did, DateTime? olddate, DateTime? newdate, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
         {
             var parameterreturnValue = new SqlParameter
             {
@@ -250,14 +250,21 @@ namespace MedicalSystem.Data
                 },
                 new SqlParameter
                 {
-                    ParameterName = "date",
+                    ParameterName = "olddate",
                     Scale = 7,
-                    Value = date ?? Convert.DBNull,
+                    Value = olddate ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.DateTime2,
+                },
+                new SqlParameter
+                {
+                    ParameterName = "newdate",
+                    Scale = 7,
+                    Value = newdate ?? Convert.DBNull,
                     SqlDbType = System.Data.SqlDbType.DateTime2,
                 },
                 parameterreturnValue,
             };
-            var _ = await _context.Database.ExecuteSqlRawAsync("EXEC @returnValue = [dbo].[Update_Visit] @pid, @did, @date", sqlParameters, cancellationToken);
+            var _ = await _context.Database.ExecuteSqlRawAsync("EXEC @returnValue = [dbo].[Update_Visit] @pid, @did, @olddate, @newdate", sqlParameters, cancellationToken);
 
             returnValue?.SetValue(parameterreturnValue.Value);
 
