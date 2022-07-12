@@ -4,6 +4,7 @@ import { Patient } from 'src/app/_Models/patient';
 import { Visit } from 'src/app/_Models/visit';
 import { DoctorService } from '../doctor.service';
 import { SearchByNamePipe } from '../_Pipes/search-by-name.pipe';
+import { LoadingComponent } from 'src/app/core/loading/loading.component';
 @Component({
   selector: 'app-doctor-patient-search',
   templateUrl: './doctor-patient-search.component.html',
