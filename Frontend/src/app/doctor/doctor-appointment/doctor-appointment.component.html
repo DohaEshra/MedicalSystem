@@ -1,6 +1,6 @@
-<app-loading *ngIf="visits.length==0"></app-loading>
+<app-loading *ngIf="!doctor.id"></app-loading>
 
-<div class="container emp-profile " *ngIf="doctor.id && visits.length">
+<div class="container emp-profile " *ngIf="doctor.id">
     <div class="d-flex justify-content-center">
         <div class="card mb-3" style="max-width: 540px; margin-right: 1%;" >
             <div class="row g-0">
@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="d-flex justify-content-center">
-        <div class="card mb-3 col-12" style="max-width: 900px;" *ngIf="visits.length!=0">
+        <div class="card mb-3 col-12" style="max-width: 900px;">
             <h3 class="mx-3"><b>Appointments</b></h3>
             <div class="searchbar mb-1">
               <input type="text" class="search_input" placeholder="Search Appointment ... " [(ngModel)]="searchText"/>
@@ -75,7 +75,7 @@
                   </table>
     
             </div>
-            <div style="background-color: #d8e4dc; height: 70px; padding: 25px;" class="d-flex justify-content-center" *ngIf="(visits|searchAppointment:searchText).length==0">           
+            <div style="background-color: #d8e4dc; height: 70px; padding: 25px;" class="d-flex justify-content-center" *ngIf="(visits|searchAppointment:searchText).length==0 || visits.length==0">           
               <label class="fs-3"><em style="color: black;" class="fas fa-cog fa-spin"></em> No Appointments Found</label>
             </div>
         </div>
