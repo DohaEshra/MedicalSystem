@@ -41,6 +41,8 @@
               <input type="text" class="search_input" placeholder="Search Appointment ... " [(ngModel)]="searchText"/>
               <a class="search_icon"><i class="fas fa-search"></i></a>
             </div>
+            <app-loading *ngIf="visits.length==0"></app-loading>
+
             <div class="row g-0" *ngIf="(visits|searchAppointment:searchText).length!=0">
                 <table class="tablearea table table-striped table-success">
                     <thead>
@@ -75,7 +77,7 @@
                   </table>
     
             </div>
-            <div style="background-color: #d8e4dc; height: 70px; padding: 25px;" class="d-flex justify-content-center" *ngIf="(visits|searchAppointment:searchText).length==0 || visits.length==0">           
+            <div style="background-color: #d8e4dc; height: 70px; padding: 25px;" class="d-flex justify-content-center" *ngIf="(visits|searchAppointment:searchText).length==0 && visits.length">           
               <label class="fs-3"><em style="color: black;" class="fas fa-cog fa-spin"></em> No Appointments Found</label>
             </div>
         </div>
