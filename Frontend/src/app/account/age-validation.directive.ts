@@ -11,7 +11,8 @@ export class AgeValidationDirective implements Validator {
   constructor() { }
 
   validate(control: AbstractControl): ValidationErrors | null {
-    return ( new Date().getFullYear()- new Date(control.value).getFullYear() ) < 25 
+    console.log(new Date().getDay()- new Date(control.value).getDay())
+    return ( new Date().getDay()- new Date(control.value).getDay()) < 0 
     ? { 'phoneNumberInvalid': true }
     : null
   }

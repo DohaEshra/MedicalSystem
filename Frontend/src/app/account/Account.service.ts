@@ -25,7 +25,6 @@ constructor(public http:HttpClient , public router : Router ) {}
 
     login(email:string,password:string,role:string):Observable<any>
     {
-      
       this.loggedIn.next(true);
       return this.http.post<string>(this.baseUrl + "login/",{role,email,password})
     }
@@ -66,6 +65,7 @@ constructor(public http:HttpClient , public router : Router ) {}
 
   
   getUser(userRole:string){
+    
     if(this.getToken()!=null && this.count==0)
     {
       if(userRole == 'doctor'){

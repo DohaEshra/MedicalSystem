@@ -37,11 +37,11 @@ export class NavBarComponent implements OnInit {
   ngOnChanges(): void {
       this.userRole = this.loginFlag
       this.loginFlag == '' ? this.userLoggedIn = false : true;
-      this.sub = this.doctorSer.getDoctorProfile().subscribe(
-        a=>{
-          this.doctor=a;
-        }
-      );
+      // this.sub = this.doctorSer.getDoctorProfile().subscribe(
+      //   a=>{
+      //     this.doctor=a;
+      //   }
+     // );
   }
 
   

@@ -144,13 +144,11 @@
             <input  type="date"  
                     style="border-radius:30px ;"
                     class="form-control form-control-lg " 
-                    name="birthDate"
                     [(ngModel)]="user.birthDate" 
-                    appAgeValidation
+                    name="birthDate" appAgeVal
                     placeholder ="Enter your birth date" required #birthDate="ngModel"/>
 
             <div class="alert alert-danger fs-5" role="alert" *ngIf="birthDate.errors && MyForm.submitted" >
-              
               <div *ngIf="(birthDate.errors['required'])||(birthDate.value=='mm/dd/yyyy')">Birth date is required</div>
               <div *ngIf="birthDate.errors['pattern']">Birth date is invalid !</div>
               <div *ngIf="birthDate.errors['phoneNumberInvalid']">Age must be older than 25 years</div>
@@ -212,6 +210,7 @@
                 name="password"
                 [(ngModel)]="user.password"
                 required
+                [pattern]="passPattern" 
                 minlength="3"
                 #password="ngModel"
                 (keyup)="comparePassWords()"
@@ -221,7 +220,12 @@
                 role="alert"
                 *ngIf="password.errors && MyForm.submitted">
               <div *ngIf="password.errors['required']">Password is required</div>
-              <div *ngIf="password.errors['minlength']">  Password must be at least 3 characters </div>
+              <div *ngIf="password.errors['pattern']">  At least one lowercase  <br>
+                                                        At least one uppercase <br>
+                                                        At least one numeric <br>
+                                                        At least one special character <br>
+                                                        Minimum 8 characters 
+                                                       </div>
           </div>
         </div>
 

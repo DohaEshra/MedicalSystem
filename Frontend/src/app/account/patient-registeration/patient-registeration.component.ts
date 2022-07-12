@@ -24,8 +24,9 @@ export class PatientRegisterationComponent implements OnInit ,OnDestroy {
   imagePath:any;
   profileImage = false;
   message = "There is no attached file.";
-  agePattern = '^[0-9]+$';
 
+  agePattern = '^[0-9]+$';
+  passPattern='((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))';
   phonePattern = '^[(012)|(010)|(011)|(015)]{3}[0-9]{8}$';
   addressPattern = '^[A-Za-z0-9,_.-]{10,40}$';
   namePattern = '^[A-Za-z]{2,20}$';

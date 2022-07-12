@@ -5,24 +5,15 @@ import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { DoctorRegisterationComponent } from './doctor-registeration/doctor-registeration.component';
 
 const routes: Routes =[
+  { path:"addemployee", component: DoctorRegisterationComponent },
     {path:"",component:AdminHomeComponent,canActivate:[AdminLoginGuard],children:[
-        {path:"",component:AdminHomeComponent},
-        { path: 'doctorRegister', component: DoctorRegisterationComponent },
-        // {path:"info",component:DoctorInfoComponent},
-        // {path:"edit",component:DoctorEditComponent},
-        // {path:"patientsearch",component:DoctorPatientSearchComponent},
-        // {path:"patient/:id",component:DoctorPatientComponent,children:[
-        //     {path:"info",component:DoctorPatientInfoComponent},
-        //     {path:"history",component:PatientHistoryComponent},
-        // ]},
-        // {path:"recordpre/:pid/:date",component:RecordPrescriptionComponent},
-        // {path:"editpre/:id/:date",component:EditPrescriptionComponent}
+      {path:"",component:AdminHomeComponent},
     ]},
     {path:"home",component:AdminHomeComponent,canActivate:[AdminLoginGuard]},
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AdminRoutingModule { }
