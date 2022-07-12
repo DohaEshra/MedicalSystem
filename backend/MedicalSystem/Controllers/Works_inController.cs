@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MedicalSystem.Data;
 using MedicalSystem.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MedicalSystem.Controllers
 {
@@ -22,6 +23,7 @@ namespace MedicalSystem.Controllers
         }
 
         // GET: api/Works_in
+        [Authorize(Roles = "patient,admin,doctor")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Works_in>>> GetWorks_ins()
         {
@@ -30,6 +32,7 @@ namespace MedicalSystem.Controllers
 
         // GET: api/Works_in/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "patient,admin,doctor")]
         public async Task<ActionResult<IEnumerable<Works_in>>> GetWorks_in(int id)
         {
             List<Works_in> works_in = await _context.Works_ins.Where(r => r.DID == id ).ToListAsync();
@@ -44,6 +47,7 @@ namespace MedicalSystem.Controllers
 
         // PUT: api/Works_in/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Roles = "admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutWorks_in(int id, Works_in works_in)
         {
@@ -75,6 +79,7 @@ namespace MedicalSystem.Controllers
 
         // POST: api/Works_in
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public async Task<ActionResult<Works_in>> PostWorks_in(Works_in works_in)
         {
@@ -99,6 +104,7 @@ namespace MedicalSystem.Controllers
         }
 
         // DELETE: api/Works_in/5
+        [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteWorks_in(int id)
         {

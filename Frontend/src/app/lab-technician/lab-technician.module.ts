@@ -6,6 +6,7 @@ import { LabTechncianHomeComponent } from './lab-techncian-home/lab-techncian-ho
 import { FormsModule } from '@angular/forms';
 import { FilterRecordsPipe } from './_pipes/filter-records.pipe';
 import {HttpClientModule} from '@angular/common/http';
+import { CoreModule } from '../core/core.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {HttpClientModule} from '@angular/common/http';
     FormsModule,
     FileUploadModule,
     HttpClientModule,
+    CoreModule
   ]
 })
 export class LabTechnicianModule { }

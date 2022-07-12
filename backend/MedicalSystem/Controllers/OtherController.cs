@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MedicalSystem.Data;
 using MedicalSystem.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MedicalSystem.Controllers
 {
+    [Authorize(Roles ="admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class OtherController : ControllerBase
