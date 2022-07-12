@@ -12,12 +12,12 @@ import { DoctorService } from '../doctor.service';
 })
 export class DoctorAppointmentComponent implements OnInit,OnDestroy {
 
+  searchText:string="";
   doctor:Doctor=new Doctor();
   visits:Visit[]=[];
   sub:Subscription|null=null;
   sub1:Subscription|null=null;
 
-  
   constructor(private doc:DoctorHomeComponent,private docSer:DoctorService) { }
 
   ngOnInit(): void {
@@ -32,6 +32,7 @@ export class DoctorAppointmentComponent implements OnInit,OnDestroy {
         this.visits=data;
       }
     )
+    
   }
 
   ngOnDestroy(): void {

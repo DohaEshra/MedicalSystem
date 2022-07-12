@@ -1,5 +1,8 @@
 
-<div class="container" >
+<!-- <div id="sect1">
+</div> -->
+
+  <div class="container"  >
     <div class="row my-3 fs-5 form-group" >
         <div class="col-lg-4 col-sm-12">
             <label for="pid">  Patient ID </label>
@@ -11,7 +14,6 @@
             <label for="did">  Doctor ID </label>
             <input class="form-control form-control-lg"  id="did" [pattern]="IsNumberPattern"  type="text" [(ngModel)]="record.did" placeholder="Enter Doctor Id" >
         </div>
-       
     </div>
     <div class="row my-3 fs-5 form-group" >
         <div class="col-lg-4 col-sm-12">
@@ -30,7 +32,7 @@
             <button (click)="ShowPatientPrescription()" class="form-control form-control-lg btn btn-outline-success fs-5 " >search </button>
         </div>
     </div>
-
+    <app-loading *ngIf="medicine.length ==0 && showLoading"> </app-loading>
     <div *ngIf="showResult  ">
      <hr>
         <div class="row my-2 fs-5  "  >
@@ -61,28 +63,21 @@
             </div>
             <div class="col-lg-3 col-sm-1 "></div>
         </div>
-<table  class="table  text-center my-4 table-striped table-hover fs-5 table-bordered table-sm responsive-sm">
-    <thead class=" text-center">
-        <tr>
-            <th scope="col">Medicine</th>
-            <th scope="col">Info</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="my-2">
-            <td class="my-2">
-                <tr *ngFor="let item of medicine">
-                    <td class="my-2">{{item}}</td>
+
+        <table class="table text-center table-striped table-inverse table-hover table-responsive table-bordered  my-4  fs-5">
+            <thead class="thead-inverse">
+                <tr>
+                    <th scope="col">Medicine</th>
+                    <th scope="col">Info</th>
                 </tr>
-            </td>
-            <td class="my-2">
-                <tr *ngFor="let item of info">
-                    <td class="my-2">{{item}}</td>
-                </tr>
-            </td>
-        </tr>
-    </tbody>
-</table>
-</div>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of medicines; let i=index;">
+                        <td scope="row">{{medicines[i][0]}}</td>
+                        <td>{{medicines[i][1]}}</td>
+                    </tr>
+                </tbody>
+        </table>
+  </div>
 
    

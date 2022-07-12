@@ -25,29 +25,16 @@ namespace MedicalSystem.Controllers
 
         // GET: api/Patients
         [HttpGet]
+        [Authorize(Roles = "doctor")]
         public async Task<ActionResult<IEnumerable<Patient>>> GetPatients()
         {
             var patients = await _context.Patients.ToListAsync();
-            //using (var ms = new MemoryStream())
-            //{
-            //    foreach (var pat in patients)
-            //        foreach (var record in pat.Records)
-            //            if (record.attached_files != null)
-            //                using (MemoryStream stream = new MemoryStream())
-            //                {
-            //                    using (StreamReader streamReader = new StreamReader(stream))
-            //                    {
-            //                        var x = streamReader.ReadToEnd();
-            //                    }
-            //                }
-                //record.attached_files = Encoding.Default.GetString(record.attached_files);
-                // var fileBytes = ms.ToArray();
-            //}
             return patients;
         }
 
         //get patients who need to make lab tests 
         [HttpGet("LabPatients")]
+        [Authorize(Roles = "laboratory technician")]
         public async Task<ActionResult<IEnumerable<Patient>>> GetPatientsForLab()
         {
             var patients = _context.Patients.Where(p => p.Records.Any(p => p.attached_files == null && p.file_description != string.Empty && p.testType == "T")).ToListAsync();
@@ -56,6 +43,7 @@ namespace MedicalSystem.Controllers
 
         //get patients who need to make scans
         [HttpGet("ScanPatients")]
+        [Authorize(Roles = "radiographer")]
         public async Task<ActionResult<IEnumerable<Patient>>> GetPatientsForScan()
         {
             var patients = await _context.Patients.Where(p => p.Records.Any(p => p.attached_files == null && p.file_description != string.Empty && p.testType == "S")).ToListAsync();
@@ -64,6 +52,7 @@ namespace MedicalSystem.Controllers
 
         // GET: api/Patients/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "radiographer,admin,doctor,laboratory technician,patient")]
         public async Task<ActionResult<Patient>> GetPatient(int id)
         {
             var patient = await _context.Patients.FindAsync(id);
@@ -79,6 +68,7 @@ namespace MedicalSystem.Controllers
         // PUT: api/Patients/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize(Roles = "patient")]
         public async Task<IActionResult> PutPatient(int id, Patient patient)
         {
             if (id != patient.ID)
@@ -129,20 +119,20 @@ namespace MedicalSystem.Controllers
         }
 
         // DELETE: api/Patients/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePatient(int id)
-        {
-            var patient = await _context.Patients.FindAsync(id);
-            if (patient == null)
-            {
-                return NotFound();
-            }
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> DeletePatient(int id)
+        //{
+        //    var patient = await _context.Patients.FindAsync(id);
+        //    if (patient == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _context.Patients.Remove(patient);
-            await _context.SaveChangesAsync();
+        //    _context.Patients.Remove(patient);
+        //    await _context.SaveChangesAsync();
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
         private bool PatientExists(int id)
         {

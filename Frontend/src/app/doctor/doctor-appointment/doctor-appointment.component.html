@@ -35,32 +35,48 @@
         </div>
     </div>
     <div class="d-flex justify-content-center">
-        <div class="card mb-3 col-12" style="max-width: 780px;" *ngIf="visits.length!=0">
+        <div class="card mb-3 col-12" style="max-width: 900px;" *ngIf="visits.length!=0">
             <h3 class="mx-3"><b>Appointments</b></h3>
-            <div class="row g-0">
+            <div class="searchbar mb-1">
+              <input type="text" class="search_input" placeholder="Search Appointment ... " [(ngModel)]="searchText"/>
+              <a class="search_icon"><i class="fas fa-search"></i></a>
+            </div>
+            <div class="row g-0" *ngIf="(visits|searchAppointment:searchText).length!=0">
                 <table class="tablearea table table-striped table-success">
                     <thead>
                       <tr>
                         <th scope="col">Name</th>
                         <th scope="col">Date</th>
-                        <th scope="col">Time</th>
                         <th scope="col"><i class="fa fa-ticket-alt" aria-hidden="true"></i> NO</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Prescription</th>
+                        <th scope="col">Profile</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let visit of visits">
+                      <tr *ngFor="let visit of visits|searchAppointment:searchText">
     
                         <td> <img src={{visit.pidNavigation?.profilePic}} width="25px" height="25px" style="border-radius: 100px;"/> {{visit.pidNavigation?.fname}} {{visit.pidNavigation?.lname}}</td>
                         <td>{{(visit.appointment_time|dateTime)[0]}}</td>
-                        <td>{{(visit.appointment_time|dateTime)[1]}}</td>
                         <td >{{visit.appointmentNo}}</td>
-                        <td *ngIf="visit.appointmentStatus==0"><i class="fa fa-spinner" style="color: red;" aria-hidden="true"></i></td>
-                        <td *ngIf="visit.appointmentStatus==1"><i class="fa fa-check" style="color: green;" aria-hidden="true"></i></td>
+                        <td *ngIf="visit.appointmentStatus==0"><i class="mx-2 fa fa-spinner" style="color: red;" aria-hidden="true"></i></td>
+                        <td *ngIf="visit.appointmentStatus==1"><i class="mx-2 fa fa-check" style="color: green;" aria-hidden="true"></i></td>
+                        <td *ngIf="visit.appointmentStatus==0">
+                          <a [routerLink]="['/doctor/recordpre',visit.pid,visit.appointment_time]"><i class="mx-4 fas fa-pencil-alt" style="color: black;" aria-hidden="true"></i></a>
+                        </td>
+                        <td *ngIf="visit.appointmentStatus==1">
+                          <a [routerLink]="['/doctor/editpre',visit.pid,visit.appointment_time]"><i class="mx-4 fas fa-edit" style="color: black;" aria-hidden="true"></i></a>
+                        </td>
+                        <td>
+                          <a  class="text-dark fs-6" [routerLink]="['/doctor/patient',visit.pid,'info']"><i class="mx-4 fa fa-eye" aria-hidden="true"></i></a>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
     
+            </div>
+            <div style="background-color: #d8e4dc; height: 70px; padding: 25px;" class="d-flex justify-content-center" *ngIf="(visits|searchAppointment:searchText).length==0">           
+              <label class="fs-3"><em style="color: black;" class="fas fa-cog fa-spin"></em> No Appointments Found</label>
             </div>
         </div>
     </div>

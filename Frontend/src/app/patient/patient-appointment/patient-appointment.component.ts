@@ -46,7 +46,7 @@ export class PatientAppointmentComponent implements OnInit,OnDestroy {
         data=>{
           if(data!=null)
           {
-            this.router.navigateByUrl("patient/categories/Dentist");
+            this.router.navigateByUrl("patient/appointments");
           }
         }
       )

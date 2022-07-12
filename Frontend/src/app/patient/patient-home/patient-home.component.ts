@@ -21,8 +21,6 @@ export class PatientHomeComponent implements OnInit, OnDestroy {
     this.sub = this.patientService.getPatient().subscribe({
       next: (data) => {
         this.patient = data;
-        this.patient$.next(this.patient);
-
         console.log('patient: ', this.patient);
       },
       error: (err) => {
@@ -42,6 +40,6 @@ export class PatientHomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sub?.unsubscribe();
+      this.sub?.unsubscribe();
   }
 }

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MedicalSystem.Data;
 using MedicalSystem.Models;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MedicalSystem.Controllers
 {
@@ -24,9 +25,7 @@ namespace MedicalSystem.Controllers
 
         // GET: api/Record/list/5
         //show all records to patient
-
-        // GET: api/Record/list/5
-        //show all records to patient
+        [Authorize(Roles = "patient")]
         [HttpGet("list/{PID}")]
         public async Task<ActionResult<IEnumerable<Record>>> GetRecords(int PID)
         {
@@ -38,19 +37,20 @@ namespace MedicalSystem.Controllers
         }
 
         // GET: api/Records/5/2
-        [HttpGet("{pid}/{did}")]
-        public async Task<ActionResult<IEnumerable<Record>>> GetRecord(int pid, int did)  // not working as the date needed !
-        {
-            var Record = await _context.Records.Select(a=>a).Where(r => r.DID == did && r.PID == pid ).ToListAsync();
+        //[HttpGet("{pid}/{did}")]
+        //public async Task<ActionResult<IEnumerable<Record>>> GetRecord(int pid, int did)  // not working as the date needed !
+        //{
+        //    var Record = await _context.Records.Select(a=>a).Where(r => r.DID == did && r.PID == pid ).ToListAsync();
 
-            if (_context.Records == null)
-            {
-                return NotFound();
-            }
-            return Record;
-        }
+        //    if (_context.Records == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Record;
+        //}
 
         // GET: api/Records/pharmacy/pid/did/date
+        [Authorize(Roles = "pharmacist")]
         [HttpGet("pharmacy/{pid}/{did}/{date}")]
         public async Task<ActionResult<Record>> GetOneRecord(int pid, int did, DateTime date)
         {
@@ -68,6 +68,7 @@ namespace MedicalSystem.Controllers
 
         // GET: api/Records/pid/did/date
         [HttpGet("{pid}/{did}/{date}")]
+        [Authorize(Roles = "doctor,patient,admin")]
         public async Task<ActionResult<IEnumerable<Record>>> GetSpecificRecords(int pid, int did, DateTime date)
         {
 
@@ -82,6 +83,7 @@ namespace MedicalSystem.Controllers
         }
 
         //api/Record/pid/did/date
+        [Authorize(Roles = "doctor,admin")]
         [HttpPut("{pid}/{did}/{date}")]
         public async Task<IActionResult> RecordTests(int pid, int did, DateTime date, Record @record)
         {
@@ -119,10 +121,45 @@ namespace MedicalSystem.Controllers
         }
 
 
+        //api/Record/AddFile/pid/did/date   
+        [Authorize(Roles = "radiographer,laboratory technician")]
+        [HttpPost("AddFile/{pid}/{did}/{date}/{file_Description}/{oid}")]
+        public async Task<IActionResult> PutRecord(int pid, int did, DateTime date, string file_description, int oid)
+        {
+            var record = await _context.Records.FirstOrDefaultAsync(e => e.DID == did && e.PID == pid && e.date == date && e.file_description == file_description);
+            if (record == null)
+                return BadRequest();
+            var form = Request.Form;
+            using (var ms = new MemoryStream())
+            {
+                await form.Files[0].CopyToAsync(ms);
+                var fileBytes = ms.ToArray();
+                record.attached_files = fileBytes;
+            }
+            record.OID = oid;
+            record.testType = "F";
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!RecordExists(record.FNO))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return NoContent();
+        }
 
 
         // PUT: api/Records/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Roles = "admin,doctor")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRecord(Guid id, Record @record)
         {
@@ -157,6 +194,7 @@ namespace MedicalSystem.Controllers
 
         // POST: api/Record
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Roles = "doctor")]
         [HttpPost]
         public async Task<ActionResult<Record>> PostRecord(Record @record)
         {
@@ -181,6 +219,7 @@ namespace MedicalSystem.Controllers
         }
 
         // DELETE: api/Records/5
+        [Authorize(Roles = "doctor")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRecord(Guid id)
         {
@@ -200,10 +239,12 @@ namespace MedicalSystem.Controllers
         {
             return _context.Records.Any(e => e.DID == id);
         }
+
         private bool RecordExists(Guid id)
         {
             return _context.Records.Any(e => e.FNO == id);
         }
+
         private Patient GetCurrentUser()
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;// get identity of loggedin user

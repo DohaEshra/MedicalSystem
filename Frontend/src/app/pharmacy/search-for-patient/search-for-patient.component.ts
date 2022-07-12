@@ -29,7 +29,8 @@ export class SearchForPatientComponent implements OnInit {
   patient:Patient|null = new Patient();
   info:string[]=[];
   medicine :string[]=[];
-
+  medicines:string[][] = [];
+  showLoading= false;
   ngOnDestroy(): void {
     this.subscribe?.unsubscribe();
   }
@@ -40,6 +41,9 @@ export class SearchForPatientComponent implements OnInit {
   ShowPatientPrescription(){
     if(this.record.pid.match(this.IsNumberPattern)&&this.record.pid!="" &&this.record.did.match(this.IsNumberPattern) &&this.record.did!="")
     {
+      this.medicines=[];
+      this.showResult= false;
+      this.showLoading = true;
       this.subscribe = this.recordService.getPatientPrescriptionForPharmacy(+this.record.pid,+this.record.did,this.record.date).subscribe(
         { next:data=>{
           console.log(data);
@@ -47,34 +51,32 @@ export class SearchForPatientComponent implements OnInit {
           {
             this.showError = true;
             this.errorMessage = 'Invalid data !' ;
-            this.showResult= false ;
+            this.showResult= this.showLoading = false ;
             return
           }
         var dummy=data.prescription.split(',');
         dummy.forEach(a=>{
-          this.medicine.push( a.split(': ')[0]);
-          this.info.push(a.split(': ')[1]);
+          this.medicines.push([a.split(': ')[0],a.split(': ')[1]]);
         })
-        console.log(this.info,this.medicine);
-        this.showError2 =this.showError = false;
+        this.showError2=this.showLoading =this.showError = false;
         this.showResult= true ;
         this.record2 = data;
         this.doctor = data.didNavigation;
         this.patient= data.pidNavigation;
       },
       error:err=>{
-        this.showError2 =this.showResult= false ;
+        this.showError2 =this.showLoading=this.showResult= false ;
         this.showError = true;
         this.errorMessage = 'Invalid data !' ;
       }}
       );
     }else if(this.record.pid==""||this.record.did==""){
       this.showError = true;
-     // this.showError2 = false;
+      this.showLoading = false;
       this.errorMessage = 'some fields are required!' ;
     }else 
     {
-      //this.showError2 = false;
+      this.showLoading = false;
       this.showError = true;
       this.errorMessage = 'doctor id and patient id must be a number!' ;
     }

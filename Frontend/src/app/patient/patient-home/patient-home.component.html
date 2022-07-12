@@ -7,30 +7,162 @@
         <a class="text-dark btn btn-outline-success  col-12 mt-3" [routerLink]="['/patient/record']" (click)="send()"> Show Records </a>
         <a class="text-dark btn btn-outline-success  col-12 mt-3" [routerLink]="['/patient/search']"> Search for Doctor </a>
     </div>
+    <!-- slider -->
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <!-- first card -->
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                        <div class="card mb-30"><a class="card-img-tiles" href="#" data-abc="true">
+                            <div class="inner">
+                                <div class="main-img"><img src="./../../../assets/p3.jpg" alt="Category"></div>
+                            </div></a>
+                            <div class="card-body text-center">
+                                <h4 class="card-title">Obstetrics/Gynecology</h4>
+                                <a class="btn btn-outline-success btn-sm" href="#" data-abc="true" [routerLink]="['/patient/categories','Obstetrics/Gynecology']">View Doctors</a>
+                            </div>
+                        </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="card mb-30"><a class="card-img-tiles" href="#" data-abc="true">
+                        <div class="inner">
+                            <div class="main-img"><img src="./../../../assets/p2.jpg" alt="Category"></div>
+                        </div></a>
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Dentist</h4>
+                        <a class="btn btn-outline-success btn-sm" href="#" data-abc="true" [routerLink]="['/patient/categories','Dentist']">View Doctors</a>
+                    </div>
+                </div>
+            </div>
+            <div class=" col-lg-4 col-md-4 col-sm-6">
+                <div class="card mb-30"><a class="card-img-tiles" href="#" data-abc="true">
+                    <div class="inner">
+                        <div class="main-img"><img src="./../../../assets/p1.jpg" alt="Category"></div>
+                    </div></a>
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Cardiology</h4>
+                        <a class="btn btn-outline-success btn-sm" href="#" [routerLink]="['/patient/categories','Cardiology']" data-abc="true">View Doctors</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+    <!-- end first slider -->
+            <!-- <div class="carousel-caption d-none d-md-block">
+                <h5>First slide label</h5>
+                <p>Some representative placeholder content for the first slide.</p>
+            </div> -->
+            
+            <div class="carousel-item">
+            <div class="container">
+                <div class="row">   
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="card mb-30"><a class="card-img-tiles" href="#" data-abc="true">
+                    <div class="inner">
+                        <div class="main-img"><img src="./../../../assets/p1.jpg" alt="Category"></div>
+                    </div></a>
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Medical Microbiology and Infectious Diseases</h4>
+                <a class="btn btn-outline-success btn-sm" href="#" [routerLink]="['/patient/categories','Medical Microbiology and Infectious Diseases']" data-abc="true">View Doctors</a>
+                </div>
+                </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="card mb-30"><a class="card-img-tiles" href="#" data-abc="true">
+                        <div class="inner">
+                            <div class="main-img"><img src="./../../../assets/p1.jpg" alt="Category"></div>
+                        </div></a>
+                        <div class="card-body text-center">
+                            <h4 class="card-title">oculist</h4>
+                    <a class="btn btn-outline-success btn-sm" href="#" data-abc="true"  [routerLink]="['/patient/categories','oculist']">View Doctors</a>
+                    </div>
+                    </div>
+                    </div>
+                    <!-- <div class="col-lg-4 col-md-4 col-sm-6">
+                        <div class="card mb-30"><a class="card-img-tiles" href="#" data-abc="true">
+                            <div class="inner">
+                                <div class="main-img"><img src="./../../../assets/p1.jpg" alt="Category"></div>
+                            </div></a>
+                            <div class="card-body text-center">
+                                <h4 class="card-title">Ophthalmologists</h4>
+                        <a class="btn btn-outline-success btn-sm" href="#" data-abc="true">View Doctors</a>
+                        </div>
+                        </div>
+                        </div> -->
+            </div>
+            </div>
+                <!-- <div class="carousel-caption d-none d-md-block">
+              <h5>Second slide label</h5>
+              <p>Some representative placeholder content for the second slide.</p>
+            </div> -->
+          </div>
+          <!-- <div class="carousel-item">
+            <div class="col-md-4 col-sm-6">
+                <div class="card mb-30"><a class="card-img-tiles" href="#" data-abc="true">
+                <div class="inner">
+                <div class="main-img"><img src="./../../../assets/p2.jpg" alt="Category"></div>
+                <div class="thumblist"><img src="https://i.imgur.com/VwSKS7A.jpg" alt="Category"><img src="https://i.imgur.com/gTvZ2H5.jpg" alt="Category"></div>
+                </div></a>
+                <div class="card-body text-center">
+                <h4 class="card-title" >Dentists</h4>
+                <p class="text-muted">Starting from $50</p>
+                <a class="btn btn-outline-success btn-sm" href="#" data-abc="true"  routerLink='/patient/categories/Dentist'>View Doctors</a>
+                </div>
+                </div>
+                </div> -->
+                <!-- <div class="carousel-caption d-none d-md-block">
+              <h5>Third slide label</h5>
+              <p>Some representative placeholder content for the third slide.</p>
+            </div> -->
+          <!-- </div> -->
+          
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+<!-- Categories start here -->
+<!-- <a href="" class="typewrite" data-period="2000" data-type='[ "Welcome to Life Care", "We Care Your Health", "We are Expert!" ]'>
 
 <!-- Categories start here -->
 <!-- <a class="typewrite" data-period="2000" data-type='[ "Welcome to Life Care", "We Care Your Health", "We are Expert!" ]'>
 <div class="container mt-100">
     <div class="row">
 <div class="col-md-4 col-sm-6">
-<div class="card mb-30"><a class="card-img-tiles" href="#" data-abc="true">
+<div class="card mb-30">< class="card-img-tiles" href="#" data-abc="true">
 <div class="inner">
 <div class="main-img"><img src="./../../../assets/p1.jpg" alt="Category"></div>
-</div></a>
+<!-- <div class="thumblist"><img src="https://i.imgur.com/ILEU18M.jpg" alt="Category"><img src="https://i.imgur.com/2kePJmX.jpg" alt="Category"></div> -->
+</div>
 <div class="card-body text-center">
 <h4 class="card-title">Ophthalmologists</h4>
 <a class="btn btn-outline-success btn-sm" data-abc="true">View Doctors</a>
-</div>
-</div>
 </div>
 <div class="col-md-4 col-sm-6">
 <div class="card mb-30"><a class="card-img-tiles" data-abc="true">
 <div class="inner">
 <div class="main-img"><img src="./../../../assets/p2.jpg" alt="Category"></div>
+<!-- <div class="thumblist"><img src="https://i.imgur.com/VwSKS7A.jpg" alt="Category"><img src="https://i.imgur.com/gTvZ2H5.jpg" alt="Category"></div> -->
 </div></a>
 <div class="card-body text-center">
 <h4 class="card-title" >Dentists</h4>
-<a class="btn btn-outline-success btn-sm" data-abc="true"  routerLink='/patient/categories/Dentist'>View Doctors</a>
+<!-- <p class="text-muted">Starting from $50</p> -->
+<a class="btn btn-outline-success btn-sm" href="#" data-abc="true"  routerLink='/patient/categories/Dentist'>View Doctors</a>
 </div>
 </div>
 </div>
@@ -38,18 +170,23 @@
 <div class="card mb-30"><a class="card-img-tiles" data-abc="true">
 <div class="inner">
 <div class="main-img"><img src="./../../../assets/p3.jpg" alt="Category"></div>
+<!-- <div class="thumblist"><img src="https://i.imgur.com/dWYAg41.jpg" alt="Category"><img src="https://i.imgur.com/5oQEZSC.jpg" alt="Category"></div> -->
 </div></a>
 <div class="card-body text-center">
 <h4 class="card-title">pediatrician</h4>
-<a class="btn btn-outline-success btn-sm" data-abc="true" [routerLink]="['/patient/categories','pediatrician']">View Doctors</a>
+<!-- <p class="text-muted">Starting from $9</p> -->
+<a class="btn btn-outline-success btn-sm" href="#" data-abc="true" [routerLink]="['/patient/categories','pediatrician']">View Doctors</a>
 </div>
 </div>
 </div>
+<<<<<<< HEAD
 </div>
 </div> -->
 <div>
     <router-outlet></router-outlet>
 </div>
-</div>
-</div>
+
+=======
+
+>>>>>>> 0c8f500735e53493fabb1cf0097c3c6920c92a2d
 <!-- </div> -->

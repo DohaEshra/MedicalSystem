@@ -1,9 +1,44 @@
 <p>get-doctor-per-category works!</p>
-<ul>
+<!-- <ul>
     <li *ngFor="let item of dr">
         {{item.id}}
         {{item.fname}}
         {{item.lname}}
         <a class="btn btn-default" [routerLink]="['/patient/appointment',item.id]"><i style="color: yellowgreen;" class="fa fa-calendar" aria-hidden="true"></i></a>
     </li>
-</ul> 
+</ul>  -->
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<div class="container">
+    
+    <!-- <div class="mb20">
+        <h1>Search Results</h1>
+	</div>
+     -->
+    <section class="col-lg-12 col-xs-12 col-sm-6 col-md-12">
+        <article class="search-result row" *ngFor="let i of dr">
+
+			<div class="col-xs-12 col-sm-12 col-md-2">
+				<ul class="meta-search">
+                    <li><i class="glyphicon glyphicon-star"></i> <span>{{i.DoctorRating}}</span></li>
+					<li><i class="glyphicon glyphicon-map-marker"></i> <span>{{i.city | titlecase }}</span></li>
+					<li><i class="fas fa-map-pin" style="color:#a5c422"> </i> <span>    {{i.area | titlecase }}</span></li>
+				</ul>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+				<h3>{{i.fname +" "+  i.lname | titlecase }}
+
+                    <i class="fa fa-user-md" style="color:#a5c422; font-size:15px"></i>  <span style="opacity:0.5">  {{i.category | titlecase}}</span>				
+                </h3>
+
+          
+
+                <i class="glyphicon glyphicon-earphone"></i>   <span>  {{i.phone}}</span><br>					
+                <i class="glyphicon glyphicon-envelope"></i>   <span>  {{i.email}}</span><br>   			
+        
+			</div>
+			<span class="clearfix borda"></span>
+		</article>
+	</section>
+</div>

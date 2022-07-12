@@ -50,7 +50,7 @@ namespace MedicalSystem.Controllers
             {
                 return NotFound();
             }
-            return await _context.Visits.Where(e => e.DID == id).ToListAsync();
+            return await _context.Visits.Where(e => e.DID == id).OrderBy(a=>a.appointment_time).ToListAsync();
         }
 
         // PUT: api/Visits/5
@@ -89,9 +89,8 @@ namespace MedicalSystem.Controllers
         [HttpPost]
         public async Task<ActionResult<Visit>> PostVisit(Visit visit)
         {
-            List<Visit> visits = await _context.Visits.Where(v => v.DID==visit.DID && v.appointment_time==visit.appointment_time).ToListAsync();
-            visit.AppointmentNo = visits.Count() + 1;
-            _context.Visits.Add(visit);
+            await _context.Procedures.Insert_VisitAsync(visit.PID,visit.DID,visit.appointment_time);
+
             try
             {
                 await _context.SaveChangesAsync();
@@ -112,16 +111,17 @@ namespace MedicalSystem.Controllers
         }
 
         // DELETE: api/Visits/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteVisit(int id)
+        [HttpDelete("{pid}/{did}/{date}")]
+        public async Task<IActionResult> DeleteVisit(int pid,int did,DateTime date)
         {
-            var visit = await _context.Visits.FindAsync(id);
+            var visit = await _context.Visits.Where(e => e.DID == did && e.PID==pid && e.appointment_time==date).FirstOrDefaultAsync();
             if (visit == null)
             {
                 return NotFound();
             }
 
-            _context.Visits.Remove(visit);
+            await _context.Procedures.Delete_VisitAsync(visit.PID, visit.DID, visit.appointment_time);
+
             await _context.SaveChangesAsync();
 
             return NoContent();
