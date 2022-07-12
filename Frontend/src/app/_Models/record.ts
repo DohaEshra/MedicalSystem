@@ -3,7 +3,7 @@ import { Doctor } from "./doctor"
 import { Patient } from "./patient";
 export class Record {
     constructor(
-                public fno:Guid,
+                public fno:Guid|null=null,
                 public file_description: string="", 
                 public testType:String= "",
                 public attached_files :string="", 

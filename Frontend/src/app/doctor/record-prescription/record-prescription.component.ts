@@ -12,8 +12,8 @@ import { FileInfo } from 'src/app/_Models/FileInfo';
 })
 export class RecordPrescriptionComponent implements OnInit {
 
-  recordList:FileInfo[]=[];
-  record:FileInfo=new FileInfo();
+  recordList:Record[]=[];
+  record:Record=new Record();
   medicalTests:string[]=[];
   testType:string[]=[];
   sub:Subscription|null=null;
@@ -25,6 +25,7 @@ export class RecordPrescriptionComponent implements OnInit {
   ngOnInit(): void {
     this.record.did=this.docSer.DoctorID;
     this.record.didNavigation=null;
+    this.record.pidNavigation=null;
     this.sub=this.activateRoute.params.subscribe(
       a=>{
         this.record.pid=a['pid'];
@@ -44,6 +45,7 @@ export class RecordPrescriptionComponent implements OnInit {
       this.addEl('fields', 'p', 'field-' + this.fieldId, inputValue,testType);
       this.medicalTests.push(inputValue);
       this.testType.push(testType);
+
     }
   }
 
@@ -102,42 +104,44 @@ export class RecordPrescriptionComponent implements OnInit {
 
   //submit
   count=0;
+  newFile:Record=new Record();
   submit(){
     var date = (<HTMLInputElement>document.getElementById('date')).value;
     var summary = (<HTMLInputElement>document.getElementById('summary')).value;
     //var prescription = (<HTMLInputElement>document.getElementById('prescription')).value;
-    
+
     if(this.medicalPrescription.length>0){
       this.record.prescription=this.medicalPrescription.join(',');
     }
 
+    for(let i=0;i<this.medicalTests.length;i++)
+    {
+      this.newFile = {fno:null,file_description:this.medicalTests[i],testType:this.testType[i],
+      attached_files:'',did:this.record.did,pid:this.record.pid,
+      oid:null,date:this.record.date,summary:this.record.summary,
+      prescription:this.record.prescription,pidNavigation:null,didNavigation:null};
+        
+      this.recordList.push(this.newFile); 
+      this.newFile=new Record();
+    }
+
+
     if(this.medicalTests.length==0 && this.validation(date,summary,this.record.prescription))
     {
-      console.log(this.medicalTests.length)
-      this.docSer.recordPatientPrescription(this.record,this.record.pid,this.record.did,this.record.date).subscribe(
-        a=>{},
-        err=>{}
-      );
+      this.recordList.push(this.record);
+      this.docSer.recordPatientPrescription(this.recordList,this.recordList[0].pid,this.recordList[0].did,this.recordList[0].date).subscribe(
+        a=>{}
+      )
+      this.router.navigateByUrl("doctor/patient/"+this.record.pid+"/history");
     }
-    else
+    else if(this.medicalTests.length>0 && this.validation(date,summary,this.record.prescription))
     {
-      console.log(this.medicalTests.length)
-      for(let i=0;i<this.medicalTests.length;i++)
-      {
-        this.record.file_description=this.medicalTests[i];
-        this.record.testType=this.testType[i];
-        this.docSer.recordPatientPrescription(this.record,this.record.pid,this.record.did,this.record.date).subscribe(
-          a=>{},
-          err=>{}
-        );
-        this.count++;
-      }
+      this.docSer.recordPatientPrescription(this.recordList,this.recordList[0].pid,this.recordList[0].did,this.recordList[0].date).subscribe(
+        a=>{}
+      )
+      this.router.navigateByUrl("doctor/patient/"+this.record.pid+"/history");
     }
    
-    if(this.count == this.medicalTests.length && this.validation(date,summary,this.record.prescription))
-    {
-      setTimeout(()=>{this.router.navigateByUrl("doctor/patient/"+this.record.pid+"/history");},0)
-    }
   }
 
   //back

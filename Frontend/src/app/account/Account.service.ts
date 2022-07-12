@@ -111,5 +111,18 @@ constructor(public http:HttpClient , public router : Router ) {}
     return null
   }
 
-  
+  doctor:Doctor=new Doctor();
+  getDoctor(){
+    if(this.getToken()!=null && this.count==0)
+    {
+      var decodeToken = JSON.parse(JSON.stringify(jwtDecode(this.getToken()!)));
+      this.http.get<Doctor>(this.baseUrl+"doctor/"+decodeToken.ID).subscribe(
+        data=>{
+          this.doctor=data;
+        }
+      );
+      this.count++;
+    }
+    return this.doctor;
+  }
 }
