@@ -31,6 +31,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       BrowserAnimationsModule,
       NgbModule
   ],
+  exports:[
+    LoadingComponent
+  ],
   providers: [  
     { provide: HTTP_INTERCEPTORS, useClass: InterceptInterceptor, multi: true }
 ],

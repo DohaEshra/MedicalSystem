@@ -38,6 +38,12 @@
           <p></p>
       </div> -->
 
+
+
+
+
+
+
       <div class="form-group">
         <table class="table table-striped custab"  *ngIf="recordList.length!=0">
             <thead>
@@ -47,35 +53,62 @@
                 <th scope="col">Extra info</th>
               </tr>
             </thead>
+
             <tbody >
+
               <tr *ngFor="let record of recordList">
+
                 <td align="center">
                   <a (click)="deleteTest(record.fno)" class="btn btn-default"><em class="fa fa-trash"></em></a>
                 </td>
+
                 <td class="">
-                  <input type="text" class="form-control"  [(ngModel)]="record.file_description" [ngModelOptions]="{standalone: true}">
+                  <tr>
+                    <td>
+                      <input type="text" class="form-control"  >
+                    </td>
+                  </tr>
                 </td>
-                <td class="">
-                 
-                </td>
+                
               </tr>
+
               <tr>
+
                 <td align="center">
                   <a (click)="add(desc.value,type.value)" class="btn btn-default"><em class="fa fa-plus"></em></a>
                 </td>
+
                 <td class="">
-                  <input type="text" class="form-control" #desc id="desc" [(ngModel)]="newFile.file_description" [ngModelOptions]="{standalone: true}">
+                  <input type="text" class="form-control" #desc id="desc" >
                 </td>
+
                 <td class="">
-                  <select id="type" class="form-select" aria-label="Default select example" #type [(ngModel)]="newFile.testType" [ngModelOptions]="{standalone: true}">
-                    <option class="fs-7" value="S">S</option>
-                    <option class="fs-7" value="T">T</option>
-                </select>
+                  <input type="text" class="form-control" #desc id="desc" #type>
                 </td>
+                
               </tr>
+
             </tbody>
         </table>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

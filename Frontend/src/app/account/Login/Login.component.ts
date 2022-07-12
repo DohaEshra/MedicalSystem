@@ -60,7 +60,8 @@ export class LoginComponent implements OnInit ,OnDestroy{
       ,error:err=>{
         console.log('error from Login Component', err)
         this.isLoginFailed = true ; 
-        this.errorMessage = err.error;
+        err.status === 0 ? this.errorMessage = 'Server is unavailable right now, please try again later' :this.errorMessage = err.error;
+        
       }
     });
   }

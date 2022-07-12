@@ -33,17 +33,6 @@ namespace MedicalSystem.Controllers
             }
             return await _context.Records.Where(a => a.PID == PID).ToListAsync();
         }
-        // GET: api/Record/list/5
-        //show all records to patient
-        [HttpGet("list/{PID}")]
-        public async Task<ActionResult<IEnumerable<Record>>> GetRecords(int PID)
-        {
-            if (_context.Records == null)
-            {
-                return NotFound();
-            }
-            return await _context.Records.Where(a => a.PID == PID).ToListAsync();
-        }
 
         // GET: api/Records/5/2
         [HttpGet("{pid}/{did}")]
@@ -127,6 +116,39 @@ namespace MedicalSystem.Controllers
         }
 
 
+        //api/Record/AddFile/pid/did/date   
+        [HttpPost("AddFile/{pid}/{did}/{date}/{file_Description}/{oid}")]
+        public async Task<IActionResult> PutRecord(int pid, int did, DateTime date, string file_description, int oid)
+        {
+            var record = await _context.Records.FirstOrDefaultAsync(e => e.DID == did && e.PID == pid && e.date == date && e.file_description == file_description);
+            if (record == null)
+                return BadRequest();
+            var form = Request.Form;
+            using (var ms = new MemoryStream())
+            {
+                await form.Files[0].CopyToAsync(ms);
+                var fileBytes = ms.ToArray();
+                record.attached_files = fileBytes;
+            }
+            record.OID = oid;
+            record.testType = "F";
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!RecordExists(record.FNO))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return NoContent();
+        }
 
 
         // PUT: api/Records/5

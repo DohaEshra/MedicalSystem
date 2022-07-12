@@ -15,8 +15,8 @@ export class EditPrescriptionComponent implements OnInit {
 
   recordList:Record[]=[];
   indicator=false;
-  medicine:string[] = [];
-  info:string[]=[];
+  medicines:string[][] = [];
+  
 
   sub:Subscription|null=null;
   sub1:Subscription|null=null;
@@ -30,13 +30,15 @@ export class EditPrescriptionComponent implements OnInit {
         this.sub2=this.docSer.getPatientPrescription(a['id'],this.docSer.DoctorID,a['date']).subscribe(
           data=>{
             this.recordList = data;
-            //var dummy= data[0].prescription.split(',');
             console.log(data);
-            // dummy.forEach(element => {
-            //   this.medicine.push( element.split(': ')[0])
-            //   this.info.push( element.split(': ')[1])
-            // });
-            console.log(this.medicine,this.info);
+            var dummy= data[0].prescription.split(',');
+            dummy.forEach( (element,i) => {
+              this.medicines[i][0] = element.split(': ')[0];
+              this.medicines[i][1] = element.split(': ')[1];
+              // this.medicines.push( element.split(': ')[0])
+              // this.medicines.push( element.split(': ')[1])
+            });
+            console.log(this.medicines);
             this.indicator=true;
           }
         )

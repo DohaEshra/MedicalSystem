@@ -18,7 +18,7 @@ import {HttpClientModule} from '@angular/common/http';
     LabTechnicianRoutingModule,
     FormsModule,
     FileUploadModule,
-    HttpClientModule
+    HttpClientModule,
   ]
 })
 export class LabTechnicianModule { }
