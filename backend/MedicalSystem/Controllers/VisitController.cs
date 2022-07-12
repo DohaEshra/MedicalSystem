@@ -127,6 +127,43 @@ namespace MedicalSystem.Controllers
             return NoContent();
         }
 
+        //api/Visit/pid/did/date
+        [HttpPut("{pid}/{did}/{date}")]
+        public async Task<IActionResult> VisitTests(int pid, int did, DateTime date, Visit visit)
+        {
+            if (pid != visit.PID)
+            {
+                return BadRequest();
+            }
+
+            Visit Visit = await _context.Visits.Where(v => v.DID == did && v.PID == pid && v.appointment_time == date).FirstOrDefaultAsync();
+            if (Visit != null)
+            {
+                await _context.Procedures.Update_VisitAsync(pid, did,date, visit.appointment_time);
+            }
+            else
+            {
+                await _context.Procedures.Insert_VisitAsync(pid, did, date);
+            }
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                if (VisitExists(@visit.PID))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return NoContent();
+        }
+
         private bool VisitExists(int id)
         {
             return _context.Visits.Any(e => e.PID == id);

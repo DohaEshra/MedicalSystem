@@ -31,14 +31,13 @@ export class EditPrescriptionComponent implements OnInit {
         this.sub2=this.docSer.getPatientPrescription(a['id'],this.docSer.DoctorID,a['date']).subscribe(
           data=>{
             this.recordList = data;
-            var dummy= data[0].prescription.split(',');
             console.log(data);
+            var dummy= data[0].prescription.split(',');
             dummy.forEach(element => {
               this.medicines.push([element.split(': ')[0],element.split(': ')[1]]);
               // this.medicine.push( element.split(': ')[0])
               // this.info.push( element.split(': ')[1])
             });
-            console.log(this.medicines,this.info);
             this.indicator=true;
           }
         )
@@ -47,28 +46,22 @@ export class EditPrescriptionComponent implements OnInit {
   }
   
   deleteMedicine(index:number){
-    this.medicines.splice(index,1)
-    console.log('deeeel',this.medicines);
+    this.medicines.splice(index,1);
   }
 
+  deletedFiles:Guid[]= []; //deleted files by fno
   deleteTest(fno:Guid)
   {
+
     if(this.recordList.length==1 && this.recordList[0].testType!="")
     {
       this.recordList[0].file_description="";
       this.recordList[0].testType="";
-      this.docSer.editRecordByFno(fno,this.recordList[0]).subscribe(
-        a=>{
-        }
-      );
     }
     else if(this.recordList.length>1 && this.recordList[0].testType!="")
     {
-      this.docSer.deleteRecordByFno(fno).subscribe(
-        a=>{
-          this.recordList=this.recordList.filter(obj=>{return obj.fno!=fno;})  
-        }
-      )
+      this.deletedFiles.push(fno);
+      this.recordList=this.recordList.filter(obj=>{return obj.fno!=fno;})  
     }
   }
 
@@ -84,33 +77,29 @@ export class EditPrescriptionComponent implements OnInit {
         arr.push(element[0]+': '+element[1]);
       });
       var prescription = arr.join(',')
-      console.log(prescription)
       this.recordList.forEach (element=>{
         element.prescription=prescription;
       });
     }
 
-    if(this.recordList.length==1 && this.validation(date,summary,prescription))
+    //Delete files that user specify them
+    if(this.deletedFiles.length>0 && this.validation(date,summary,prescription)) 
     {
-      this.docSer.editRecordByFno(this.recordList[0].fno,this.recordList[0]).subscribe(
+      this.docSer.deleteRecordByFno(this.deletedFiles).subscribe(
         a=>{}
-      );
-      this.router.navigateByUrl("doctor/patient/"+this.recordList[0].pid+"/history");
+      )
     }
-    else
+
+    //Add new files and update the rest
+    if(this.recordList.length>=1 && this.validation(date,summary,prescription))
     {
-      for(let i=0;i<this.recordList.length;i++)
-      {
-        this.docSer.editRecordByFno(this.recordList[i].fno,this.recordList[i]).subscribe(
-          a=>{}
-        );
-        this.count++;
-      }
-      if(this.count == this.recordList.length && this.validation(date,summary,prescription))
-      {
-        this.router.navigateByUrl("doctor/patient/"+this.recordList[0]?.pid+"/history");
-      }
+      this.docSer.recordPatientPrescription(this.recordList,this.recordList[0].pid,this.recordList[0].did,this.recordList[0].date).subscribe(
+        a=>{}
+      )
     }
+    this.router.navigateByUrl("doctor/patient/"+this.recordList[0]?.pid+"/history");
+    
+    
   }
 
   //back
@@ -134,23 +123,18 @@ export class EditPrescriptionComponent implements OnInit {
     return true;
   }
 
-  newFile:FileInfo= new FileInfo();
+  newFile:Record=new Record();
   //add inputs
   add(desc:string,type:string){
     if(desc && type)
     {
-      this.newFile = new FileInfo(this.recordList[0].did,this.recordList[0].pid,null,desc,null,this.recordList[0].date,this.recordList[0].summary,this.recordList[0].prescription,null,type);
-      this.docSer.recordPatientPrescription(this.newFile,this.recordList[0].pid,this.recordList[0].did,this.recordList[0].date).subscribe(
-        a=>{
-          this.docSer.getPatientPrescription(this.recordList[0].pid,this.docSer.DoctorID,this.recordList[0].date).subscribe(
-            data=>{
-              this.recordList = data;
-              this.indicator=true;
-              this.newFile=new FileInfo();
-            }
-          )
-        }
-      )
+      this.newFile = {fno:null,file_description:desc,testType:type,
+      attached_files:'',did:this.recordList[0].did,pid:this.recordList[0].pid,
+      oid:null,date:this.recordList[0].date,summary:this.recordList[0].summary,
+      prescription:this.recordList[0].prescription,pidNavigation:null,didNavigation:null};
+      
+      this.recordList.push(this.newFile); 
+      this.newFile=new Record();
     }
   }
   add2(medicine:any,info:any){

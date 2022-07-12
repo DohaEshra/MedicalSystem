@@ -7,6 +7,9 @@
         <a class="text-dark btn btn-outline-success  col-12 mt-3" [routerLink]="['/patient/record']" (click)="send()"> Show Records </a>
         <a class="text-dark btn btn-outline-success  col-12 mt-3" [routerLink]="['/patient/search']"> Search for Doctor </a>
     </div>
+    <div>
+        <router-outlet></router-outlet>
+    </div>
     <!-- slider -->
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
         <div class="carousel-indicators">
@@ -180,10 +183,8 @@
 </div>
 </div>
 </div>
-</div> -->
-<div>
-    <router-outlet></router-outlet>
-</div>
+</div> 
+
 
 
 <!-- </div> -->

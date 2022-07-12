@@ -42,7 +42,7 @@
             <a class="nav-link active fs-5" aria-current="page" [routerLink]="['/patient']">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active fs-5" aria-current="page" >Profile</a>
+            <a class="nav-link active fs-5" aria-current="page" [routerLink]="['/patient/info']">Profile</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active fs-5" aria-current="page" [routerLink]="['/patient/record']">Medical History</a>
@@ -83,9 +83,9 @@
         <li class="nav-item">
           <a class="nav-link fs-5">
             <img
-              src={{account.getUser(account.getRole())?.profilePic}}
+              src={{account.getDoctor().profilePic}}
               width="25px" height="25px" style="border-radius: 100px;"/>
-              <label class="mx-2">{{account.getUser(account.getRole())?.fname}} {{account.getUser(account.getRole())?.lname}}</label>
+              <label class="mx-2">{{account.getDoctor().fname}} {{account.getDoctor().lname}}</label>
           </a>
         </li>
         <li class="nav-item">
