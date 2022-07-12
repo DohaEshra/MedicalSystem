@@ -1,0 +1,18 @@
+#sect1 {  
+    background: linear-gradient(rgba(92, 92, 92, 0.425), rgba(60, 66, 54, 0.37)), 
+    url("../../../assets/ph1.jpg");
+  height: 300px;
+  width: 100%;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-position: center center;
+  
+  position:sticky;
+    /* height: 100%; 
+    width: 100%; 
+    color: black;
+    background-image:url("../../assets/12.jpg"); 
+    background-size:100% ;  
+    position:absolute;
+    */
+} 
