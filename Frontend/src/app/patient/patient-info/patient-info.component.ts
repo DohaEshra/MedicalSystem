@@ -15,7 +15,9 @@ export class PatientInfoComponent implements OnInit {
   patient:Patient=new Patient();
   sub:Subscription|null=null;
 
-  constructor(public patientSer:PatientService,public router:Router,public patHomeComp:PatientHomeComponent) {}
+  constructor(public patientSer:PatientService,public router:Router,public patHomeComp:PatientHomeComponent) {
+    
+  }
   
 
   ngOnInit(): void {
@@ -23,17 +25,9 @@ export class PatientInfoComponent implements OnInit {
     
     this.sub = this.patHomeComp.selectedPatient$.subscribe( data => {
       this.patient = data
-      console.log('meeeeeee',data);
+      console.log(this.patHomeComp);
     })
-    // this.sub=this.patientSer.getPatient().subscribe(
-    //   data=>{
-    //     this.patient=data;
-    //     console.log(this.patient.id);
 
-    //     console.log(this.patient.profilePic);
-    //   }
-    // );
-   
   }
 
 
