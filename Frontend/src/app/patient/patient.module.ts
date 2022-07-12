@@ -18,8 +18,6 @@ import { PatientEditComponent } from './patient-edit/patient-edit.component';
 import { SortPipe } from './Pipes/sort.pipe';
 import { PatientAppointmentComponent } from './patient-appointment/patient-appointment.component';
 import { FromToDatesPipe } from './Pipes/from-to-dates.pipe';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import { MatInputModule } from '@angular/material/input';
 import { ShowappointmentsComponent } from './showappointments/showappointments.component';
 import { DatetimePipe } from './Pipes/datetime.pipe';
 
@@ -29,9 +27,6 @@ import { RatingModule } from 'primeng/rating';
 import { NumberOfRecordsInSameDatePipe } from './Pipes/number-of-records-in-same-date.pipe';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
-//>>>>>>> c139026ddd72e739c41a41647f8ef0270dd16f5e
-
-
 @NgModule({
   declarations: [
     GetDoctorPerCategoryComponent,
@@ -39,7 +34,10 @@ import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
     FilterPipe,
     SearchForDoctorComponent,
     PatientHomeComponent,
+    PatientInfoComponent,
+    PatientEditComponent,
     SortPipe,
+    PatientHomeComponent,
     PatientAppointmentComponent,
     FromToDatesPipe,
     ShowappointmentsComponent,
@@ -47,6 +45,8 @@ import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
     PatientHomeComponent,
     SafePipe,
     NumberOfRecordsInSameDatePipe,
+  ],
+  imports: [
     CommonModule,
     PatientRoutingModule,
     FormsModule,
@@ -60,11 +60,5 @@ import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
     RatingModule,
     NgbRatingModule,
   ],
-
-    CommonModule, PatientRoutingModule, FormsModule, DropdownModule, RouterModule, InputTextModule, ButtonModule, MatDatepickerModule, MatInputModule //, BrowserAnimationsModule//, BrowserModule 
-
-  ]
-
-  ]
 })
 export class PatientModule {}

@@ -56,13 +56,13 @@
               </ng-template>
             </ngb-rating>
             <!-- <p-rating class="text-center text-muted" [cancel]="false" (ngModelChange)="ratingDoctor(record)" (ngModel)="rate"></p-rating> -->
-          </td>
+          <!-- </td>
         </tr>
       </tbody>
       </table>
       </div>
 
-</div>
+</div> -->
  -->
  
  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -83,13 +83,7 @@
                          <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                              <input type="text" id="Area" class="form-control search-slt" placeholder="Area" [ngModelOptions]="{standalone: true}" pInputText [(ngModel)]="area">
                             </div> -->
-                            <mat-form-field appearance="fill">
-                              <mat-label>Choose a date</mat-label>
-                              <input matInput [matDatepicker]="picker">
-                              <mat-hint>MM/DD/YYYY</mat-hint>
-                              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                              <mat-datepicker #picker></mat-datepicker>
-                            </mat-form-field>
+
                          <!-- <div class="col-lg-3 col-md-3 col-sm-12 p-0 form-control search-slt">
                              <select class="form-control search-slt"  [ngModelOptions]="{standalone: true}" [(ngModel)]="city2" id="exampleFormControlSelect1">
                                  <option >Select City</option>
