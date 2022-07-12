@@ -46,6 +46,45 @@ namespace MedicalSystem.Data
             _context = context;
         }
 
+        public virtual async Task<int> Delete_VisitAsync(int? pid, int? did, DateTime? date, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
+        {
+            var parameterreturnValue = new SqlParameter
+            {
+                ParameterName = "returnValue",
+                Direction = System.Data.ParameterDirection.Output,
+                SqlDbType = System.Data.SqlDbType.Int,
+            };
+
+            var sqlParameters = new []
+            {
+                new SqlParameter
+                {
+                    ParameterName = "pid",
+                    Value = pid ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.Int,
+                },
+                new SqlParameter
+                {
+                    ParameterName = "did",
+                    Value = did ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.Int,
+                },
+                new SqlParameter
+                {
+                    ParameterName = "date",
+                    Scale = 7,
+                    Value = date ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.DateTime2,
+                },
+                parameterreturnValue,
+            };
+            var _ = await _context.Database.ExecuteSqlRawAsync("EXEC @returnValue = [dbo].[Delete_Visit] @pid, @did, @date", sqlParameters, cancellationToken);
+
+            returnValue?.SetValue(parameterreturnValue.Value);
+
+            return _;
+        }
+
         public virtual async Task<int> Insert_RecordAsync(int? pid, int? did, DateTime? date, string fileDesc, string fileType, string summary, string prescription, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
         {
             var parameterreturnValue = new SqlParameter
@@ -107,6 +146,45 @@ namespace MedicalSystem.Data
                 parameterreturnValue,
             };
             var _ = await _context.Database.ExecuteSqlRawAsync("EXEC @returnValue = [dbo].[Insert_Record] @pid, @did, @date, @fileDesc, @fileType, @summary, @prescription", sqlParameters, cancellationToken);
+
+            returnValue?.SetValue(parameterreturnValue.Value);
+
+            return _;
+        }
+
+        public virtual async Task<int> Insert_VisitAsync(int? pid, int? did, DateTime? date, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
+        {
+            var parameterreturnValue = new SqlParameter
+            {
+                ParameterName = "returnValue",
+                Direction = System.Data.ParameterDirection.Output,
+                SqlDbType = System.Data.SqlDbType.Int,
+            };
+
+            var sqlParameters = new []
+            {
+                new SqlParameter
+                {
+                    ParameterName = "pid",
+                    Value = pid ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.Int,
+                },
+                new SqlParameter
+                {
+                    ParameterName = "did",
+                    Value = did ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.Int,
+                },
+                new SqlParameter
+                {
+                    ParameterName = "date",
+                    Scale = 7,
+                    Value = date ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.DateTime2,
+                },
+                parameterreturnValue,
+            };
+            var _ = await _context.Database.ExecuteSqlRawAsync("EXEC @returnValue = [dbo].[Insert_Visit] @pid, @did, @date", sqlParameters, cancellationToken);
 
             returnValue?.SetValue(parameterreturnValue.Value);
 
@@ -180,6 +258,52 @@ namespace MedicalSystem.Data
                 parameterreturnValue,
             };
             var _ = await _context.Database.ExecuteSqlRawAsync("EXEC @returnValue = [dbo].[Update_Record] @fileDesc, @fileType, @pid, @did, @date, @fno, @summary, @pre", sqlParameters, cancellationToken);
+
+            returnValue?.SetValue(parameterreturnValue.Value);
+
+            return _;
+        }
+
+        public virtual async Task<int> Update_VisitAsync(int? pid, int? did, DateTime? olddate, DateTime? newdate, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
+        {
+            var parameterreturnValue = new SqlParameter
+            {
+                ParameterName = "returnValue",
+                Direction = System.Data.ParameterDirection.Output,
+                SqlDbType = System.Data.SqlDbType.Int,
+            };
+
+            var sqlParameters = new []
+            {
+                new SqlParameter
+                {
+                    ParameterName = "pid",
+                    Value = pid ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.Int,
+                },
+                new SqlParameter
+                {
+                    ParameterName = "did",
+                    Value = did ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.Int,
+                },
+                new SqlParameter
+                {
+                    ParameterName = "olddate",
+                    Scale = 7,
+                    Value = olddate ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.DateTime2,
+                },
+                new SqlParameter
+                {
+                    ParameterName = "newdate",
+                    Scale = 7,
+                    Value = newdate ?? Convert.DBNull,
+                    SqlDbType = System.Data.SqlDbType.DateTime2,
+                },
+                parameterreturnValue,
+            };
+            var _ = await _context.Database.ExecuteSqlRawAsync("EXEC @returnValue = [dbo].[Update_Visit] @pid, @did, @olddate, @newdate", sqlParameters, cancellationToken);
 
             returnValue?.SetValue(parameterreturnValue.Value);
 

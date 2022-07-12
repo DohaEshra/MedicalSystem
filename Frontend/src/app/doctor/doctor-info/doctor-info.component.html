@@ -1,3 +1,5 @@
+<app-loading *ngIf="!doctor.id"></app-loading>
+
 <div class="container emp-profile" *ngIf="doctor.id">
     <form method="post">
         <div class="row">
@@ -70,7 +72,7 @@
                                         <label>Birth Date</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>{{doctor.birthDate}}</p>
+                                        <p>{{doctor.birthDate|date:'shortDate'}}</p>
                                     </div>
                                 </div>
                                 <div class="row">

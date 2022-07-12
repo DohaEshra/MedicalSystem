@@ -17,6 +17,7 @@ export class EditPrescriptionComponent implements OnInit {
   indicator=false;
   medicine:string[] = [];
   info:string[]=[];
+  medicines:string[][] = [];
 
   sub:Subscription|null=null;
   sub1:Subscription|null=null;
@@ -30,13 +31,14 @@ export class EditPrescriptionComponent implements OnInit {
         this.sub2=this.docSer.getPatientPrescription(a['id'],this.docSer.DoctorID,a['date']).subscribe(
           data=>{
             this.recordList = data;
-            //var dummy= data[0].prescription.split(',');
+            var dummy= data[0].prescription.split(',');
             console.log(data);
-            // dummy.forEach(element => {
-            //   this.medicine.push( element.split(': ')[0])
-            //   this.info.push( element.split(': ')[1])
-            // });
-            console.log(this.medicine,this.info);
+            dummy.forEach(element => {
+              this.medicines.push([element.split(': ')[0],element.split(': ')[1]]);
+              // this.medicine.push( element.split(': ')[0])
+              // this.info.push( element.split(': ')[1])
+            });
+            console.log(this.medicines,this.info);
             this.indicator=true;
           }
         )
@@ -44,6 +46,11 @@ export class EditPrescriptionComponent implements OnInit {
     ) 
   }
   
+  deleteMedicine(index:number){
+    this.medicines.splice(index,1)
+    console.log('deeeel',this.medicines);
+  }
+
   deleteTest(fno:Guid)
   {
     if(this.recordList.length==1 && this.recordList[0].testType!="")
@@ -70,7 +77,18 @@ export class EditPrescriptionComponent implements OnInit {
   edit(){
     var date = (<HTMLInputElement>document.getElementById('date')).value;
     var summary = (<HTMLInputElement>document.getElementById('summary')).value;
-    var prescription = (<HTMLInputElement>document.getElementById('prescription')).value;
+    //var prescription = (<HTMLInputElement>document.getElementById('prescription')).value;
+    if(this.medicines.length>0){
+      var arr:any=[];
+      this.medicines.forEach(element => {
+        arr.push(element[0]+': '+element[1]);
+      });
+      var prescription = arr.join(',')
+      console.log(prescription)
+      this.recordList.forEach (element=>{
+        element.prescription=prescription;
+      });
+    }
 
     if(this.recordList.length==1 && this.validation(date,summary,prescription))
     {
@@ -93,8 +111,6 @@ export class EditPrescriptionComponent implements OnInit {
         this.router.navigateByUrl("doctor/patient/"+this.recordList[0]?.pid+"/history");
       }
     }
-   
-    
   }
 
   //back
@@ -135,6 +151,13 @@ export class EditPrescriptionComponent implements OnInit {
           )
         }
       )
+    }
+  }
+  add2(medicine:any,info:any){
+    if(medicine.value!=''&& info.value!='')
+    {
+      this.medicines.push([medicine.value,info.value]);
+      medicine.value=info.value='';
     }
   }
 

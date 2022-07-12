@@ -78,6 +78,16 @@ namespace MedicalSystem.Controllers
         [HttpPost]
         public async Task<ActionResult<DoctorRating>> PostDoctorRating(DoctorRating doctorRating)
         {
+            var rating = await _context.DoctorRatings.Where(e => e.PID == doctorRating.PID && e.DID == doctorRating.DID).ToListAsync();
+            if (rating.Count == 0)
+            {
+                doctorRating.VisitNumber = 1;
+            }
+            else
+            {
+                var x = rating.Max(a=>a.VisitNumber);
+                doctorRating.VisitNumber = ++x;
+            }
             _context.DoctorRatings.Add(doctorRating);
             try
             {

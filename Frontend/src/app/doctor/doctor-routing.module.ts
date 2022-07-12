@@ -23,7 +23,7 @@ const routes:Routes =[
             {path:"info",component:DoctorPatientInfoComponent},
             {path:"history",component:PatientHistoryComponent},
         ]},
-        {path:"recordpre/:id",component:RecordPrescriptionComponent},
+        {path:"recordpre/:pid/:date",component:RecordPrescriptionComponent},
         {path:"editpre/:id/:date",component:EditPrescriptionComponent}
     ]},
     {path:"home",component:DoctorHomeComponent,canActivate:[DoctorLoginGuard]},

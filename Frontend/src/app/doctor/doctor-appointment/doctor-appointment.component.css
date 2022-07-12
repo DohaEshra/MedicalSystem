@@ -6,11 +6,50 @@ body{
   padding: 3%;
   margin-top: 3%;
   margin-bottom: 3%;
-  margin-left: 4%;
+  margin-left: 3.5%;
   border-radius: 0.5rem;
   background: #fff;
 }
-
+.searchbar{
+  margin-bottom: auto;
+  margin-top: auto;
+  height: 40px;
+  background-color: #d8e4dc;
+  color: #637517;
+  border-radius: 30px;
+  padding: 1px;
+  padding-bottom: 2px;
+  }
+  .search_input{
+  color:#637517;
+  border: 0;
+  outline: 0;
+  background: none;
+  padding: 0 10px;
+  width: 800px;
+  caret-color:#a5c422;
+  line-height: 40px;
+  
+  }
+  ::placeholder { 
+      color: #637517;
+  }
+  
+  .searchbar:hover > .search_icon{
+  color: greenyellow;
+  }
+  .search_icon{
+  height: 40px;
+  width: 40px;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color:#637517;
+  text-decoration:none;
+  }
+  
 .welcomeDoctor{
   background-color:  #a5c422;
   border-radius: 3%;

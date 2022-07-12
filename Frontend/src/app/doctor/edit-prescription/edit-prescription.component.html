@@ -1,6 +1,8 @@
+<app-loading *ngIf="!indicator"></app-loading>
+
 <div class="container patient-profile" *ngIf="indicator">
     <div class="col-md-2 mb-2">
-        <button (click)="back()" class=" profile1-btn btn-success btn-outline-secondary">Back</button>
+        <button (click)="back()" class=" profile1-btn btn-secondary">Back</button>
     </div>
     <div class="alert alert-secondary fs-5 d-flex justify-content-center mb-5" role="alert">
         <b>Record</b> 
@@ -11,6 +13,7 @@
             <label style="color: red;">*</label>
             <input  type="datetime-local"  
                id="date" 
+               disabled
                style="border-radius:30px ;"
                class="form-control form-control-lg " 
                [(ngModel)]="recordList[0].date" [ngModelOptions]="{standalone: true}"
@@ -37,7 +40,7 @@
       </div> -->
 
       <div class="form-group">
-        <table class="table table-striped custab"  *ngIf="recordList.length!=0">
+        <table  #table class="table table-striped custab"  *ngIf="recordList.length!=0">
             <thead>
               <tr>
                 <th class="text-center"><em class="fa fa-cog"></em></th>
@@ -46,34 +49,37 @@
               </tr>
             </thead>
             <tbody >
-              <tr *ngFor="let record of recordList">
-                <td align="center">
-                  <a (click)="deleteTest(record.fno)" class="btn btn-default"><em class="fa fa-trash"></em></a>
+              <tr *ngFor="let med of medicines; let i = index ;" >
+                <td align="center" style=" width:15%">
+                  <a (click)="deleteMedicine(i)" class="btn btn-default"><em class="fa fa-trash"></em></a>
                 </td>
-                <td class="">
-                  <input type="text" class="form-control"  [(ngModel)]="record.file_description" [ngModelOptions]="{standalone: true}">
+                <td class="" style=" width:20%" >
+                  <input type="text" class="form-control"  [value]="medicines[i][0]" >
                 </td>
-                <td class="">
-                 
+                <td class="" style=" width:60%">
+                  <input type="text" class="form-control"   [value]="medicines[i][1]" >
                 </td>
               </tr>
+
+
               <tr>
                 <td align="center">
-                  <a (click)="add(desc.value,type.value)" class="btn btn-default"><em class="fa fa-plus"></em></a>
+                  <a (click)="add2(medicine,info)" class="btn btn-default"><em class="fa fa-plus"></em></a>
                 </td>
                 <td class="">
-                  <input type="text" class="form-control" #desc id="desc" [(ngModel)]="newFile.file_description" [ngModelOptions]="{standalone: true}">
+                  <input type="text" class="form-control" #medicine id="medicine" >
                 </td>
                 <td class="">
-                  <select id="type" class="form-select" aria-label="Default select example" #type [(ngModel)]="newFile.testType" [ngModelOptions]="{standalone: true}">
-                    <option class="fs-7" value="S">S</option>
-                    <option class="fs-7" value="T">T</option>
-                </select>
+                  <input type="text" class="form-control" #info id="info">
                 </td>
               </tr>
             </tbody>
         </table>
     </div>
+
+
+
+
 
 
 

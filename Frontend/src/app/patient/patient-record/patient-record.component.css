@@ -2,6 +2,24 @@ thead{
   color:#a5c422;
   font-family:'Helvetica';
 }
-.input-group-append {
-  cursor: pointer;
+
+td{
+  text-align: center; 
+  vertical-align: middle;
 }
+
+.star {
+      font-size: 1.5rem;
+      color: #b0c4de;
+    }
+    .filled {
+      color: #1e90ff;
+    }
+    .bad {
+      color: #deb0b0;
+    }
+    .filled.bad {
+      color: #ff1e1e;
+    }
+
+

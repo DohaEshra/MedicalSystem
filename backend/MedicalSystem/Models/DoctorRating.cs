@@ -16,6 +16,8 @@ namespace MedicalSystem.Models
         [Key]
         public int DID { get; set; }
         public int Rating { get; set; }
+        [Key]
+        public int VisitNumber { get; set; }
 
         [ForeignKey("DID")]
         [InverseProperty("DoctorRatings")]

@@ -29,13 +29,11 @@ export class RecordWithoutRedundancyPipe implements PipeTransform {
         }
       }
 
-      recordsPerDate.forEach((record)=>{if(record.date==temp.date){indicator=false;}
-                                        else{indicator=true;}})
+      recordsPerDate.forEach((record)=>{ record.date==temp.date ? indicator=false : indicator=true })
       
       if(temp!=null && indicator)
       {
         recordsPerDate.push(temp);
-        indicator=true;
       }
       
     }

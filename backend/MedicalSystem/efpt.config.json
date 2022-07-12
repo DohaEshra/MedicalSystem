@@ -42,11 +42,23 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[Delete_Visit]",
+         "ObjectType": 1
+      },
+      {
          "Name": "[dbo].[Insert_Record]",
          "ObjectType": 1
       },
       {
+         "Name": "[dbo].[Insert_Visit]",
+         "ObjectType": 1
+      },
+      {
          "Name": "[dbo].[Update_Record]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[Update_Visit]",
          "ObjectType": 1
       }
    ],

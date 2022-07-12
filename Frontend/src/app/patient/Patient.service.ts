@@ -6,47 +6,67 @@ import { AccountService } from '../account/Account.service';
 import jwt_decode from 'jwt-decode';
 import { Visit } from '../_Models/visit';
 import { Works_in } from '../_Models/works_in';
+import { DoctorRating } from '../_Models/doctor-rating';
 @Injectable({
   providedIn: 'root'
 })
 export class PatientService {
 
-constructor(public http:HttpClient, public acc:AccountService) {
+
+baseUrl="https://localhost:7089/api/patient/";
+PatientID=0;
+
+constructor(public http:HttpClient, public acc:AccountService) {}
+
+
+ getPatientId(){
   if(this.acc.getToken()!=null)
   {
     var decodeToken = JSON.parse(JSON.stringify(jwt_decode(this.acc.getToken()!)));
     this.PatientID = decodeToken.ID;
+    return this.PatientID;
   }
- }
-baseUrl="https://localhost:7089/api/patient/";
-PatientID=0;
+  return null;
+}
+
+
 getPatient()
 {
+  this.getPatientId();
   return this.http.get<Patient>(this.baseUrl+this.PatientID)
 }
+
 getPatientById(Id:number)
 {
   return this.http.get<Patient>(this.baseUrl+Id)
 }
+
 getPatients()
 {
   return this.http.get<Patient[]>(this.baseUrl)
 }
-EditPatient(pat:Patient, ID:number)
+
+editPatient(patient:Patient)
 {
-  return this.http.put(this.baseUrl,{id:ID, patient:pat})
+  this.getPatientId()
+  return this.http.put<undefined>(this.baseUrl+this.PatientID,patient);
 }
+
 AddPatient(pat:Patient)
 {
   return this.http.post<Patient>(this.baseUrl,{patient:pat})
 }
+
 DeletePatient(ID:number)
 {
   return this.http.delete(this.baseUrl+ID)
 }
+
 getPatientRecords(){
+  this.getPatientId();
   return this.http.get<Record[]>("https://localhost:7089/api/Record/list/"+this.PatientID);
 }
+
 getRecords()
 {
   return this.http.get<Record[]>("https://localhost:7089/api/Record")
@@ -62,6 +82,10 @@ addAppointment(visit:Visit){
 
 GetAppointments(did:number){
   return this.http.get<Works_in[]>("https://localhost:7089/api/works_in/"+did);
+}
+
+addDoctorRating(drRating:any){
+  return this.http.post<any>("https://localhost:7089/api/doctorRating",drRating);
 }
 
 }

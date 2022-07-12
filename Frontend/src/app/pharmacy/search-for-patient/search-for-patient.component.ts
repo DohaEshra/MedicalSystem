@@ -29,6 +29,7 @@ export class SearchForPatientComponent implements OnInit {
   patient:Patient|null = new Patient();
   info:string[]=[];
   medicine :string[]=[];
+  medicines:string[][] = [];
 
   ngOnDestroy(): void {
     this.subscribe?.unsubscribe();
@@ -43,6 +44,7 @@ export class SearchForPatientComponent implements OnInit {
       this.subscribe = this.recordService.getPatientPrescriptionForPharmacy(+this.record.pid,+this.record.did,this.record.date).subscribe(
         { next:data=>{
           console.log(data);
+          this.medicine=this.info =[];
           if(data==null)
           {
             this.showError = true;
@@ -52,6 +54,7 @@ export class SearchForPatientComponent implements OnInit {
           }
         var dummy=data.prescription.split(',');
         dummy.forEach(a=>{
+          this.medicines.push([a.split(': ')[0],a.split(': ')[1]]);
           this.medicine.push( a.split(': ')[0]);
           this.info.push(a.split(': ')[1]);
         })
