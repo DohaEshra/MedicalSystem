@@ -81,14 +81,14 @@ export class DoctorService {
   }
 
   //record prescription
-  recordPatientPrescription(record:FileInfo,pid:number,did:number,date:Date){
-    return this.http.put<undefined>(this.baseUrl+"Record/"+pid+"/"+did+"/"+date,record);
+  recordPatientPrescription(records:Record[]|FileInfo[],pid:number,did:number,date:Date){
+    return this.http.put<undefined>(this.baseUrl+"Record/"+pid+"/"+did+"/"+date,records);
   }
 
   //delete record
-  deleteRecordByFno(fno:Guid)
+  deleteRecordByFno(fno:Guid[])
   {
-    return this.http.delete<undefined>(this.baseUrl+"Record/"+fno);
+    return this.http.delete<undefined>(this.baseUrl+"Record",{body:fno});
   }
 
   //edit record
