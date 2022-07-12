@@ -13,7 +13,7 @@ import { HomeComponent } from './home/home.component';
     LoadingComponent,
     NavBarComponent,
     NotFoundComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     CommonModule,

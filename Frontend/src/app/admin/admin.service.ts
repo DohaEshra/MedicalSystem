@@ -24,4 +24,9 @@ export class AdminService {
     return this.http.post<any>(this.baseUrl + "other", user);
   }
 
+  //add other 
+  getPatients() {
+    return this.http.get<Patient[]>(this.baseUrl + "Patient/adminFilesPatients");
+  }
+
 }

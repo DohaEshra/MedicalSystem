@@ -50,6 +50,15 @@ namespace MedicalSystem.Controllers
             return patients;
         }
 
+        //get patients who need to 
+        [HttpGet("adminFilesPatients")]
+        [Authorize(Roles = "admin")]
+        public async Task<ActionResult<IEnumerable<Patient>>> GetPatientsForadmin()
+        {
+            var patients = await _context.Patients.Where(p => p.Records.Any(p => p.testType == "F")).ToListAsync();
+            return patients;
+        }
+
         // GET: api/Patients/5
         [HttpGet("{id}")]
         [Authorize(Roles = "radiographer,admin,doctor,laboratory technician,patient")]

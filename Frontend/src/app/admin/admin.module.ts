@@ -5,17 +5,29 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { DoctorRegisterationComponent } from './doctor-registeration/doctor-registeration.component';
 import { FormsModule } from '@angular/forms';
-
+import { FileUpadateOrDeleteComponent } from './file-upadate-or-delete/file-upadate-or-delete.component';
+import { SafePipe } from './_Pipes/safe.pipe';
+import { RecordFilterationPipe } from './_Pipes/record-filteration.pipe';
+import { FileUploadModule } from 'primeng/fileupload';
+import { HttpClientModule } from '@angular/common/http';
+import { CoreModule } from '../core/core.module';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [
     AdminHomeComponent, 
-    DoctorRegisterationComponent
+    DoctorRegisterationComponent,
+    FileUpadateOrDeleteComponent,
+    SafePipe,
+    RecordFilterationPipe,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
-    FormsModule
+    FormsModule,
+    FileUploadModule,
+    CoreModule,
+    DialogModule
   ]
 })
 export class AdminModule { }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AccountService } from 'src/app/account/Account.service';
 import { DoctorService } from 'src/app/doctor/doctor.service';
@@ -20,6 +20,7 @@ export class NavBarComponent implements OnInit {
   userRole = '';
   userLoggedIn = false;
  
+  x:any = this.account.getUser(this.account.getRole())
 
   // getRole(){
   //   if(this.account.getToken()!=null)
@@ -31,20 +32,19 @@ export class NavBarComponent implements OnInit {
   // }
 
   ngOnInit(): void {
+    console.log("mmmm",this.x)
   }
   
 
   ngOnChanges(): void {
       this.userRole = this.loginFlag
       this.loginFlag == '' ? this.userLoggedIn = false : true;
-      this.sub = this.doctorSer.getDoctorProfile().subscribe(
-        a=>{
-          this.doctor=a;
-        }
-      );
+      // this.sub = this.doctorSer.getDoctorProfile().subscribe(
+      //   a=>{
+      //     this.doctor=a;
+      //   }
+      //);
   }
-
-  
 
   clearToken(){
     this.account.signOut();

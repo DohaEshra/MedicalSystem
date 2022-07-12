@@ -46,7 +46,11 @@
   }
 
   .navbar-default .navbar-nav > li a:hover {
-    color: #393939 !important;
+    color: rgb(89, 206, 89) !important;
+  }
+
+  .navbar-default .navbar-nav > li {
+    color: darkgreen !important;
   }
 
   .navbar-default .navbar-nav > li > a:hover,
