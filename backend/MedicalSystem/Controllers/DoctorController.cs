@@ -11,13 +11,13 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MedicalSystem.Controllers
 {
+    //[Authorize(Roles="Admin,Doctor")]
     [Route("api/[controller]")]//[controller]
     [ApiController]
     public class DoctorController : ControllerBase
     {
         private readonly MedicalSystemContext _context;
         //private IWebHostEnvironment _environment;
-
         public DoctorController(MedicalSystemContext context,IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
@@ -25,12 +25,15 @@ namespace MedicalSystem.Controllers
         }
 
         // GET: api/Doctors
+        [Authorize(Roles="admin,patient")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Doctor>>> GetDoctors()
         {
             return await _context.Doctors.ToListAsync();
         }
+
         // GET: api/Doctor/get/Dentist
+        [Authorize(Roles="admin,patient")]
         [HttpGet("get/{category}")]
         public async Task<ActionResult<IEnumerable<Doctor>>> GetDoctorsPerCategory(string category)
         {
@@ -40,6 +43,8 @@ namespace MedicalSystem.Controllers
             }
             return await _context.Doctors.Where(a => a.category == category).ToListAsync();
         }
+
+        [Authorize(Roles = "admin,patient")]
         [HttpGet("getCategories")]
         public async Task<ActionResult<IEnumerable<string>>> GetAllCategories()
         {
@@ -52,6 +57,7 @@ namespace MedicalSystem.Controllers
         }
 
         // GET: api/Doctors/5
+        [Authorize(Roles="admin,patient,doctor")]
         [HttpGet("{id}")]
         public async Task<ActionResult<Doctor>> GetDoctor(int id)
         {
@@ -64,8 +70,9 @@ namespace MedicalSystem.Controllers
 
             return doctor;
         }
-        // GET: api/Doctors/getDoctor/Doctor1
 
+        // GET: api/Doctors/getDoctor/Doctor1
+        [Authorize(Roles = "admin,patient")]
         [HttpGet("getDoctor/{name}")]
         public async Task<ActionResult<IEnumerable<Doctor>>> GetDoctorbyName(string name)
         {
@@ -85,6 +92,7 @@ namespace MedicalSystem.Controllers
 
         // PUT: api/Doctors/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Roles="admin,doctor")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDoctor(int id, Doctor doctor)
         {
@@ -117,7 +125,7 @@ namespace MedicalSystem.Controllers
         // POST: api/Doctors
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        //[Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult<Doctor>> PostDoctor(Doctor doctor)
         {
             var drMail = _context.Doctors.Where(a => a.email == doctor.email).FirstOrDefault();
@@ -134,47 +142,22 @@ namespace MedicalSystem.Controllers
 
             return CreatedAtAction("GetDoctor", new { id = doctor.ID }, doctor);
         }
-
-        //[HttpPost("uploadFiles")]
-        ////[Authorize(Roles = "admin")]
-        //public IActionResult addFile()
-        //{
-        //    var form = Request.Form;
-        //    try
-        //    {
-        //        foreach(var file in form.Files)
-        //        {
-        //            var path = Path.Combine(_environment.WebRootPath,"Lab_Technician_Uploaded_Files", file.Name);
-        //            using(var fileStream = new FileStream(path,FileMode.Create))
-        //            {
-        //                file.CopyTo(fileStream);
-        //            }
-        //        }
-        //        return Ok();
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        return BadRequest();
-        //    }
-        //}
-
-
-
+       
         // DELETE: api/Doctors/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDoctor(int id)
-        {
-            var doctor = await _context.Doctors.FindAsync(id);
-            if (doctor == null)
-            {
-                return NotFound();
-            }
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> DeleteDoctor(int id)
+        //{
+        //    var doctor = await _context.Doctors.FindAsync(id);
+        //    if (doctor == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _context.Doctors.Remove(doctor);
-            await _context.SaveChangesAsync();
+        //    _context.Doctors.Remove(doctor);
+        //    await _context.SaveChangesAsync();
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
         private bool DoctorExists(int id)
         {
