@@ -6,8 +6,9 @@ import { PatientHomeComponent } from './patient-home/patient-home.component';
 import { PatientLoginGuard } from '../_Guards/patient-login.guard';
 import { SearchForDoctorComponent } from './search-for-doctor/search-for-doctor.component';
 
-import { PatientInfoComponent } from './patient-info/patient-info.component';
-import { PatientEditComponent } from './patient-edit/patient-edit.component';
+const routes:Routes=[
+    {path:"",component:PatientHomeComponent},
+    {path:"record",component:PatientRecordComponent},
 
 // const routes:Routes=[
 //     {path:"",component:PatientHomeComponent,canActivate:[PatientLoginGuard],children:[
