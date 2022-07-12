@@ -2,4 +2,6 @@ thead{
   color:#a5c422;
   font-family:'Helvetica';
 }
-
+.input-group-append {
+  cursor: pointer;
+}

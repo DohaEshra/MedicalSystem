@@ -13,7 +13,7 @@ import { getLocaleDateFormat } from '@angular/common';
 })
 export class PatientRecordComponent implements OnInit {
  
-
+//picker = "";
   RecordList:Record[]=[];
   doctor:Doctor=new Doctor();
   sub:Subscription|null=null;

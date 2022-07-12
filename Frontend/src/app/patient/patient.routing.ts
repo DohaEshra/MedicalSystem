@@ -9,6 +9,7 @@ import { PatientAppointmentComponent } from "./patient-appointment/patient-appoi
 
 const routes:Routes=[
     {path:"",component:PatientHomeComponent},
+    {path:"home",component:PatientHomeComponent},
     {path:"record",component:PatientRecordComponent},
 
     // {path:"",component:PatientHomeComponent,canActivate:[PatientLoginGuard],children:[

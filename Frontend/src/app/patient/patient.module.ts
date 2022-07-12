@@ -18,9 +18,9 @@ import {ButtonModule} from 'primeng/button';
 import { SortPipe } from './Pipes/sort.pipe';
 import { PatientAppointmentComponent } from './patient-appointment/patient-appointment.component';
 import { FromToDatesPipe } from './Pipes/from-to-dates.pipe';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
 
-
-//>>>>>>> c139026ddd72e739c41a41647f8ef0270dd16f5e
 
 
 @NgModule({
@@ -30,14 +30,13 @@ import { FromToDatesPipe } from './Pipes/from-to-dates.pipe';
     FilterPipe,
     SearchForDoctorComponent,
     PatientHomeComponent,
-    SortPipe
-    PatientHomeComponent,
+    SortPipe,
     PatientAppointmentComponent,
     FromToDatesPipe
   ],
   imports: [
 
-    CommonModule, PatientRoutingModule, FormsModule, DropdownModule, RouterModule, InputTextModule, ButtonModule //, BrowserAnimationsModule//, BrowserModule 
+    CommonModule, PatientRoutingModule, FormsModule, DropdownModule, RouterModule, InputTextModule, ButtonModule, MatDatepickerModule, MatInputModule //, BrowserAnimationsModule//, BrowserModule 
 
   ]
 })
