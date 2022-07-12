@@ -5,10 +5,10 @@ import { PatientRecordComponent } from './patient-record/patient-record.componen
 import { PatientHomeComponent } from './patient-home/patient-home.component';
 import { PatientLoginGuard } from '../_Guards/patient-login.guard';
 import { SearchForDoctorComponent } from './search-for-doctor/search-for-doctor.component';
-
-
 import { PatientAppointmentComponent } from "./patient-appointment/patient-appointment.component";
 import { ShowappointmentsComponent } from "./showappointments/showappointments.component";
+import { PatientEditComponent } from './patient-edit/patient-edit.component';
+import { PatientInfoComponent } from './patient-info/patient-info.component';
 
 const routes: Routes = [
   {

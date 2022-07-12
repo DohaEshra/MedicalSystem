@@ -1,4 +1,6 @@
 
+
+
 <div class="container" >
     <div class="row my-3 fs-5 form-group" >
         <div class="col-lg-4 col-sm-12">
@@ -30,7 +32,7 @@
             <button (click)="ShowPatientPrescription()" class="form-control form-control-lg btn btn-outline-success fs-5 " >search </button>
         </div>
     </div>
-
+    <app-loading *ngIf="medicine.length ==0 && showLoading"> </app-loading>
     <div *ngIf="showResult  ">
      <hr>
         <div class="row my-2 fs-5  "  >

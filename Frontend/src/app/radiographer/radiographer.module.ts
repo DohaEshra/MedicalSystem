@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import {FileUploadModule} from 'primeng/fileupload';
 import {HttpClientModule} from '@angular/common/http';
 import { RecordFilterationPipe } from './_pipes/record-filteration.pipe';
+import { CoreModule } from '../core/core.module';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { RecordFilterationPipe } from './_pipes/record-filteration.pipe';
     RadiographerRoutingModule,
     FormsModule,
     FileUploadModule,
-    HttpClientModule
+    HttpClientModule , CoreModule,
   ]
 })
 export class RadiographerModule { }

@@ -1,16 +1,15 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { BehaviorSubject, observable, Observable, Subscription } from 'rxjs';
+import { Component, Input, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AccountService } from 'src/app/account/Account.service';
-import jwt_decode from 'jwt-decode';
-import { Doctor } from 'src/app/_Models/doctor';
 import { DoctorService } from 'src/app/doctor/doctor.service';
+import { Doctor } from 'src/app/_Models/doctor';
 
 @Component({
-  selector: 'app-NavBar',
-  templateUrl: './NavBar.component.html',
-  styleUrls: ['./NavBar.component.css']
+  selector: 'app-nav-bar',
+  templateUrl: './nav-bar.component.html',
+  styleUrls: ['./nav-bar.component.css']
 })
-export class NavBarComponent implements OnInit, OnChanges {
+export class NavBarComponent implements OnInit {
 
   doctor:Doctor=new Doctor();
   sub:Subscription|null=null;

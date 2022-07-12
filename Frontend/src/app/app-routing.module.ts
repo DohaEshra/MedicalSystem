@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { DoctorRegisterationComponent } from './account/doctor-registeration/doctor-registeration.component';
 import { LoginComponent } from './account/Login/Login.component';
 import { PatientRegisterationComponent } from './account/patient-registeration/patient-registeration.component';
-import { HomeComponent } from './_shared/Home/Home.component';
-import { NotFoundComponent } from './_shared/NotFound/NotFound.component';
+import { HomeComponent } from './core/home/home.component';
+import { NotFoundComponent } from './core/not-found/not-found.component';
 
 const routes: Routes = [
   {path:'home',component : HomeComponent},
