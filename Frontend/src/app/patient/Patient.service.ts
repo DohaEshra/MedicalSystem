@@ -76,20 +76,32 @@ getPatientRecordsById(Id:number){
   return this.http.get<Record[]>("https://localhost:7089/api/Record/list/"+Id);
 }
 
+//book appointment
 addAppointment(visit:Visit){
   return this.http.post<Visit>("https://localhost:7089/api/Visit",visit);
 }
-deleteAppointment(pid:number,did:number,date:Date){
+
+//cancel booking
+deleteAppointment(pid:number,did:number,date:Date|string){
   return this.http.delete<undefined>("https://localhost:7089/api/Visit/"+pid+"/"+did+"/"+date);
 }
+
 
 editAppointment(pid:number,did:number,date:Date,visit:Visit){
   return this.http.put<Visit>("https://localhost:7089/api/Visit/"+pid+"/"+did+"/"+date,visit);
 }
 
+//get appointments of doctor
 GetAppointments(did:number){
   return this.http.get<Works_in[]>("https://localhost:7089/api/works_in/"+did);
 }
+
+//get no of patients for specific appointments
+countPatients(did:number,date:string){
+  return this.http.get<number>("https://localhost:7089/api/visit/get/"+did+"/"+date);
+
+}
+
 
 addDoctorRating(drRating:any){
   return this.http.post<any>("https://localhost:7089/api/doctorRating",drRating);

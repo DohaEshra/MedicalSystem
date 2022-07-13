@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalSystem.Migrations
 {
     [DbContext(typeof(MedicalSystemContext))]
-    [Migration("20220712135637_intial1")]
-    partial class intial1
+    [Migration("20220713015106_intial")]
+    partial class intial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -323,7 +323,7 @@ namespace MedicalSystem.Migrations
                     b.Property<DateTime>("date")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("FNO")
+                    b.Property<Guid>("FNO")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("OID")
@@ -395,11 +395,18 @@ namespace MedicalSystem.Migrations
                     b.Property<int>("DID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("start_time")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("start_time")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)")
+                        .HasDefaultValueSql("(N'')");
 
-                    b.Property<DateTime>("end_time")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("end_time")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("DID", "start_time")
                         .HasName("PK_Works_in_1");

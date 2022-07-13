@@ -124,5 +124,7 @@ namespace MedicalSystem.Controllers
         {
             return _context.Works_ins.Any(e => e.DID == id);
         }
+
+
     }
 }

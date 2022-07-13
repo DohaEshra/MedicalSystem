@@ -22,16 +22,6 @@ namespace MedicalSystem.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("MedicalSystem.Models.BlockedUsers", b =>
-                {
-                    b.Property<string>("email")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("email");
-
-                    b.ToTable("BlockedUsers");
-                });
-
             modelBuilder.Entity("MedicalSystem.Models.Doctor", b =>
                 {
                     b.Property<int>("ID")
@@ -331,7 +321,7 @@ namespace MedicalSystem.Migrations
                     b.Property<DateTime>("date")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("FNO")
+                    b.Property<Guid>("FNO")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("OID")
@@ -404,10 +394,20 @@ namespace MedicalSystem.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("start_time")
-                        .HasColumnType("varchar(100)");
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)")
+                        .HasDefaultValueSql("(N'')");
 
                     b.Property<string>("end_time")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
                         .HasColumnType("varchar(100)");
+
+                    b.Property<int>("maxpatientNo")
+                        .HasColumnType("int");
 
                     b.HasKey("DID", "start_time")
                         .HasName("PK_Works_in_1");
