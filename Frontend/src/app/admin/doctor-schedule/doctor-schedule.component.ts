@@ -4,6 +4,7 @@ import { DoctorService } from 'src/app/doctor/doctor.service';
 import { Doctor } from 'src/app/_Models/doctor';
 import {Works_in } from 'src/app/_Models/works_in'
 import { AdminService } from '../admin.service';
+import { ConfirmationService, PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-doctor-schedule',
@@ -102,4 +103,16 @@ export class DoctorScheduleComponent implements OnInit , OnDestroy {
     this.showResult= true;
     this.showAddToSchedule= false ;
    }
+
+   deleteRow(index:number , sTime :string, did:number){
+      console.log(index,sTime,did);
+      this.subscribe = this.adminService.deleteRowFromSchedule(did,sTime).subscribe({next:data=>{
+            console.log(data);
+            this.workIn.splice(index,1);
+            alert('Deleted successfuly ')
+      },error:err=>{
+        console.log(err);
+      }})
+   }
 }
+

@@ -14,6 +14,9 @@ import { CoreModule } from '../core/core.module';
 import { DialogModule } from 'primeng/dialog';
 import { AgeValDirective } from './_directives/age-val.directive';
 import { DoctorScheduleComponent } from './doctor-schedule/doctor-schedule.component';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import {SidebarModule} from 'primeng/sidebar';
 
 @NgModule({
   declarations: [
@@ -27,9 +30,9 @@ import { DoctorScheduleComponent } from './doctor-schedule/doctor-schedule.compo
     DoctorScheduleComponent
   ],
   imports: [
-    CommonModule,
-    AdminRoutingModule,
-    FormsModule,
+    CommonModule,ConfirmDialogModule,
+    AdminRoutingModule,//BrowserAnimationsModule,
+    FormsModule,//SidebarModule,
     FileUploadModule,
     CoreModule,
     DialogModule

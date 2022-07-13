@@ -40,6 +40,8 @@ export class AdminService {
     return this.http.post<any>(this.baseUrl + "works_in", info);
   }
 
-  
-  
+  //delete row from doctor schedule  
+  deleteRowFromSchedule(did:number,start: string ){
+    return this.http.delete<any>(this.baseUrl+"works_in/"+did+'/'+start);
+  }
 }
