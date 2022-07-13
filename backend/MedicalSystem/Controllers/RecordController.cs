@@ -85,43 +85,43 @@ namespace MedicalSystem.Controllers
         //api/Record/pid/did/date
         [HttpPut("{pid}/{did}/{date}")]
         [Authorize(Roles = "doctor,admin")]
-        //public async Task<IActionResult> RecordTests(int pid, int did, DateTime date, Record @record[])
-        //{
-        //    for(int i=0;i<@record.Length;i++)
-        //    {
-        //        if (did != @record[i].DID)
-        //        {
-        //            return BadRequest();
-        //        }
+        public async Task<IActionResult> RecordTests(int pid, int did, DateTime date, Record[] @record)
+        {
+            for(int i=0;i<@record.Length;i++)
+            {
+                if (did != @record[i].DID)
+                {
+                    return BadRequest();
+                }
 
-        //        Record Record = await _context.Records.Where(r => r.DID == did && r.PID == pid && r.date == date && r.FNO == @record[i].FNO).FirstOrDefaultAsync();
-        //        if (Record != null)
-        //        {
-        //            await _context.Procedures.Update_RecordAsync(@record[i].file_description, @record[i].testType, pid, did, date, @record[i].FNO, @record[0].summary, @record[0].prescription);
-        //        }
-        //        else
-        //        {
-        //            await _context.Procedures.Insert_RecordAsync(pid, did, date, @record[i].file_description, @record[i].testType, @record[0].summary, @record[0].prescription);
-        //        }
-        //        try
-        //        {
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateException)
-        //        {
-        //            if (RecordExists(@record[i].DID))
-        //            {
-        //                return Conflict();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
+                Record Record = await _context.Records.Where(r => r.DID == did && r.PID == pid && r.date == date && r.FNO == @record[i].FNO).FirstOrDefaultAsync();
+                if (Record != null)
+                {
+                    await _context.Procedures.Update_RecordAsync(@record[i].file_description, @record[i].testType, pid, did, date, @record[i].FNO, @record[0].summary, @record[0].prescription);
+                }
+                else
+                {
+                    await _context.Procedures.Insert_RecordAsync(pid, did, date, @record[i].file_description, @record[i].testType, @record[0].summary, @record[0].prescription);
+                }
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateException)
+                {
+                    if (RecordExists(@record[i].DID))
+                    {
+                        return Conflict();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
 
-        //    }
-        //    return NoContent();
-        //}
+            }
+            return NoContent();
+        }
 
 
         //api/Record/AddFile/pid/did/date   

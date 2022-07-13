@@ -31,8 +31,8 @@ namespace MedicalSystem.Models
         public string prescription { get; set; }
         [StringLength(1)]
         public string testType { get; set; }
-      
-        public Guid? FNO { get; set; }
+        [Key]
+        public Guid FNO { get; set; }
 
         [ForeignKey("DID")]
         [InverseProperty("Records")]
