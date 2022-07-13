@@ -12,8 +12,8 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from '../core/core.module';
 import { DialogModule } from 'primeng/dialog';
-import { EmployeeRegisterComponent } from './employee-register/employee-register.component';
 import { AgeValDirective } from './_directives/age-val.directive';
+import { DoctorScheduleComponent } from './doctor-schedule/doctor-schedule.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +23,8 @@ import { AgeValDirective } from './_directives/age-val.directive';
     RecordFilterationPipe,
     AdminHomeComponent,
     DoctorRegisterationComponent,
-    //EmployeeRegisterComponent,
-    AgeValDirective
+    AgeValDirective,
+    DoctorScheduleComponent
   ],
   imports: [
     CommonModule,
