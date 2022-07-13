@@ -44,4 +44,9 @@ export class AdminService {
   deleteRowFromSchedule(did:number,start: string ){
     return this.http.delete<any>(this.baseUrl+"works_in/"+did+'/'+start);
   }
+
+  //edit row from doctor schedule 
+  editRowFromSchedule(work:Works_in, did:number,start: string ){
+    return this.http.put<any>(this.baseUrl+"works_in/"+did+'/'+start,work);
+  }
 }

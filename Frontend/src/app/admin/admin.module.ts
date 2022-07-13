@@ -15,6 +15,7 @@ import { DialogModule } from 'primeng/dialog';
 import { AgeValDirective } from './_directives/age-val.directive';
 import { DoctorScheduleComponent } from './doctor-schedule/doctor-schedule.component';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { EditDoctorScheduleComponent } from './edit-doctor-schedule/edit-doctor-schedule.component';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import {SidebarModule} from 'primeng/sidebar';
 
@@ -27,7 +28,8 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
     AdminHomeComponent,
     DoctorRegisterationComponent,
     AgeValDirective,
-    DoctorScheduleComponent
+    DoctorScheduleComponent,
+    EditDoctorScheduleComponent
   ],
   imports: [
     CommonModule,ConfirmDialogModule,
@@ -35,7 +37,7 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
     FormsModule,//SidebarModule,
     FileUploadModule,
     CoreModule,
-    DialogModule
+    DialogModule,CommonModule
   ]
 })
 export class AdminModule { }
