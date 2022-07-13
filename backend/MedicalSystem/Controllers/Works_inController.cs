@@ -100,15 +100,17 @@ namespace MedicalSystem.Controllers
                 }
             }
 
+
             return CreatedAtAction("GetWorks_in", new { id = works_in.DID }, works_in);
         }
 
         // DELETE: api/Works_in/5
         [Authorize(Roles = "admin")]
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteWorks_in(int id)
+        [HttpDelete("{did}/{start_time}")]
+        public async Task<IActionResult> DeleteWorks_in(int did,string start_time)
         {
-            var works_in = await _context.Works_ins.FindAsync(id);
+           // var works_in = await _context.Works_ins.FindAsync(id);
+            var works_in = await _context.Works_ins.Where(r => r.DID == did&& r.start_time== start_time).FirstOrDefaultAsync();
             if (works_in == null)
             {
                 return NotFound();

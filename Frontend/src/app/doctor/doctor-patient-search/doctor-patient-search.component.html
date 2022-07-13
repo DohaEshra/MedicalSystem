@@ -8,11 +8,11 @@
       <div class="d-flex justify-content-center PatientSearch mb-4">
         <div class="dropdown show">
           <div class="dropdown-toggle searchby" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by</div>  
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" (click)="setIndicatorForId()">ID</a>
-            <a class="dropdown-item" (click)="setIndicatorForName()">Name</a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" (click)="setIndicatorForId()">ID</a>
+              <a class="dropdown-item" (click)="setIndicatorForName()">Name</a>
+            </div>
           </div>
-        </div>
     
         <div class="searchbar">
           <input class="search_input" [(ngModel)]="ID" [ngModelOptions]="{standalone: true}"  *ngIf="Indicator==1" type="search" placeholder="ID ..." aria-label="Search">
