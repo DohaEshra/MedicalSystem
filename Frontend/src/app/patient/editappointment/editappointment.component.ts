@@ -40,18 +40,6 @@ export class EditappointmentComponent implements OnInit {
   }
 
   Update(){
-  
-    // var selectedAppointment = (<HTMLInputElement>document.getElementById('Select')).value;
-    // if(selectedAppointment!=null || selectedAppointment!="Select ...")
-    // {
-      // this.visit.did = this.doctorId;
-    //   console.log(this.doctorId)
-    //   this.patientser.getPatientId();
-     this.visit.pid = this.patientId;
-     this.visit.did = this.doctorId;
-
-    //   console.log(this.visit.pid)
-    //   // this.visit.appointment_time = new Date(selectedAppointment.split('To')[0].trim());
       this.patientser.editAppointment(this.patientId,this.doctorId,this.appointmentTime,this.visit).subscribe(
         data=>{
           if(data!=null)
