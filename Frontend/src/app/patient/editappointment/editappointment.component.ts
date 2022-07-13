@@ -45,12 +45,9 @@ export class EditappointmentComponent implements OnInit {
           if(data!=null)
           {
             console.log(data)
-            this.router.navigateByUrl("patient/appointments");
+            this.router.navigateByUrl("/patient/appointments");
           }
         }
       )
-
     }
   }
-
-//}
