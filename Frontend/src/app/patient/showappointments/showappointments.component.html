@@ -1,3 +1,21 @@
+<app-loading *ngIf="!patient.id"></app-loading>
+
+<div class="container emp-profile " *ngIf="patient.id">
+    <div class="d-flex justify-content-center">
+        <div class="card mb-3" style="max-width: 540px; margin-right: 1%;" >
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src={{patient.profilePic}} class="img-fluid rounded-start"/>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h3 class="card-title"><b>Welcome Dr , <label style="color: rgb(143, 213, 38);"> {{patient.fname}} {{patient.lname}}</label></b></h3>
+                  <p class="card-text mx-1" style="color: rgb(108, 108, 108);">Whatever you do, do with determination. You have one life to live; do your work with passion and give your best.</p>
+                </div>
+              </div>
+            </div>
+        </div>
+
 <table class="tablearea table table-striped table-success">
 <thead>
     <tr>
