@@ -23,6 +23,7 @@
             <a class="btn-sm btn-default" (click)="deleteMedicine(visit.pid,visit.did,visit.appointment_time)">
                 <em  class="fa fa-times" style="color: red;"></em>
             </a>
+            <a [routerLink]="['/patient/edit',visit.pid,visit.didNavigation?.id,visit.appointment_time]" class="btn btn-outline-success">Edit</a>
         </td>
     </tr>
 </tbody>

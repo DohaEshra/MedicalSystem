@@ -21,6 +21,7 @@ export class ShowappointmentsComponent implements OnInit,OnDestroy {
       a=>{
         this.patient=a;
         this.patient$.next(this.patient);
+        console.log(a)
       }
     );
   }
