@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { Patient } from 'src/app/_Models/patient';
 import { PatientService } from '../Patient.service';
-
+import { LoadingComponent } from 'src/app/core/loading/loading.component';
 @Component({
   selector: 'app-patient-home',
   templateUrl: './patient-home.component.html',

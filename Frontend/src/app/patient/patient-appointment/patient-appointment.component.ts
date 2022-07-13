@@ -25,7 +25,6 @@ export class PatientAppointmentComponent implements OnInit,OnDestroy {
   constructor(private isValid:IsValidDatePipe,private datePipe:DatePipe,private patientser:PatientService,private activateRoute:ActivatedRoute,private router:Router) { }
 
   ngOnInit(): void {
-
     this.sub=this.activateRoute.params.subscribe(
       a=>{
         this.patientser.GetAppointments(a['did']).subscribe(

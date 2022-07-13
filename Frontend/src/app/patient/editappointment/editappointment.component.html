@@ -1,0 +1,8 @@
+<p>editappointment works!</p>
+ <form>
+    <div class="mb-3 ">
+        <input type="number" [(ngModel)]="visit.pid" class="form-control" [ngModelOptions]="{standalone: true}">
+          <input type="text" [(ngModel)]="visit.appointment_time" class="form-control" [ngModelOptions]="{standalone: true}">
+        </div>
+      <button type="submit" (click)="Update()" class="btn btn-primary">Update</button>
+</form> 

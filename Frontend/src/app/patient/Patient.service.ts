@@ -86,6 +86,11 @@ deleteAppointment(pid:number,did:number,date:Date){
   return this.http.delete<undefined>("https://localhost:7089/api/Visit/"+pid+"/"+did+"/"+date);
 }
 
+
+editAppointment(pid:number,did:number,date:Date,visit:Visit){
+  return this.http.put<Visit>("https://localhost:7089/api/Visit/"+pid+"/"+did+"/"+date,visit);
+}
+
 //get appointments of doctor
 GetAppointments(did:number){
   return this.http.get<Works_in[]>("https://localhost:7089/api/works_in/"+did);
