@@ -31,12 +31,9 @@ export class EditPrescriptionComponent implements OnInit {
         this.sub2=this.docSer.getPatientPrescription(a['id'],this.docSer.DoctorID,a['date']).subscribe(
           data=>{
             this.recordList = data;
-            console.log(data);
             var dummy= data[0].prescription.split(',');
             dummy.forEach(element => {
               this.medicines.push([element.split(': ')[0],element.split(': ')[1]]);
-              // this.medicine.push( element.split(': ')[0])
-              // this.info.push( element.split(': ')[1])
             });
             this.indicator=true;
           }
@@ -70,7 +67,6 @@ export class EditPrescriptionComponent implements OnInit {
   edit(){
     var date = (<HTMLInputElement>document.getElementById('date')).value;
     var summary = (<HTMLInputElement>document.getElementById('summary')).value;
-    //var prescription = (<HTMLInputElement>document.getElementById('prescription')).value;
     if(this.medicines.length>0){
       var arr:any=[];
       this.medicines.forEach(element => {
@@ -81,25 +77,31 @@ export class EditPrescriptionComponent implements OnInit {
         element.prescription=prescription;
       });
     }
-
-    //Delete files that user specify them
-    if(this.deletedFiles.length>0 && this.validation(date,summary,prescription)) 
-    {
-      this.docSer.deleteRecordByFno(this.deletedFiles).subscribe(
-        a=>{}
-      )
-    }
-
-    //Add new files and update the rest
-    if(this.recordList.length>=1 && this.validation(date,summary,prescription))
-    {
-      this.docSer.recordPatientPrescription(this.recordList,this.recordList[0].pid,this.recordList[0].did,this.recordList[0].date).subscribe(
-        a=>{}
-      )
-    }
-    this.router.navigateByUrl("doctor/patient/"+this.recordList[0]?.pid+"/history");
     
-    
+    if(this.validation(date,summary,prescription))
+    {
+      //Delete files that user specify them
+      if(this.deletedFiles.length>0) 
+      {
+        this.docSer.deleteRecordByFno(this.deletedFiles).subscribe(
+          a=>{}
+        )
+      }
+
+      //Add new files and update the rest
+      if(this.recordList.length>=1)
+      {
+        this.docSer.recordPatientPrescription(this.recordList,this.recordList[0].pid,this.recordList[0].did,this.recordList[0].date).subscribe(
+          a=>{
+            this.router.navigateByUrl("doctor/patient/"+this.recordList[0]?.pid+"/history");
+          },
+          error=>{
+            console.log(error);
+            this.router.navigateByUrl("doctor/patient/"+this.recordList[0]?.pid+"/history");
+          }
+        )
+      }
+    }
   }
 
   //back

@@ -1,16 +1,41 @@
-<form *ngIf="doctorId!=0">
-    <div class="mb-3 ">
-        <label for="Select" class="form-label fs-4">Date </label>
-        <input  type="date"  
-          id="date" 
-          style="border-radius:30px ;"
-          class="form-control form-control-lg " 
-          [(ngModel)]="bookingDate" [ngModelOptions]="{standalone: true}"
-        />
-    </div>
-    <div class="mb-3 ">
-      <span id="message" style="color: red;">{{errorMessage}}</span>
+<app-loading *ngIf="!doctorId"></app-loading>
+<div id="sect1" class="" *ngIf="doctorId!=0">
+  <div class="row col-12 d-flex justify-content-center">
+    <section class="ftco-intro" style="margin-top: 19%;margin-left: 2%;" >
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-md-3 color-1 p-4">
+            <h3 class="mb-4">Emergency Cases</h3>
+            <p>You can contact us through this number .</p>
+            <span class="phone-number">+ (123) 456 7890</span>
+          </div>
+          <div class="col-md-4 color-2 p-4">
+            <h3 class="mb-4">Working Hours</h3>
+            <p class="openinghours d-flex" *ngFor="let appointment of appointments">
+              <span>{{(appointment|timeFormat)[0]}}</span>
+              <span>{{(appointment|timeFormat)[1]}} {{(appointment|timeFormat)[2]}} - {{(appointment|timeFormat)[3]}} {{(appointment|timeFormat)[4]}}</span>
+            </p>
+            
+          </div>
+          <div class="col-md-5 color-3 p-4">
+            <h3 class="mb-4">Make an Appointment</h3>
+            <form action="#" class="appointment-form ">
+              <div class="row m-2">
+                <div class="col-sm-4 col-md-12">
+                  <div class="form-group" style="margin-left: 6%;">
+                    <div class="icon"><span class="ion-ios-calendar"></span></div>
+                    <input type="date" [(ngModel)]="bookingDate" [ngModelOptions]="{standalone: true}" class="form-control appointment_date" placeholder="Date">
+                  </div>    
+                  <span id="message"  style=" color: rgb(137, 3, 3);width: 100%;">{{errorMessage}}</span>
+                  <div class="form-group" style="padding-left: 43%;padding-right: 50%; padding-top: 3%;">
+                    <input type="submit" (click)="Book()" value="BOOK" class="btn btn-primary" style="font-size: 15px;font-weight: bold;">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
-    
-    <button type="submit" (click)="Book()" class="btn btn-primary">Book</button>
-</form>
+</div>

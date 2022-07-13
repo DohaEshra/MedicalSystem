@@ -71,17 +71,17 @@ export class DoctorService {
   }
 
   //get prescription
-  getPatientPrescription(pid:number,did:number,date:Date){
+  getPatientPrescription(pid:number,did:number,date:Date|string){
     return this.http.get<Record[]>(this.baseUrl+"Record/"+pid+"/"+did+"/"+date);
   }
 
    //get prescription
-   getPatientPrescriptionForPharmacy(pid:number,did:number,date:Date){
+   getPatientPrescriptionForPharmacy(pid:number,did:number,date:Date|string){
     return this.http.get<Record>(this.baseUrl+"Record/pharmacy/"+pid+"/"+did+"/"+date);
   }
 
   //record prescription
-  recordPatientPrescription(records:Record[]|FileInfo[],pid:number,did:number,date:Date){
+  recordPatientPrescription(records:Record[]|FileInfo[],pid:number,did:number,date:Date|string){
     return this.http.put<undefined>(this.baseUrl+"Record/"+pid+"/"+did+"/"+date,records);
   }
 

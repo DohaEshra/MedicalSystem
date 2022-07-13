@@ -28,6 +28,7 @@ import { NumberOfRecordsInSameDatePipe } from './_Pipes/number-of-records-in-sam
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditappointmentComponent } from './editappointment/editappointment.component';
 import { CoreModule } from '../core/core.module';
+import { TimeFormatPipe } from './_pipes/time-format.pipe';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { CoreModule } from '../core/core.module';
     SafePipe,
     NumberOfRecordsInSameDatePipe,
     EditappointmentComponent,
+    TimeFormatPipe,
    
   ],
   imports: [

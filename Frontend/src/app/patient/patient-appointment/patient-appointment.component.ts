@@ -92,7 +92,7 @@ export class PatientAppointmentComponent implements OnInit,OnDestroy {
     }
     else //not available
     {
-      this.errorMessage= "This appointment date is not available , Please book in available date";
+      this.errorMessage= "This date is not available , Please book on available date";
     }
     
 

@@ -6,9 +6,9 @@
 </div>
 
 <div class="container" *ngIf="RecordList.length">
-    <div class=" col-md-10 col-sm-8 offset-1 mb-1" id="myTabContent">
-        
-        <div class="searchbar">
+    <div class="card col-md-10 col-sm-8 offset-1 mb-1" id="myTabContent">
+        <h3 class="mx-3"><i style="color: #a5c422;margin-right:5px;" id="cal" class="fa fa-history" aria-hidden="true"></i><b>Medical History</b></h3>
+        <div class="searchbar mb-2">
           <input type="text" class="search_input" placeholder="Search Prescription ... " [(ngModel)]="searchText"/>
           <a class="search_icon"><i class="fas fa-search"></i></a>
         </div>
@@ -25,7 +25,7 @@
                     <th>Diagnosis</th>
                     <th>Prescription</th>
                     <th>Tests</th>
-                    <th>Result</th>
+                    <th>Tests Result</th>
                   </tr>
               </thead>
               <tbody>
@@ -44,12 +44,12 @@
                   <td>
                     <tr *ngFor="let file of record.attached_files">
                       <td >
-                        <button class="btn btn-primary" *ngIf="file != null; else t1" (click)="showDialog()"><em class="pi pi-file-pdf"></em></button>
-                    </td>
-                    <p-dialog [(visible)]="fileDialogVisibility" [style]="{width: '1000px',height: '800px'}" header="File Details" [modal]="true" styleClass="p-fluid">
-                        <object class="text-center" [style]="{width: '100%',height: '95%'}" [data]="('data:application/pdf;base64,'+file)|safe:'url'" ></object>
-                    </p-dialog>
-                    <ng-template #t1><i class="fas fa-spinner fa-spin" aria-hidden="true"></i></ng-template>
+                          <button style="margin-top: -15%; padding-bottom: 0px;" class="btn" *ngIf="file != null; else t1" (click)="showDialog()"><em style="color: red;"  class="pi pi-file-pdf"></em></button>
+                      </td>
+                      <p-dialog [(visible)]="fileDialogVisibility" [style]="{width: '1000px',height: '800px'}" header="File Details" [modal]="true" styleClass="p-fluid">
+                          <object class="text-center" [style]="{width: '100%',height: '95%'}" [data]="('data:application/pdf;base64,'+file)|safe:'url'" ></object>
+                      </p-dialog>
+                      <ng-template #t1><i style="margin-top: -10px;" *ngIf="file!=null" class="fas fa-spinner fa-spin mx-3" aria-hidden="true"></i></ng-template>
                     </tr>
                   </td>
                 </tr>

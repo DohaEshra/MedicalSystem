@@ -35,7 +35,9 @@
                   <a  class="text-dark fs-6" [routerLink]="['/doctor/patient',patient.pidNavigation?.id,'info']"><i class="fa fa-eye" aria-hidden="true"></i></a>
                 </td>
                 <td class="fs-6">{{patient.pidNavigation?.id}}</td>
-                <td class="fs-6">{{patient.pidNavigation?.fname}} {{patient.pidNavigation?.lname}}</td>
+                <td class="fs-6">
+                  <img src={{patient.pidNavigation?.profilePic}} width="25px" height="25px" style="border-radius: 100px;"/>
+                  {{patient.pidNavigation?.fname}} {{patient.pidNavigation?.lname}}</td>
               </tr>
             </tbody>
           </table> 
@@ -54,7 +56,10 @@
                   <a  class="fs-6 text-dark" [routerLink]="['/doctor/patient',patient.id,'info']"><i class="fa fa-eye" aria-hidden="true"></i></a>
                 </td>
                 <td class="fs-6">{{patient.id}}</td>
-                <td class="fs-6">{{patient.fname}} {{patient.lname}}</td>
+                <td class="fs-6">
+                  <img src={{patient.profilePic}} width="25px" height="25px" style="border-radius: 100px;"/>
+                  {{patient.fname}} {{patient.lname}}
+                </td>
               </tr>
             </tbody>
           </table>
@@ -73,7 +78,9 @@
                   <a class="fs-6 text-dark" [routerLink]="['/doctor/patient',(visitListWithoutDuplication|searchById:ID)?.id,'info']"><i class="fa fa-eye" aria-hidden="true"></i></a>
                 </td>
                 <td class="fs-6">{{(visitListWithoutDuplication|searchById:ID)?.id}}</td>
-                <td class="fs-6">{{(visitListWithoutDuplication|searchById:ID)?.fname}} {{(visitListWithoutDuplication|searchById:ID)?.lname}}</td>
+                <td class="fs-6">
+                  <img src={{(visitListWithoutDuplication|searchById:ID)?.profilePic}} width="25px" height="25px" style="border-radius: 100px;"/>
+                  {{(visitListWithoutDuplication|searchById:ID)?.fname}} {{(visitListWithoutDuplication|searchById:ID)?.lname}}</td>
               </tr>
             </tbody>
           </table>
