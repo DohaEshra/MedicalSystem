@@ -82,7 +82,7 @@ addAppointment(visit:Visit){
 }
 
 //cancel booking
-deleteAppointment(pid:number,did:number,date:Date){
+deleteAppointment(pid:number,did:number,date:Date|string){
   return this.http.delete<undefined>("https://localhost:7089/api/Visit/"+pid+"/"+did+"/"+date);
 }
 

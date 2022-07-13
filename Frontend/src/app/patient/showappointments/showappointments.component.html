@@ -22,7 +22,6 @@
         <th scope="col">Doctor</th>
         <th scope="col">Category</th>
         <th scope="col">Date</th>
-        <th scope="col">Time</th>
         <th scope="col"><i class="fa fa-ticket-alt" aria-hidden="true"></i> NO</th>
         <th scope="col">Status</th>
         <th ><em class="fa fa-cog"></em></th>
@@ -33,7 +32,6 @@
         <td>{{visit.didNavigation?.fname}} {{visit.didNavigation?.lname}}</td>
         <td>{{visit.didNavigation?.category}}</td>
         <td>{{(visit.appointment_time|datetime)[0]}}</td>
-        <td>{{(visit.appointment_time|datetime)[1]}}</td>
         <td >{{visit.appointmentNo}}</td>
         <td *ngIf="visit.appointmentStatus==0"><i class="fa fa-spinner" style="color: red;" aria-hidden="true"></i></td>
         <td *ngIf="visit.appointmentStatus==1"><i class="fa fa-check" style="color: green;" aria-hidden="true"></i></td>

@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class DatetimePipe implements PipeTransform {
 
-  transform(value: Date): string[] {
+  transform(value: Date|string): string[] {
     let dateTime:string[] = [];
     dateTime.push(value.toString().split('T')[0]);
     dateTime.push(value.toString().split('T')[1]);
