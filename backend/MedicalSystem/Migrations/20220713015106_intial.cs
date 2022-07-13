@@ -91,8 +91,8 @@ namespace MedicalSystem.Migrations
             //    columns: table => new
             //    {
             //        DID = table.Column<int>(type: "int", nullable: false),
-            //        start_time = table.Column<DateTime>(type: "datetime2", nullable: false),
-            //        end_time = table.Column<DateTime>(type: "datetime2", nullable: false)
+            //        start_time = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false, defaultValueSql: "(N'')"),
+            //        end_time = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false)
             //    },
             //    constraints: table =>
             //    {

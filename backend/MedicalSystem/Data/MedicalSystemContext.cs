@@ -26,8 +26,6 @@ namespace MedicalSystem.Data
         public virtual DbSet<Record> Records { get; set; }
         public virtual DbSet<Visit> Visits { get; set; }
         public virtual DbSet<Works_in> Works_ins { get; set; }
-        public virtual DbSet<BlockedUsers> BlockedUsers { get; set; }
-
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -134,8 +132,10 @@ namespace MedicalSystem.Data
 
             modelBuilder.Entity<Works_in>(entity =>
             {
-                entity.HasKey(e => new { e.DID, e.start_time } )
+                entity.HasKey(e => new { e.DID, e.start_time })
                     .HasName("PK_Works_in_1");
+
+                entity.Property(e => e.start_time).HasDefaultValueSql("(N'')");
 
                 entity.HasOne(d => d.DIDNavigation)
                     .WithMany(p => p.Works_ins)
