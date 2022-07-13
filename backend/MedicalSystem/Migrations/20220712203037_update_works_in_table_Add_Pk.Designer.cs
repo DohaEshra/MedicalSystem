@@ -4,6 +4,7 @@ using MedicalSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalSystem.Migrations
 {
     [DbContext(typeof(MedicalSystemContext))]
-    partial class MedicalSystemContextModelSnapshot : ModelSnapshot
+    [Migration("20220712203037_update_works_in_table_Add_Pk")]
+    partial class update_works_in_table_Add_Pk
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -331,7 +333,7 @@ namespace MedicalSystem.Migrations
                     b.Property<DateTime>("date")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("FNO")
+                    b.Property<Guid>("FNO")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("OID")
@@ -404,10 +406,10 @@ namespace MedicalSystem.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("start_time")
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("end_time")
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("DID", "start_time")
                         .HasName("PK_Works_in_1");

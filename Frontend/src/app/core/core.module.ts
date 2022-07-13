@@ -6,6 +6,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
+import { StarComponent } from './star/star.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { HomeComponent } from './home/home.component';
     LoadingComponent,
     NavBarComponent,
     NotFoundComponent,
-    HomeComponent
+    HomeComponent,
+    StarComponent
   ],
   imports: [
     CommonModule,
@@ -24,6 +26,7 @@ import { HomeComponent } from './home/home.component';
     NavBarComponent,
     HomeComponent,
     NotFoundComponent,
+    StarComponent
   ]
 })
 export class CoreModule { }

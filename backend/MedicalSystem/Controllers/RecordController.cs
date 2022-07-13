@@ -25,8 +25,8 @@ namespace MedicalSystem.Controllers
 
         // GET: api/Record/list/5
         //show all records to patient
-        [Authorize(Roles = "patient")]
         [HttpGet("list/{PID}")]
+        [Authorize(Roles = "patient")]
         public async Task<ActionResult<IEnumerable<Record>>> GetRecords(int PID)
         {
             if (_context.Records == null)
@@ -50,8 +50,8 @@ namespace MedicalSystem.Controllers
         //}
 
         // GET: api/Records/pharmacy/pid/did/date
-        [Authorize(Roles = "pharmacist")]
         [HttpGet("pharmacy/{pid}/{did}/{date}")]
+        [Authorize(Roles = "pharmacist")]
         public async Task<ActionResult<Record>> GetOneRecord(int pid, int did, DateTime date)
         {
 
@@ -83,9 +83,9 @@ namespace MedicalSystem.Controllers
         }
 
         //api/Record/pid/did/date
-        [Authorize(Roles = "doctor,admin")]
         [HttpPut("{pid}/{did}/{date}")]
-        public async Task<IActionResult> RecordTests(int pid, int did, DateTime date, Record[]@record)
+        [Authorize(Roles = "doctor,admin")]
+        public async Task<IActionResult> RecordTests(int pid, int did, DateTime date, Record[] @record)
         {
             for(int i=0;i<@record.Length;i++)
             {
@@ -125,22 +125,36 @@ namespace MedicalSystem.Controllers
 
 
         //api/Record/AddFile/pid/did/date   
-        [Authorize(Roles = "radiographer,laboratory technician")]
         [HttpPost("AddFile/{pid}/{did}/{date}/{file_Description}/{oid}")]
+        //[Authorize(Roles = "radiographer,laboratory technician,admin")]
+        [AllowAnonymous]
         public async Task<IActionResult> PutRecord(int pid, int did, DateTime date, string file_description, int oid)
         {
             var record = await _context.Records.FirstOrDefaultAsync(e => e.DID == did && e.PID == pid && e.date == date && e.file_description == file_description);
             if (record == null)
                 return BadRequest();
             var form = Request.Form;
-            using (var ms = new MemoryStream())
+            if(record.attached_files == null)
             {
-                await form.Files[0].CopyToAsync(ms);
-                var fileBytes = ms.ToArray();
-                record.attached_files = fileBytes;
+                using (var ms = new MemoryStream())
+                {
+                    await form.Files[0].CopyToAsync(ms);
+                    var fileBytes = ms.ToArray();
+                    record.attached_files = fileBytes;
+                }
+                record.OID = oid;
+                record.testType = "F";
             }
-            record.OID = oid;
-            record.testType = "F";
+            else
+            {
+                using (var ms = new MemoryStream())
+                {
+                    await form.Files[0].CopyToAsync(ms);
+                    var fileBytes = ms.ToArray();
+                    record.attached_files = fileBytes;
+                }
+            }
+
             try
             {
                 await _context.SaveChangesAsync();
@@ -160,10 +174,42 @@ namespace MedicalSystem.Controllers
         }
 
 
+
+
+        //api/Record/AddFile/pid/did/date   
+        [HttpDelete("DeleteFile/{pid}/{did}/{date}/{file_Description}/{oid}")]
+        [Authorize(Roles = "radiographer,laboratory technician")]
+        public async Task<IActionResult> deleteFile(int pid, int did, DateTime date, string file_description, int oid)
+        {
+            var record = await _context.Records.FirstOrDefaultAsync(e => e.DID == did && e.PID == pid && e.date == date && e.file_description == file_description);
+            if (record == null)
+                return BadRequest();
+            record.attached_files = null;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!RecordExists(record.FNO))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return NoContent();
+        }
+
+
+
         // PUT: api/Records/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [Authorize(Roles = "admin,doctor")]
         [HttpPut("{id}")]
+        [Authorize(Roles = "admin,doctor")]
         public async Task<IActionResult> PutRecord(Guid id, Record @record)
         {
             if (id != @record.FNO)
@@ -198,8 +244,8 @@ namespace MedicalSystem.Controllers
 
         // POST: api/Record
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [Authorize(Roles = "doctor")]
         [HttpPost]
+        [Authorize(Roles = "doctor")]
         public async Task<ActionResult<Record>> PostRecord(Record @record)
         {
             _context.Records.Add(@record);
@@ -223,6 +269,7 @@ namespace MedicalSystem.Controllers
         }
 
         // DELETE: api/Records/5
+        [HttpDelete("{id}")]
         [Authorize(Roles = "doctor")]
         [HttpDelete]
         public async Task<IActionResult> DeleteRecord(Guid [] id)

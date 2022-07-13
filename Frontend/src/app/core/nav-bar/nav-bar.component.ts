@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AccountService } from 'src/app/account/Account.service';
 import { DoctorService } from 'src/app/doctor/doctor.service';
@@ -41,10 +41,8 @@ export class NavBarComponent implements OnInit {
       //   a=>{
       //     this.doctor=a;
       //   }
-     // );
+      //);
   }
-
-  
 
   clearToken(){
     this.account.signOut();

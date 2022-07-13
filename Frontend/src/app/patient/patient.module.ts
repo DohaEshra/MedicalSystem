@@ -27,6 +27,7 @@ import { RatingModule } from 'primeng/rating';
 import { NumberOfRecordsInSameDatePipe } from './Pipes/number-of-records-in-same-date.pipe';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditappointmentComponent } from './editappointment/editappointment.component';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { EditappointmentComponent } from './editappointment/editappointment.comp
     SafePipe,
     NumberOfRecordsInSameDatePipe,
     EditappointmentComponent,
+   
   ],
   imports: [
     CommonModule,
@@ -61,6 +63,7 @@ import { EditappointmentComponent } from './editappointment/editappointment.comp
     DialogModule,
     RatingModule,
     NgbRatingModule,
+    CoreModule
   ],
 })
 export class PatientModule {}

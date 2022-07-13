@@ -104,7 +104,7 @@ export class EditPrescriptionComponent implements OnInit {
 
   //back
   back(){
-    this.router.navigateByUrl("doctor/patient/"+this.recordList[0].pid+"/history");
+    this.router.navigateByUrl("doctor");
   }
 
   //check validation
@@ -131,7 +131,7 @@ export class EditPrescriptionComponent implements OnInit {
       this.newFile = {fno:null,file_description:desc,testType:type,
       attached_files:'',did:this.recordList[0].did,pid:this.recordList[0].pid,
       oid:null,date:this.recordList[0].date,summary:this.recordList[0].summary,
-      prescription:this.recordList[0].prescription,pidNavigation:null,didNavigation:null};
+      prescription:this.recordList[0].prescription,pidNavigation:null,didNavigation:null,oidNavigation:null};
       
       this.recordList.push(this.newFile); 
       this.newFile=new Record();

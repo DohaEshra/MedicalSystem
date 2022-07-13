@@ -14,8 +14,8 @@ namespace MedicalSystem.Models
         [Key]
         public int DID { get; set; }
         [Key]
-        public DateTime start_time { get; set; }
-        public DateTime end_time { get; set; }
+        public string start_time { get; set; }
+        public string end_time { get; set; }
 
         [ForeignKey("DID")]
         [InverseProperty("Works_ins")]

@@ -17,6 +17,7 @@ export class AccountService {
 constructor(public http:HttpClient , public router : Router ) {}
     baseUrl="https://localhost:7089/api/";
     count:number=0;
+    container:any
     
     private loggedIn = new BehaviorSubject<boolean>(false); 
     get isLoggedIn() {
@@ -63,31 +64,31 @@ constructor(public http:HttpClient , public router : Router ) {}
     return null;
   }
 
-  
+   
   getUser(userRole:string){
     
+    // console.log('mee', this.count, userRole)
+
     if(this.getToken()!=null && this.count==0)
     {
       if(userRole == 'doctor'){
-        var doctor:Doctor=new Doctor();
         var decodeToken = JSON.parse(JSON.stringify(jwtDecode(this.getToken()!)));
-        this.http.get<Doctor>(this.baseUrl + userRole +"/"+decodeToken.ID).subscribe(
-          data=>{
-            doctor=data;
-          }
-        );
+         this.http.get<any>(this.baseUrl  +"doctor/"+decodeToken.ID).subscribe({
+          next: data=>{
+            this.container= data;
+          },
+          error: err => console.log("Error decoding: ",err)
+         });
         this.count++;
-        return doctor;
       } else if (userRole == 'pharmacist' || userRole == 'radiographer' || userRole == 'laboratory technician'){
-        var other: Other = new Other();
         var decodeToken = JSON.parse(JSON.stringify(jwtDecode(this.getToken()!)));
-        this.http.get<Other>(this.baseUrl + userRole + "/" + decodeToken.ID).subscribe(
-          data => {
-            other = data;
-          }
-        );
+        this.http.get<any>(this.baseUrl + "other/" + decodeToken.ID).subscribe({
+          next: data => {
+            this.container = data;
+          },
+          error: err => console.log("Error decoding: ", err)
+        });
         this.count++;
-        return other;
       } else if (userRole == 'admin'){
         return {
           fname: 'admin',
@@ -95,34 +96,34 @@ constructor(public http:HttpClient , public router : Router ) {}
           profilePic:'./../../assets/admin.png'
         };
       } else if (userRole == 'patient'){
-        var patient: Patient = new Patient();
         var decodeToken = JSON.parse(JSON.stringify(jwtDecode(this.getToken()!)));
-        this.http.get<Patient>(this.baseUrl + userRole + "/" + decodeToken.ID).subscribe(
-          data => {
-            patient = data;
-          }
-        );
+        this.http.get<any>(this.baseUrl + "patient/" + decodeToken.ID).subscribe({
+          next: data => {
+            this.container = data;
+          },
+          error: err => console.log("Error decoding: ", err)
+        });
         this.count++;
-        return patient;
       }else{
         return null;
       }
     }
-    return null
+    //console.log('why????????', this.container)
+    return this.container
   }
 
-  doctor:Doctor=new Doctor();
-  getDoctor(){
-    if(this.getToken()!=null && this.count==0)
-    {
-      var decodeToken = JSON.parse(JSON.stringify(jwtDecode(this.getToken()!)));
-      this.http.get<Doctor>(this.baseUrl+"doctor/"+decodeToken.ID).subscribe(
-        data=>{
-          this.doctor=data;
-        }
-      );
-      this.count++;
-    }
-    return this.doctor;
-  }
+  //doctor:Doctor=new Doctor();
+  //getDoctor(){
+  //  if(this.getToken()!=null && this.count==0)
+  //  {
+  //    var decodeToken = JSON.parse(JSON.stringify(jwtDecode(this.getToken()!)));
+  //    this.http.get<Doctor>(this.baseUrl+"doctor/"+decodeToken.ID).subscribe(
+  //      data=>{
+  //        this.doctor=data;
+  //      }
+  //    );
+  //    this.count++;
+  //  }
+  //  return this.doctor;
+  //}
 }

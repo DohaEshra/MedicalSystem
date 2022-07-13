@@ -17,6 +17,7 @@ const routes: Routes = [
     component: PatientHomeComponent,
     canActivate: [PatientLoginGuard],
     children: [
+      {path:"",component:ShowappointmentsComponent },
       { path: 'info', component: PatientInfoComponent },
       { path: 'edit', component: PatientEditComponent },
       { path: 'record', component: PatientRecordComponent },

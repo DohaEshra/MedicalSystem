@@ -119,7 +119,7 @@ export class RecordPrescriptionComponent implements OnInit {
       this.newFile = {fno:null,file_description:this.medicalTests[i],testType:this.testType[i],
       attached_files:'',did:this.record.did,pid:this.record.pid,
       oid:null,date:this.record.date,summary:this.record.summary,
-      prescription:this.record.prescription,pidNavigation:null,didNavigation:null};
+      prescription:this.record.prescription,pidNavigation:null,didNavigation:null,oidNavigation:null};
         
       this.recordList.push(this.newFile); 
       this.newFile=new Record();

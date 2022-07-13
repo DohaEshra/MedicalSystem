@@ -20,7 +20,8 @@ import { CoreModule } from '../core/core.module';
     RadiographerRoutingModule,
     FormsModule,
     FileUploadModule,
-    HttpClientModule , CoreModule,
+    HttpClientModule,
+    CoreModule,
   ]
 })
 export class RadiographerModule { }
