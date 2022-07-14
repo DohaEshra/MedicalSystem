@@ -2,4 +2,40 @@
     <div class="row col-12 d-flex justify-content-center">
       <router-outlet></router-outlet> 
     </div>
+
+    <div class="card card-container container ">
+        <div class="row">
+          <div class="col-4">
+            <img style="width: 300px;" src="../../../assets/clinic_01.jpg" class="img-responsive mr-5" alt="">
+          </div>
+          <div class="col-2 fs-2 " style="margin-top: 80px;"> </div>
+          <div class="col-4 fs-3 ">
+            <a  class="btn btn-default " [routerLink]="['/admin/Doctorschedule']"> Add Doctor Schedule </a>
+          </div>
+        </div>
+    </div>
+
+    <div class="card card-container container ">
+      <div class="row">
+        <div class="col-4">
+          <img style="height:200px ;" src="../../../assets/clinic_03.jpg" class="img-responsive" alt="">
+        </div>
+        <div class="col-2"> </div>
+        <div class="col-4 fs-3 text-align-center" style="margin-left: 50px;">
+          <a  class="btn btn-default " [routerLink]="['/admin/UpdateFiles']"> Update Files  </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card-container container ">
+      <div class="row">
+        <div class="col-4">
+          <img style="width: 300px;" src="../../../assets/p3.jpg" class="img-responsive mr-5" alt="">
+        </div>
+        <div class="col-2 fs-2 " style="margin-top: 80px;"> </div>
+        <div class="col-4 fs-3">
+          <a  class="btn btn-default " [routerLink]="['/admin/addemployee']"> Register a new employee </a>
+        </div>
+      </div>
+  </div>
 </div>
