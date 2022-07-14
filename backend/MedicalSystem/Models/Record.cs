@@ -37,7 +37,6 @@ namespace MedicalSystem.Models
         
         public int? starRating { get; set; }
       
-        public int done { get; set; }
 
         [ForeignKey("DID")]
         [InverseProperty("Records")]

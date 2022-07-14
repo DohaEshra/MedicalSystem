@@ -50,7 +50,7 @@ namespace MedicalSystem.Controllers
             {
                 return NotFound();
             }
-            return await _context.Visits.Where(e => e.DID == id).OrderBy(a=>a.appointment_time).OrderBy(a=>a.AppointmentNo).ToListAsync();
+            return await _context.Visits.Where(e => e.DID == id).OrderBy(a=>a.appointment_time).ToListAsync();
         }
 
         //GET: api/get/visit/{doctor_id}
