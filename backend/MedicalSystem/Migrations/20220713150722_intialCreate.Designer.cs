@@ -12,8 +12,13 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalSystem.Migrations
 {
     [DbContext(typeof(MedicalSystemContext))]
+<<<<<<<< HEAD:backend/MedicalSystem/Migrations/20220713150722_intialCreate.Designer.cs
     [Migration("20220713150722_intialCreate")]
     partial class intialCreate
+========
+    [Migration("20220713145402_init")]
+    partial class init
+>>>>>>>> cca1ffdab8e1a7588f40e1657e2fdc15073e80ac:backend/MedicalSystem/Migrations/20220713145402_init.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -343,6 +348,9 @@ namespace MedicalSystem.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(max)")
                         .HasDefaultValueSql("('')");
+
+                    b.Property<int?>("starRating")
+                        .HasColumnType("int");
 
                     b.Property<string>("summary")
                         .IsRequired()

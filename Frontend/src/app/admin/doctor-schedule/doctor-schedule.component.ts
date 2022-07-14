@@ -28,7 +28,7 @@ export class DoctorScheduleComponent implements OnInit , OnDestroy {
   constructor(public adminService:AdminService ) { }
   doctor:Doctor|null = new Doctor();
   workIn:Works_in[] = [] ;
-  info:any = {day:"" , start:"" ,sShift :"" , end:"" , eShift :"" ,maxNo:""};
+  info:any = {day:"" , start:"" ,sShift :"" , end:"" , eShift :"" ,maxNo:"",wId:0};
   errorMessageDuringAdd = false ;
   errMsg = '';
   startIn ="";
@@ -68,6 +68,8 @@ export class DoctorScheduleComponent implements OnInit , OnDestroy {
       this.work.start_time = this.startIn;
       this.work.end_time = this.endAt ;
       this.work.maxpatientNo = this.info.maxNo ;
+      this.work.W_ID=0;
+      //var w= {did:this.workIn[0].did,start_time:this.startIn,end_time:this.endAt,maxpatientNo :this.info.maxNo }
       this.subscribe = this.adminService.addDoctorSchedule(this.work).subscribe({next:data=>{
         console.log(data);
         this.workIn.push(this.work);
@@ -98,10 +100,11 @@ export class DoctorScheduleComponent implements OnInit , OnDestroy {
             return
           }
           this.workIn = data ;
+          console.log('aaaaaazxcc');
           this.doctor = data[0].didNavigation ;
           this.showResult= true ;
     },error:err=>{
-      console.log(err);
+      console.log(err,'bbbbbbbbbbbbbbbbbb');
     }})
    }
 

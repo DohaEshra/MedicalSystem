@@ -49,7 +49,6 @@ export class EditPrescriptionComponent implements OnInit {
   deletedFiles:Guid[]= []; //deleted files by fno
   deleteTest(fno:Guid)
   {
-
     if(this.recordList.length==1 && this.recordList[0].testType!="")
     {
       this.recordList[0].file_description="";
@@ -133,7 +132,7 @@ export class EditPrescriptionComponent implements OnInit {
       this.newFile = {fno:null,file_description:desc,testType:type,
       attached_files:'',did:this.recordList[0].did,pid:this.recordList[0].pid,
       oid:null,date:this.recordList[0].date,summary:this.recordList[0].summary,
-      prescription:this.recordList[0].prescription,pidNavigation:null,didNavigation:null,oidNavigation:null};
+        prescription: this.recordList[0].prescription, starRating:null,pidNavigation:null,didNavigation:null,oidNavigation:null};
       
       this.recordList.push(this.newFile); 
       this.newFile=new Record();

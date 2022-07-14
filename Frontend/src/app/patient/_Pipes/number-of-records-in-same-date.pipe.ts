@@ -24,6 +24,7 @@ transform(records:Record[]): RecordPerDate[] {
           temp["summary"]=records[i].summary;
           temp["didNavigation"]=records[i].didNavigation;
           temp["prescription"]=records[i].prescription;
+          temp["starRating"] = records[i].starRating;
           temp["attached_files"].push(records[j].attached_files||null);
           temp["file_description"].push(records[j].file_description||"");
           temp["testType"].push(records[j].testType||"");

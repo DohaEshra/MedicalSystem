@@ -54,6 +54,7 @@ namespace MedicalSystem.Controllers
 
             _context.Entry(doctorRating).State = EntityState.Modified;
 
+
             try
             {
                 await _context.SaveChangesAsync();

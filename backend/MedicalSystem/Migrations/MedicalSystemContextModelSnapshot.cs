@@ -117,7 +117,7 @@ namespace MedicalSystem.Migrations
                     b.HasIndex(new[] { "phone" }, "X_Doctor")
                         .IsUnique();
 
-                    b.ToTable("Doctor", (string)null);
+                    b.ToTable("Doctor");
                 });
 
             modelBuilder.Entity("MedicalSystem.Models.DoctorRating", b =>
@@ -138,7 +138,7 @@ namespace MedicalSystem.Migrations
 
                     b.HasIndex("DID");
 
-                    b.ToTable("DoctorRating", (string)null);
+                    b.ToTable("DoctorRating");
                 });
 
             modelBuilder.Entity("MedicalSystem.Models.Other", b =>
@@ -220,7 +220,7 @@ namespace MedicalSystem.Migrations
                     b.HasIndex(new[] { "email" }, "IX_Others")
                         .IsUnique();
 
-                    b.ToTable("Others", (string)null);
+                    b.ToTable("Others");
                 });
 
             modelBuilder.Entity("MedicalSystem.Models.Patient", b =>
@@ -307,7 +307,7 @@ namespace MedicalSystem.Migrations
                     b.HasIndex(new[] { "phone" }, "X_Patient")
                         .IsUnique();
 
-                    b.ToTable("Patient", (string)null);
+                    b.ToTable("Patient");
                 });
 
             modelBuilder.Entity("MedicalSystem.Models.Record", b =>
@@ -330,6 +330,11 @@ namespace MedicalSystem.Migrations
                     b.Property<byte[]>("attached_files")
                         .HasColumnType("varbinary(max)");
 
+                    b.Property<int>("done")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValueSql("0");
+
                     b.Property<string>("file_description")
                         .HasMaxLength(150)
                         .IsUnicode(false)
@@ -341,6 +346,9 @@ namespace MedicalSystem.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(max)")
                         .HasDefaultValueSql("('')");
+
+                    b.Property<int?>("starRating")
+                        .HasColumnType("int");
 
                     b.Property<string>("summary")
                         .IsRequired()
@@ -359,7 +367,7 @@ namespace MedicalSystem.Migrations
 
                     b.HasIndex(new[] { "PID" }, "IX_Record_PID");
 
-                    b.ToTable("Record", (string)null);
+                    b.ToTable("Record");
                 });
 
             modelBuilder.Entity("MedicalSystem.Models.Visit", b =>
@@ -385,7 +393,7 @@ namespace MedicalSystem.Migrations
 
                     b.HasIndex(new[] { "DID" }, "IX_Visit_DID");
 
-                    b.ToTable("Visit", (string)null);
+                    b.ToTable("Visit");
                 });
 
             modelBuilder.Entity("MedicalSystem.Models.Works_in", b =>
@@ -393,12 +401,8 @@ namespace MedicalSystem.Migrations
                     b.Property<int>("DID")
                         .HasColumnType("int");
 
-                    b.Property<string>("start_time")
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(100)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(100)")
-                        .HasDefaultValueSql("(N'')");
+                    b.Property<int>("W_ID")
+                        .HasColumnType("int");
 
                     b.Property<string>("end_time")
                         .IsRequired()
@@ -409,10 +413,15 @@ namespace MedicalSystem.Migrations
                     b.Property<int>("maxpatientNo")
                         .HasColumnType("int");
 
-                    b.HasKey("DID", "start_time")
+                    b.Property<string>("start_time")
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("DID", "W_ID")
                         .HasName("PK_Works_in_1");
 
-                    b.ToTable("Works_in", (string)null);
+                    b.ToTable("Works_in");
                 });
 
             modelBuilder.Entity("MedicalSystem.Models.DoctorRating", b =>

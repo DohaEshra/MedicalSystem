@@ -7,9 +7,7 @@ import { DoctorRegisterationComponent } from './doctor-registeration/doctor-regi
 import { FormsModule } from '@angular/forms';
 import { FileUpadateOrDeleteComponent } from './file-upadate-or-delete/file-upadate-or-delete.component';
 import { SafePipe } from './_Pipes/safe.pipe';
-import { RecordFilterationPipe } from './_Pipes/record-filteration.pipe';
 import { FileUploadModule } from 'primeng/fileupload';
-import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from '../core/core.module';
 import { DialogModule } from 'primeng/dialog';
 import { AgeValDirective } from './_directives/age-val.directive';
@@ -24,7 +22,6 @@ import { EditDoctorScheduleComponent } from './edit-doctor-schedule/edit-doctor-
     DoctorRegisterationComponent,
     FileUpadateOrDeleteComponent,
     SafePipe,
-    RecordFilterationPipe,
     AdminHomeComponent,
     DoctorRegisterationComponent,
     AgeValDirective,

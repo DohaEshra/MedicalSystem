@@ -36,7 +36,7 @@ export class AdminService {
   }
 
   //add doctor schedule
-  addDoctorSchedule(info:Works_in){
+  addDoctorSchedule(info:any){
     return this.http.post<any>(this.baseUrl + "works_in", info);
   }
 
@@ -46,7 +46,17 @@ export class AdminService {
   }
 
   //edit row from doctor schedule 
-  editRowFromSchedule(work:Works_in, did:number,start: string ){
-    return this.http.put<any>(this.baseUrl+"works_in/"+did+'/'+start,work);
+  editRowFromSchedule(work:Works_in, did:number,W_ID: number ){
+    return this.http.put<any>(this.baseUrl+"works_in/"+did+'/'+W_ID,work);
+  }
+
+  //edit file
+  uploadFile(record: any, fileToUpload: any) {
+    return this.http.post<any>(this.baseUrl + 'Record/AddFile/' + record.pid + '/' + record.did + '/' + record.date + '/' + record.file_description + '/' + record.fno + '/' + record.oid, fileToUpload);
+  }
+
+  //delete files
+  DeleteFile(record: any) {
+    return this.http.delete<any>(this.baseUrl + 'Record/DeleteFile/' + record.pid + '/' + record.did + '/' + record.date + '/' + record.file_description + '/' + record.fno + '/' + record.oid);
   }
 }
