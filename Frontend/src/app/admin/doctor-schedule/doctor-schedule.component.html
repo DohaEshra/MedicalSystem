@@ -16,6 +16,7 @@
             <button (click)="ShowDoctorSchedule()" class="form-control form-control-lg btn btn-outline-success fs-5 " >search </button>
         </div>
     </div>
+
     <div class=" my-3 fs-5 form-group" *ngIf="showAddToSchedule">
         <div class="row my-5">
             <div class="col-lg-3 col-sm-3"> 
@@ -124,6 +125,7 @@
                         <th>Start time</th>
                         <th>End time </th>
                         <th>Max # of patients </th>
+                        <th class="text-center"><em class="fa fa-cog"></em></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -138,6 +140,12 @@
                         <td scope="row">{{item.start_time}}</td>
                         <td>{{item.end_time}}</td>
                         <td>{{item.maxpatientNo}}</td>
+                        <td [align]="'center'">
+                            <a  class="text-dark fs-6" [routerLink]="['/admin/editDoctorschedule',item]" [state]="item"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                        </td>
+                        <!-- <td [align]="'center'">
+                            <a  class="text-dark fs-6" [routerLink]="['/doctor/patient',patient.pidNavigation?.id,'info']"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                          </td> -->
                     </tr>
                 </tbody>
            </table>

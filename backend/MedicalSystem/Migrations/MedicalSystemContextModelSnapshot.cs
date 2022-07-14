@@ -117,7 +117,7 @@ namespace MedicalSystem.Migrations
                     b.HasIndex(new[] { "phone" }, "X_Doctor")
                         .IsUnique();
 
-                    b.ToTable("Doctor");
+                    b.ToTable("Doctor", (string)null);
                 });
 
             modelBuilder.Entity("MedicalSystem.Models.DoctorRating", b =>
@@ -138,7 +138,7 @@ namespace MedicalSystem.Migrations
 
                     b.HasIndex("DID");
 
-                    b.ToTable("DoctorRating");
+                    b.ToTable("DoctorRating", (string)null);
                 });
 
             modelBuilder.Entity("MedicalSystem.Models.Other", b =>
@@ -220,7 +220,7 @@ namespace MedicalSystem.Migrations
                     b.HasIndex(new[] { "email" }, "IX_Others")
                         .IsUnique();
 
-                    b.ToTable("Others");
+                    b.ToTable("Others", (string)null);
                 });
 
             modelBuilder.Entity("MedicalSystem.Models.Patient", b =>
@@ -307,7 +307,7 @@ namespace MedicalSystem.Migrations
                     b.HasIndex(new[] { "phone" }, "X_Patient")
                         .IsUnique();
 
-                    b.ToTable("Patient");
+                    b.ToTable("Patient", (string)null);
                 });
 
             modelBuilder.Entity("MedicalSystem.Models.Record", b =>
@@ -359,7 +359,7 @@ namespace MedicalSystem.Migrations
 
                     b.HasIndex(new[] { "PID" }, "IX_Record_PID");
 
-                    b.ToTable("Record");
+                    b.ToTable("Record", (string)null);
                 });
 
             modelBuilder.Entity("MedicalSystem.Models.Visit", b =>
@@ -385,7 +385,7 @@ namespace MedicalSystem.Migrations
 
                     b.HasIndex(new[] { "DID" }, "IX_Visit_DID");
 
-                    b.ToTable("Visit");
+                    b.ToTable("Visit", (string)null);
                 });
 
             modelBuilder.Entity("MedicalSystem.Models.Works_in", b =>
@@ -412,7 +412,7 @@ namespace MedicalSystem.Migrations
                     b.HasKey("DID", "start_time")
                         .HasName("PK_Works_in_1");
 
-                    b.ToTable("Works_in");
+                    b.ToTable("Works_in", (string)null);
                 });
 
             modelBuilder.Entity("MedicalSystem.Models.DoctorRating", b =>
