@@ -31,4 +31,8 @@ export class RadiographerService {
   {
     return this.http.get<Patient[]>(this.baseUrl+"/patient/ScanPatients");
   }
+
+  uploadFile(record: any, radiographerID: any, fileToUpload: any) {
+    return this.http.post<any>(this.baseUrl + '/Record/AddFile/' + record.pid + '/' + record.did + '/' + record.date + '/' + record.file_description + '/' + record.fno + '/' + radiographerID, fileToUpload);
+  }
 }

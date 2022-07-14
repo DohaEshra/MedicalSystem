@@ -14,6 +14,7 @@ export class Record {
                 public date :Date=new Date(), 
                 public summary:string='',
                 public prescription:string='',
+                public starRating:number|null=null,
                 public didNavigation:Doctor|null=new Doctor(),
                 public pidNavigation:Patient|null=new Patient(),
                 public oidNavigation: Other | null = new Other(),

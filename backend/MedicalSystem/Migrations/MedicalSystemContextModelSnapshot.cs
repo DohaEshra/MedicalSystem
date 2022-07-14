@@ -330,6 +330,11 @@ namespace MedicalSystem.Migrations
                     b.Property<byte[]>("attached_files")
                         .HasColumnType("varbinary(max)");
 
+                    b.Property<int>("done")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValueSql("0");
+
                     b.Property<string>("file_description")
                         .HasMaxLength(150)
                         .IsUnicode(false)
@@ -341,6 +346,9 @@ namespace MedicalSystem.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(max)")
                         .HasDefaultValueSql("('')");
+
+                    b.Property<int?>("starRating")
+                        .HasColumnType("int");
 
                     b.Property<string>("summary")
                         .IsRequired()

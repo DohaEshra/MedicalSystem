@@ -29,4 +29,12 @@ export class AdminService {
     return this.http.get<Patient[]>(this.baseUrl + "Patient/adminFilesPatients");
   }
 
+
+  uploadFile(record: any, fileToUpload: any) {
+    return this.http.post<any>(this.baseUrl + 'Record/AddFile/' + record.pid + '/' + record.did + '/' + record.date + '/' + record.file_description + '/' + record.fno + '/' + record.oid, fileToUpload);
+  }
+
+  DeleteFile(record: any) {
+    return this.http.delete<any>(this.baseUrl + 'Record/DeleteFile/' + record.pid + '/' + record.did + '/' + record.date + '/' + record.file_description + '/' + record.fno + '/' + record.oid);
+  }
 }

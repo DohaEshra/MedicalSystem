@@ -51,15 +51,17 @@
             <td style="vertical-align: middle" >
                 <p-fileUpload 
                 name="myfiles[]"
-                [url]="'https://localhost:7089/api/Record/AddFile/' + record.pid + '/' + record.did + '/' + record.date + '/' + record.file_description + '/' + radiographerID"
                 [multiple]="false"
                 accept="application/pdf"
                 mode="basic" 
                 [auto]="true"
                 chooseLabel="Scan"
-                (onUpload)="myUploader(record, $event)"
-                (onError)="errorInUploading($event)"
+                [customUpload]="true"
+                (uploadHandler)="UploadFiles(record, $event)"
                 >
+                <!-- [url]="'https://localhost:7089/api/Record/AddFile/' + record.pid + '/' + record.did + '/' + record.date + '/' + record.file_description + '/' + record.fno + '/' + radiographerID"
+                (onUpload)="myUploader(record, $event)"
+                (onError)="errorInUploading($event)" -->
                 </p-fileUpload>
             </td>
         </tr>
@@ -99,15 +101,17 @@
             <td style="vertical-align: middle" >
                 <p-fileUpload 
                 name="myfiles[]"
-                [url]="'https://localhost:7089/api/Record/AddFile/' + record.pid + '/' + record.did + '/' + record.date + '/' + record.file_description + '/' + radiographerID"
                 [multiple]="false"
                 accept="application/pdf"
                 mode="basic" 
                 [auto]="true"
                 chooseLabel="Scan"
-                (onUpload)="myUploader(record, $event)"
-                (onError)="errorInUploading($event)"
+                [customUpload]="true"
+                (uploadHandler)="UploadFiles(record, $event)"
                 >
+                <!-- [url]="'https://localhost:7089/api/Record/AddFile/' + record.pid + '/' + record.did + '/' + record.date + '/' + record.file_description + '/' + record.fno + '/' + radiographerID"
+                (onUpload)="myUploader(record, $event)"
+                (onError)="errorInUploading($event)" -->
                 </p-fileUpload>
             </td>
         </tr>

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalSystem.Migrations
 {
     [DbContext(typeof(MedicalSystemContext))]
-    [Migration("20220713015106_intial")]
-    partial class intial
+    [Migration("20220713145402_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -344,6 +344,9 @@ namespace MedicalSystem.Migrations
                         .HasColumnType("varchar(max)")
                         .HasDefaultValueSql("('')");
 
+                    b.Property<int?>("starRating")
+                        .HasColumnType("int");
+
                     b.Property<string>("summary")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
@@ -407,6 +410,9 @@ namespace MedicalSystem.Migrations
                         .HasMaxLength(100)
                         .IsUnicode(false)
                         .HasColumnType("varchar(100)");
+
+                    b.Property<int>("maxpatientNo")
+                        .HasColumnType("int");
 
                     b.HasKey("DID", "start_time")
                         .HasName("PK_Works_in_1");

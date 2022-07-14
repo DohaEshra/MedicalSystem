@@ -5,10 +5,10 @@
         <tr>
           <th class="text-center">Doctor Name</th>
           <th class="text-center">Doctor Category</th>
-          <th class="text-center">File Description</th>
+          <th >File Description</th>
           <th class="text-center">Date</th>
           <th class="text-center">Summary</th>
-          <th class="text-center">Attached Files</th>
+          <th >Attached Files</th>
           <th class="text-center">Rating</th>
         </tr>
       </thead>
@@ -49,7 +49,7 @@
             </tr>
           </td>
           <td>
-            <ngb-rating (rate)="rate" [rate]="intialRate"  [max]="5" (click)="ratingDoctor(record, rat)" #rat>
+            <ngb-rating (rate)="rate" [rate]="record.starRating||0"  [max]="5" (click)="ratingDoctor(record, rat)" #rat>
               <ng-template let-fill="fill" let-index="index">
                 <span class="star" [class.filled]="fill === 100" >&#9733;</span> 
               </ng-template>

@@ -33,9 +33,13 @@ export class LabTechnicianService {
     return this.http.get<Patient[]>(this.baseUrl+"/patient/LabPatients");
   }
 
+  uploadFile(record: any, labTechnicianId:any, fileToUpload:any){
+    return this.http.post<any>(this.baseUrl + '/Record/AddFile/' + record.pid + '/' + record.did + '/' + record.date + '/' + record.file_description + '/' + record.fno + '/' + labTechnicianId, fileToUpload);
+  }
+
   // //Add Files
   // AddPatientFile(pid:number,did:number,date:Date, record:any){
   //   return this.http.put<any>(this.baseUrl+"/Record/AddFile/"+pid+"/"+did+"/"+date,record);
-  // }
+  // 
   
 }

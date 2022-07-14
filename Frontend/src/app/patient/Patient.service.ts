@@ -107,4 +107,9 @@ addDoctorRating(drRating:any){
   return this.http.post<any>("https://localhost:7089/api/doctorRating",drRating);
 }
 
+
+  updatePatientRecord(record: any) {
+    return this.http.put<any>("https://localhost:7089/api/Record/saveStarRating/"+ record.pid +"/"+ record.did +"/"+ record.date, record);
+  }
+
 }

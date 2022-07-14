@@ -4,23 +4,23 @@
 
 namespace MedicalSystem.Migrations
 {
-    public partial class intial1 : Migration
+    public partial class m : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
-                name: "maxpatientNo",
-                table: "Works_in",
+                name: "done",
+                table: "Record",
                 type: "int",
                 nullable: false,
-                defaultValue: 0);
+                defaultValueSql: "0");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "maxpatientNo",
-                table: "Works_in");
+                name: "done",
+                table: "Record");
         }
     }
 }
