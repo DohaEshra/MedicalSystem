@@ -1,6 +1,6 @@
 #load {
-    -webkit-animation: cssAnimation 20s forwards; 
-    animation: cssAnimation 10s forwards;
+    -webkit-animation: cssAnimation 40s forwards; 
+    animation: cssAnimation 40s forwards;
 }
 @keyframes cssAnimation {
     0%   {opacity: 1;}
@@ -14,7 +14,7 @@
 }
 
 #showMe {
-  animation: cssAnimation1 0s 10s forwards;
+  animation: cssAnimation1 0s 60s forwards;
   visibility: hidden;
 }
 
