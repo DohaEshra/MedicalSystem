@@ -30,6 +30,7 @@ export class PatientAppointmentComponent implements OnInit,OnDestroy {
         this.patientser.GetAppointments(a['did']).subscribe(
           data=>{
             this.appointments=data;
+            console.log(this.appointments)
             this.doctorId=a['did'];
           }
         )
@@ -49,12 +50,13 @@ export class PatientAppointmentComponent implements OnInit,OnDestroy {
   Book(){
 
     this.date=this.datePipe.transform(this.bookingDate,'fullDate')!; //required date
+    console.log(this.date)
     this.fromdate=this.datePipe.transform(new Date(),'fullDate')!; //min date
     this.todate = this.datePipe.transform(new Date(new Date(this.fromdate).setMonth((new Date(this.fromdate)).getMonth()+2)),'fullDate')!; //max date
     
     //check validation of date
     this.retreived=this.isValid.transform(this.date,this.fromdate,this.todate,this.appointments);
-    
+    console.log(this.retreived)
     
     if(this.retreived) // if valid
     {

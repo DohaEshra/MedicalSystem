@@ -401,12 +401,8 @@ namespace MedicalSystem.Migrations
                     b.Property<int>("DID")
                         .HasColumnType("int");
 
-                    b.Property<string>("start_time")
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(100)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(100)")
-                        .HasDefaultValueSql("(N'')");
+                    b.Property<int>("W_ID")
+                        .HasColumnType("int");
 
                     b.Property<string>("end_time")
                         .IsRequired()
@@ -417,7 +413,12 @@ namespace MedicalSystem.Migrations
                     b.Property<int>("maxpatientNo")
                         .HasColumnType("int");
 
-                    b.HasKey("DID", "start_time")
+                    b.Property<string>("start_time")
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("DID", "W_ID")
                         .HasName("PK_Works_in_1");
 
                     b.ToTable("Works_in");

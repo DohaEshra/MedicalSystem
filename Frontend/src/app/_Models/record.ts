@@ -13,6 +13,7 @@ export class Record {
                 public oid:number|null=null, 
                 public date :Date=new Date(), 
                 public summary:string='',
+                //public done:number=0,
                 public prescription:string='',
                 public starRating:number|null=null,
                 public didNavigation:Doctor|null=new Doctor(),

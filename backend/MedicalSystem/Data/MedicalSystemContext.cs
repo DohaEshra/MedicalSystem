@@ -134,10 +134,10 @@ namespace MedicalSystem.Data
 
             modelBuilder.Entity<Works_in>(entity =>
             {
-                entity.HasKey(e => new { e.DID, e.start_time })
+                entity.HasKey(e => new { e.DID, e.W_ID })
                     .HasName("PK_Works_in_1");
 
-                entity.Property(e => e.start_time).HasDefaultValueSql("(N'')");
+            //    entity.Property(e => e.start_time).HasDefaultValueSql("(N'')");
 
                 entity.HasOne(d => d.DIDNavigation)
                     .WithMany(p => p.Works_ins)
