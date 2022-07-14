@@ -9,12 +9,11 @@ import { FileUpadateOrDeleteComponent } from './file-upadate-or-delete/file-upad
 
 const routes: Routes =[
   { path:"addemployee", component: DoctorRegisterationComponent },
+  { path: 'UpdateFiles', component: FileUpadateOrDeleteComponent },
+  {path:"Doctorschedule",component:DoctorScheduleComponent},
+  {path:"editDoctorschedule",component:EditDoctorScheduleComponent},
+  {path:"",component:AdminHomeComponent},
     {path:"",component:AdminHomeComponent,canActivate:[AdminLoginGuard],children:[
-        {path:"",component:AdminHomeComponent},
-        { path: 'doctorRegister', component: DoctorRegisterationComponent },
-        { path: 'UpdateFiles', component: FileUpadateOrDeleteComponent },
-        {path:"Doctorschedule",component:DoctorScheduleComponent},
-        {path:"editDoctorschedule",component:EditDoctorScheduleComponent},
 
         // {path:"edit",component:DoctorEditComponent},
         // {path:"patientsearch",component:DoctorPatientSearchComponent},

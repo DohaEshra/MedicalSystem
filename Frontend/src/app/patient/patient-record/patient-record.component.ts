@@ -30,6 +30,7 @@ clicked = false;
   rate:number= Number();
   doctorRating = new DoctorRating()
   intialRate =0
+  myAttachedFile=''
 
   constructor(public PatientServ:PatientService, public router:Router,public patHomeComp:PatientHomeComponent) { }
 
@@ -41,8 +42,9 @@ clicked = false;
     })
   }
   
-  showDialog(){
+  showDialog(record: any) {
     this.fileDialogVisibility = true;
+    this.myAttachedFile = record;
   }
 
   hideDialog(){
