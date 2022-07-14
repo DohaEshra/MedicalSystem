@@ -4,6 +4,7 @@ using MedicalSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalSystem.Migrations
 {
     [DbContext(typeof(MedicalSystemContext))]
-    partial class MedicalSystemContextModelSnapshot : ModelSnapshot
+    [Migration("20220713234154_addColumnToWorkIn")]
+    partial class addColumnToWorkIn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -330,11 +332,6 @@ namespace MedicalSystem.Migrations
                     b.Property<byte[]>("attached_files")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<int>("done")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValueSql("0");
-
                     b.Property<string>("file_description")
                         .HasMaxLength(150)
                         .IsUnicode(false)
@@ -398,6 +395,13 @@ namespace MedicalSystem.Migrations
                     b.Property<int>("DID")
                         .HasColumnType("int");
 
+                    b.Property<string>("start_time")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)")
+                        .HasDefaultValueSql("(N'')");
+
                     b.Property<int>("W_ID")
                         .HasColumnType("int");
 
@@ -410,12 +414,7 @@ namespace MedicalSystem.Migrations
                     b.Property<int>("maxpatientNo")
                         .HasColumnType("int");
 
-                    b.Property<string>("start_time")
-                        .HasMaxLength(100)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(100)");
-
-                    b.HasKey("DID", "W_ID")
+                    b.HasKey("DID", "start_time")
                         .HasName("PK_Works_in_1");
 
                     b.ToTable("Works_in");

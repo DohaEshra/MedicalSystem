@@ -8,6 +8,7 @@ export class Works_in {
                 public start_time:string="",
                 public end_time:string="",
                 public maxpatientNo:number=Number(),
-                public didNavigation:Doctor|null = null
+                public didNavigation:Doctor|null = null,
+                public W_ID:number|null = 0
             ){}
 }

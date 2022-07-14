@@ -26,6 +26,7 @@ namespace MedicalSystem.Models
         [Unicode(false)]
         public string summary { get; set; }
         public int? OID { get; set; }
+        public int done { get; set; }
         [Required]
         [Unicode(false)]
         public string prescription { get; set; }
