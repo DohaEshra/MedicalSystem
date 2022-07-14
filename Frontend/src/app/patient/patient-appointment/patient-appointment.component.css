@@ -1,25 +1,11 @@
-/* @import "../../../assets/Appointmentcss/open-iconic-bootstrap.min.css"; */
-/* @import "../../../assets/Appointmentcss/animate.css";
-@import "../../../assets/Appointmentcss/owl.carousel.min.css";
-@import "../../../assets/Appointmentcss/magnific-popup.css";
-@import "../../../assets/Appointmentcss/aos.css";
-@import "../../../assets/Appointmentcss/ionicons.min.css";
-@import "../../../assets/Appointmentcss/bootstrap-datepicker.css";
-@import "../../../assets/Appointmentcss/jquery.timepicker.css";
-
-@import "../../../assets/Appointmentcss/flaticon.css";
-@import "../../../assets/Appointmentcss/icomoon.css"; */
-
-
-
 @import "../../../assets/Appstyle.css";
 
 #sect1 {  
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
-    url("../../../assets/login_background.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+  url("../../../assets/login_background.jpg");
 
-    width: 100%;
-    height: 200%;
+  width: 100%;
+  height: 200%;
   -webkit-background-size: cover;
   background-size: cover;
   background-position: center center;

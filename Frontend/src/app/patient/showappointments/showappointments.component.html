@@ -36,7 +36,7 @@
         <td *ngIf="visit.appointmentStatus==0"><i class="fa fa-spinner" style="color: red;" aria-hidden="true"></i></td>
         <td *ngIf="visit.appointmentStatus==1"><i class="fa fa-check" style="color: green;" aria-hidden="true"></i></td>
         <td align="left">
-            <a class="btn-sm btn-default" (click)="deleteMedicine(visit.pid,visit.did,visit.appointment_time)">
+            <a class="btn-sm btn-default" *ngIf="visit.appointmentStatus==0" (click)="deleteApointment(visit.pid,visit.did,visit.appointment_time)">
                 <em  class="fa fa-times" style="color: red;"></em>
             </a>
             <a [routerLink]="['/patient/edit',visit.pid,visit.didNavigation?.id,visit.appointment_time]" class="btn btn-outline-success">Edit</a>

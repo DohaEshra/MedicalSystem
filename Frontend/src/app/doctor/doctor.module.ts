@@ -21,6 +21,9 @@ import { DoctorAppointmentComponent } from './doctor-appointment/doctor-appointm
 import { DateTimePipe } from './_Pipes/date-time.pipe';
 import { searchAppointmentPipe } from './_Pipes/search-appointment';
 import { CoreModule } from '../core/core.module';
+import { DoctorProfileComponent } from './doctor-profile/doctor-profile.component';
+import { DoctorHoursComponent } from './doctor-hours/doctor-hours.component';
+import { TimeFormatPipe } from './_Pipes/time-format.pipe';
 
 
 
@@ -42,7 +45,10 @@ import { CoreModule } from '../core/core.module';
     SafePipe,
     DoctorAppointmentComponent,
     DateTimePipe,
-    searchAppointmentPipe
+    searchAppointmentPipe,
+    DoctorProfileComponent,
+    DoctorHoursComponent,
+    TimeFormatPipe
   ],
   imports: [
     CommonModule,doctorRoutingModule,FormsModule,DialogModule,CoreModule

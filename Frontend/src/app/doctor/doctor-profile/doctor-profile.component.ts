@@ -1,23 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Doctor } from 'src/app/_Models/doctor';
 import { DoctorHomeComponent } from '../doctor-home/doctor-home.component';
-import { DoctorService } from '../doctor.service';
-
 
 @Component({
-  selector: 'app-doctor-info',
-  templateUrl: './doctor-info.component.html',
-  styleUrls: ['./doctor-info.component.css']
+  selector: 'app-doctor-profile',
+  templateUrl: './doctor-profile.component.html',
+  styleUrls: ['./doctor-profile.component.css']
 })
-
-export class DoctorInfoComponent implements OnInit,OnDestroy {
+export class DoctorProfileComponent implements OnInit,OnDestroy {
   doctor:Doctor=new Doctor();
   sub:Subscription|null=null;
-
-  constructor(private doc:DoctorHomeComponent) {}
-  
+  constructor(private doc:DoctorHomeComponent) { }
 
   ngOnInit(): void {
     this.sub=this.doc.selectedDoctor$.subscribe(
@@ -30,4 +24,5 @@ export class DoctorInfoComponent implements OnInit,OnDestroy {
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
   }
+
 }
