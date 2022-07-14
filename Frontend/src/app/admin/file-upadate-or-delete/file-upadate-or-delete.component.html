@@ -1,15 +1,14 @@
 <div id="sect1">
     <div class="container">
+        
         <div class="navbar navbar-light ">
-            <div class="d-flex my-4">
-
+            <div class=" d-flex my-4">
                 <input [(ngModel)]="ID" [ngModelOptions]="{standalone: true}" class="form-control me-2"
                     style="width:300px" *ngIf="Indicator==1" type="search" placeholder="Search patient by ID"
                     aria-label="Search" (ngModelChange)="SelectedPatientById(ID)">
                 <input [(ngModel)]="Name" [ngModelOptions]="{standalone: true}" class="form-control me-2"
                     style="width:300px" *ngIf="Indicator==2" type="search" placeholder="Search patient by Name"
                     aria-label="Search" (ngModelChange)="SelectedPatientByName(Name)">
-
                 <div class="dropdown show">
                     <a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
@@ -21,9 +20,11 @@
                     </div>
                 </div>
             </div>
-
-            <!-- search by name table -->
-            <table class="table table-striped table-dark" *ngIf="Name!=''">
+        </div>
+        
+        <!-- search by name table -->
+        <div class="row">
+            <table class="table table-striped table-dark col-12" *ngIf="Name!='' && !fileDialogVisibility">
                 <thead>
                     <tr class="text-center">
                         <th scope="col">ID</th>
@@ -63,16 +64,17 @@
                                 (onError)="errorInUploading($event)" -->
                             </p-fileUpload>
 
-                            <button class="btn btn-danger btn-lg">
+                            <button class="btn btn-danger btn-lg col-12">
                                 <i class="fa-solid fa-delete-left"></i> Delete
                             </button>
                         </td>
                     </tr>
                 </tbody>
             </table>
-
-            <!-- search by ID table -->
-            <table #table class="table table-striped table-dark" *ngIf="ID >0">
+        </div>
+        <!-- search by ID table -->
+        <div class="row">
+            <table #table class="table table-striped table-dark" *ngIf="ID >0 && !fileDialogVisibility">
                 <thead>
                     <tr class="text-center">
                         <th>Patient ID</th>
@@ -113,8 +115,7 @@
                             <!-- <p-dialog [(visible)]="fileDialogVisibility" [style]="{width: '1000px',height: '800px'}" header="File Details" [modal]="true" styleClass="p-fluid">
                             <iframe class="text-center" [style]="{width: '90%',height: '95%'}" [src]="('data:application/pdf;base64,'+record.attached_files)|safe:'url'" ></iframe>
                             </p-dialog> -->
-                            <object class="text-center" [style]="{width: '100%',height: '95%'}"
-                                [data]="('data:application/pdf;base64,'+record.attached_files)|safe:'url'"></object>
+                            <!-- <object class="text-center" [style]="{width: '100%',height: '95%'}" [data]="('data:application/pdf;base64,'+record.attached_files)|safe:'url'"></object> -->
                         </td>
                         <td style="vertical-align: middle" class="text-light">
                             {{ record.oidNavigation?.fname }} {{record.oidNavigation?.lname}}
@@ -138,5 +139,11 @@
                 </tbody>
             </table>
         </div>
-
-        <app-loading *ngIf="patientsList.length==0"> </app-loading>
+        
+        <div *ngIf="fileDialogVisibility" class="row">
+            <button class="btn btn-success btn-lg my-3" (click)="hideDialog()">Back</button>
+            <object style="width: 100%; height:100vh" class="text-center" [data]="('data:application/pdf;base64,'+myAttachedFile)|safe:'url'"></object>
+        </div>
+    </div>
+    <app-loading *ngIf="patientsList.length==0"> </app-loading>
+</div>

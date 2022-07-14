@@ -25,6 +25,7 @@ export class PatientRecordComponent implements OnInit,OnDestroy {
   rate:number= Number();
   doctorRating = new DoctorRating()
   intialRate =0
+  myAttachedFile=''
 
   constructor(public PatientServ:PatientService, public router:Router,public patHomeComp:PatientHomeComponent) { }
 
@@ -35,8 +36,9 @@ export class PatientRecordComponent implements OnInit,OnDestroy {
     })
   }
   
-  showDialog(){
+  showDialog(record: any) {
     this.fileDialogVisibility = true;
+    this.myAttachedFile = record;
   }
 
   hideDialog(){

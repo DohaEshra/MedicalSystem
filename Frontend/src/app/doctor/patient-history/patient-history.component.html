@@ -1,6 +1,7 @@
 <div id="load" class="fa-3x d-flex justify-content-center" *ngIf="!RecordList.length">
   <i class="fas fa-spinner fa-spin" style="color: yellowgreen;" aria-hidden="true"></i>
 </div>
+
 <div id="showMe" style=" height: 70px;" class="d-flex justify-content-center" *ngIf="!RecordList.length">           
   <label class="fs-3" style="color: rgb(153, 155, 158);"><em style="color: yellowgreen;" class="fas fa-cog fa-spin"></em> Not Found</label>
 </div>
@@ -8,12 +9,12 @@
 <div class="container" *ngIf="RecordList.length">
     <div class=" col-md-10 col-sm-8 offset-1 mb-1" id="myTabContent">
         
-        <div class="searchbar">
+        <div class="searchbar" *ngIf="!fileDialogVisibility">
           <input type="text" class="search_input" placeholder="Search Prescription ... " [(ngModel)]="searchText"/>
           <a class="search_icon"><i class="fas fa-search"></i></a>
         </div>
 
-        <div class="table-responsive col-md-12" id="sailorTableArea">
+        <div class="table-responsive col-md-12" id="sailorTableArea" *ngIf="!fileDialogVisibility">
           <div style=" height: 70px; " class="d-flex justify-content-center" *ngIf="(RecordList|searchInTable:searchText|recordWithoutRedundancy).length==0 ">           
             <label class="fs-3" style="color: rgb(153, 155, 158);"><em style="color: yellowgreen;" class="fas fa-cog fa-spin"></em> No Prescription Found</label>
           </div>
@@ -44,11 +45,9 @@
                   <td>
                     <tr *ngFor="let file of record.attached_files">
                       <td >
-                        <button class="btn btn-primary" *ngIf="file != null; else t1" (click)="showDialog()"><em class="pi pi-file-pdf"></em></button>
+                        <button class="btn btn-primary" *ngIf="file != null; else t1" (click)="showDialog(file)"><em class="pi pi-file-pdf"></em></button>
                     </td>
-                    <p-dialog [(visible)]="fileDialogVisibility" [style]="{width: '1000px',height: '800px'}" header="File Details" [modal]="true" styleClass="p-fluid">
-                        <object class="text-center" [style]="{width: '100%',height: '95%'}" [data]="('data:application/pdf;base64,'+file)|safe:'url'" ></object>
-                    </p-dialog>
+                    
                     <ng-template #t1>not yet</ng-template>
                     </tr>
                   </td>
@@ -56,6 +55,11 @@
               </tbody>
           </table>
           
+        </div>
+
+        <div *ngIf="fileDialogVisibility" class="row">
+          <button class="btn btn-success btn-lg my-3" (click)="hideDialog()">Back</button>
+          <object style="width: 100%; height:100vh" class="text-center" [data]="('data:application/pdf;base64,'+myAttachedFile)|safe:'url'"></object>
         </div>
         
     </div>

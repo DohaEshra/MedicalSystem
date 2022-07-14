@@ -18,7 +18,7 @@ export class PatientHistoryComponent implements OnInit,OnDestroy{
   searchText:string="";
   sub:Subscription|null=null;
   fileDialogVisibility = false;
-
+  myAttachedFile=""
   constructor(private patientSer:PatientService,private comp:DoctorPatientComponent , private docSer:DoctorService) { }
 
   ngOnInit(): void {
@@ -37,8 +37,9 @@ export class PatientHistoryComponent implements OnInit,OnDestroy{
 
   
 
-  showDialog(){
+  showDialog(record: any) {
     this.fileDialogVisibility = true;
+    this.myAttachedFile = record;
   }
 
   hideDialog(){

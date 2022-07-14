@@ -1,5 +1,5 @@
 <div class="container my-5" >
-  <div class="shadow-4 rounded-5 overflow-hidden">
+  <div class="shadow-4 rounded-5 overflow-hidden" *ngIf="!fileDialogVisibility">
     <table class="table align-middle mb-0 bg-white">
       <thead class="bg-light" >
         <tr>
@@ -40,11 +40,11 @@
           <td class="text-center">
             <tr *ngFor="let file of record.attached_files">
               <td class="text-center">
-                <button class="btn btn-primary" *ngIf="file != null; else t1" (click)="showDialog()"><em class="pi pi-file-pdf"></em></button>
+                <button class="btn btn-primary" *ngIf="file != null; else t1" (click)="showDialog(file)"><em class="pi pi-file-pdf"></em></button>
               </td>
-              <p-dialog [(visible)]="fileDialogVisibility" [style]="{width: '1000px',height: '800px'}" header="File Details" [modal]="true" styleClass="p-fluid">
+              <!-- <p-dialog [(visible)]="fileDialogVisibility" [style]="{width: '1000px',height: '800px'}" header="File Details" [modal]="true" styleClass="p-fluid">
                 <object class="text-center" [style]="{width: '100%',height: '95%'}" [data]="('data:application/pdf;base64,'+file)|safe:'url'" ></object>
-              </p-dialog>
+              </p-dialog> -->
               <ng-template class="text-center" #t1>haven't uploaded yet</ng-template>
             </tr>
           </td>
@@ -58,7 +58,13 @@
           </td>
         </tr>
       </tbody>
-      </table>
-      </div>
+    </table>
+  </div>
+
+  <div *ngIf="fileDialogVisibility" class="row">
+    <button class="btn btn-success btn-lg my-3" (click)="hideDialog()">Back</button>
+    <object style="width: 100%; height:100vh" class="text-center"
+      [data]="('data:application/pdf;base64,'+myAttachedFile)|safe:'url'"></object>
+  </div>
 
 </div>
