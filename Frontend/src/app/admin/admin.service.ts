@@ -57,4 +57,9 @@ export class AdminService {
     emps.push(oths);
     return emps
   }
+
+  //edit row from doctor schedule 
+  editRowFromSchedule(work:Works_in, did:number,start: string ){
+    return this.http.put<any>(this.baseUrl+"works_in/"+did+'/'+start,work);
+  }
 }
