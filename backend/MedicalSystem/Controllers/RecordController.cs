@@ -123,17 +123,19 @@ namespace MedicalSystem.Controllers
             return NoContent();
         }
 
-
+        //add or update files
         //api/Record/AddFile/pid/did/date   
-        [HttpPost("AddFile/{pid}/{did}/{date}/{file_Description}/{oid}")]
-        //[Authorize(Roles = "radiographer,laboratory technician,admin")]
-        [AllowAnonymous]
-        public async Task<IActionResult> PutRecord(int pid, int did, DateTime date, string file_description, int oid)
+        [HttpPost("AddFile/{pid}/{did}/{date}/{file_Description}/{fno}/{oid}")]
+        [Authorize(Roles = "radiographer,laboratory technician,admin")]
+        //[AllowAnonymous]
+        public async Task<IActionResult> PutRecord(int pid, int did, DateTime date, string file_description,Guid fno, int oid)
         {
-            var record = await _context.Records.FirstOrDefaultAsync(e => e.DID == did && e.PID == pid && e.date == date && e.file_description == file_description);
+            var record = await _context.Records.FirstOrDefaultAsync(e => e.DID == did && e.PID == pid && e.date == date && e.file_description == file_description && e.FNO == fno);
             if (record == null)
                 return BadRequest();
+
             var form = Request.Form;
+
             if(record.attached_files == null)
             {
                 using (var ms = new MemoryStream())
@@ -143,7 +145,7 @@ namespace MedicalSystem.Controllers
                     record.attached_files = fileBytes;
                 }
                 record.OID = oid;
-                record.testType = "F";
+                record.done = 1;
             }
             else
             {
@@ -176,15 +178,17 @@ namespace MedicalSystem.Controllers
 
 
 
-        //api/Record/AddFile/pid/did/date   
-        [HttpDelete("DeleteFile/{pid}/{did}/{date}/{file_Description}/{oid}")]
-        [Authorize(Roles = "radiographer,laboratory technician")]
-        public async Task<IActionResult> deleteFile(int pid, int did, DateTime date, string file_description, int oid)
+        //api/Record/DeleteFile/pid/did/date   
+        [HttpDelete("DeleteFile/{pid}/{did}/{date}/{file_Description}/{fno}/{oid}")]
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> deleteFile(int pid, int did, DateTime date, string file_description,Guid fno, int oid)
         {
-            var record = await _context.Records.FirstOrDefaultAsync(e => e.DID == did && e.PID == pid && e.date == date && e.file_description == file_description);
+            var record = await _context.Records.FirstOrDefaultAsync(e => e.DID == did && e.PID == pid && e.date == date && e.file_description == file_description && e.FNO == fno);
             if (record == null)
                 return BadRequest();
+
             record.attached_files = null;
+            record.done = 0;
 
             try
             {
@@ -242,6 +246,44 @@ namespace MedicalSystem.Controllers
             return NoContent();
         }
 
+        [HttpPut("saveStarRating/{pid}/{did}/{date}")]
+        [Authorize(Roles = "admin,doctor,patient")]
+        public async Task<IActionResult> editRecord(int pid, int did, DateTime date, Record @record)
+        {
+            if (did != @record.DID || pid != record.PID )
+            {
+                return BadRequest();
+            }
+
+            var Records = await _context.Records.Where(r => r.DID == @record.DID && r.PID == @record.PID && r.date.Date == @record.date.Date).ToListAsync();
+            
+            if (Records.Count > 0)
+            {
+                foreach(var rec in Records)
+                {
+                    rec.starRating = @record.starRating;
+                }
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!RecordExists(pid))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            }
+
+
+
+            return NoContent();
+        }
         // POST: api/Record
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]

@@ -11,7 +11,7 @@ import { Doctor } from 'src/app/_Models/doctor';
 })
 export class NavBarComponent implements OnInit {
 
-  doctor:Doctor=new Doctor();
+  // doctor:Doctor=new Doctor();
   sub:Subscription|null=null;
   
   constructor(public account: AccountService,private doctorSer:DoctorService) {}
@@ -41,7 +41,7 @@ export class NavBarComponent implements OnInit {
       //   a=>{
       //     this.doctor=a;
       //   }
-      //);
+      // );
   }
 
   clearToken(){

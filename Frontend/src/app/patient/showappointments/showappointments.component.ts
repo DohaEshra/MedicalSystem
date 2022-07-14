@@ -23,10 +23,11 @@ export class ShowappointmentsComponent implements OnInit,OnDestroy {
       a=>{
         this.patient=a;
         this.patient$.next(this.patient);
+        console.log(a)
       }
     );
   }
-  deleteMedicine(pid:number,did:number,date:Date){
+  deleteMedicine(pid:number,did:number,date:Date|string){
     this.sub1=this.patientSer.deleteAppointment(pid,did,date).subscribe(
       a=>{
         this.ngOnInit();

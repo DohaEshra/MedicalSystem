@@ -1,0 +1,11 @@
+ <form>
+    <div class="mb-3 ">
+        <input type="number" [(ngModel)]="visit.pid" placeholder="" class="form-control" [ngModelOptions]="{standalone: true}" hidden>
+        <label for="Select" class="form-label fs-4">Date </label>
+          <input type="date" [(ngModel)]="visit.appointment_time" value="visit.appointment_time.ToString('yyyy-MM-dd')" class="form-control" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="mb-3 ">
+          <span id="message" style="color: red;">{{errorMessage}}</span>
+      </div>
+      <button type="submit" (click)="Update()" class="btn btn-primary">Update</button>
+</form> 

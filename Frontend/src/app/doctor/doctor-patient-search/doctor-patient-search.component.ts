@@ -19,6 +19,7 @@ export class DoctorPatientSearchComponent implements OnInit,OnDestroy {
   visitListWithoutDuplication:Visit[]=[];
   sub:Subscription|null=null;
   selectedDay: string = '';
+  isDuplicated:boolean=false;
 
   constructor(public doctorSer:DoctorService) { }
 
@@ -28,11 +29,25 @@ export class DoctorPatientSearchComponent implements OnInit,OnDestroy {
         if(data!=null)
         {
           this.visitList=data;
+          console.log(this.visitList)
+          for (let i = 0; i < this.visitList.length; i++) {
+            this.isDuplicated = false;
+            for (let j = i+1; j < this.visitList.length; j++) {
+              if(this.visitList[j].pid==this.visitList[i].pid){
+                this.isDuplicated = true;
+                break;
+              }
+            }
+              if(this.isDuplicated){
+                continue;
+              }
+            
+            this.visitListWithoutDuplication.push(this.visitList[i])
+            
+          }
+          console.log(this.visitListWithoutDuplication)
         }
-        for (let i = 0; i < this.visitList.length-1; i++) {
-          if (this.visitList[i]!=this.visitList[i+1]) 
-          this.visitListWithoutDuplication.push(this.visitList[i+1]);
-        }
+        
       },
     )
   }

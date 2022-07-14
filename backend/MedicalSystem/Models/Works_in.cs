@@ -14,8 +14,19 @@ namespace MedicalSystem.Models
         [Key]
         public int DID { get; set; }
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int W_ID { get; set; }
+
+        [StringLength(100)]
+        [Unicode(false)]
         public string start_time { get; set; }
+        [Required]
+        [StringLength(100)]
+        [Unicode(false)]
         public string end_time { get; set; }
+
+        [Required]
+        public int maxpatientNo { get; set; }
 
         [ForeignKey("DID")]
         [InverseProperty("Works_ins")]

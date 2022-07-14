@@ -37,7 +37,7 @@ namespace MedicalSystem.Controllers
         [Authorize(Roles = "laboratory technician")]
         public async Task<ActionResult<IEnumerable<Patient>>> GetPatientsForLab()
         {
-            var patients = _context.Patients.Where(p => p.Records.Any(p => p.attached_files == null && p.file_description != string.Empty && p.testType == "T")).ToListAsync();
+            var patients = _context.Patients.Where(p => p.Records.Any(p => p.attached_files == null && p.file_description != string.Empty && p.testType == "T" && p.done == 0)).ToListAsync();
             return await patients;
         }
 
@@ -46,16 +46,16 @@ namespace MedicalSystem.Controllers
         [Authorize(Roles = "radiographer")]
         public async Task<ActionResult<IEnumerable<Patient>>> GetPatientsForScan()
         {
-            var patients = await _context.Patients.Where(p => p.Records.Any(p => p.attached_files == null && p.file_description != string.Empty && p.testType == "S")).ToListAsync();
+            var patients = await _context.Patients.Where(p => p.Records.Any(p => p.attached_files == null && p.file_description != string.Empty && p.testType == "S" && p.done == 0)).ToListAsync();
             return patients;
         }
-
-        //get patients who need to 
+        
+        //get patients to update/delete thier files
         [HttpGet("adminFilesPatients")]
         [Authorize(Roles = "admin")]
         public async Task<ActionResult<IEnumerable<Patient>>> GetPatientsForadmin()
         {
-            var patients = await _context.Patients.Where(p => p.Records.Any(p => p.testType == "F")).ToListAsync();
+            var patients = await _context.Patients.Where(p => p.Records.Any(p => p.done == 1)).ToListAsync();
             return patients;
         }
 

@@ -41,7 +41,6 @@
         <th scope="col">Doctor</th>
         <th scope="col">Category</th>
         <th scope="col">Date</th>
-        <th scope="col">Time</th>
         <th scope="col"><i class="fa fa-ticket-alt" aria-hidden="true"></i> NO</th>
         <th scope="col">Status</th>
         <th><em class="fa fa-cog"></em></th>
@@ -52,6 +51,7 @@
         <td>{{visit.didNavigation?.fname}} {{visit.didNavigation?.lname}}</td>
         <td>{{visit.didNavigation?.category}}</td>
         <td>{{(visit.appointment_time|datetime)[0]}}</td>
+<!-- <<<<<<< HEAD -->
         <td>{{(visit.appointment_time|datetime)[1]}}</td>
         <td>{{visit.appointmentNo}}</td>
         <td *ngIf="visit.appointmentStatus==0"><i class="fa fa-spinner" style="color: red;" aria-hidden="true"></i></td>
@@ -60,6 +60,16 @@
           <a class="btn-sm btn-default" (click)="deleteMedicine(visit.pid,visit.did,visit.appointment_time)">
             <em class="fa fa-times" style="color: red;"></em>
           </a>
+<!-- ======= -->
+        <!-- <td >{{visit.appointmentNo}}</td>
+        <td *ngIf="visit.appointmentStatus==0"><i class="fa fa-spinner" style="color: red;" aria-hidden="true"></i></td>
+        <td *ngIf="visit.appointmentStatus==1"><i class="fa fa-check" style="color: green;" aria-hidden="true"></i></td>
+        <td align="left">
+            <a class="btn-sm btn-default" (click)="deleteMedicine(visit.pid,visit.did,visit.appointment_time)">
+                <em  class="fa fa-times" style="color: red;"></em>
+            </a>
+            <a [routerLink]="['/patient/edit',visit.pid,visit.didNavigation?.id,visit.appointment_time]" class="btn btn-outline-success">Edit</a>
+>>>>>>> cca1ffdab8e1a7588f40e1657e2fdc15073e80ac -->
         </td>
       </tr>
     </tbody>

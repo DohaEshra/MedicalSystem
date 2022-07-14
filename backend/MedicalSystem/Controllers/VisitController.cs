@@ -53,6 +53,17 @@ namespace MedicalSystem.Controllers
             return await _context.Visits.Where(e => e.DID == id).OrderBy(a=>a.appointment_time).OrderBy(a=>a.AppointmentNo).ToListAsync();
         }
 
+        //GET: api/get/visit/{doctor_id}
+        [HttpGet("get/{did}/{date}")]
+        public async Task<ActionResult<int>> GetPatientsNo(int did,DateTime date)
+        {
+            if (_context.Visits == null)
+            {
+                return NotFound();
+            }
+            return await _context.Visits.Where(e => e.DID == did && e.appointment_time == date).CountAsync();
+        }
+
         // PUT: api/Visits/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

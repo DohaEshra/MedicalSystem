@@ -22,16 +22,6 @@ namespace MedicalSystem.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("MedicalSystem.Models.BlockedUsers", b =>
-                {
-                    b.Property<string>("email")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("email");
-
-                    b.ToTable("BlockedUsers");
-                });
-
             modelBuilder.Entity("MedicalSystem.Models.Doctor", b =>
                 {
                     b.Property<int>("ID")
@@ -331,7 +321,7 @@ namespace MedicalSystem.Migrations
                     b.Property<DateTime>("date")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("FNO")
+                    b.Property<Guid>("FNO")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("OID")
@@ -339,6 +329,11 @@ namespace MedicalSystem.Migrations
 
                     b.Property<byte[]>("attached_files")
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("done")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValueSql("0");
 
                     b.Property<string>("file_description")
                         .HasMaxLength(150)
@@ -351,6 +346,9 @@ namespace MedicalSystem.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(max)")
                         .HasDefaultValueSql("('')");
+
+                    b.Property<int?>("starRating")
+                        .HasColumnType("int");
 
                     b.Property<string>("summary")
                         .IsRequired()
@@ -403,13 +401,24 @@ namespace MedicalSystem.Migrations
                     b.Property<int>("DID")
                         .HasColumnType("int");
 
-                    b.Property<string>("start_time")
-                        .HasColumnType("varchar(100)");
+                    b.Property<int>("W_ID")
+                        .HasColumnType("int");
 
                     b.Property<string>("end_time")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
                         .HasColumnType("varchar(100)");
 
-                    b.HasKey("DID", "start_time")
+                    b.Property<int>("maxpatientNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("start_time")
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("DID", "W_ID")
                         .HasName("PK_Works_in_1");
 
                     b.ToTable("Works_in");

@@ -1,7 +1,7 @@
 
 <div id="sect1">
 <div class="container">
-    <div class="navbar navbar-light ">
+ <div class="navbar navbar-light ">
   <div class="d-flex my-4">
 
     <input  [(ngModel)]="ID" [ngModelOptions]="{standalone: true}" class="form-control me-2" style="width:300px"   *ngIf="Indicator==1" type="search" placeholder="Search patient by ID" aria-label="Search" (ngModelChange)="SelectedPatientById(ID)">
@@ -16,7 +16,7 @@
           <a class="dropdown-item" (click)="setIndicatorForName()">Name</a>
         </div>
     </div>
-</div>
+  </div>
 
   <!-- search by name table -->
   <table class="table table-striped table-dark" *ngIf="Name!=''">
@@ -51,15 +51,17 @@
             <td style="vertical-align: middle" >
                 <p-fileUpload 
                 name="myfiles[]"
-                [url]="'https://localhost:7089/api/Record/AddFile/' + record.pid + '/' + record.did + '/' + record.date + '/' + record.file_description + '/' + radiographerID"
                 [multiple]="false"
                 accept="application/pdf"
                 mode="basic" 
                 [auto]="true"
                 chooseLabel="Scan"
-                (onUpload)="myUploader(record, $event)"
-                (onError)="errorInUploading($event)"
+                [customUpload]="true"
+                (uploadHandler)="UploadFiles(record, $event)"
                 >
+                <!-- [url]="'https://localhost:7089/api/Record/AddFile/' + record.pid + '/' + record.did + '/' + record.date + '/' + record.file_description + '/' + record.fno + '/' + radiographerID"
+                (onUpload)="myUploader(record, $event)"
+                (onError)="errorInUploading($event)" -->
                 </p-fileUpload>
             </td>
         </tr>
@@ -99,15 +101,17 @@
             <td style="vertical-align: middle" >
                 <p-fileUpload 
                 name="myfiles[]"
-                [url]="'https://localhost:7089/api/Record/AddFile/' + record.pid + '/' + record.did + '/' + record.date + '/' + record.file_description + '/' + radiographerID"
                 [multiple]="false"
                 accept="application/pdf"
                 mode="basic" 
                 [auto]="true"
                 chooseLabel="Scan"
-                (onUpload)="myUploader(record, $event)"
-                (onError)="errorInUploading($event)"
+                [customUpload]="true"
+                (uploadHandler)="UploadFiles(record, $event)"
                 >
+                <!-- [url]="'https://localhost:7089/api/Record/AddFile/' + record.pid + '/' + record.did + '/' + record.date + '/' + record.file_description + '/' + record.fno + '/' + radiographerID"
+                (onUpload)="myUploader(record, $event)"
+                (onError)="errorInUploading($event)" -->
                 </p-fileUpload>
             </td>
         </tr>
