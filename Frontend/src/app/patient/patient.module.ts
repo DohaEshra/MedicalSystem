@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { GetDoctorPerCategoryComponent } from './get-doctor-per-category/get-doctor-per-category.component';
 import { PatientRoutingModule } from './patient.routing';
 import { PatientRecordComponent } from './patient-record/patient-record.component';
@@ -28,6 +28,7 @@ import { NumberOfRecordsInSameDatePipe } from './_Pipes/number-of-records-in-sam
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditappointmentComponent } from './editappointment/editappointment.component';
 import { CoreModule } from '../core/core.module';
+import { IsValidDatePipe } from './_Pipes/is-valid-date.pipe';
 
 @NgModule({
   declarations: [
@@ -65,5 +66,9 @@ import { CoreModule } from '../core/core.module';
     NgbRatingModule,
     CoreModule
   ],
+  providers:[
+    IsValidDatePipe,
+    DatePipe
+  ]
 })
 export class PatientModule {}
