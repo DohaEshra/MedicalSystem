@@ -122,6 +122,7 @@ export class FileUpadateOrDeleteComponent implements OnInit {
 
   showDialog(record: any) {
     this.fileDialogVisibility = true;
+    this.myAttachedFile = record;
   }
 
   hideDialog() {

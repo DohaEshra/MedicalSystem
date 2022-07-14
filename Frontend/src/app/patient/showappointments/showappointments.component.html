@@ -1,38 +1,67 @@
 <app-loading *ngIf="!patient.id"></app-loading>
 
 <div class="container emp-profile " *ngIf="patient.id">
-    <div class="d-flex justify-content-center">
-        <div class="card mb-3" style="max-width: 540px; margin-right: 1%;" >
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src={{patient.profilePic}} class="img-fluid rounded-start"/>
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h3 class="card-title"><b>Welcome Dr , <label style="color: rgb(143, 213, 38);"> {{patient.fname}} {{patient.lname}}</label></b></h3>
-                  <p class="card-text mx-1" style="color: rgb(108, 108, 108);">Whatever you do, do with determination. You have one life to live; do your work with passion and give your best.</p>
-                </div>
-              </div>
-            </div>
+  <div class="d-flex justify-content-center">
+    <div class="card mb-3" style="max-width: 540px; margin-right: 1%;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src={{patient.profilePic}} class="img-fluid rounded-start" />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h3 class="card-title"><b>Welcome, <label style="color: #a5c422;"> {{patient.fname}}
+                  {{patient.lname}}</label></b></h3>
+            <p class="card-text mx-1" style="color: rgb(108, 108, 108);">Wishing you an easy recovery and continued good
+              health afterward!</p>
+          </div>
+          <button class="btn booking" [routerLink]="['/patient/appointment',patient.id]">Book Appointment</button>
+
         </div>
 
-<table class="tablearea table table-striped table-success">
-<thead>
-    <tr>
+      </div>
+    </div>
+  </div>
+
+  <!-- title -->
+  <div class="container">
+    <div class="row">
+      <div class="page-header">
+        <h1>my appointments</h1>
+        <span class="icon-bar">
+          <i class="glyphicon"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- table -->
+  <table class="tablearea table table-striped " *ngIf="patient.id">
+    <thead class="table-head">
+      <tr>
         <th scope="col">Doctor</th>
         <th scope="col">Category</th>
         <th scope="col">Date</th>
         <th scope="col"><i class="fa fa-ticket-alt" aria-hidden="true"></i> NO</th>
         <th scope="col">Status</th>
-        <th ><em class="fa fa-cog"></em></th>
-    </tr>
-</thead>
-<tbody>
-    <tr *ngFor="let visit of this.patient.visits">
+        <th><em class="fa fa-cog"></em></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let visit of this.patient.visits">
         <td>{{visit.didNavigation?.fname}} {{visit.didNavigation?.lname}}</td>
         <td>{{visit.didNavigation?.category}}</td>
         <td>{{(visit.appointment_time|datetime)[0]}}</td>
-        <td >{{visit.appointmentNo}}</td>
+<!-- <<<<<<< HEAD -->
+        <td>{{(visit.appointment_time|datetime)[1]}}</td>
+        <td>{{visit.appointmentNo}}</td>
+        <td *ngIf="visit.appointmentStatus==0"><i class="fa fa-spinner" style="color: red;" aria-hidden="true"></i></td>
+        <td *ngIf="visit.appointmentStatus==1"><i class="fa fa-check" style="color: green;" aria-hidden="true"></i></td>
+        <td align="left">
+          <a class="btn-sm btn-default" (click)="deleteMedicine(visit.pid,visit.did,visit.appointment_time)">
+            <em class="fa fa-times" style="color: red;"></em>
+          </a>
+<!-- ======= -->
+        <!-- <td >{{visit.appointmentNo}}</td>
         <td *ngIf="visit.appointmentStatus==0"><i class="fa fa-spinner" style="color: red;" aria-hidden="true"></i></td>
         <td *ngIf="visit.appointmentStatus==1"><i class="fa fa-check" style="color: green;" aria-hidden="true"></i></td>
         <td align="left">
@@ -40,7 +69,140 @@
                 <em  class="fa fa-times" style="color: red;"></em>
             </a>
             <a [routerLink]="['/patient/edit',visit.pid,visit.didNavigation?.id,visit.appointment_time]" class="btn btn-outline-success">Edit</a>
+>>>>>>> cca1ffdab8e1a7588f40e1657e2fdc15073e80ac -->
         </td>
-    </tr>
-</tbody>
-</table>  
+      </tr>
+    </tbody>
+  </table>
+
+
+  <!-- title -->
+  <div class="container">
+    <div class="row">
+      <div class="page-header2">
+        <h1 >Find your Doctor</h1>
+        <span class="icon-bar2">
+          <i class="glyphicon"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- slider -->
+  <div id="sect1" class="cards">
+    <div class="row col-12 d-flex justify-content-center">
+      <div class="page">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+              aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+              aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+              aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <!-- first card -->
+              <div class="container">
+                <div class="row">
+
+                  <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="card mb-30"><a class="card-img-tiles" href="#" data-abc="true">
+                        <div class="inner">
+                          <div class="main-img"><img src="./../../../assets/p3.jpg" alt="Category"></div>
+                        </div>
+                      </a>
+                      <div class="card-body text-center">
+                        <h4 class="card-title">Obstetrics/Gynecology</h4>
+                        <a class="btn btn-outline-success btn-sm" href="#" data-abc="true"
+                          [routerLink]="['/patient/categories','Obstetrics/Gynecology']">View Doctors</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="card mb-30"><a class="card-img-tiles" href="#" data-abc="true">
+                        <div class="inner">
+                          <div class="main-img"><img src="./../../../assets/p2.jpg" alt="Category"></div>
+                        </div>
+                      </a>
+                      <div class="card-body text-center">
+                        <h4 class="card-title">Dentist</h4>
+                        <a class="btn btn-outline-success btn-sm" href="#" data-abc="true"
+                          [routerLink]="['/patient/categories','Dentist']">View Doctors</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class=" col-lg-4 col-md-4 col-sm-6">
+                    <div class="card mb-30"><a class="card-img-tiles" href="#" data-abc="true">
+                        <div class="inner">
+                          <div class="main-img"><img src="./../../../assets/cardiologist.jpg" alt="Category"></div>
+                        </div>
+                      </a>
+                      <div class="card-body text-center">
+                        <h4 class="card-title">Cardiology</h4>
+                        <a class="btn btn-outline-success btn-sm" href="#"
+                          [routerLink]="['/patient/categories','Cardiology']" data-abc="true">View Doctors</a>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+
+            <div class="carousel-item">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="card mb-30"><a class="card-img-tiles" href="#" data-abc="true">
+                        <div class="inner">
+                          <div class="main-img"><img src="./../../../assets/microbiology.jpg" alt="Category"></div>
+                        </div>
+                      </a>
+                      <div class="card-body text-center">
+                        <h4 class="card-title">Medical Microbiology and Infectious Diseases</h4>
+                        <a class="btn btn-outline-success btn-sm" href="#"
+                          [routerLink]="['/patient/categories','Medical Microbiology and Infectious Diseases']"
+                          data-abc="true">View Doctors</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="card mb-30"><a class="card-img-tiles" href="#" data-abc="true">
+                        <div class="inner">
+                          <div class="main-img"><img src="./../../../assets/p1.jpg" alt="Category"></div>
+                        </div>
+                      </a>
+                      <div class="card-body text-center">
+                        <h4 class="card-title">oculist</h4>
+                        <a class="btn btn-outline-success btn-sm" href="#" data-abc="true"
+                          [routerLink]="['/patient/categories','oculist']">View Doctors</a>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
