@@ -5,14 +5,16 @@ import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { DoctorRegisterationComponent } from './doctor-registeration/doctor-registeration.component';
 import { DoctorScheduleComponent } from './doctor-schedule/doctor-schedule.component';
 import { FileUpadateOrDeleteComponent } from './file-upadate-or-delete/file-upadate-or-delete.component';
+import { ManageEmployeesComponent } from './manage-employees/manage-employees.component';
 
 const routes: Routes =[
   { path:"addemployee", component: DoctorRegisterationComponent },
     {path:"",component:AdminHomeComponent,canActivate:[AdminLoginGuard],children:[
         {path:"",component:AdminHomeComponent},
         { path: 'doctorRegister', component: DoctorRegisterationComponent },
-      { path: 'UpdateFiles', component: FileUpadateOrDeleteComponent },
-         {path:"Doctorschedule",component:DoctorScheduleComponent},
+        { path: 'UpdateFiles', component: FileUpadateOrDeleteComponent },
+        {path:"Doctorschedule",component:DoctorScheduleComponent},
+        {path:"Employees",component:ManageEmployeesComponent},
         // {path:"edit",component:DoctorEditComponent},
         // {path:"patientsearch",component:DoctorPatientSearchComponent},
         // {path:"patient/:id",component:DoctorPatientComponent,children:[

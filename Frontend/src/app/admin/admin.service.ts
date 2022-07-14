@@ -44,4 +44,17 @@ export class AdminService {
   deleteRowFromSchedule(did:number,start: string ){
     return this.http.delete<any>(this.baseUrl+"works_in/"+did+'/'+start);
   }
+  //get All employess
+  getAllEmployees()
+  {
+    
+    let emps = [];
+    let drs;
+    let oths;
+    this.http.get<any[]>(this.baseUrl+"Doctor").subscribe(dr=>drs = dr);
+    this.http.get<any[]>(this.baseUrl+"Other").subscribe(o=>oths=o);
+    emps.push(drs);
+    emps.push(oths);
+    return emps
+  }
 }
