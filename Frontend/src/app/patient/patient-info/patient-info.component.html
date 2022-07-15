@@ -1,126 +1,128 @@
-<div class="container pat-profile" >
+<app-loading *ngIf="!patient.id"></app-loading>
+
+<div class="container emp-profile" *ngIf="patient.id">
     <form method="post">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 col-sm-10">
                 <div class="profile-img">
-                    <img src={{patient.profilePic}} alt="No"/>
+                    <img src={{patient.profilePic}} alt="No" />
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-10" style="padding-top: 5%;">
                 <div class="profile-head">
-                            <h2>
-                                {{patient.fname}} {{patient.lname}}
-                            </h2>
+                    <p class="fs-4"><b>{{patient.fname}} {{patient.lname}}</b>
 
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab"  role="tab" aria-controls="home" aria-selected="true">About</a>
-                        </li>
-                    </ul>
+                    </p>
+
                 </div>
             </div>
-            <div class="col-md-2">
-                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" [routerLink]="['/patient/edit']"/>
+            <div class="col-md-2 col-sm-10" style="padding-top: 5%;">
+                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"
+                    [routerLink]="['/patient/edit']" />
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
-                
-            </div>
-            <div class="col-md-8">
+            <div class="col-md-8 col-sm-12 offset-md-3 mt-sm-5 mt-md-0">
+
                 <div class="tab-content profile-tab" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>User Id</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{patient.id}}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Name</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{patient.fname}} {{patient.lname}}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Email</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{patient.email}}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Phone</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>+20 {{patient.phone}}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Birth Date</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{patient.birthDate|date:'shortDate'}}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Age</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{patient.age}}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Gender</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{patient.gender ==('F' ||'f') ? 'Female':'Male'}}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>City</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{patient.city}}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Area</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{patient.area}}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Street</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{patient.street}}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Building Number</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{patient.buildingNumber}}</p>
-                                    </div>
-                                </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label><i class='fas fa-id-card-alt mx-2' style="color: #a5c422;"></i>ID</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{patient.id}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label><i class="fa fa-user mx-2" style="color: #a5c422;"
+                                        aria-hidden="true"></i>Name</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{patient.fname}} {{patient.lname}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label><i class="fa fa-envelope mx-2" style="color: #a5c422;"
+                                        aria-hidden="true"></i>Email</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{patient.email}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label><i class="fa fa-phone mx-2" style="color: #a5c422;"
+                                        aria-hidden="true"></i>Phone</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{patient.phone}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label><i class="fa fa-calendar mx-2" style="color: #a5c422;" aria-hidden="true"></i>
+                                    Birth Date</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{patient.birthDate|date:'shortDate'}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label><i class="fa fa-child mx-2" style="color: #a5c422;"
+                                        aria-hidden="true"></i>Age</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{patient.age}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label><i class="fa fa-transgender mx-2" style="color: #a5c422;"
+                                        aria-hidden="true"></i>Gender</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{patient.gender ==('F' ||'f') ? 'Female':'Male'}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label><i class="fas fa-city mx-2" style="color: #a5c422;"></i> City</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{patient.city}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label><i class="fa fa-map-marker mx-2" style="color: #a5c422;"></i> Area</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{patient.area}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label><i class="fa fa-street-view mx-2" style="color: #a5c422;"></i> Street</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{patient.street}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label><i class="fa fa-building mx-2" style="color: #a5c422;"></i> Building</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{patient.buildingNumber}}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </form>           
+    </form>
 </div>
