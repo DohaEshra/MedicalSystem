@@ -15,7 +15,12 @@ import { DoctorRating } from 'src/app/_Models/doctor-rating';
   styleUrls: ['./patient-record.component.css']
 })
 export class PatientRecordComponent implements OnInit,OnDestroy {
- 
+ //search
+ date:any;
+ DoctorName = "";
+clicked = false;
+
+
   fileDialogVisibility = false;
   RecordList:Record[]=[];
   doctor:Doctor=new Doctor();
@@ -28,9 +33,10 @@ export class PatientRecordComponent implements OnInit,OnDestroy {
   constructor(public PatientServ:PatientService, public router:Router,public patHomeComp:PatientHomeComponent) { }
 
   ngOnInit() {
+    console.log("r",this.patient.records)
     this.patHomeComp.selectedPatient$.subscribe( data => {
       this.patient = data
-      //console.log('meeeeeee',data);
+      console.log('meeeeeee',this.patient);
     })
   }
   
@@ -43,13 +49,10 @@ export class PatientRecordComponent implements OnInit,OnDestroy {
   }
 
   ratingDoctor(record: any, rat:any) {
-    // console.log('ratingDoctor',this.rate);
 
     this.doctorRating.pid = record.pid;
     this.doctorRating.did = record.did;
     this.doctorRating.Rating = rat.rate;
-
-    //console.log(this.doctorRating);
 
     this.sub = this.PatientServ.addDoctorRating(this.doctorRating).subscribe({
       next: data => {console.log(data) }
@@ -57,7 +60,11 @@ export class PatientRecordComponent implements OnInit,OnDestroy {
     }
     );
   }
-
+  SearchRecords()
+  {
+    this.clicked=true;
+    console.log("recordssss:"+this.patient.id)
+  }
   ngOnDestroy(): void {
       this.sub?.unsubscribe();
   }

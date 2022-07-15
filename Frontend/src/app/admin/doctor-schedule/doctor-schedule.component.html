@@ -4,7 +4,7 @@
 
 <div class="container"  >
 
-    <div class="row my-3 fs-5 form-group" *ngIf="!showAddToSchedule">
+    <div class="row my-5 fs-5 form-group" *ngIf="!showAddToSchedule">
         <div class="col-lg-2 col-sm-3"> 
             <label for="did">  Doctor ID </label>
         </div>
@@ -141,7 +141,7 @@
                         <td>{{item.end_time}}</td>
                         <td>{{item.maxpatientNo}}</td>
                         <td [align]="'center'">
-                            <a  class="text-dark fs-6" [routerLink]="['/admin/editDoctorschedule',item]" [state]="item"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                            <a  class="text-dark fs-6" [routerLink]="['/admin/editDoctorschedule',item]" [state]="item"><i class="fa fa-edit" aria-hidden="true"></i></a>
                         </td>
                         <!-- <td [align]="'center'">
                             <a  class="text-dark fs-6" [routerLink]="['/doctor/patient',patient.pidNavigation?.id,'info']"><i class="fa fa-eye" aria-hidden="true"></i></a>

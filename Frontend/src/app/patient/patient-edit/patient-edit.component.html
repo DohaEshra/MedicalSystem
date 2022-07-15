@@ -1,153 +1,112 @@
-<div class="container pat-profile" >
-    <div  class="fs-2 text-center mb-3" style=" color: #a5c422;">Edit Your Profile </div>
-    <form class="row"  name="form" #MyForm="ngForm" >
-      <div class="left col-lg-6 col-sm-12 ">
-        <!-- First Name -->
-     <div class="form-group">
+<div class="container pat-profile">
+  <div class="fs-2 text-center mb-3" style=" color: #a5c422;">Edit Your Profile </div>
+  <form class="row" name="form" #MyForm="ngForm">
+    <div class="left col-lg-6 col-sm-12 ">
+      <!-- First Name -->
+      <div class="form-group">
         <label for="First Name" class="fs-5">First Name</label>
-        <input  type="text"  
-                style="border-radius:30px ;"
-                class="form-control form-control-lg "  
-                name="First Name"
-                [(ngModel)]="this.firstName" 
-                />          
-    </div>
+        <input type="text" style="border-radius:30px ;" class="form-control form-control-lg " name="First Name"
+          [(ngModel)]="this.firstName" />
+      </div>
 
-        <!-- Last Name -->
-    <div class="form-group">
+      <!-- Last Name -->
+      <div class="form-group">
         <label for="Last Name" class="fs-5">Last Name</label>
-        <input  type="text"  
-                style="border-radius:30px ;"
-                class="form-control form-control-lg " 
-                name="Last Name"
-                [(ngModel)]="this.lastName" 
-                />
-    </div>
-    <!-- EMAIL -->
-    <div class="form-group">
-      <label for="email" class="fs-5">Email</label>
-      <input  type="email"  
-              style="border-radius:30px ;"
-              class="form-control form-control-lg " 
-              name="email"
-              [(ngModel)]="patient.email" 
-              placeholder ="Enter your Email" required #email="ngModel"/>
-  </div>
+        <input type="text" style="border-radius:30px ;" class="form-control form-control-lg " name="Last Name"
+          [(ngModel)]="this.lastName" />
+      </div>
+      <!-- EMAIL -->
+      <div class="form-group">
+        <label for="email" class="fs-5">Email</label>
+        <input type="email" style="border-radius:30px ;" class="form-control form-control-lg " name="email"
+          [(ngModel)]="patient.email" placeholder="Enter your Email" required #email="ngModel" />
+      </div>
 
-     <!-- Phone -->
-    <div class="form-group">
+      <!-- Phone -->
+      <div class="form-group">
         <label for="phone" class="fs-5">Phone</label>
-        <input  type="text"  
-                style="border-radius:30px ;"
-                class="form-control form-control-lg " 
-                name="phone"
-                [(ngModel)]="patient.phone" 
-                placeholder ="Enter your Phone" required #phone="ngModel"/>
-    </div>
+        <input type="text" style="border-radius:30px ;" class="form-control form-control-lg " name="phone"
+          [(ngModel)]="patient.phone" placeholder="Enter your Phone" required #phone="ngModel" />
+      </div>
 
       <!-- Address -->
       <!-- city -->
-    <div class="form-group row">
-      <div class="col-6">
-        <label for="city" class="fs-5">City </label>
-        <input [(ngModel)]="patient.city"  [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="title">
-      </div>
-
-      <!-- Area -->
-      <div class="col-6">
-        <label for="area" class="fs-5"> Area </label>
-        <input  type="text"  
-                style="border-radius:30px ;"
-                class="form-control form-control-lg " 
-                name="area"
-                [(ngModel)]="patient.area" 
-                />
+      <div class="form-group row">
+        <div class="col-6">
+          <label for="city" class="fs-5">City </label>
+          <input [(ngModel)]="patient.city" [ngModelOptions]="{standalone: true}" type="text" class="form-control"
+            id="title">
         </div>
-    </div>
+
+        <!-- Area -->
+        <div class="col-6">
+          <label for="area" class="fs-5"> Area </label>
+          <input type="text" style="border-radius:30px ;" class="form-control form-control-lg " name="area"
+            [(ngModel)]="patient.area" />
+        </div>
+      </div>
 
       <!-- Street -->
-    <div class="form-group row">
-      <div class="col-6">
-        <label for="street" class="fs-5">Street </label>
-        <input  type="text"  
-                class="form-control form-control-lg " 
-                style="border-radius:30px ;"
-                name="street" 
-                [(ngModel)]="patient.street" 
-                /> 
+      <div class="form-group row">
+        <div class="col-6">
+          <label for="street" class="fs-5">Street </label>
+          <input type="text" class="form-control form-control-lg " style="border-radius:30px ;" name="street"
+            [(ngModel)]="patient.street" />
+        </div>
+
+        <!-- Building number -->
+        <div class="col-6">
+          <label for="buildingNumber" class="fs-5"> Building number </label>
+          <input type="text" class="form-control form-control-lg " name="buildingNumber" style="border-radius:30px ;"
+            [(ngModel)]="patient.buildingNumber" />
+        </div>
       </div>
 
-      <!-- Building number -->
-      <div class="col-6">
-        <label for="buildingNumber" class="fs-5"> Building number </label>
-        <input  type="text"  
-                class="form-control form-control-lg " 
-                name="buildingNumber"
-                style="border-radius:30px ;"
-                [(ngModel)]="patient.buildingNumber" 
-                />
-      </div>
     </div>
 
-  </div>
-  
-  <div class="right verticalLine col-lg-6 col-sm-12">
+    <div class="right verticalLine col-lg-6 col-sm-12">
 
-       <!-- Birth date -->
-       <div class="form-group">
+      <!-- Birth date -->
+      <div class="form-group">
         <label for="birthDate" class="fs-5">birth date</label>
-        <input  type="date"  
-                style="border-radius:30px ;"
-                class="form-control form-control-lg " 
-                name="birthDate"
-                [(ngModel)]="patient.birthDate" 
-                appAgeValidation
-               />
-    </div>
-<!-- Gender -->
+        <input type="date" style="border-radius:30px ;" class="form-control form-control-lg " name="birthDate"
+          [(ngModel)]="patient.birthDate" appAgeValidation />
+      </div>
+      <!-- Gender -->
 
-<div class="align-center">
-<label for="gender" class="fs-5">Gender</label>
-<select name="gender" class="form-select form-select-lg" style="border-radius:30px ;" aria-label="Default select example" required #gender="ngModel" [(ngModel)]="patient.gender">
-  <option class="fs-5" value="F"> Female </option>
-  <option class="fs-5" value="M"> Male </option>
-</select>
-</div>
+      <div class="align-center">
+        <label for="gender" class="fs-5">Gender</label>
+        <select name="gender" class="form-select form-select-lg" style="border-radius:30px ;"
+          aria-label="Default select example" required #gender="ngModel" [(ngModel)]="patient.gender">
+          <option class="fs-5" value="F"> Female </option>
+          <option class="fs-5" value="M"> Male </option>
+        </select>
+      </div>
 
 
- 
+
       <!-- PASSWORD -->
-    <div class="form-group">
-      <label for="password" class="fs-5">Password</label>
-      <input type="password"
-            style="border-radius:30px ;"
-            class="form-control form-control-lg"
-            name="password"
-            [(ngModel)]="patient.password"
-            minlength="3"
-            />
+      <div class="form-group">
+        <label for="password" class="fs-5">Password</label>
+        <input type="password" style="border-radius:30px ;" class="form-control form-control-lg" name="password"
+          [(ngModel)]="patient.password" minlength="3" />
+      </div>
+
+      <!-- Image File -->
+      <div class="form-group">
+        <label for="img" class="fs-5">Profile Image</label>
+        <input type="file" style="border-radius:30px ;" class="file-input form-control form-control-lg" name="img"
+          [(ngModel)]="patient.profilePic" placeholder="Upload your profile image" accept="image/png, image/jpeg"
+          (change)="onFileSelected($event, imgTemplate)" />
+
+        <div class="displayImg text-center mt-2">
+          <img #imgTemplate class="img-thumbnail" src={{url}} alt="Profile Picture">
+        </div>
+      </div>
     </div>
 
-    <!-- Image File -->
-    <div class="form-group">
-      <label for="img" class="fs-5">Profile Image</label>
-      <input type="file"
-            style="border-radius:30px ;"
-            class="file-input form-control form-control-lg"
-            name="img"
-            [(ngModel)]="patient.profilePic"
-            placeholder ="Upload your profile image" 
-            accept="image/png, image/jpeg"
-            (change)="onFileSelected($event, imgTemplate)" />
-            
-            <div class="displayImg text-center mt-2" >
-              <img #imgTemplate class="img-thumbnail" src={{url}} alt="Profile Picture">
-            </div>
+    <div class="form-group d-grid mx-auto">
+      <button (click)="edit()" class="login btn-lg">Edit</button>
     </div>
-  </div>
-
-    <div class="form-group d-grid mx-auto"   >
-        <button (click)="edit()" class="login btn-lg">Edit</button>
-    </div>
-</form>
+  </form>
 </div>

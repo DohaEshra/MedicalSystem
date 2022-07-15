@@ -20,6 +20,7 @@ export class FileUpadateOrDeleteComponent implements OnInit {
   patient = new Patient();
   fileDialogVisibility = false;
   sub: Subscription | null = null;
+  myAttachedFile='';
   constructor(public adminService: AdminService) {}
 
   ngOnInit(): void {
@@ -62,14 +63,52 @@ export class FileUpadateOrDeleteComponent implements OnInit {
     return this.patient;
   }
 
-  myUploader(record: Record, event: any) {
-    console.log('record', event)
-    var x = this.patient.records.indexOf(record);
-    alert(event.files[0].name + ' uploaded successfully');
+  // myUploader(record: Record, event: any) {
+  //   console.log('record', event)
+  //   var x = this.patient.records.indexOf(record);
+  //   alert(event.files[0].name + ' uploaded successfully');
+  // }
+
+  // errorInUploading(event: any) {
+  //   alert('unfortunately, ' + event.files[0].name + ' didn\'t upload successfully');
+  // }
+
+  UploadFiles(record: any, event: any) {
+    const formData = new FormData();
+    formData.append('fileKey', event.files[0], event.files[0].name);
+
+    this.adminService.uploadFile(record, formData).subscribe({
+      next: data => {
+        alert(event.files[0].name + ' uploaded successfully');
+      },
+      error: err => {
+        console.log('error in uploading', err);
+        alert('unfortunately, ' + event.files[0].name + ' didn\'t upload successfully');
+      }
+    })
+    // console.log('no')
+    // var xmlHttp = new XMLHttpRequest()
+    // xmlHttp.open("POST", 'https://localhost:7089/api/Record/AddFile/' + record.pid + '/' + record.did + '/' + record.date + '/' + record.file_description + '/' + record.fno + '/' + this.labTechnicianId );
+    // xmlHttp.setRequestHeader('Authorization', `Bearer ${this.accountService.getToken()}`);
+    // console.log(xmlHttp)
   }
 
-  errorInUploading(event: any) {
-    alert('unfortunately, ' + event.files[0].name + ' didn\'t upload successfully');
+  deleteFile(record:any){
+    var confirmation = confirm("Are you sure you want to delete this file ?");
+    if(confirmation){
+      this.adminService.DeleteFile(record).subscribe({
+        next: data =>{
+          record.testType = "F";
+          var x = this.patient.records.indexOf(record);
+          this.patient.records.splice(x, 1);
+          alert('File deleted successfully');
+        },
+        error: err => { 
+          console.log('error in uploading',err);
+          alert('unfortunately, file didn\'t deleted successfully');
+      }
+    })
+  }
   }
 
   //indicate to searching by id
@@ -81,14 +120,14 @@ export class FileUpadateOrDeleteComponent implements OnInit {
     this.Indicator = 2;
   }
 
-  showDialog() {
+  showDialog(record: any) {
     this.fileDialogVisibility = true;
+    this.myAttachedFile = record;
   }
 
   hideDialog() {
     this.fileDialogVisibility = false;
   }
-
 
   ngOnDestroy(): void {
     this.sub?.unsubscribe();

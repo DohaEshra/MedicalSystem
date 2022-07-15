@@ -11,6 +11,7 @@ export class RecordPerDate {
                 public summary:string='',
                 public testType:String[]= [],
                 public prescription:string='',
+                public starRating:number|null=Number(),
                 public didNavigation:Doctor|null=null
                 ){}
 

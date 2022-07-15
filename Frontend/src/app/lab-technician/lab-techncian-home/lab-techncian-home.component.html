@@ -50,15 +50,17 @@
             <td style="vertical-align: middle" >
                 <p-fileUpload 
                 name="myfiles[]"
-                [url]="'https://localhost:7089/api/Record/AddFile/' + record.pid + '/' + record.did + '/' + record.date + '/' + record.file_description + '/' + labTechnicianId"
                 [multiple]="false"
                 accept="application/pdf"
                 mode="basic" 
                 [auto]="true"
                 chooseLabel="Medical Test"
-                (onUpload)="myUploader(record, $event)"
-                (onError)="errorInUploading($event)"
+                [customUpload]="true"
+                (uploadHandler)="UploadFiles(record, $event)"
                 >
+                <!-- [url]="'https://localhost:7089/api/Record/AddFile/' + record.pid + '/' + record.did + '/' + record.date + '/' + record.file_description + '/' + record.fno + '/' + labTechnicianId" -->
+                <!-- (onUpload)="myUploader(record, $event)"
+                (onError)="errorInUploading($event, record)" -->
                 </p-fileUpload>
             </td>
         </tr>
@@ -97,16 +99,18 @@
             </td>
             <td style="vertical-align: middle" >
                 <p-fileUpload 
-                name="myfiles[]"
-                [url]="'https://localhost:7089/api/Record/AddFile/' + record.pid + '/' + record.did + '/' + record.date + '/' + record.file_description + '/' + labTechnicianId"
+                name="myFiles"
                 [multiple]="false"
                 accept="application/pdf"
                 mode="basic" 
                 [auto]="true"
                 chooseLabel="Medical Test"
-                (onUpload)="myUploader(record, $event)"
-                (onError)="errorInUploading($event)"
+                [customUpload]="true"
+                (uploadHandler)="UploadFiles(record, $event)"
                 >
+                <!-- [url]="'https://localhost:7089/api/Record/AddFile/' + record.pid + '/' + record.did + '/' + record.date + '/' + record.file_description + '/' + record.fno + '/' + labTechnicianId" -->
+                <!-- (onError)="errorInUploading($event, record)" -->
+                <!-- (onUpload)="myUploader(record, $event)" -->
                 </p-fileUpload>
             </td>
         </tr>
