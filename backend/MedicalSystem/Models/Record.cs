@@ -35,6 +35,7 @@ namespace MedicalSystem.Models
         public int? starRating { get; set; }
         [Key]
         public Guid FNO { get; set; }
+    
 
         [ForeignKey("DID")]
         [InverseProperty("Records")]
