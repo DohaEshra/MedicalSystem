@@ -17,6 +17,8 @@ import { DoctorScheduleComponent } from './doctor-schedule/doctor-schedule.compo
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { EditDoctorScheduleComponent } from './edit-doctor-schedule/edit-doctor-schedule.component';
 import { ManageEmployeesComponent } from './manage-employees/manage-employees.component';
+import { GetAllPipe } from './_Pipes/get-all.pipe';
+import { DisplayDoctorComponent } from './display-doctor/display-doctor.component';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import {SidebarModule} from 'primeng/sidebar';
 
@@ -30,9 +32,11 @@ import { ManageEmployeesComponent } from './manage-employees/manage-employees.co
     DoctorRegisterationComponent,
     AgeValDirective,
     DoctorScheduleComponent,
-    EditDoctorScheduleComponent
+    EditDoctorScheduleComponent,
     DoctorScheduleComponent,
-    ManageEmployeesComponent
+    ManageEmployeesComponent,
+    GetAllPipe,
+    DisplayDoctorComponent
   ],
   imports: [
     CommonModule,ConfirmDialogModule,

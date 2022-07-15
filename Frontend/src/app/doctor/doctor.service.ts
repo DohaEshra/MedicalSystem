@@ -56,6 +56,11 @@ export class DoctorService {
   {
     return this.http.get<Doctor[]>(this.baseUrl+"Doctor");
   }
+ //get Not Blocked doctors
+  getNotBlockedDoctors()
+  {
+  return this.http.get<any[]>(this.baseUrl+"Doctor/NotBlocked");
+  }
     
   //get All Categories
     getAllCategories()

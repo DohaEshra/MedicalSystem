@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminLoginGuard } from '../_Guards/admin-login.guard';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { DisplayDoctorComponent } from './display-doctor/display-doctor.component';
 import { DoctorRegisterationComponent } from './doctor-registeration/doctor-registeration.component';
 import { DoctorScheduleComponent } from './doctor-schedule/doctor-schedule.component';
 import { EditDoctorScheduleComponent } from './edit-doctor-schedule/edit-doctor-schedule.component';
@@ -15,6 +16,7 @@ const routes: Routes =[
         { path: 'doctorRegister', component: DoctorRegisterationComponent },
         {path:"Doctorschedule",component:DoctorScheduleComponent},
         {path:"editDoctorschedule",component:EditDoctorScheduleComponent},
+        {path:"DisplayDoctor/:id",component:DisplayDoctorComponent},
 
         { path: 'UpdateFiles', component: FileUpadateOrDeleteComponent },
         {path:"Doctorschedule",component:DoctorScheduleComponent},

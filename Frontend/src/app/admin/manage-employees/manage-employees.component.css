@@ -84,3 +84,13 @@ body{
   border-radius: 0.5rem;
   background: #fff;
 }
+
+.Display
+{
+    background: #a5c422;
+    border-color: #a5c422;
+}
+.btn
+{
+    margin-right: 3%;
+}

@@ -25,11 +25,17 @@ namespace MedicalSystem.Controllers
         }
 
         // GET: api/Doctors
-        [Authorize(Roles="admin,patient")]
+        [Authorize(Roles = "admin,patient")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Doctor>>> GetDoctors()
         {
             return await _context.Doctors.ToListAsync();
+        }
+        [Authorize(Roles = "admin")]
+        [HttpGet("NotBlocked")]
+        public async Task<ActionResult<IEnumerable<Doctor>>> GetNotBlockedDoctors()
+        {
+            return await _context.Doctors.Where(a => !_context.Blocked.Any(p2 => p2.email == a.email)).ToListAsync();
         }
 
         // GET: api/Doctor/get/Dentist
@@ -41,7 +47,7 @@ namespace MedicalSystem.Controllers
             {
                 return NotFound();
             }
-            return await _context.Doctors.Where(a => a.category == category).ToListAsync();
+            return await _context.Doctors.Where(a => a.category.Contains(category)).ToListAsync();
         }
 
         [Authorize(Roles = "admin,patient")]

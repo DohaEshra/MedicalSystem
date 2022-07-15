@@ -10,7 +10,9 @@ import { Works_in } from '../_Models/works_in';
   providedIn: 'root'
 })
 export class AdminService {
-
+emps:any[]=[];
+drs:any[]=[];
+oths:any[]=[];
   constructor(public http: HttpClient, public router: Router) { }
   baseUrl = "https://localhost:7089/api/";
 
@@ -45,17 +47,17 @@ export class AdminService {
     return this.http.delete<any>(this.baseUrl+"works_in/"+did+'/'+start);
   }
   //get All employess
-  getAllEmployees()
+  getOthers()
   {
-    
-    let emps = [];
-    let drs;
-    let oths;
-    this.http.get<any[]>(this.baseUrl+"Doctor").subscribe(dr=>drs = dr);
-    this.http.get<any[]>(this.baseUrl+"Other").subscribe(o=>oths=o);
-    emps.push(drs);
-    emps.push(oths);
-    return emps
+  return this.http.get<any[]>(this.baseUrl+"Other");
+  }
+  getNotBlockedOthers()
+  {
+  return this.http.get<any[]>(this.baseUrl+"Other/NotBlocked");
+  }
+  Block(email:object)
+  {
+    return this.http.post<any>(this.baseUrl+"Other/blocked",email)
   }
 
   //edit row from doctor schedule 

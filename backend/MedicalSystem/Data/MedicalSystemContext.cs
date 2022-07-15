@@ -20,6 +20,7 @@ namespace MedicalSystem.Data
         }
 
         public virtual DbSet<Doctor> Doctors { get; set; }
+        public virtual DbSet<BlockedUsers> Blocked { get; set; }
         public virtual DbSet<DoctorRating> DoctorRatings { get; set; }
         public virtual DbSet<Other> Others { get; set; }
         public virtual DbSet<Patient> Patients { get; set; }
