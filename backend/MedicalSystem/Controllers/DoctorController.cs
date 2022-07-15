@@ -41,7 +41,7 @@ namespace MedicalSystem.Controllers
             {
                 return NotFound();
             }
-            return await _context.Doctors.Where(a => a.category == category).ToListAsync();
+            return await _context.Doctors.Where(a => a.category.Contains(category)).ToListAsync();
         }
 
         [Authorize(Roles = "admin,patient")]
