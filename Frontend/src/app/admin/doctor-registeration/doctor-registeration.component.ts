@@ -174,7 +174,7 @@ export class DoctorRegisterationComponent implements OnInit {
               this.isRegistrationFailed = false ; 
               console.log('success to add doctor ' + data)
               setTimeout(()=> alert(doctor.fname+' '+doctor.lname+' has been added successfully'),0);
-              this.router.navigateByUrl('/admin/home');
+              this.router.navigateByUrl('/admin/Employees');
             }
             ,error:err=>{
               console.log('error from doctor registeration component', err)

@@ -27,7 +27,6 @@ import { TimeFormatPipe } from './_Pipes/time-format.pipe';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
-
 @NgModule({
   declarations: [
     DoctorInfoComponent,
@@ -44,7 +43,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     RecordPrescriptionComponent,
     EditPrescriptionComponent,
     SafePipe,
-    DoctorAppointmentComponent,
+   DoctorAppointmentComponent,
     DateTimePipe,
     searchAppointmentPipe,
     DoctorProfileComponent,
