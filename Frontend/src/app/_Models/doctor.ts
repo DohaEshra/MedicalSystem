@@ -1,3 +1,5 @@
+import { Works_in } from "./works_in";
+
 export class Doctor {
     
     constructor(
@@ -16,7 +18,8 @@ export class Doctor {
                 public password:string='',
                 public gender: string = '',
                 public profilePic: string | null = null,
-                public doctorRating:number=Number()
+                public doctorRating:number=Number(),
+                public works_ins :Works_in[]=[]
             )
     {}
 }

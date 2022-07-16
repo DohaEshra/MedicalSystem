@@ -143,7 +143,8 @@ export class DoctorRegisterationComponent implements OnInit {
           area: this.user.area, 
           street: this.user.street, 
           buildingNumber: this.user.buildingNumber,
-          doctorRating: 0
+          doctorRating: 0,
+          works_ins: []
         };
   
         console.log('dr ',doctor);

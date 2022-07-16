@@ -17,7 +17,9 @@ export class DoctorScheduleComponent implements OnInit , OnDestroy {
   hours:string[]=[];
   shift:string[]=[];
 
+  ShowTable=false;
   subscribe:Subscription|null=null;
+  subscribe2:Subscription|null=null;
   showResult = false;
   showError = false;
   showError2 = false;
@@ -25,8 +27,8 @@ export class DoctorScheduleComponent implements OnInit , OnDestroy {
   errorMessage2 = '';
   IsNumberPattern = "^[0-9]+$";
   showAddToSchedule = false ;
-  constructor(public adminService:AdminService ) { }
-  doctor:Doctor|null = new Doctor();
+  constructor(public adminService:AdminService ,private doctorService:DoctorService) { }
+  doctor:Doctor = new Doctor();
   workIn:Works_in[] = [] ;
   info:any = {day:"" , start:"" ,sShift :"" , end:"" , eShift :"" ,maxNo:"",wId:0};
   errorMessageDuringAdd = false ;
@@ -63,8 +65,7 @@ export class DoctorScheduleComponent implements OnInit , OnDestroy {
       this.errorMessageDuringAdd = false ;
       this.startIn= this.info.day+' '+this.info.start+' '+this.info.sShift;
       this.endAt  = this.info.day+' '+this.info.end+' '+this.info.eShift;
-      // console.log(this.startIn, this.endAt);
-      this.work.did = this.workIn[0].did ;
+      this.work.did = this.doctor.id ;
       this.work.start_time = this.startIn;
       this.work.end_time = this.endAt ;
       this.work.maxpatientNo = this.info.maxNo ;
@@ -73,7 +74,9 @@ export class DoctorScheduleComponent implements OnInit , OnDestroy {
       this.subscribe = this.adminService.addDoctorSchedule(this.work).subscribe({next:data=>{
         console.log(data);
         this.workIn.push(this.work);
+        console.log(this.workIn);
         this.showResult = true;
+        this.ShowTable = true;
         this.showAddToSchedule= false ;
         this.info= {day:"" , start:"" ,sShift :"" , end:"" , eShift :"" ,maxNo:""};
 
@@ -90,21 +93,56 @@ export class DoctorScheduleComponent implements OnInit , OnDestroy {
     this.workIn = [];
     this.showResult= false;
     this.showLoading = true;
-    this.subscribe = this.adminService.getDoctorSchedule(this.did).subscribe({next:data=>{
-          if(data==null)
-          {
-            this.showError = true;
-            this.errorMessage = 'Invalid data !' ;
-            this.showResult= this.showLoading = false ;
-            return
-          }
-          console.log(data,"eeeee")
-          this.workIn = data ;
-          this.doctor = data[0].didNavigation ;
-          this.showResult= true ;
-    },error:err=>{
-      console.log("error from adding doctor schedule component",err);
-    }})
+
+    this.subscribe = this.doctorService.getDoctorById( +this.did ).subscribe({
+      next:data=>{
+        this.doctor = data;
+        console.log(data);
+        if(data.works_ins.length==0)  // there is no schedules for this doctor 
+        {
+          this.showResult= true;
+          this.ShowTable=false ;
+          return;
+        }
+        this.showResult= true;
+        this.ShowTable=true ;
+        this.workIn= data.works_ins ;
+
+      },error:err=>{
+        console.log(err);
+          this.showError = true;
+          this.ShowTable= false ;
+          this.errorMessage = 'Invalid id !' ;
+          this.showResult= this.showLoading = false ;
+      }})
+
+    // this.subscribe = this.adminService.getDoctorSchedule(this.did).subscribe({next:data=>{
+    //       if(data==null)
+    //       {
+    //         this.showError = true;
+    //         this.ShowTable= true ;
+    //         this.errorMessage = 'Invalid data !' ;
+    //         this.showResult= this.showLoading = false ;
+    //         return
+    //       }else if(data.length==0) // empty array
+    //       {
+    //         this.showResult= true;
+    //         this.ShowTable=false ;
+    //         this.subscribe2= this.doctorService.getDoctorById(+this.did).subscribe({next:data=>{
+    //           console.log(data);
+    //         this.doctor = data ;
+    //         },error:err=>{
+    //           console.log(err);
+    //         }})
+    //       }else{
+    //         console.log(data,"eeeee")
+    //         this.workIn = data ;
+    //         this.doctor = data[0].didNavigation ;
+    //         this.showResult= true ;
+    //       }
+    // },error:err=>{
+    //   console.log("error from adding doctor schedule component",err);
+    // }})
    }
 
    Back(){
