@@ -16,6 +16,7 @@ import { EditDoctorScheduleComponent } from './edit-doctor-schedule/edit-doctor-
 import { ManageEmployeesComponent } from './manage-employees/manage-employees.component';
 import { GetAllPipe } from './_Pipes/get-all.pipe';
 import { DisplayDoctorComponent } from './display-doctor/display-doctor.component';
+import { ContainFilesPipe } from './_Pipes/contain-files.pipe';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import {SidebarModule} from 'primeng/sidebar';
 
@@ -31,7 +32,8 @@ import { DisplayDoctorComponent } from './display-doctor/display-doctor.componen
     DoctorScheduleComponent,
     ManageEmployeesComponent,
     GetAllPipe,
-    DisplayDoctorComponent
+    DisplayDoctorComponent,
+    ContainFilesPipe
   ],
   imports: [
     CommonModule,ConfirmDialogModule,

@@ -91,6 +91,7 @@ export class RadiographerHomeComponent implements OnInit {
         var x = this.patient.records.indexOf(record);
         this.patient.records.splice(x, 1);
         alert(event.files[0].name + ' uploaded successfully');
+        
       },
       error: err => {
         console.log('error in uploading', err);

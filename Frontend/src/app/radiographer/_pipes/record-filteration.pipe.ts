@@ -11,7 +11,7 @@ export class RecordFilterationPipe implements PipeTransform {
     let records =[];
     for(let i=0;i<recordsList.length;i++)
     {
-      if(recordsList[i].testType == 'S')
+      if (recordsList[i].testType == 'S' && recordsList[i].attached_files == null) 
       {
         records.push(recordsList[i]);
       }

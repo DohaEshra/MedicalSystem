@@ -73,13 +73,14 @@ export class FileUpadateOrDeleteComponent implements OnInit {
   //   alert('unfortunately, ' + event.files[0].name + ' didn\'t upload successfully');
   // }
 
-  UploadFiles(record: any, event: any) {
+  UploadFiles(record: any, event: any, i:number) {
     const formData = new FormData();
     formData.append('fileKey', event.files[0], event.files[0].name);
 
     this.adminService.uploadFile(record, formData).subscribe({
       next: data => {
         alert(event.files[0].name + ' uploaded successfully');
+        this.patient.records[i].attached_files = data.attached_files;
       },
       error: err => {
         console.log('error in uploading', err);

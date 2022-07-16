@@ -172,7 +172,7 @@ namespace MedicalSystem.Controllers
                     throw;
                 }
             }
-            return NoContent();
+            return Ok(record);
         }
 
 
