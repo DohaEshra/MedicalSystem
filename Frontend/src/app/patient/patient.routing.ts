@@ -10,6 +10,7 @@ import { ShowappointmentsComponent } from "./showappointments/showappointments.c
 import { PatientEditComponent } from './patient-edit/patient-edit.component';
 import { PatientInfoComponent } from './patient-info/patient-info.component';
 import { EditappointmentComponent } from './editappointment/editappointment.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
       {path:"",component:ShowappointmentsComponent },
       { path: 'info', component: PatientInfoComponent },
       { path: 'edit', component: PatientEditComponent },
+      { path: "changePassword", component: ChangePasswordComponent },
       { path: 'record', component: PatientRecordComponent },
       {path: 'categories/:Category',component: GetDoctorPerCategoryComponent},
       { path: 'search', component: SearchForDoctorComponent },

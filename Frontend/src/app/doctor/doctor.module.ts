@@ -21,6 +21,7 @@ import { DoctorAppointmentComponent } from './doctor-appointment/doctor-appointm
 import { DateTimePipe } from './_Pipes/date-time.pipe';
 import { searchAppointmentPipe } from './_Pipes/search-appointment';
 import { CoreModule } from '../core/core.module';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 
@@ -42,7 +43,8 @@ import { CoreModule } from '../core/core.module';
     SafePipe,
     DoctorAppointmentComponent,
     DateTimePipe,
-    searchAppointmentPipe
+    searchAppointmentPipe,
+    ChangePasswordComponent,
   ],
   imports: [
     CommonModule,doctorRoutingModule,FormsModule,DialogModule,CoreModule
