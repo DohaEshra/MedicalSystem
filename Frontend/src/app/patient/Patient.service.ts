@@ -86,7 +86,7 @@ deleteAppointment(pid:number,did:number,date:Date|string){
   return this.http.delete<undefined>("https://localhost:7089/api/Visit/"+pid+"/"+did+"/"+date);
 }
 
-
+//edit appointment
 editAppointment(pid:number,did:number,date:Date,visit:Visit){
   return this.http.put<Visit>("https://localhost:7089/api/Visit/"+pid+"/"+did+"/"+date,visit);
 }
@@ -99,9 +99,7 @@ GetAppointments(did:number){
 //get no of patients for specific appointments
 countPatients(did:number,date:string){
   return this.http.get<number>("https://localhost:7089/api/visit/get/"+did+"/"+date);
-
 }
-
 
 addDoctorRating(drRating:any){
   return this.http.post<any>("https://localhost:7089/api/doctorRating",drRating);

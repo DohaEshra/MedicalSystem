@@ -39,6 +39,7 @@ export class EditappointmentComponent implements OnInit,OnDestroy {
         this.doctorId = a["did"]
         this.appointmentTime = a["appointment_time"]
         this.visit.pid = this.patientId
+        this.visit.appointment_time = a["appointment_time"]
       }
     ) 
     }
@@ -95,7 +96,7 @@ export class EditappointmentComponent implements OnInit,OnDestroy {
     }
     else //not available
     {
-      this.errorMessage= "This appointment date is not available , Please book in available date";
+      this.errorMessage= "This date is not available , Please book in available date";
     }
     }
     ngOnDestroy(): void {

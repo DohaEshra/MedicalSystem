@@ -29,7 +29,6 @@ export class DoctorPatientSearchComponent implements OnInit,OnDestroy {
         if(data!=null)
         {
           this.visitList=data;
-          console.log(this.visitList)
           for (let i = 0; i < this.visitList.length; i++) {
             this.isDuplicated = false;
             for (let j = i+1; j < this.visitList.length; j++) {
@@ -43,9 +42,7 @@ export class DoctorPatientSearchComponent implements OnInit,OnDestroy {
               }
             
             this.visitListWithoutDuplication.push(this.visitList[i])
-            
           }
-          console.log(this.visitListWithoutDuplication)
         }
         
       },

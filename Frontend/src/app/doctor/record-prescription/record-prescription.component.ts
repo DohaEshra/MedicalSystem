@@ -26,6 +26,7 @@ export class RecordPrescriptionComponent implements OnInit {
     this.record.did=this.docSer.DoctorID;
     this.record.didNavigation=null;
     this.record.pidNavigation=null;
+    this.record.oidNavigation=null;
     this.sub=this.activateRoute.params.subscribe(
       a=>{
         this.record.pid=a['pid'];
@@ -108,39 +109,52 @@ export class RecordPrescriptionComponent implements OnInit {
   submit(){
     var date = (<HTMLInputElement>document.getElementById('date')).value;
     var summary = (<HTMLInputElement>document.getElementById('summary')).value;
-    //var prescription = (<HTMLInputElement>document.getElementById('prescription')).value;
-
     if(this.medicalPrescription.length>0){
       this.record.prescription=this.medicalPrescription.join(',');
     }
 
-    for(let i=0;i<this.medicalTests.length;i++)
+    if(this.validation(date,summary,this.record.prescription))
     {
-      this.newFile = {fno:null,file_description:this.medicalTests[i],testType:this.testType[i],
-      attached_files:'',did:this.record.did,pid:this.record.pid,
-      oid:null,date:this.record.date,summary:this.record.summary,
-        prescription: this.record.prescription, starRating:null,pidNavigation:null,didNavigation:null,oidNavigation:null};
+      for(let i=0;i<this.medicalTests.length;i++)
+      {
+        this.newFile = {fno:null,file_description:this.medicalTests[i],testType:this.testType[i],
+        attached_files:'',did:this.record.did,pid:this.record.pid,
+        oid:null,date:this.record.date,summary:this.record.summary,
+        prescription:this.record.prescription,starRating:null,pidNavigation:null,didNavigation:null,oidNavigation:null};
+          
+        this.recordList.push(this.newFile); 
+        this.newFile=new Record();
+      }
+  
+  
+      if(this.medicalTests.length==0)
+      {
+        this.recordList.push(this.record);
+        this.docSer.recordPatientPrescription(this.recordList,this.recordList[0].pid,this.recordList[0].did,this.recordList[0].date).subscribe(
+          a=>{
+            this.router.navigateByUrl("doctor");
+          },
+          error=>{
+            console.log(error)
+            this.router.navigateByUrl("doctor");
+          }
+        )
+      }
+      else if(this.medicalTests.length>0)
+      {
+        this.docSer.recordPatientPrescription(this.recordList,this.recordList[0].pid,this.recordList[0].did,this.recordList[0].date).subscribe(
+          a=>{
+            this.router.navigateByUrl("doctor");
+          },
+          error=>{
+            console.log(error)
+            this.router.navigateByUrl("doctor");
+          }
+        )
         
-      this.recordList.push(this.newFile); 
-      this.newFile=new Record();
+      }
     }
-
-
-    if(this.medicalTests.length==0 && this.validation(date,summary,this.record.prescription))
-    {
-      this.recordList.push(this.record);
-      this.docSer.recordPatientPrescription(this.recordList,this.recordList[0].pid,this.recordList[0].did,this.recordList[0].date).subscribe(
-        a=>{}
-      )
-      this.router.navigateByUrl("doctor/patient/"+this.record.pid+"/history");
-    }
-    else if(this.medicalTests.length>0 && this.validation(date,summary,this.record.prescription))
-    {
-      this.docSer.recordPatientPrescription(this.recordList,this.recordList[0].pid,this.recordList[0].did,this.recordList[0].date).subscribe(
-        a=>{}
-      )
-      this.router.navigateByUrl("doctor/patient/"+this.record.pid+"/history");
-    }
+   
    
   }
 

@@ -321,7 +321,7 @@ namespace MedicalSystem.Migrations
                     b.Property<DateTime>("date")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("FNO")
+                    b.Property<Guid?>("FNO")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("OID")
@@ -402,7 +402,10 @@ namespace MedicalSystem.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("W_ID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("W_ID"), 1L, 1);
 
                     b.Property<string>("end_time")
                         .IsRequired()

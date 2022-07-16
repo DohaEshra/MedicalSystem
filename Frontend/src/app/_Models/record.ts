@@ -11,7 +11,7 @@ export class Record {
                 public did:number=Number(), 
                 public pid:number=Number(), 
                 public oid:number|null=null, 
-                public date :Date=new Date(), 
+                public date :Date|string="", 
                 public summary:string='',
                 //public done:number=0,
                 public prescription:string='',
