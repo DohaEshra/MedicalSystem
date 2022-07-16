@@ -40,8 +40,18 @@ export class PatientEditComponent implements OnInit {
     );
   }
   edit(){
+    var fname = (<HTMLInputElement>document.getElementById('fname')).value;
+    var lname = (<HTMLInputElement>document.getElementById('lname')).value;
+    var email = (<HTMLInputElement>document.getElementById('email')).value;
+    var phone = (<HTMLInputElement>document.getElementById('phone')).value;
+    var city = (<HTMLInputElement>document.getElementById('city')).value;
+    var street = (<HTMLInputElement>document.getElementById('street')).value;
+    var area = (<HTMLInputElement>document.getElementById('area')).value;
+    var buildingNo = (<HTMLInputElement>document.getElementById('building-no')).value;
+    var bdate = (<HTMLInputElement>document.getElementById('bdate')).value;
     this.patientSer.editPatient(this.patient).subscribe(
       a=>{
+        if(this.isValid(fname,lname,email,phone,city,street,area,buildingNo,bdate)){
         this.patient.fname = this.firstName
         this.patient.lname = this.lastName
         this.counter++;
@@ -50,7 +60,8 @@ export class PatientEditComponent implements OnInit {
           this.edit();
         }
         this.router.navigateByUrl("patient/info");
-      },
+      }
+    },
       error=>{
         this.span="Check inputs";
       }
@@ -86,6 +97,20 @@ export class PatientEditComponent implements OnInit {
       this.url = reader.result;
       this.patient.profilePic = this.url; 
     }
+  }
+  isValid(fname:string,lname:string,email:string,phone:string,city:string,street:string,area:string,buildingNo:any,bdate:any)
+  {
+    var div = document.getElementById('error');
+    if(fname == '' || lname == '' || email == '' || phone == '' || city == '' || street == '' || area == '' || buildingNo == null || bdate == null || bdate == null)
+    {
+      var span = document.createElement('span');
+      span.setAttribute('style','color: red;')
+      span.setAttribute('class','mx-3');
+      span?.append("Missing fields");
+      div?.replaceWith(span);
+      return false;
+    }
+    return true;
   }
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
