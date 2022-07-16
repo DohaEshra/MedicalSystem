@@ -22,6 +22,16 @@ namespace MedicalSystem.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("MedicalSystem.Models.BlockedUsers", b =>
+                {
+                    b.Property<string>("email")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("email");
+
+                    b.ToTable("Blocked");
+                });
+
             modelBuilder.Entity("MedicalSystem.Models.Doctor", b =>
                 {
                     b.Property<int>("ID")
@@ -330,7 +340,7 @@ namespace MedicalSystem.Migrations
                     b.Property<byte[]>("attached_files")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<int>("done")
+                    b.Property<int?>("done")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasDefaultValueSql("0");

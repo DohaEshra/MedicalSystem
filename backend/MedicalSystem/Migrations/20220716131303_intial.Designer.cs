@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalSystem.Migrations
 {
     [DbContext(typeof(MedicalSystemContext))]
-    [Migration("20220714154304_intial")]
+    [Migration("20220716131303_intial")]
     partial class intial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,16 @@ namespace MedicalSystem.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("MedicalSystem.Models.BlockedUsers", b =>
+                {
+                    b.Property<string>("email")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("email");
+
+                    b.ToTable("Blocked");
+                });
 
             modelBuilder.Entity("MedicalSystem.Models.Doctor", b =>
                 {
@@ -332,7 +342,7 @@ namespace MedicalSystem.Migrations
                     b.Property<byte[]>("attached_files")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<int>("done")
+                    b.Property<int?>("done")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasDefaultValueSql("0");
