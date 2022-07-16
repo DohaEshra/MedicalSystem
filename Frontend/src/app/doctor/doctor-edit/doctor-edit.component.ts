@@ -30,7 +30,7 @@ export class DoctorEditComponent implements OnInit,OnDestroy {
   counter:number=0;
   firstName:string=''
   lastName:string=''
-
+  user : any ={ id: 0, fname:'', lname:'', birthDate:new Date , email:'', city:'',area:null, gender:'',buildingNumber:null,street:null, phone:'', username:'',job:null, password:'', category:null,confirmPass:'',image:null};
   ngOnInit(): void {
     //get doctor data
     this.sub = this.doc.selectedDoctor$.subscribe(
@@ -40,28 +40,41 @@ export class DoctorEditComponent implements OnInit,OnDestroy {
         this.lastName = this.doctor.lname
         this.counter = 0;
       }
-    );
-  }
+      );
+    }
+    
+    //edit doctor
+    edit(){
+      var fname = (<HTMLInputElement>document.getElementById('fname')).value;
+      var lname = (<HTMLInputElement>document.getElementById('lname')).value;
+      var email = (<HTMLInputElement>document.getElementById('email')).value;
+      var phone = (<HTMLInputElement>document.getElementById('phone')).value;
+      var city = (<HTMLInputElement>document.getElementById('city')).value;
+      var street = (<HTMLInputElement>document.getElementById('street')).value;
+      var area = (<HTMLInputElement>document.getElementById('area')).value;
+      var buildingNo = (<HTMLInputElement>document.getElementById('building-no')).value;
+      var bdate = (<HTMLInputElement>document.getElementById('bdate')).value;
 
-  //edit doctor
-  edit(){
-    this.doctorSer.editDoctor(this.doctor).subscribe(
-      a=>{
-        this.doctor.fname = this.firstName
-        this.doctor.lname = this.lastName
-        this.counter++;
-        if(this.counter==1)
-        {
-          this.edit();
+      this.doctorSer.editDoctor(this.doctor).subscribe(
+        a=>{
+        if(this.isValid(fname,lname,email,phone,city,street,area,buildingNo,bdate)){
+
+          this.doctor.fname = this.firstName
+          this.doctor.lname = this.lastName
+          this.counter++;
+          if(this.counter==1)
+          {
+            this.edit();
+          }
+          this.router.navigateByUrl("doctor/profile/info");
         }
-        this.router.navigateByUrl("doctor/info");
       },
       error=>{
         this.span="Check inputs";
       }
     )
   }
-
+  
   imageErrorMessage(msg:string, imageInput:any){
     this.profileImage = false;
     imageInput.style.display = 'none';
@@ -92,6 +105,21 @@ export class DoctorEditComponent implements OnInit,OnDestroy {
       this.url = reader.result;
       this.doctor.profilePic = this.url; 
     }
+  }
+
+  isValid(fname:string,lname:string,email:string,phone:string,city:string,street:string,area:string,buildingNo:any,bdate:any)
+  {
+    var div = document.getElementById('error');
+    if(fname == '' || lname == '' || email == '' || phone == '' || city == '' || street == '' || area == '' || buildingNo == null || bdate == null || bdate == null)
+    {
+      var span = document.createElement('span');
+      span.setAttribute('style','color: red;')
+      span.setAttribute('class','mx-3');
+      span?.append("Missing fields");
+      div?.replaceWith(span);
+      return false;
+    }
+    return true;
   }
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
