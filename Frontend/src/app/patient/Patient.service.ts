@@ -112,7 +112,7 @@ addDoctorRating(drRating:any){
 
   //edit patient password
   changePassword(patientPasswords: any, id: number) {
-    return this.http.put<any>(this.baseUrl + "patient/change/" + id, patientPasswords);
+    return this.http.put<any>(this.baseUrl + "change/" + id, patientPasswords);
   }
 
 }

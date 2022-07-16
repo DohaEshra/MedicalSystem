@@ -2,7 +2,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<div class="container">
+<div class="container  pat-profile">
 <section class="search-sec">
   <div class="container">
     <form action="#" method="post" novalidate="novalidate">
@@ -15,7 +15,7 @@
             </div> -->
             <div class="col-lg-4 col-md-3 col-sm-12 p-0">
               <input type="date" id="date" class="form-control search-slt" placeholder="Date"
-                [ngModelOptions]="{standalone: true}" pInputText [(ngModel)]="date">
+                [ngModelOptions]="{standalone: true}" pInputText [(ngModel)]="d">
             </div>
 
             <div class="col-lg-4 col-md-3 col-sm-12 p-0">
@@ -27,7 +27,7 @@
     </form>
   </div>
 </section>
-<div class="container m-5 border border-light " *ngIf="(patient.records|filter:date:'date'|numberOfRecordsInSameDate).length!=0">
+<div class="container m-5 col-lg-11" *ngIf="(patient.records|filter:date:'date'|numberOfRecordsInSameDate)">
   <div class="row">
     <div class="container my-5">
       <div class="shadow-4 rounded-5 overflow-hidden">

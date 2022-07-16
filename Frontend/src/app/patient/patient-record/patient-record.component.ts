@@ -19,6 +19,7 @@ export class PatientRecordComponent implements OnInit,OnDestroy {
  date:any;
  DoctorName = "";
 clicked = false;
+d:any;
 
 
   fileDialogVisibility = false;
@@ -62,6 +63,7 @@ clicked = false;
   }
   SearchRecords()
   {
+    this.date=this.d
     this.clicked=true;
     console.log("recordssss:"+this.patient.id)
   }
