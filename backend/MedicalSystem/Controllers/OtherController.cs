@@ -30,6 +30,19 @@ namespace MedicalSystem.Controllers
             return await _context.Others.ToListAsync();
         }
 
+        [HttpPost("blocked")]
+        public async Task<ActionResult> blockEmployee(BlockedUsers BK)
+        {
+            //BlockedUsers Bk = new BlockedUsers();
+            //Bk.email = email;
+            //return await _context.Others.ToListAsync();
+            if (BK.email == null) return BadRequest("This email doesnt exist !");
+
+            _context.Blocked.Add(BK);
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+
         // GET: api/Other/5
         [Authorize(Roles = "admin,radiographer,laboratory technician,pharmacist")]
         [HttpGet("{id}")]
@@ -75,6 +88,12 @@ namespace MedicalSystem.Controllers
             }
 
             return NoContent();
+        }
+        [Authorize(Roles = "admin")]
+        [HttpGet("NotBlocked")]
+        public async Task<ActionResult<IEnumerable<Other>>> GetNotBlockedEmployees()
+        {
+            return await _context.Others.Where(a => !_context.Blocked.Any(p2 => p2.email == a.email)).ToListAsync();
         }
 
         // POST: api/Other

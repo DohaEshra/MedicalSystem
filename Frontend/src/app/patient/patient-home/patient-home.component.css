@@ -2,7 +2,6 @@
 
 body {
     background-color: #eee
-
 }
 
 .mt-100{
@@ -11,7 +10,6 @@ body {
 .card {
     border-radius: 7px !important;
     border-color: #a5c422;
-    /* #e1e7ec; */
 }
 
 .mb-30 {
@@ -94,6 +92,5 @@ a {
 
 .card-title{
     font-family: 'Open Sans';
-    /* font-weight: 300; */
     font-weight: bold;
 }

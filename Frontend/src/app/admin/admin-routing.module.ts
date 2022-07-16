@@ -1,30 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminLoginGuard } from '../_Guards/admin-login.guard';
-import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { DisplayDoctorComponent } from './display-doctor/display-doctor.component';
 import { DoctorRegisterationComponent } from './doctor-registeration/doctor-registeration.component';
 import { DoctorScheduleComponent } from './doctor-schedule/doctor-schedule.component';
 import { EditDoctorScheduleComponent } from './edit-doctor-schedule/edit-doctor-schedule.component';
 import { FileUpadateOrDeleteComponent } from './file-upadate-or-delete/file-upadate-or-delete.component';
+import { ManageEmployeesComponent } from './manage-employees/manage-employees.component';
 
 const routes: Routes =[
-  { path:"addemployee", component: DoctorRegisterationComponent },
-  { path: 'UpdateFiles', component: FileUpadateOrDeleteComponent },
-  {path:"Doctorschedule",component:DoctorScheduleComponent},
-  {path:"editDoctorschedule",component:EditDoctorScheduleComponent},
-  {path:"",component:AdminHomeComponent},
-    {path:"",component:AdminHomeComponent,canActivate:[AdminLoginGuard],children:[
-
-        // {path:"edit",component:DoctorEditComponent},
-        // {path:"patientsearch",component:DoctorPatientSearchComponent},
-        // {path:"patient/:id",component:DoctorPatientComponent,children:[
-        //     {path:"info",component:DoctorPatientInfoComponent},
-        //     {path:"history",component:PatientHistoryComponent},
-        // ]},
-        // {path:"recordpre/:pid/:date",component:RecordPrescriptionComponent},
-        // {path:"editpre/:id/:date",component:EditPrescriptionComponent}
-    ]},
-    {path:"home",component:AdminHomeComponent,canActivate:[AdminLoginGuard]},
+  { path: "addemployee", component: DoctorRegisterationComponent, canActivate: [AdminLoginGuard] },
+  { path: "", component: ManageEmployeesComponent,canActivate:[AdminLoginGuard]},
+  { path: "Doctorschedule", component: DoctorScheduleComponent, canActivate: [AdminLoginGuard] },
+  { path: "editDoctorschedule", component: EditDoctorScheduleComponent, canActivate: [AdminLoginGuard] },
+  { path: "DisplayDoctor/:id", component: DisplayDoctorComponent, canActivate: [AdminLoginGuard] },
+  { path: 'UpdateFiles', component: FileUpadateOrDeleteComponent, canActivate: [AdminLoginGuard] },
+  { path: "Doctorschedule", component: DoctorScheduleComponent, canActivate: [AdminLoginGuard] },
+  { path: "Employees", component: ManageEmployeesComponent, canActivate: [AdminLoginGuard] },
 ];
 
 @NgModule({

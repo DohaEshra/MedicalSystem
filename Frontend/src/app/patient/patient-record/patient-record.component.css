@@ -21,21 +21,6 @@ td{
     .filled.bad {
       color: #ff1e1e;
     }
-    /* h3{
-      color: white;
-    } */
-/* thead{
-    color:#a5c422;
-    font-family:'Helvetica';
-    
-  }
-  .border-light
-  {
-    border-color:#a5c422 !important;
-    padding: 2.5%;
-  } */
-  /* new */
-  /*search box css start here*/
   #book:hover{
     background-color:#a5c422 !important;
   }
@@ -49,7 +34,6 @@ td{
   }
 .search-sec{
   padding: 2rem;
-  /* display: block; */
   
 }
 .search-slt{
@@ -74,7 +58,6 @@ td{
 }
 @media (min-width: 992px){
   .search-sec{
-      /* position: relative; */
       top: -114px;
       background: rgba(26, 70, 104, 0.51);
   }

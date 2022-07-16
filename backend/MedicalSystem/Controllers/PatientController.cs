@@ -127,6 +127,50 @@ namespace MedicalSystem.Controllers
             return CreatedAtAction("GetPatient", new { id = patient.ID }, patient);
         }
 
+        // PUT: api/Doctors/change/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Roles = "patient")]
+        [HttpPut("change/{id}")]
+        public async Task<IActionResult> ChangePassword(int id, dynamic patient)
+        {
+            string oldPass = patient.oldPass;
+            string newPass = patient.newPass;
+
+            var pat = await _context.Doctors.FindAsync(id);
+            if (pat == null)
+                return NotFound();
+
+            // Hash the old password
+            oldPass = AccountUser.hashPassword(oldPass);
+            if (pat.password != oldPass)
+                return BadRequest(" Your old password is incorrect!");
+
+            // Hash the new password
+            newPass = AccountUser.hashPassword(newPass);
+            if (pat.password == newPass)
+                return BadRequest("you haven't changed your password");
+
+            pat.password = newPass;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PatientExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
         // DELETE: api/Patients/5
         //[HttpDelete("{id}")]
         //public async Task<IActionResult> DeletePatient(int id)

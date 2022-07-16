@@ -1,4 +1,4 @@
-@import "../patient.style.css";
+@import "../../doctor/doctor.style.css";
 body{
     background: -webkit-linear-gradient(center, #3931af, #00c6ff);
 }
@@ -102,5 +102,11 @@ body{
     text-decoration: none;
     font-weight: 600;
     color: black;
+}
+
+.btn
+{
+    background: #a5c422;
+    border-color: #a5c422;
 }
 

@@ -56,6 +56,11 @@ export class DoctorService {
   {
     return this.http.get<Doctor[]>(this.baseUrl+"Doctor");
   }
+ //get Not Blocked doctors
+  getNotBlockedDoctors()
+  {
+  return this.http.get<any[]>(this.baseUrl+"Doctor/NotBlocked");
+  }
     
   //get All Categories
     getAllCategories()
@@ -95,5 +100,10 @@ export class DoctorService {
   editRecordByFno(fno:Guid,record:Record)
   {
     return this.http.put<undefined>(this.baseUrl+"Record/"+fno,record);
+  }
+
+  //edit dr password
+  changePassword(doctorPasswords:any,id:number){
+    return this.http.put<any>(this.baseUrl + "Doctor/change/" + id, doctorPasswords);
   }
 }

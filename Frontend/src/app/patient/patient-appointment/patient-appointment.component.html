@@ -1,16 +1,12 @@
 <form *ngIf="doctorId!=0">
-    <div class="mb-3 ">
-        <label for="Select" class="form-label fs-4">Date </label>
-        <input  type="date"  
-          id="date" 
-          style="border-radius:30px ;"
-          class="form-control form-control-lg " 
-          [(ngModel)]="bookingDate" [ngModelOptions]="{standalone: true}"
-        />
-    </div>
-    <div class="mb-3 ">
-      <span id="message" style="color: red;">{{errorMessage}}</span>
+  <div class="mb-3 ">
+    <label for="Select" class="form-label fs-4">Date </label>
+    <input type="date" id="date" style="border-radius:30px ;" class="form-control form-control-lg "
+      [(ngModel)]="bookingDate" [ngModelOptions]="{standalone: true}" />
   </div>
-    
-    <button type="submit" (click)="Book()" class="btn btn-primary">Book</button>
+  <div class="mb-3 ">
+    <span id="message" style="color: red;">{{errorMessage}}</span>
+  </div>
+
+  <button type="submit" (click)="Book()" class="btn btn-primary">Book</button>
 </form>

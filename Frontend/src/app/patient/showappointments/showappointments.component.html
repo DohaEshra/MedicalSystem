@@ -14,7 +14,6 @@
             <p class="card-text mx-1" style="color: rgb(108, 108, 108);">Wishing you an easy recovery and continued good
               health afterward!</p>
           </div>
-          <button class="btn booking" [routerLink]="['/patient/appointment',patient.id]">Book Appointment</button>
 
         </div>
 
@@ -27,9 +26,6 @@
     <div class="row">
       <div class="page-header">
         <h1>my appointments</h1>
-        <span class="icon-bar">
-          <i class="glyphicon"></i>
-        </span>
       </div>
     </div>
   </div>
@@ -51,7 +47,7 @@
         <td>{{visit.didNavigation?.fname}} {{visit.didNavigation?.lname}}</td>
         <td>{{visit.didNavigation?.category}}</td>
         <td>{{(visit.appointment_time|datetime)[0]}}</td>
-<!-- <<<<<<< HEAD -->
+
         <td>{{(visit.appointment_time|datetime)[1]}}</td>
         <td>{{visit.appointmentNo}}</td>
         <td *ngIf="visit.appointmentStatus==0"><i class="fa fa-spinner" style="color: red;" aria-hidden="true"></i></td>
@@ -60,16 +56,7 @@
           <a class="btn-sm btn-default" (click)="deleteMedicine(visit.pid,visit.did,visit.appointment_time)">
             <em class="fa fa-times" style="color: red;"></em>
           </a>
-<!-- ======= -->
-        <!-- <td >{{visit.appointmentNo}}</td>
-        <td *ngIf="visit.appointmentStatus==0"><i class="fa fa-spinner" style="color: red;" aria-hidden="true"></i></td>
-        <td *ngIf="visit.appointmentStatus==1"><i class="fa fa-check" style="color: green;" aria-hidden="true"></i></td>
-        <td align="left">
-            <a class="btn-sm btn-default" (click)="deleteMedicine(visit.pid,visit.did,visit.appointment_time)">
-                <em  class="fa fa-times" style="color: red;"></em>
-            </a>
-            <a [routerLink]="['/patient/edit',visit.pid,visit.didNavigation?.id,visit.appointment_time]" class="btn btn-outline-success">Edit</a>
->>>>>>> cca1ffdab8e1a7588f40e1657e2fdc15073e80ac -->
+
         </td>
       </tr>
     </tbody>
@@ -80,10 +67,7 @@
   <div class="container">
     <div class="row">
       <div class="page-header2">
-        <h1 >Find your Doctor</h1>
-        <span class="icon-bar2">
-          <i class="glyphicon"></i>
-        </span>
+        <h1>Find your Doctor</h1>
       </div>
     </div>
   </div>
@@ -116,7 +100,7 @@
                       <div class="card-body text-center">
                         <h4 class="card-title">Obstetrics/Gynecology</h4>
                         <a class="btn btn-outline-success btn-sm" href="#" data-abc="true"
-                          [routerLink]="['/patient/categories','Obstetrics/Gynecology']">View Doctors</a>
+                          [routerLink]="['/patient/categories','Obstetrics']">View Doctors</a>
                       </div>
                     </div>
                   </div>
@@ -150,8 +134,6 @@
                 </div>
               </div>
             </div>
-
-
             <div class="carousel-item">
               <div class="container">
                 <div class="row">
@@ -182,13 +164,9 @@
                       </div>
                     </div>
                   </div>
-
                 </div>
               </div>
-
             </div>
-
-
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
             data-bs-slide="prev">

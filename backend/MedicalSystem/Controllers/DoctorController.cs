@@ -25,11 +25,17 @@ namespace MedicalSystem.Controllers
         }
 
         // GET: api/Doctors
-        [Authorize(Roles="admin,patient")]
+        [Authorize(Roles = "admin,patient")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Doctor>>> GetDoctors()
         {
             return await _context.Doctors.ToListAsync();
+        }
+        [Authorize(Roles = "admin")]
+        [HttpGet("NotBlocked")]
+        public async Task<ActionResult<IEnumerable<Doctor>>> GetNotBlockedDoctors()
+        {
+            return await _context.Doctors.Where(a => !_context.Blocked.Any(p2 => p2.email == a.email)).ToListAsync();
         }
 
         // GET: api/Doctor/get/Dentist
@@ -41,7 +47,7 @@ namespace MedicalSystem.Controllers
             {
                 return NotFound();
             }
-            return await _context.Doctors.Where(a => a.category == category).ToListAsync();
+            return await _context.Doctors.Where(a => a.category.Contains(category)).ToListAsync();
         }
 
         [Authorize(Roles = "admin,patient")]
@@ -102,6 +108,50 @@ namespace MedicalSystem.Controllers
             }
 
             _context.Entry(doctor).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!DoctorExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        // PUT: api/Doctors/change/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Roles = "doctor")]
+        [HttpPut("change/{id}")]
+        public async Task<IActionResult> ChangePassword(int id, dynamic doctor)
+        {
+            string oldPass = doctor.oldPass;
+            string newPass = doctor.newPass;
+
+            var dr = await _context.Doctors.FindAsync(id);
+            if (dr == null)
+                return NotFound();
+
+            // Hash the old password
+            oldPass = AccountUser.hashPassword(oldPass);
+            if (dr.password != oldPass)
+                return BadRequest(" Your old password is incorrect!");
+
+            // Hash the new password
+            newPass = AccountUser.hashPassword(newPass);
+            if (dr.password == newPass)
+                return BadRequest("you haven't changed your password");
+
+            dr.password = newPass;
 
             try
             {
