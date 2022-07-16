@@ -22,7 +22,7 @@
   </div>
 
   <!-- title -->
-  <div class="container">
+  <div class="container" *ngIf="this.patient.visits.length!=0">
     <div class="row">
       <div class="page-header">
         <h1>my appointments</h1>
@@ -31,7 +31,7 @@
   </div>
 
   <!-- table -->
-  <table class="tablearea table table-striped " *ngIf="patient.id">
+  <table class="tablearea table table-striped " *ngIf="this.patient.visits.length!=0">
     <thead class="table-head">
       <tr>
         <th scope="col">Doctor</th>
