@@ -1,62 +1,72 @@
+<div id="sect1">
+    <app-loading *ngIf="Drs.length==0 && Others.length==0"></app-loading>
+    <!-- <div class="container emp-profile" > -->
+        
+        <div class="container" *ngIf="Drs.length>0 && Others.length>0">
+            <div class="fs-2 text-center my-5" style=" color: #a5c422;">Employees</div>
+            <div class="shadow-4 rounded-5 overflow-hidden">
+                <table class="table align-middle mb-0 table-striped table-dark fs-5" style="border-radius: 20px;">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Doctor ID</th>
+                            <th class="text-center">Employee Name</th>
+                            <th class="text-center">Phone</th>
+                            <th class="text-center">Email</th>
+                            <th class="text-center">City</th>
+                            <th class="text-center">Job Title</th>
+                            <th class="text-center">Operations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let emp of All|getAll:Drs:Others">
 
-<app-loading *ngIf="Drs.length==0 && Others.length==0"></app-loading>
-<div class="container emp-profile" *ngIf="Drs.length>0 && Others.length>0">
-    <div class="fs-2 text-center mb-3" style=" color: #a5c422;">Employees</div>
-    <div class="container my-5">
-        <div class="shadow-4 rounded-5 overflow-hidden">
-
-            <table class="table align-middle mb-0 bg-white">
-                <thead class="bg-light">
-                    <tr>
-                        <th class="text-center">Employee Name</th>
-                        <th class="text-center">Phone</th>
-                        <th class="text-center">Email</th>
-                        <th class="text-center">City</th>
-                        <th class="text-center">Job Title</th>
-                        <th class="text-center">Operations</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let emp of All|getAll:Drs:Others">
-
-                        <td class="text-center">
-                            {{emp.fname | titlecase}} {{emp.lname | titlecase}}
-                        </td>
-
-                        <td class="text-center">
-                            {{emp.phone}}
-                        </td>
-
-                        <td class="text-center">
-                            {{emp.email}}
-                        </td>
-
-                        <td class="text-center">
-                            {{emp.city | titlecase}}
-                        </td>
-
-                        <td class="text-center" *ngIf="emp.job; else t1">
-                            {{emp.job}}
-                        </td>
-
-                        <ng-template class="text-center" #t1>
-                            <td class="text-center">
-                                {{emp.category | titlecase}}
+                            <td class="text-center" *ngIf="emp.category; else t2">
+                                {{emp.id}}
                             </td>
-                        </ng-template>
+                            
+                            <ng-template class="text-center" #t2>
+                                <td class="text-center">
+                                    #
+                                </td>
+                            </ng-template>
 
-                        <td class="text-center">
-                            <button class="btn Display btn-primary" type="button" [routerLink]="['/admin/DisplayDoctor',emp.id]"
-                            >Display</button>
+                            <td class="text-center">
+                                {{emp.fname | titlecase}} {{emp.lname | titlecase}}
+                            </td>
 
-                            <button class="btn btn-danger" type="button"
-                                (click)="BlockUser(emp)">Block</button>
-                        </td>
+                            <td class="text-center">
+                                {{emp.phone}}
+                            </td>
 
-                    </tr>
-                </tbody>
-            </table>
+                            <td class="text-center">
+                                {{emp.email}}
+                            </td>
+
+                            <td class="text-center">
+                                {{emp.city | titlecase}}
+                            </td>
+
+                            <td class="text-center" *ngIf="emp.job; else t1">
+                                {{emp.job}}
+                            </td>
+
+                            <ng-template class="text-center" #t1>
+                                <td class="text-center">
+                                    {{emp.category | titlecase}}
+                                </td>
+                            </ng-template>
+
+                            <td class="text-center">
+                                <button class="btn Display btn-primary btn-lg my-1" type="button"
+                                    [routerLink]="['/admin/DisplayDoctor',emp.id]"><i class="fas fa-user"></i></button>
+                                <button class="btn btn-danger btn-lg my-1" type="button" (click)="BlockUser(emp)"><i class="fas fa-ban"></i></button>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
-    </div>
+    <!-- </div> -->
 </div>

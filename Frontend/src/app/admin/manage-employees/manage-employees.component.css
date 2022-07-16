@@ -1,5 +1,4 @@
-/* @import "../doctor.style.css"; */
-
+@import "../../doctor/doctor.style.css";
 label {
     display: block;
     margin-top: 10px;
