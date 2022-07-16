@@ -40,7 +40,7 @@
             <h3 class="mx-3"><i style="color: #a5c422;margin-right:5px;" id="cal" class="fa fa-calendar" aria-hidden="true"></i><b>Appointments</b></h3>
             <app-loading style="margin-top: -20%;" *ngIf="visits.length==0"></app-loading>
             
-            <div class="searchbar mb-2" *ngIf="(visits|searchAppointment:searchText).length!=0">
+            <div class="searchbar mb-2" >
               <input type="text" class="search_input" placeholder="Search Appointment ... " [(ngModel)]="searchText"/>
               <a class="search_icon"><i class="fas fa-search"></i></a>
             </div>

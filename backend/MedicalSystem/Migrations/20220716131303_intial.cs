@@ -10,6 +10,17 @@ namespace MedicalSystem.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Blocked",
+                columns: table => new
+                {
+                    email = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Blocked", x => x.email);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Doctor",
                 columns: table => new
                 {
@@ -145,7 +156,7 @@ namespace MedicalSystem.Migrations
                     attached_files = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     summary = table.Column<string>(type: "varchar(max)", unicode: false, nullable: false, defaultValueSql: "('')"),
                     OID = table.Column<int>(type: "int", nullable: true),
-                    done = table.Column<int>(type: "int", nullable: false, defaultValueSql: "0"),
+                    done = table.Column<int>(type: "int", nullable: true, defaultValueSql: "0"),
                     prescription = table.Column<string>(type: "varchar(max)", unicode: false, nullable: false, defaultValueSql: "('')"),
                     testType = table.Column<string>(type: "nvarchar(1)", maxLength: 1, nullable: true),
                     starRating = table.Column<int>(type: "int", nullable: true)
@@ -251,6 +262,9 @@ namespace MedicalSystem.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Blocked");
+
             migrationBuilder.DropTable(
                 name: "DoctorRating");
 
