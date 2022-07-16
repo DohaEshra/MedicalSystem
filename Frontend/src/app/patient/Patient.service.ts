@@ -112,4 +112,9 @@ addDoctorRating(drRating:any){
     return this.http.put<any>("https://localhost:7089/api/Record/saveStarRating/"+ record.pid +"/"+ record.did +"/"+ record.date, record);
   }
 
+  //edit patient password
+  changePassword(patientPasswords: any, id: number) {
+    return this.http.put<any>(this.baseUrl + "patient/change/" + id, patientPasswords);
+  }
+
 }

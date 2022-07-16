@@ -128,6 +128,50 @@ namespace MedicalSystem.Controllers
             return NoContent();
         }
 
+        // PUT: api/Doctors/change/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Roles = "doctor")]
+        [HttpPut("change/{id}")]
+        public async Task<IActionResult> ChangePassword(int id, dynamic doctor)
+        {
+            string oldPass = doctor.oldPass;
+            string newPass = doctor.newPass;
+
+            var dr = await _context.Doctors.FindAsync(id);
+            if (dr == null)
+                return NotFound();
+
+            // Hash the old password
+            oldPass = AccountUser.hashPassword(oldPass);
+            if (dr.password != oldPass)
+                return BadRequest(" Your old password is incorrect!");
+
+            // Hash the new password
+            newPass = AccountUser.hashPassword(newPass);
+            if (dr.password == newPass)
+                return BadRequest("you haven't changed your password");
+
+            dr.password = newPass;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!DoctorExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
         // POST: api/Doctors
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]

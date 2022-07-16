@@ -29,10 +29,14 @@ namespace MedicalSystem.Controllers
         public IActionResult login(AccountUser user)
         {
             // Hash the user password
-             user.password = AccountUser.hashPassword(user.password);
+            user.password = AccountUser.hashPassword(user.password);
 
             if (user.role == "doctor")
             {
+                var blocked = db.Blocked.FirstOrDefault(e => e.email == user.email);
+                if (blocked != null)
+                    return Unauthorized("You are unable to login into your account, please check with your admin");
+
                 doctor = db.Doctors.Where(a => a.email == user.email && a.password == user.password).FirstOrDefault();
                 if (doctor != null)
                 {
@@ -59,6 +63,10 @@ namespace MedicalSystem.Controllers
             }
             else if (user.role == "laboratory technician" || user.role == "radiographer" || user.role == "pharmacist")
             {
+                var blocked = db.Blocked.FirstOrDefault(e => e.email == user.email);
+                if (blocked != null)
+                    return Unauthorized("You are unable to login into your account, please check with your admin");
+
                 other = db.Others.Where(a => a.email == user.email && a.password == user.password).FirstOrDefault();
                 if (other != null)
                 {

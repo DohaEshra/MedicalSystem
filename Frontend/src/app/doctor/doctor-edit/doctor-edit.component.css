@@ -84,3 +84,11 @@ body{
   border-radius: 0.5rem;
   background: #fff;
 }
+
+btn1{
+  border-color: #a5c422
+}
+
+btn1:hover {
+  background-color: #a5c422
+}

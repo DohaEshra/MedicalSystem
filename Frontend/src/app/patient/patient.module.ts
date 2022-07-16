@@ -29,6 +29,7 @@ import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditappointmentComponent } from './editappointment/editappointment.component';
 import { CoreModule } from '../core/core.module';
 import { IsValidDatePipe } from './_Pipes/is-valid-date.pipe';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { IsValidDatePipe } from './_Pipes/is-valid-date.pipe';
     SafePipe,
     NumberOfRecordsInSameDatePipe,
     EditappointmentComponent,
+    ChangePasswordComponent,
    
   ],
   imports: [

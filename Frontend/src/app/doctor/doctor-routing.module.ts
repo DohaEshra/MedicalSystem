@@ -1,3 +1,4 @@
+import { ChangePasswordComponent } from './change-password/change-password.component';
 import {NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { DoctorLoginGuard } from "../_Guards/doctorLogin.guard";
@@ -18,6 +19,7 @@ const routes:Routes =[
         {path:"",component:DoctorAppointmentComponent},
         {path:"info",component:DoctorInfoComponent},
         {path:"edit",component:DoctorEditComponent},
+        { path: "changePassword",component:ChangePasswordComponent },
         {path:"patientsearch",component:DoctorPatientSearchComponent},
         {path:"patient/:id",component:DoctorPatientComponent,children:[
             {path:"info",component:DoctorPatientInfoComponent},

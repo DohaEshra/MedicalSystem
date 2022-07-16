@@ -26,7 +26,7 @@
                     />
         </div>
         <!-- EMAIL -->
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="email" class="fs-5">Email</label>
           <input  type="email"  
                   style="border-radius:30px ;"
@@ -34,7 +34,7 @@
                   name="email"
                   [(ngModel)]="doctor.email" 
                   placeholder ="Enter your Email" required #email="ngModel"/>
-      </div>
+      </div> -->
 
          <!-- Phone -->
         <div class="form-group">
@@ -130,13 +130,12 @@
           <!-- PASSWORD -->
         <div class="form-group">
           <label for="password" class="fs-5">Password</label>
-          <input type="password"
-                style="border-radius:30px ;"
-                class="form-control form-control-lg"
-                name="password"
-                [(ngModel)]="doctor.password"
-                minlength="3"
-                />
+          <div class="row">
+            <div class="col-2"></div>
+            <div class="form-group col-8">
+              <a class="btn btn1 btn-lg m-2" style="width:100%" routerLink="/doctor/changePassword"> Edit Password </a>
+            </div>
+          </div>
         </div>
 
         <!-- Image File -->

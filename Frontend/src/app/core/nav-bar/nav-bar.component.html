@@ -154,7 +154,7 @@
     <div  *ngIf="account.getRole() === 'admin'"  class="collapse navbar-collapse" id="navbarScroll" >
       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
         <li class="nav-item">
-            <a class="nav-link active fs-5" aria-current="page" [routerLink]="['/admin/home']">Home</a>
+            <a class="nav-link active fs-5" aria-current="page" [routerLink]="['/admin/Employees']">Home</a>
         </li>
         <li class="nav-item">
             <a class="nav-link active fs-5" aria-current="page" [routerLink]="['/admin/addemployee']">Register a new employee</a>
@@ -164,9 +164,6 @@
       </li>
         <li class="nav-item">
             <a class="nav-link active fs-5" aria-current="page" routerLink="/admin/UpdateFiles">Update Files</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active fs-5" aria-current="page" routerLink="/admin/Employees">Employees</a>
         </li>
       </ul>
       <ul class="navbar-nav  justify-content-end my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
