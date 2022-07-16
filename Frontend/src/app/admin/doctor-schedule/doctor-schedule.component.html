@@ -4,10 +4,10 @@
     <div class="container">
 
         <div class="row my-5 fs-5 form-group" *ngIf="!showAddToSchedule">
-            <div class="col-lg-2 col-sm-3">
+            <div class="col-lg-2 col-sm-3 my-3">
                 <label for="did"> Doctor ID </label>
             </div>
-            <div class="col-lg-4 col-sm-12">
+            <div class="col-lg-4 col-sm-12 my-3">
                 <input class="form-control form-control-lg" id="did" [pattern]="IsNumberPattern" type="text"
                     [(ngModel)]="did" placeholder="Enter Doctor Id">
             </div>
