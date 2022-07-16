@@ -30,6 +30,7 @@ import { EditappointmentComponent } from './editappointment/editappointment.comp
 import { CoreModule } from '../core/core.module';
 import { TimeFormatPipe } from './_Pipes/time-format.pipe';
 import { IsValidDatePipe } from './_Pipes/is-valid-date.pipe';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { IsValidDatePipe } from './_Pipes/is-valid-date.pipe';
     NumberOfRecordsInSameDatePipe,
     EditappointmentComponent,
     TimeFormatPipe,
+    ChangePasswordComponent,
    
   ],
   imports: [

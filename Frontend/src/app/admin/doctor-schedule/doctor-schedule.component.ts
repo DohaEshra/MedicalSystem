@@ -63,7 +63,7 @@ export class DoctorScheduleComponent implements OnInit , OnDestroy {
       this.errorMessageDuringAdd = false ;
       this.startIn= this.info.day+' '+this.info.start+' '+this.info.sShift;
       this.endAt  = this.info.day+' '+this.info.end+' '+this.info.eShift;
-      console.log(this.startIn, this.endAt);
+      // console.log(this.startIn, this.endAt);
       this.work.did = this.workIn[0].did ;
       this.work.start_time = this.startIn;
       this.work.end_time = this.endAt ;
@@ -91,7 +91,6 @@ export class DoctorScheduleComponent implements OnInit , OnDestroy {
     this.showResult= false;
     this.showLoading = true;
     this.subscribe = this.adminService.getDoctorSchedule(this.did).subscribe({next:data=>{
-      console.log(data);
           if(data==null)
           {
             this.showError = true;
@@ -99,12 +98,12 @@ export class DoctorScheduleComponent implements OnInit , OnDestroy {
             this.showResult= this.showLoading = false ;
             return
           }
+          console.log(data,"eeeee")
           this.workIn = data ;
-          console.log('aaaaaazxcc');
           this.doctor = data[0].didNavigation ;
           this.showResult= true ;
     },error:err=>{
-      console.log(err,'bbbbbbbbbbbbbbbbbb');
+      console.log("error from adding doctor schedule component",err);
     }})
    }
 

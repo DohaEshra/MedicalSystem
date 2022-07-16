@@ -101,4 +101,9 @@ export class DoctorService {
   {
     return this.http.put<undefined>(this.baseUrl+"Record/"+fno,record);
   }
+
+  //edit dr password
+  changePassword(doctorPasswords:any,id:number){
+    return this.http.put<any>(this.baseUrl + "Doctor/change/" + id, doctorPasswords);
+  }
 }

@@ -66,9 +66,9 @@ if(result)
         console.log("oths", this.Others)
 
       }
-      alert("Blocked Successeded")},
+      alert("Blocked Successfully")},
       error:err=>{
-        alert("Blocked unsuccesseded")
+        alert("an error happened while blocking, try again later")
         console.log("Blocked error", err)
       }
     })

@@ -24,6 +24,7 @@ import { CoreModule } from '../core/core.module';
 import { DoctorProfileComponent } from './doctor-profile/doctor-profile.component';
 import { DoctorHoursComponent } from './doctor-hours/doctor-hours.component';
 import { TimeFormatPipe } from './_Pipes/time-format.pipe';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 
@@ -48,7 +49,8 @@ import { TimeFormatPipe } from './_Pipes/time-format.pipe';
     searchAppointmentPipe,
     DoctorProfileComponent,
     DoctorHoursComponent,
-    TimeFormatPipe
+    TimeFormatPipe,
+    ChangePasswordComponent
   ],
   imports: [
     CommonModule,doctorRoutingModule,FormsModule,DialogModule,CoreModule

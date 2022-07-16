@@ -144,6 +144,7 @@
             <button class="btn btn-success btn-lg my-3" (click)="hideDialog()">Back</button>
             <object style="width: 100%; height:100vh" class="text-center" [data]="('data:application/pdf;base64,'+myAttachedFile)|safe:'url'"></object>
         </div>
+        
     </div>
     <app-loading *ngIf="patientsList.length==0"> </app-loading>
 </div>
