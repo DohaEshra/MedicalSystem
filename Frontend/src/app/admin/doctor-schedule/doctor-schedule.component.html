@@ -2,17 +2,17 @@
     <div class="container">
 
         <div class="row my-5 fs-5 form-group" *ngIf="!showAddToSchedule">
-            <div class="col-lg-2 col-sm-3">
+            <div class="col-lg-2 col-sm-3 my-3">
                 <label for="did"> Doctor ID </label>
             </div>
-            <div class="col-lg-4 col-sm-12">
+            <div class="col-lg-4 col-sm-12 my-3">
                 <input class="form-control form-control-lg" id="did" [pattern]="IsNumberPattern" type="text"
                     [(ngModel)]="did" placeholder="Enter Doctor Id">
             </div>
             <div class="col-lg-1 col-sm-3"> </div>
             <div class="col-lg-4 col-sm-12 ">
                 <button (click)="ShowDoctorSchedule()"
-                    class="form-control form-control-lg btn btn-outline-success fs-5 ">search </button>
+                    class="form-control form-control-lg btn btn-outline-success fs-5 my-3">search </button>
             </div>
         </div>
 
@@ -104,7 +104,7 @@
 
         </div>
 
-        <app-loading *ngIf="workIn.length ==0 && showLoading"> </app-loading>
+        <app-loading *ngIf="!doctor.id && showLoading"> </app-loading>
         <div *ngIf="showResult &&!showAddToSchedule">
             <hr>
 
@@ -125,7 +125,7 @@
                 </div>
             </div>
 
-            <div class="row my-5">
+            <div class="row my-5" *ngIf="ShowTable">
                 <table
                     class="table table-striped table-inverse table-responsive fs-5 table-light table-bordered text-center">
                     <thead class="thead-inverse">

@@ -2,17 +2,17 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
+<div class="container">
 <section class="search-sec">
   <div class="container">
     <form action="#" method="post" novalidate="novalidate">
       <div class="row">
-        <div class="col-lg-12">
-          <div class="row">
-            <div class="col-lg-4 col-md-3 col-sm-12 p-0">
+        <div class="col-lg-12  ">
+          <div class="row d-flex justify-content-center">
+            <!-- <div class="col-lg-4 col-md-3 col-sm-12 p-0">
               <input type="text" id="Name" class="form-control search-slt" placeholder="Name"
                 [ngModelOptions]="{standalone: true}" pInputText [(ngModel)]="DoctorName">
-            </div>
+            </div> -->
             <div class="col-lg-4 col-md-3 col-sm-12 p-0">
               <input type="date" id="date" class="form-control search-slt" placeholder="Date"
                 [ngModelOptions]="{standalone: true}" pInputText [(ngModel)]="date">
@@ -27,7 +27,7 @@
     </form>
   </div>
 </section>
-<div class="container m-5 border border-light ">
+<div class="container m-5 border border-light " *ngIf="(patient.records|filter:date:'date'|numberOfRecordsInSameDate).length!=0">
   <div class="row">
     <div class="container my-5">
       <div class="shadow-4 rounded-5 overflow-hidden">
@@ -45,7 +45,7 @@
           </thead>
           <tbody>
             <tr
-              *ngFor="let record of patient.records|filter:DoctorName:'didNavigation'|filter:date:'date'|numberOfRecordsInSameDate">
+              *ngFor="let record of patient.records|filter:date:'date'|numberOfRecordsInSameDate">
 
               <td class="text-center">
                 <p class="text-muted mb-0 text-center">{{record.didNavigation?.fname}} {{record.didNavigation?.lname}}
@@ -96,3 +96,4 @@
         </table>
       </div>
     </div>
+  </div>

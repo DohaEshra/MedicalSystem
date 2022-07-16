@@ -110,6 +110,7 @@ export class PatientAppointmentComponent implements OnInit, OnDestroy {
       this.errorMessage =
         'This appointment date is not available , Please book in available date';
     }
+
   }
 
   ngOnDestroy(): void {

@@ -31,3 +31,10 @@ hgroup h2.lead { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; 
     border-radius: 0.5rem;
     background: #fff;
 }
+
+#book:hover{
+    background-color:#a5c422 !important;
+  }
+  #book:hover #cal{
+    color:#fff !important;
+  }

@@ -25,6 +25,7 @@ export class DoctorAppointmentComponent implements OnInit,OnDestroy {
     this.sub = this.doc.selectedDoctor$.subscribe(
       data=>{
         this.doctor=data;
+        console.log(data);
       }
     );
     this.sub1 = this.docSer.getDoctorPatients().subscribe(

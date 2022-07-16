@@ -1,0 +1,23 @@
+<app-loading *ngIf="appointments.length==0"></app-loading>
+
+<div class="row">
+    <div class="col-md-8 col-sm-12 offset-md-3 mt-sm-5 mt-md-0" >
+        <div id="sect1" class="" *ngIf="appointments.length">
+            <div class="row col-12 d-flex justify-content-center">
+              <section class="ftco-intro" style="margin-top: 15%;margin-left: 15%;" >
+                <div class="container">
+                  <div class="row no-gutters">
+                    <div class="col-md-10  p-4" style="background-color: #d8e4dc; color: gray;">
+                      <p class="openinghours d-flex fs-5 " *ngFor="let appointment of appointments">
+                        <span class="mx-4">{{(appointment|timeFormat)[0]}}</span>
+                        <span>{{(appointment|timeFormat)[1]}} {{(appointment|timeFormat)[2]}} - {{(appointment|timeFormat)[3]}} {{(appointment|timeFormat)[4]}}</span>
+                      </p>
+                      
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+    </div>
+</div>

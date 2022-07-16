@@ -1,87 +1,89 @@
-<div id="sect1">
-    <div class=" my-3 fs-5 form-group">
-        <div class="row my-5">
-            <div class="col-lg-3 col-sm-3">
-                <a class="btn btn-default" [routerLink]="['/admin/Doctorschedule']"><em class="fa fa-backward"></em></a>
+<div id="sect1" >
+    <div class="container">
+        <div class=" my-3 fs-5 form-group">
+            <div class="row my-5">
+                <div class="col-lg-3 col-sm-3">
+                    <a class="btn btn-default" [routerLink]="['/admin/Doctorschedule']"><em class="fa fa-backward"></em></a>
+                </div>
+                <div class="col-lg-3 col-sm-3"> </div>
             </div>
-            <div class="col-lg-3 col-sm-3"> </div>
-        </div>
 
-        <div class="row my-3 ">
-            <div class="col-lg-3 col-sm-3">
-                <label for="day"> Choose Day </label>
-                <label style="color:red ;">*</label>
+            <div class="row my-3 ">
+                <div class="col-lg-3 col-sm-3">
+                    <label for="day"> Choose Day </label>
+                    <label style="color:red ;">*</label>
+                </div>
+                <div class="col-lg-4 col-sm-3">
+                    <select name="day" [(ngModel)]="info.day" class="form-select form-select-lg"
+                        style="border-radius:30px ;" aria-label="Default select example" required #day="ngModel">
+                        <option class="fs-5" *ngFor=" let day of days"> {{day}} </option>
+                    </select>
+                </div>
             </div>
-            <div class="col-lg-4 col-sm-3">
-                <select name="day" [(ngModel)]="info.day" class="form-select form-select-lg"
-                    style="border-radius:30px ;" aria-label="Default select example" required #day="ngModel">
-                    <option class="fs-5" *ngFor=" let day of days"> {{day}} </option>
-                </select>
-            </div>
-        </div>
 
-        <div class="row my-3 ">
-            <div class="col-lg-3 col-sm-12">
-                <label for="s"> Start At </label>
-                <label style="color:red ;">*</label>
+            <div class="row my-3 ">
+                <div class="col-lg-3 col-sm-12">
+                    <label for="s"> Start At </label>
+                    <label style="color:red ;">*</label>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <select name="s" [(ngModel)]="info.start" class="form-select form-select-lg"
+                        style="border-radius:30px ;" aria-label="Default select example" required #start="ngModel">
+                        <option class="fs-5" *ngFor=" let hour of hours"> {{hour}} </option>
+                    </select>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <select name="day" [(ngModel)]="info.sShift" class="form-select form-select-lg"
+                        style="border-radius:30px ;" aria-label="Default select example" required #sShift="ngModel">
+                        <option class="fs-5" *ngFor=" let sh of shift"> {{sh}} </option>
+                    </select>
+                </div>
             </div>
-            <div class="col-lg-4 col-sm-6">
-                <select name="s" [(ngModel)]="info.start" class="form-select form-select-lg"
-                    style="border-radius:30px ;" aria-label="Default select example" required #start="ngModel">
-                    <option class="fs-5" *ngFor=" let hour of hours"> {{hour}} </option>
-                </select>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <select name="day" [(ngModel)]="info.sShift" class="form-select form-select-lg"
-                    style="border-radius:30px ;" aria-label="Default select example" required #sShift="ngModel">
-                    <option class="fs-5" *ngFor=" let sh of shift"> {{sh}} </option>
-                </select>
-            </div>
-        </div>
 
-        <div class="row my-3 ">
-            <div class="col-lg-3 col-sm-12">
-                <label for="end"> End At </label>
-                <label style="color:red ;">*</label>
+            <div class="row my-3 ">
+                <div class="col-lg-3 col-sm-12">
+                    <label for="end"> End At </label>
+                    <label style="color:red ;">*</label>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <select name="end" [(ngModel)]="info.end" class="form-select form-select-lg"
+                        style="border-radius:30px ;" aria-label="Default select example" required #end="ngModel">
+                        <option class="fs-5" *ngFor=" let hour of hours"> {{hour}} </option>
+                    </select>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <select name="day" [(ngModel)]="info.eShift" class="form-select form-select-lg"
+                        style="border-radius:30px ;" aria-label="Default select example" required #eShift="ngModel">
+                        <option class="fs-5" *ngFor=" let sh of shift"> {{sh}} </option>
+                    </select>
+                </div>
             </div>
-            <div class="col-lg-4 col-sm-6">
-                <select name="end" [(ngModel)]="info.end" class="form-select form-select-lg"
-                    style="border-radius:30px ;" aria-label="Default select example" required #end="ngModel">
-                    <option class="fs-5" *ngFor=" let hour of hours"> {{hour}} </option>
-                </select>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <select name="day" [(ngModel)]="info.eShift" class="form-select form-select-lg"
-                    style="border-radius:30px ;" aria-label="Default select example" required #eShift="ngModel">
-                    <option class="fs-5" *ngFor=" let sh of shift"> {{sh}} </option>
-                </select>
-            </div>
-        </div>
 
-        <div class="row my-3 ">
-            <div class="col-lg-3 col-sm-12">
-                <label for="end"> Maximum # of patients <span style="color:red ;">*</span> </label>
+            <div class="row my-3 ">
+                <div class="col-lg-3 col-sm-12">
+                    <label for="end"> Maximum # of patients <span style="color:red ;">*</span> </label>
+                </div>
+                <div class="col-lg-4 col-sm-12">
+                    <input class="form-control form-control-lg" style="border-radius:30px ;" type="text"
+                        [(ngModel)]="info.maxNo" placeholder="Enter max number of patients">
+                </div>
             </div>
-            <div class="col-lg-4 col-sm-12">
-                <input class="form-control form-control-lg" style="border-radius:30px ;" type="text"
-                    [(ngModel)]="info.maxNo" placeholder="Enter max number of patients">
-            </div>
-        </div>
 
-        <div *ngIf="errorMessageDuringAdd" class="row my-3">
-            <div class="col-lg-3 col-sm-12">
+            <div *ngIf="errorMessageDuringAdd" class="row my-3">
+                <div class="col-lg-3 col-sm-12">
+                </div>
+                <label class="my-3" style="color:red ;">
+                    {{errMsg}}
+                </label>
             </div>
-            <label class="my-3" style="color:red ;">
-                {{errMsg}}
-            </label>
-        </div>
 
-        <div class="row my-5">
-            <div class="col-lg-3 col-sm-3"> </div>
-            <div class="col-lg-4 col-sm-3">
-                <button (click)="Edit()" class="form-control form-control-lg btn btn-outline-success fs-5 "> Edit
-                </button>
+            <div class="row my-5">
+                <div class="col-lg-3 col-sm-3"> </div>
+                <div class="col-lg-4 col-sm-3">
+                    <button (click)="Edit()" class="form-control form-control-lg btn btn-outline-success fs-5 "> Edit
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
+</div>
 </div>

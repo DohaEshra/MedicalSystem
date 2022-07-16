@@ -113,10 +113,30 @@ export class DoctorRegisterationComponent implements OnInit {
       //console.log("user " ,this.user)
     }
   }
+  validationOfOthers(myForm:NgForm):boolean{
+   
+   var controls =  Object.entries(myForm.form.controls);
+   
+    for(let i =0 ; i< controls.length ; i++){
+      if(controls[i][0]=='category'){
+        console.log('ay 7aga');
+        continue
+      }
+      else{
+        if(controls[i][1].status=='INVALID')
+          {
+            console.log('Invalidddd')
+            return false
+          }
+      }
+    }
+    console.log('validdddd')
+    return true ;
+  }
 
    onSubmit(myForm:NgForm): void {
 
-    console.log('fooooooooorm',myForm , myForm.valid, this.TruePassword)
+    console.log('fooooooooorm',myForm )
     this.user.gender== 'M' && this.user.image==null 
     ?this.user.image = '../../../assets/M.jpg'
     :this.user.image = '../../../assets/F.jpg';
@@ -143,7 +163,8 @@ export class DoctorRegisterationComponent implements OnInit {
           area: this.user.area, 
           street: this.user.street, 
           buildingNumber: this.user.buildingNumber,
-          doctorRating: 0
+          doctorRating: 0,
+          works_ins: []
         };
   
         console.log('dr ',doctor);
@@ -164,7 +185,8 @@ export class DoctorRegisterationComponent implements OnInit {
           });
         }
       }else{
-          if(myForm.form.controls['category'].errors != null && this.TruePassword){
+        var valid = this.validationOfOthers(myForm);
+          if(this.TruePassword && valid){
           // add Other data
         let other : Other = { 
           id: 0, 
@@ -190,7 +212,7 @@ export class DoctorRegisterationComponent implements OnInit {
               this.isRegistrationFailed = false ; 
               console.log('success to add other ' + data)
               setTimeout(()=> alert(other.fname+' '+other.lname +' has been added successfully'),0);
-            this.router.navigateByUrl('/admin/Employees');
+              this.router.navigateByUrl('/admin/Employees');
             }
             ,error:err=>{
               console.log('error from doctor registration component', err)

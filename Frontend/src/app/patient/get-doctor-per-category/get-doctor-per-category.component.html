@@ -21,7 +21,12 @@
 
 				<i class="glyphicon glyphicon-earphone"></i> <span> {{i.phone}}</span><br>
 				<i class="glyphicon glyphicon-envelope"></i> <span> {{i.email}}</span><br>
-
+				<a class="btn btn-default  mt-3" style="background-color: #fff; " id="book"
+				[routerLink]="['/patient/appointment',i.id]">
+				<i style="color: #a5c422;margin-right:5px;" id="cal" class="fa fa-calendar"
+					aria-hidden="true"></i>
+				<span>Book</span>
+				</a>
 			</div>
 			<span class="clearfix borda"></span>
 		</article>

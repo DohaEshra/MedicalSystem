@@ -27,7 +27,7 @@ export class ShowappointmentsComponent implements OnInit,OnDestroy {
       }
     );
   }
-  deleteMedicine(pid:number,did:number,date:Date|string){
+  deleteApointment(pid:number,did:number,date:Date|string){
     this.sub1=this.patientSer.deleteAppointment(pid,did,date).subscribe(
       a=>{
         this.ngOnInit();

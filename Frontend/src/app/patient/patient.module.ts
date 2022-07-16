@@ -28,6 +28,7 @@ import { NumberOfRecordsInSameDatePipe } from './_Pipes/number-of-records-in-sam
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditappointmentComponent } from './editappointment/editappointment.component';
 import { CoreModule } from '../core/core.module';
+import { TimeFormatPipe } from './_Pipes/time-format.pipe';
 import { IsValidDatePipe } from './_Pipes/is-valid-date.pipe';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 
@@ -50,6 +51,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     SafePipe,
     NumberOfRecordsInSameDatePipe,
     EditappointmentComponent,
+    TimeFormatPipe,
     ChangePasswordComponent,
    
   ],
