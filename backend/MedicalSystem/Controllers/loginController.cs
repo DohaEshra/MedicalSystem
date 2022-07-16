@@ -64,6 +64,8 @@ namespace MedicalSystem.Controllers
             else if (user.role == "laboratory technician" || user.role == "radiographer" || user.role == "pharmacist")
             {
                 var blocked = db.Blocked.FirstOrDefault(e => e.email == user.email);
+                //var blocked = db.BlockedUsers.FirstOrDefault(e => e.email == user.email);
+
                 if (blocked != null)
                     return Unauthorized("You are unable to login into your account, please check with your admin");
 
