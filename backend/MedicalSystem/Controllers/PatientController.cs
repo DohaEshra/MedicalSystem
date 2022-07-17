@@ -136,7 +136,7 @@ namespace MedicalSystem.Controllers
             string oldPass = patient.oldPass;
             string newPass = patient.newPass;
 
-            var pat = await _context.Doctors.FindAsync(id);
+            var pat = await _context.Patients.FirstOrDefaultAsync(e=>e.ID == id);
             if (pat == null)
                 return NotFound();
 

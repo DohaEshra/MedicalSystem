@@ -106,4 +106,9 @@ export class DoctorService {
   changePassword(doctorPasswords:any,id:number){
     return this.http.put<any>(this.baseUrl + "Doctor/change/" + id, doctorPasswords);
   }
+
+   //get other by id
+  getOtherById(otherID:any){
+    return this.http.get<any>(this.baseUrl + "Other/" + otherID)
+  }
 }

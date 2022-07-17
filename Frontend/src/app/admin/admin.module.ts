@@ -17,6 +17,7 @@ import { ManageEmployeesComponent } from './manage-employees/manage-employees.co
 import { GetAllPipe } from './_Pipes/get-all.pipe';
 import { DisplayDoctorComponent } from './display-doctor/display-doctor.component';
 import { ContainFilesPipe } from './_Pipes/contain-files.pipe';
+import { DisplayOtherComponent } from './display-other/display-other.component';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import {SidebarModule} from 'primeng/sidebar';
 
@@ -33,7 +34,8 @@ import { ContainFilesPipe } from './_Pipes/contain-files.pipe';
     ManageEmployeesComponent,
     GetAllPipe,
     DisplayDoctorComponent,
-    ContainFilesPipe
+    ContainFilesPipe,
+    DisplayOtherComponent
   ],
   imports: [
     CommonModule,ConfirmDialogModule,

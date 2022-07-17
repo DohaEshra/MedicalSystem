@@ -57,8 +57,7 @@
                             </ng-template>
 
                             <td class="text-center">
-                                <button class="btn Display btn-primary btn-lg my-1" type="button"
-                                    [routerLink]="['/admin/DisplayDoctor',emp.id]"><i class="fas fa-user"></i></button>
+                                <button class="btn Display btn-primary btn-lg my-1" type="button" (click)="getDetails(emp)"><i class="fas fa-user"></i></button>
                                 <button class="btn btn-danger btn-lg my-1" type="button" (click)="BlockUser(emp)"><i class="fas fa-ban"></i></button>
                             </td>
 
