@@ -103,6 +103,7 @@ export class FileUpadateOrDeleteComponent implements OnInit {
           var x = this.patient.records.indexOf(record);
           this.patient.records.splice(x, 1);
           alert('File deleted successfully');
+          this.ID =''
         },
         error: err => { 
           console.log('error in uploading',err);
